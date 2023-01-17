@@ -1,7 +1,7 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 
-const STORAGE_KEY = 'board'
+const STORAGE_KEY = 'boardDB'
 
 export const boardService = {
     query,
@@ -222,7 +222,7 @@ function creatBoards() {
         }
     ]
 
-    board.forEach(board => save(board))
+    utilService.saveToStorage(STORAGE_KEY, boards)
 }
 
 // const activity = {
@@ -231,6 +231,19 @@ function creatBoards() {
 //     'createdAt': Date.now(),
 //     'byMember': userService.getLoggedinUser(),
 //     'task': task
+// }
+
+// const user = {
+//     '_id': 'u101',
+//     'fullname': 'Abi Abambi',
+//     'username': 'abi@ababmi.com',
+//     'password': 'aBambi123',
+//     'imgUrl': 'http://some-img.jpg',
+//     'mentions': [{ //optional
+//         'id': 'm101',
+//         'boardId': 'm101',
+//         'taskId': 't101'
+//     }]
 // }
 
 // // Store - saveTask
@@ -376,15 +389,3 @@ function creatBoards() {
 //     'cmpsOrder': ['status-picker', 'member-picker', 'date-picker']
 // }
 
-// const user = {
-//     '_id': 'u101',
-//     'fullname': 'Abi Abambi',
-//     'username': 'abi@ababmi.com',
-//     'password': 'aBambi123',
-//     'imgUrl': 'http://some-img.jpg',
-//     'mentions': [{ //optional
-//         'id': 'm101',
-//         'boardId': 'm101',
-//         'taskId': 't101'
-//     }]
-// }
