@@ -1,7 +1,7 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 
-const STORAGE_KEY = 'board'
+const STORAGE_KEY = 'boardDB'
 
 export const boardService = {
     query,
@@ -221,8 +221,8 @@ function creatBoards() {
             ]
         }
     ]
-
-    board.forEach(board => save(board))
+    utilService.saveToStorage(STORAGE_KEY, boards)
+    // boards.forEach(board => save(board))
 }
 
 // const activity = {
