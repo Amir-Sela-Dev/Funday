@@ -1,0 +1,10 @@
+.work-space {
+    grid-area: work-space;
+    background-color: $work-space-bgc ;
+    transition: 2s;
+
+    .close {
+        transform: translateX(100%);
+    }
+
+}
