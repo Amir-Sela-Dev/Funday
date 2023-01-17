@@ -7,6 +7,7 @@ import { SideNav } from '../cmps/side-nav.jsx'
 import { WorkSpace } from '../cmps/work-space/work-space'
 import { BoardDetails } from '../cmps/board/board-details.jsx'
 import { Navigate } from 'react-router-dom'
+import { WorkSpace } from '../cmps/work-space/work-space.jsx'
 
 export function AppIndex() {
 
