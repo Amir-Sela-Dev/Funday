@@ -5,7 +5,7 @@ const STORAGE_KEY = 'boardDB'
 
 export const boardService = {
     query,
-    getById,
+    get,
     save,
     remove,
     getEmptyBoard,
@@ -20,7 +20,7 @@ async function query(filterBy = { title: '' }) {
     return storageService.query(STORAGE_KEY)
 }
 
-function getById(boardId) {
+function get(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
     // return httpService.get(`board/${boardId}`)
 }
@@ -90,138 +90,141 @@ function getEmptyBoard() {
 }
 
 function creatBoards() {
-    const boards = [
-        {
-            _id: utilService.makeId(5),
-            title: 'Robot dev proj',
-            isStarred: false,
-            archivedAt: Date.now(),
-            createdBy: {
+    let boards = utilService.loadFromStorage(STORAGE_KEY)
+    if (!boards || !boards.length) {
+        boards = [
+            {
                 _id: utilService.makeId(5),
-                fullname: 'Abi Abambi',
-                imgUrl: '',
-            },
-            groups: [
-                {
-                    id: utilService.makeId(5),
-                    title: 'Group 1',
-                    archivedAt: Date.now(),
-                    tasks: [
-                        {
-                            id: utilService.makeId(5),
-                            title: 'Mashu tov'
-                        },
-                        {
-                            id: utilService.makeId(5),
-                            title: 'Dogma 1'
-                        }
-                    ]
+                title: 'Robot dev proj',
+                isStarred: false,
+                archivedAt: Date.now(),
+                createdBy: {
+                    _id: utilService.makeId(5),
+                    fullname: 'Abi Abambi',
+                    imgUrl: '',
                 },
-                {
-                    id: utilService.makeId(5),
-                    title: 'Group 2',
-                    archivedAt: Date.now(),
-                    tasks: [
-                        {
-                            id: utilService.makeId(5),
-                            title: 'Replace logo'
-                        },
-                        {
-                            id: utilService.makeId(5),
-                            title: 'Add Samples'
-                        }
-                    ],
-                }
-            ]
-        },
-        {
-            _id: utilService.makeId(5),
-            title: 'Sprint 4',
-            isStarred: true,
-            archivedAt: Date.now(),
-            createdBy: {
+                groups: [
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Group 1',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'Mashu tov'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'Dogma 1'
+                            }
+                        ]
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Group 2',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'Replace logo'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'Add Samples'
+                            }
+                        ],
+                    }
+                ]
+            },
+            {
                 _id: utilService.makeId(5),
-                fullname: 'Puki ada',
-                imgUrl: '',
-            },
-            groups: [
-                {
-                    id: utilService.makeId(5),
-                    title: 'Development',
-                    archivedAt: Date.now(),
-                    tasks: [
-                        {
-                            id: utilService.makeId(5),
-                            title: 'biuld structure'
-                        },
-                        {
-                            id: utilService.makeId(5),
-                            title: 'write code'
-                        }
-                    ]
+                title: 'Sprint 4',
+                isStarred: true,
+                archivedAt: Date.now(),
+                createdBy: {
+                    _id: utilService.makeId(5),
+                    fullname: 'Puki ada',
+                    imgUrl: '',
                 },
-                {
-                    id: utilService.makeId(5),
-                    title: 'Design',
-                    archivedAt: Date.now(),
-                    tasks: [
-                        {
-                            id: utilService.makeId(5),
-                            title: 'Replace style'
-                        },
-                        {
-                            id: utilService.makeId(5),
-                            title: 'work with sass'
-                        }
-                    ],
-                }
-            ]
-        },
-        {
-            _id: utilService.makeId(5),
-            title: 'New project',
-            isStarred: false,
-            archivedAt: Date.now(),
-            createdBy: {
+                groups: [
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Development',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'biuld structure'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'write code'
+                            }
+                        ]
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Design',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'Replace style'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'work with sass'
+                            }
+                        ],
+                    }
+                ]
+            },
+            {
                 _id: utilService.makeId(5),
-                fullname: 'Bamba osem',
-                imgUrl: '',
-            },
-            groups: [
-                {
-                    id: utilService.makeId(5),
-                    title: 'Groupy',
-                    archivedAt: Date.now(),
-                    tasks: [
-                        {
-                            id: utilService.makeId(5),
-                            title: 'open git repo'
-                        },
-                        {
-                            id: utilService.makeId(5),
-                            title: 'merge work sheets'
-                        }
-                    ]
+                title: 'New project',
+                isStarred: false,
+                archivedAt: Date.now(),
+                createdBy: {
+                    _id: utilService.makeId(5),
+                    fullname: 'Bamba osem',
+                    imgUrl: '',
                 },
-                {
-                    id: utilService.makeId(5),
-                    title: 'Kvotsa',
-                    archivedAt: Date.now(),
-                    tasks: [
-                        {
-                            id: utilService.makeId(5),
-                            title: 'misema'
-                        },
-                        {
-                            id: utilService.makeId(5),
-                            title: 'matala'
-                        }
-                    ],
-                }
-            ]
-        }
-    ]
-    utilService.saveToStorage(STORAGE_KEY, boards)
+                groups: [
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Groupy',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'open git repo'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'merge work sheets'
+                            }
+                        ]
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Kvotsa',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'misema'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'matala'
+                            }
+                        ],
+                    }
+                ]
+            }
+        ]
+        utilService.saveToStorage(STORAGE_KEY, boards)
+    }
     // boards.forEach(board => save(board))
 }
 

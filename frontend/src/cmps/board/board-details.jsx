@@ -2,37 +2,38 @@
 
 // import { boardService } from "../services/board.service.js"
 // import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
-// import { useEffect, useState } from "react"
-// import { Link, useNavigate, useParams } from "react-router-dom"
-// import { loadBoard } from "../../store/board.action"
-// import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { loadBoard } from "../../store/board.action"
+import { useDispatch, useSelector } from 'react-redux'
+import { GroupList } from "../group/group-list"
 
 export function BoardDetails() {
     // const [board, setBoard] = useState(null)
-    // let { board } = useSelector((storeState) => storeState.boardModule)
+    let { board } = useSelector((storeState) => storeState.boardModule)
 
-    // const { boardId } = useParams()
-    // const navigate = useNavigate()
-
-
-
-    // useEffect(() => {
-    //     // loadBoard(boardId)
-    // }, [])
+    const { boardId } = useParams()
+    const navigate = useNavigate()
 
 
+
+    useEffect(() => {
+        loadBoard(boardId)
+    }, [])
 
 
 
 
+    console.log(board);
 
 
 
 
-    // if (!board) return <div>Loading...</div>
+
+    if (!board) return <div>Loading...</div>
 
 
     return <section className="board-details">
-        <h1>im here</h1>
+        <GroupList board={board} />
     </section>
 }
