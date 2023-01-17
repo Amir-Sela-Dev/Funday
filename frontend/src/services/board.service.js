@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service'
-
+import { utilService } from './util.service'
 
 const STORAGE_KEY = 'board'
 
@@ -13,12 +13,12 @@ export const boardService = {
 }
 
 window.cs = boardService
+creatBoards()
 
 async function query(filterBy = { title: '' }) {
     // return httpService.get(STORAGE_KEY, filterBy)
     return storageService.query(STORAGE_KEY)
 }
-
 
 function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
@@ -29,6 +29,7 @@ async function remove(boardId) {
     await storageService.remove(STORAGE_KEY, boardId)
     // return httpService.delete(`board/${boardId}`)
 }
+
 async function save(board) {
     let savedBoard
     if (board._id) {
@@ -44,49 +45,89 @@ async function save(board) {
 
 function getEmptyBoard() {
     return {
-        title: ''
+        _id: utilService.makeId(5),
+        title: '',
+        isStarred: false,
+        archivedAt: Date.now(),
+        createdBy: {
+            _id: utilService.makeId(5),
+            fullname: '',
+            imgUrl: '',
+        },
+        groups: [
+            {
+                id: utilService.makeId(5),
+                title: '',
+                archivedAt: Date.now(),
+                tasks: [
+                    {
+                        id: utilService.makeId(5),
+                        title: ''
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: ''
+                    }
+                ]
+            },
+            {
+                id: utilService.makeId(5),
+                title: '',
+                archivedAt: Date.now(),
+                tasks: [
+                    {
+                        id: utilService.makeId(5),
+                        title: ''
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: ''
+                    }
+                ],
+            }
+        ]
     }
 }
 
 function creatBoards() {
-    return [
+    const boards = [
         {
-            _id: makeId(5),
+            _id: utilService.makeId(5),
             title: 'Robot dev proj',
             isStarred: false,
             archivedAt: Date.now(),
             createdBy: {
-                _id: makeId(5),
+                _id: utilService.makeId(5),
                 fullname: 'Abi Abambi',
                 imgUrl: '',
             },
             groups: [
                 {
-                    id: makeId(5),
+                    id: utilService.makeId(5),
                     title: 'Group 1',
                     archivedAt: Date.now(),
                     tasks: [
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'Mashu tov'
                         },
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'Dogma 1'
                         }
                     ]
                 },
                 {
-                    id: makeId(5),
+                    id: utilService.makeId(5),
                     title: 'Group 2',
                     archivedAt: Date.now(),
                     tasks: [
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'Replace logo'
                         },
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'Add Samples'
                         }
                     ],
@@ -94,42 +135,42 @@ function creatBoards() {
             ]
         },
         {
-            _id: makeId(5),
+            _id: utilService.makeId(5),
             title: 'Sprint 4',
             isStarred: true,
             archivedAt: Date.now(),
             createdBy: {
-                _id: makeId(5),
+                _id: utilService.makeId(5),
                 fullname: 'Puki ada',
                 imgUrl: '',
             },
             groups: [
                 {
-                    id: makeId(5),
+                    id: utilService.makeId(5),
                     title: 'Development',
                     archivedAt: Date.now(),
                     tasks: [
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'biuld structure'
                         },
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'write code'
                         }
                     ]
                 },
                 {
-                    id: makeId(5),
+                    id: utilService.makeId(5),
                     title: 'Design',
                     archivedAt: Date.now(),
                     tasks: [
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'Replace style'
                         },
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'work with sass'
                         }
                     ],
@@ -137,42 +178,42 @@ function creatBoards() {
             ]
         },
         {
-            _id: makeId(5),
+            _id: utilService.makeId(5),
             title: 'New project',
             isStarred: false,
             archivedAt: Date.now(),
             createdBy: {
-                _id: makeId(5),
+                _id: utilService.makeId(5),
                 fullname: 'Bamba osem',
                 imgUrl: '',
             },
             groups: [
                 {
-                    id: makeId(5),
+                    id: utilService.makeId(5),
                     title: 'Groupy',
                     archivedAt: Date.now(),
                     tasks: [
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'open git repo'
                         },
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'merge work sheets'
                         }
                     ]
                 },
                 {
-                    id: makeId(5),
+                    id: utilService.makeId(5),
                     title: 'Kvotsa',
                     archivedAt: Date.now(),
                     tasks: [
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'misema'
                         },
                         {
-                            id: makeId(5),
+                            id: utilService.makeId(5),
                             title: 'matala'
                         }
                     ],
@@ -180,6 +221,8 @@ function creatBoards() {
             ]
         }
     ]
+
+    board.forEach(board => save(board))
 }
 
 // const activity = {
