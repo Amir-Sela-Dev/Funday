@@ -233,6 +233,19 @@ function creatBoards() {
 //     'task': task
 // }
 
+// const user = {
+//     '_id': 'u101',
+//     'fullname': 'Abi Abambi',
+//     'username': 'abi@ababmi.com',
+//     'password': 'aBambi123',
+//     'imgUrl': 'http://some-img.jpg',
+//     'mentions': [{ //optional
+//         'id': 'm101',
+//         'boardId': 'm101',
+//         'taskId': 't101'
+//     }]
+// }
+
 // // Store - saveTask
 // function storeSaveTask(task, activity) {
 
@@ -376,15 +389,3 @@ function creatBoards() {
 //     'cmpsOrder': ['status-picker', 'member-picker', 'date-picker']
 // }
 
-// const user = {
-//     '_id': 'u101',
-//     'fullname': 'Abi Abambi',
-//     'username': 'abi@ababmi.com',
-//     'password': 'aBambi123',
-//     'imgUrl': 'http://some-img.jpg',
-//     'mentions': [{ //optional
-//         'id': 'm101',
-//         'boardId': 'm101',
-//         'taskId': 't101'
-//     }]
-// }
