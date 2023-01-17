@@ -9,7 +9,7 @@ export function TaskList({ group }) {
             </div>
             {group.tasks.map(task =>
                 <div className="task-preview flex" key={task._id}>
-                    <div>{task.txt}</div>
+                    <div>{task.title}</div>
                     <div>  <button className="option-btn" onClick={() => { }}>...</button></div>
                 </div>)}
         </div>
