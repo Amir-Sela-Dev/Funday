@@ -4,6 +4,9 @@ export function WorkSpace() {
 
 
     return <section className="work-space">
-        im work space
+        board-filter
+        <section className="board-list">
+
+        </section>
     </section>
 }
