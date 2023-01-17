@@ -1,6 +1,7 @@
 import { HomePage } from './pages/home-page.jsx'
 import { AboutUs } from './pages/about-us.jsx'
 import { CarIndex } from './pages/car-index.jsx'
+import { AppIndex } from './pages/app-index.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [

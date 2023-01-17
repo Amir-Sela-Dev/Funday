@@ -221,8 +221,8 @@ function creatBoards() {
             ]
         }
     ]
-
     utilService.saveToStorage(STORAGE_KEY, boards)
+    // boards.forEach(board => save(board))
 }
 
 // const activity = {
