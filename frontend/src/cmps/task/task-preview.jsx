@@ -18,11 +18,8 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
         } catch (err) {
             showErrorMsg('Cannot update task')
         }
-
     }
-
-    console.log(task);
-
+    console.log(task)
 
     const openTaskIcon = 'open-item.svg'
     return (
