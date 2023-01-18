@@ -22,13 +22,7 @@ export function BoardDetails() {
     }, [])
 
 
-
-
     console.log(board);
-
-
-
-
 
     if (!board) return <div>Loading...</div>
 

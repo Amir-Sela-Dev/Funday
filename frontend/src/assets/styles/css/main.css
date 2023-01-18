@@ -454,6 +454,10 @@ form > * {
   width: 20px;
 }
 
+.task-preview {
+  padding-inline: 20px;
+}
+
 .group-preview-line {
   border: #323338 solid 1px;
   margin: 32px 0;

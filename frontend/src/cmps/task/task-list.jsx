@@ -1,3 +1,4 @@
+import { TaskPreview } from "./task-preview";
 
 export function TaskList({ group }) {
 
@@ -7,11 +8,9 @@ export function TaskList({ group }) {
                 <div>item</div>
                 <div>status</div>
             </div>
-            {group.tasks.map(task =>
-                <div className="task-preview flex" key={task._id}>
-                    <div>{task.title}</div>
-                    <div>  <button className="option-btn" onClick={() => { }}>...</button></div>
-                </div>)}
+            {group.tasks.map(currTask => {
+                return <TaskPreview task={currTask} />
+            })}
         </div>
     )
 }

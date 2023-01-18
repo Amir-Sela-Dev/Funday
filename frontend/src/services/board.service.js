@@ -111,114 +111,21 @@ function creatBoards() {
                         tasks: [
                             {
                                 id: utilService.makeId(5),
-                                title: 'Mashu tov'
+                                title: 'Mashu tov',
+                                // TODO: Add minimal user suport
+                                // for now we use persons as count and render icons
+                                persons: utilService.getRandomIntInclusive(1, 3),
+                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0,2)],
+                                date: utilService.randomTime()
                             },
                             {
                                 id: utilService.makeId(5),
-                                title: 'Dogma 1'
+                                title: 'Dogma 1',
+                                persons: utilService.getRandomIntInclusive(1, 3),
+                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0,2)],
+                                date: utilService.randomTime()
                             }
                         ]
-                    },
-                    {
-                        id: utilService.makeId(5),
-                        title: 'Group 2',
-                        archivedAt: Date.now(),
-                        tasks: [
-                            {
-                                id: utilService.makeId(5),
-                                title: 'Replace logo'
-                            },
-                            {
-                                id: utilService.makeId(5),
-                                title: 'Add Samples'
-                            }
-                        ],
-                    }
-                ]
-            },
-            {
-                _id: utilService.makeId(5),
-                title: 'Sprint 4',
-                isStarred: true,
-                archivedAt: Date.now(),
-                createdBy: {
-                    _id: utilService.makeId(5),
-                    fullname: 'Puki ada',
-                    imgUrl: '',
-                },
-                groups: [
-                    {
-                        id: utilService.makeId(5),
-                        title: 'Development',
-                        archivedAt: Date.now(),
-                        tasks: [
-                            {
-                                id: utilService.makeId(5),
-                                title: 'biuld structure'
-                            },
-                            {
-                                id: utilService.makeId(5),
-                                title: 'write code'
-                            }
-                        ]
-                    },
-                    {
-                        id: utilService.makeId(5),
-                        title: 'Design',
-                        archivedAt: Date.now(),
-                        tasks: [
-                            {
-                                id: utilService.makeId(5),
-                                title: 'Replace style'
-                            },
-                            {
-                                id: utilService.makeId(5),
-                                title: 'work with sass'
-                            }
-                        ],
-                    }
-                ]
-            },
-            {
-                _id: utilService.makeId(5),
-                title: 'New project',
-                isStarred: false,
-                archivedAt: Date.now(),
-                createdBy: {
-                    _id: utilService.makeId(5),
-                    fullname: 'Bamba osem',
-                    imgUrl: '',
-                },
-                groups: [
-                    {
-                        id: utilService.makeId(5),
-                        title: 'Groupy',
-                        archivedAt: Date.now(),
-                        tasks: [
-                            {
-                                id: utilService.makeId(5),
-                                title: 'open git repo'
-                            },
-                            {
-                                id: utilService.makeId(5),
-                                title: 'merge work sheets'
-                            }
-                        ]
-                    },
-                    {
-                        id: utilService.makeId(5),
-                        title: 'Kvotsa',
-                        archivedAt: Date.now(),
-                        tasks: [
-                            {
-                                id: utilService.makeId(5),
-                                title: 'misema'
-                            },
-                            {
-                                id: utilService.makeId(5),
-                                title: 'matala'
-                            }
-                        ],
                     }
                 ]
             }
@@ -228,6 +135,22 @@ function creatBoards() {
     // boards.forEach(board => save(board))
 }
 
+function getEmptyTask() {
+    return {
+        name: '',
+        persons: [],
+        status: {},
+        date: new Date(),
+    }
+}
+
+function getDefaultLabelSet() {
+    return [
+        { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
+        { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
+        { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' }
+    ]
+}
 // const activity = {
 //     'id': makeId(),
 //     'txt': 'Changed Color',
