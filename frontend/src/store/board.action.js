@@ -17,7 +17,6 @@ export async function loadBoards(filterBy) {
     }
 }
 
-
 // Example for Optimistic mutation:
 export async function removeBoard(boardId) {
     try {
@@ -32,7 +31,6 @@ export async function removeBoard(boardId) {
         throw err
     }
 }
-
 
 // export function removeBoardNormal(boardId) {
 //     return boardService.remove(boardId)
@@ -68,6 +66,31 @@ export async function loadBoard(boardId) {
     }
 }
 
+// Groups
+export async function addGroup(group, board) {
+    let boardToSave = board
+    console.log('got here')
+    boardToSave.groups.unshift(group)
+    saveBoard(boardToSave)
+}
+
+export async function saveGroup(board, groupId, groupToUpdate) {
+    let boardToSave = board
+    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
+    if (groupIndex === -1) console.log('Could not find group to update')
+    boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
+    saveBoard(boardToSave)
+}
+
+export async function removeGroup(board, groupId) {
+    let boardToSave = board
+    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
+    if (groupIndex === -1) console.log('Could not find group to remove')
+    boardToSave.groups.splice(groupIndex, 1)
+    saveBoard(boardToSave)
+}
+
+// Tasks
 export async function addTask(board, groupId, task) {
     let boardToSave = board
     if (!task.id) task.id = utilService.makeId(5)
@@ -92,4 +115,5 @@ export async function saveTask(board, groupId, taskId, taskToUpdate) {
     currGroup.tasks.splice(taksIdx, 1, taskToUpdate)
     saveBoard(boardToSave)
 }
+
 

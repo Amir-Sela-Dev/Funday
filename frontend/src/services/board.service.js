@@ -12,7 +12,8 @@ export const boardService = {
     getEmptyBoard,
     getEmptyTask,
     creatBoards,
-    getDefaultLabels
+    getDefaultLabels,
+    getEmptyGroup
 }
 
 window.cs = boardService
