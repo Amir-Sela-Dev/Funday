@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GroupList } from "../group/group-list"
 
 export function BoardDetails() {
-    // const [board, setBoard] = useState(null)
+    const [currboard, setBoard] = useState(null)
     let { board } = useSelector((storeState) => storeState.boardModule)
 
     const { boardId } = useParams()
@@ -18,9 +18,13 @@ export function BoardDetails() {
 
 
     useEffect(() => {
-        loadBoard(boardId)
+        onLoadBoard()
     }, [])
 
+    async function onLoadBoard() {
+        let board = await loadBoard(boardId)
+        setBoard(board)
+    }
 
 
 

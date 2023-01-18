@@ -45,7 +45,7 @@ async function save(board) {
 
 function getEmptyBoard() {
     return {
-        _id: utilService.makeId(5),
+        _id: '',
         title: '',
         isStarred: false,
         archivedAt: Date.now(),
@@ -62,11 +62,11 @@ function getEmptyBoard() {
                 tasks: [
                     {
                         id: utilService.makeId(5),
-                        title: ''
+                        title: 'item 1'
                     },
                     {
                         id: utilService.makeId(5),
-                        title: ''
+                        title: 'item 2'
                     }
                 ]
             },
@@ -77,11 +77,11 @@ function getEmptyBoard() {
                 tasks: [
                     {
                         id: utilService.makeId(5),
-                        title: ''
+                        title: 'item 3'
                     },
                     {
                         id: utilService.makeId(5),
-                        title: ''
+                        title: 'item 4'
                     }
                 ],
             }
