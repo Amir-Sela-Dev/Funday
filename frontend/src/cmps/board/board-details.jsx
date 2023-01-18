@@ -26,13 +26,7 @@ export function BoardDetails() {
         setBoard(board)
     }
 
-
-
     console.log(board);
-
-
-
-
 
     if (!board) return <div>Loading...</div>
 

@@ -3,7 +3,7 @@ export const utilService = {
     makeLorem,
     getRandomIntInclusive,
     debounce,
-    randomPastTime,
+    randomTime,
     saveToStorage,
     loadFromStorage
 }
@@ -36,13 +36,13 @@ function getRandomIntInclusive(min, max) {
 }
 
 
-function randomPastTime() {
+function randomTime() {
     const HOUR = 1000 * 60 * 60
     const DAY = 1000 * 60 * 60 * 24
     const WEEK = 1000 * 60 * 60 * 24 * 7
 
-    const pastTime = getRandomIntInclusive(HOUR, WEEK)
-    return Date.now() - pastTime
+    const timeDifference = getRandomIntInclusive(HOUR, WEEK)
+    return Date.now() + getRandomIntInclusive(0, 1) ? timeDifference : (-timeDifference)
 }
 
 function debounce(func, timeout = 300){

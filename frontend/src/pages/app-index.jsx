@@ -17,7 +17,6 @@ export function AppIndex() {
 
 
     return <section className="app-index">
-
         <SideNav />
         <WorkSpace />
         <BoardDetails />
