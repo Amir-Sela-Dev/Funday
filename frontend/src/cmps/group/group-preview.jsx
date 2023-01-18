@@ -9,39 +9,16 @@ import { store } from '../../store/store'
 import { TaskList } from "../task/task-list"
 
 export function GroupPreview({ group }) {
-    const [newTask, setNewTask] = useState(boardService.getEmptyTask())
-    let { board } = useSelector((storeState) => storeState.boardModule)
 
-    async function handleSubmit(event) {
-        event.preventDefault()
-        const boardToSave = boardService.saveTask(board, group.id, newTask)
-        setNewTask({ ...boardService.getEmptyTask() })
-        try{
-            saveBoard(boardToSave)
-        }catch(err){
-            console.log('error adding task', err)
-        }
-    }
-
-    function handleInputChange(event) {
-        setNewTask({ ...newTask, title: event.target.value })
-    }
-
-
+    // const groupColor = '#e2445c'
+    const groupColor = group.style?.color
     return (
         <section className="group-preview">
-            <div className="group-title"> {group.title} {group.tasks.length} </div>
-            <TaskList group={group} />
+            <div className="group-title"
+                style={{ color: groupColor }}>
+                {group.title} <span className='number-of-tasks'>{group.tasks.length} items</span></div>
+            <TaskList group={group} groupColor={groupColor} />
             <div className="add-task">
-                <form onSubmit={handleSubmit}>
-                    <input
-                        placeholder='Add task'
-                        type="text"
-                        value={newTask.title}
-                        onChange={handleInputChange}
-                        onBlur={ev => handleSubmit(ev)}
-                    />
-                </form>
             </div>
         </section>
     )

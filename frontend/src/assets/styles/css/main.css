@@ -181,7 +181,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: caveat;
+  font-family: Poppins-Regular;
   margin: 0 0 0.6em;
   line-height: 1;
 }
@@ -509,8 +509,13 @@ form > * {
   margin: 6px;
 }
 
+.colored-tag {
+  position: relative;
+}
+
 .task-list {
   color: #323338;
+  text-align: center;
 }
 .task-list .task-title-row {
   text-align: center;
@@ -518,24 +523,65 @@ form > * {
 }
 
 .task-column {
-  border: 1px solid rgba(0, 0, 0, 0.413);
+  border: 0.5px solid rgba(0, 0, 0, 0.192);
   border-collapse: collapse;
   height: 36px;
+  line-height: 36px;
+}
+
+.checkbox-column {
+  display: flex;
 }
 
 .task-checkbox {
-  margin: 10px;
+  margin: 8px;
 }
 
 .task-date {
   width: 130px;
 }
 
+>>>>>>> 9a5515adad9117f7922ffe46ab94dfd764cf39eb
 .group-preview-line {
   margin: 32px 0;
 }
+
+.group-preview-line .group-title {
+  border-bottom: #323338 solid 1px;
+}
+
 .group-list {
   list-style: none;
+  margin: 0;
+}
+
+.board-title-group-wrap {
+  padding-top: 17px;
+}
+.board-title-group-wrap button {
+  background-color: transparent;
+  color: #323338;
+}
+
+.board-title-group {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 24px;
+  color: #323338;
+}
+
+.group-list-main-hr {
+  width: 95%;
+  margin-left: 0;
+}
+
+.new-group-btn {
+  background-color: #0070e5;
+  color: white;
+  border-radius: 4px;
+  font-family: Poppins-Regular;
+  padding: 4px 10px;
+  margin-bottom: 50px;
 }
 
 .boards-list {
@@ -557,6 +603,12 @@ form > * {
   color: #323338;
   font-size: 14px;
   padding: 10px 0;
+}
+
+.board-preview-link {
+  font-size: 14px;
+  padding-left: 10px;
+  color: #323338;
 }
 
 .board-wrap {

@@ -13,7 +13,7 @@ export const ADD_TASK = 'ADD_TASK'
 
 const initialState = {
     boards: [],
-    board: boardService.getEmptyBoard(),
+    board: null ,
     lastRemovedBoard: null,
 }
 
