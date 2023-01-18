@@ -1,0 +1,28 @@
+.boards-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.board-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.board-preview {
+    justify-content: space-between;
+    align-items: center;
+    a {
+        color: #323338;
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+.board-wrap {
+    align-items: center;
+    display: flex;
+    a {
+        padding-left: 10px;
+    }
+}

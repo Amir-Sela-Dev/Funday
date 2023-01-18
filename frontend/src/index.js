@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { store } from './store/store'
 import { RootCmp } from './root-cmp'
-import './assets/styles/main.scss'
+import './assets/styles/css/main.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
