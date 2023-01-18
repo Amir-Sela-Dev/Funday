@@ -1,3 +1,34 @@
 .group-list {
     list-style: none;
+    margin: 0;
+}
+
+.board-title-group-wrap {
+    padding-top: 17px;
+
+    button {
+        background-color: transparent;
+        color: #323338;
+    }
+}
+
+.board-title-group {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 24px;
+    color: #323338;
+}
+
+.group-list-main-hr {
+    width: 95%;
+    margin-left: 0;
+}
+
+.new-group-btn {
+    background-color: #0070e5;
+    color: white;
+    border-radius: 4px;
+    font-family: Poppins-Regular;
+    padding: 4px 10px;
+    margin-bottom: 50px;
 }

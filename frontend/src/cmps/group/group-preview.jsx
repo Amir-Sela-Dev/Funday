@@ -4,7 +4,9 @@ import { boardService } from '../../services/board.service'
 import { TaskList } from "../task/task-list"
 
 export function GroupPreview({ group }) {
-    const groupColor = '#e2445c'
+
+    // const groupColor = '#e2445c'
+    const groupColor = group.style?.color
     return (
         <section className="group-preview">
             <div className="group-title"
@@ -15,6 +17,4 @@ export function GroupPreview({ group }) {
             </div>
         </section>
     )
-
-
 }
