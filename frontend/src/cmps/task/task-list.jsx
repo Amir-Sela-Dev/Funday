@@ -3,6 +3,7 @@ import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
 import { removeTask, saveBoard, addTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
+import { TaskTitle } from "./task-title";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 export function TaskList({ group, groupColor }) {
 
@@ -80,7 +81,7 @@ export function TaskList({ group, groupColor }) {
                         onChange={handleInputChange}
                         onBlur={ev => OnAddTask(ev)}
                     />
-                </form>
+                </form> */}
             </div>
         </div>
     )

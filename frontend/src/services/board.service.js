@@ -175,13 +175,20 @@ function creatBoards() {
     }
 }
 
+
 // boardService
 export async function saveTask(board, groupId, task) {
     let boardToSave = board
-    if (!task.id) task.id = utilService.makeId(5)
     let refGroup = boardToSave.groups.find(group => group.id === groupId)
 
-    refGroup.tasks.push(task)
+    if (!task.id) {
+        task.id = utilService.makeId(5)
+        refGroup.tasks.push(task)
+    }
+    else{
+        const taskIdx = refGroup.tasks.findIndex(currTask => currTask.id === task.id)
+        refGroup.tasks.splice(taskIdx, 1, task)
+    } 
 
     return boardToSave
 }
