@@ -81,7 +81,7 @@ export function TaskList({ group, groupColor }) {
                         onChange={handleInputChange}
                         onBlur={ev => OnAddTask(ev)}
                     />
-                </form> */}
+                </form>
             </div>
         </div>
     )

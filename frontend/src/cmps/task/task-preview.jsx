@@ -18,23 +18,20 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
         } catch (err) {
             showErrorMsg('Cannot update task')
         }
-
     }
-
-export function TaskPreview({ task, groupColor }) {
-
+    console.log(task)
 
     const openTaskIcon = 'open-item.svg'
     return (
         <div className="task-preview flex">
             <div className="checkbox-column task-column">
-                <div className="colored-tag" style={{ background: group.style?.color || '#FFF000' }}></div>
+                <div className="colored-tag" style={{ background: groupColor }}></div>
                 <input className='task-checkbox' type="checkbox" />
             </div>
 
             <div className="task-txt task-column flex">
                 <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
-                <TaskTitle group={group} task={task} />
+                <span>{task.title}</span>
             </div>
 
             <div className="task-persons task-column"><span>{task.persons}</span></div>
