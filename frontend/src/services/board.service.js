@@ -12,7 +12,8 @@ export const boardService = {
     getEmptyBoard,
     getEmptyTask,
     creatBoards,
-    getDefaultLabels
+    getDefaultLabels,
+    getEmptyGroup
 }
 
 window.cs = boardService
@@ -174,13 +175,20 @@ function creatBoards() {
     }
 }
 
+
 // boardService
 export async function saveTask(board, groupId, task) {
     let boardToSave = board
-    if (!task.id) task.id = utilService.makeId(5)
     let refGroup = boardToSave.groups.find(group => group.id === groupId)
 
-    refGroup.tasks.push(task)
+    if (!task.id) {
+        task.id = utilService.makeId(5)
+        refGroup.tasks.push(task)
+    }
+    else{
+        const taskIdx = refGroup.tasks.findIndex(currTask => currTask.id === task.id)
+        refGroup.tasks.splice(taskIdx, 1, task)
+    } 
 
     return boardToSave
 }
@@ -201,6 +209,18 @@ function getDefaultLabels() {
         { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' },
         { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
     ]
+}
+
+function getEmptyGroup() {
+    return {
+        id: utilService.makeId(5),
+        title: 'New group',
+        archivedAt: Date.now(),
+        tasks: [
+
+        ],
+        style: { color: '#e2445c' }
+    }
 }
 // const activity = {
 //     'id': makeId(),

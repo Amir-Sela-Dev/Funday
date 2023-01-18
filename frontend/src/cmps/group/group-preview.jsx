@@ -7,6 +7,7 @@
 // import { ADD_TASK } from '../../store/board.reducer'
 // import { store } from '../../store/store'
 import { TaskList } from "../task/task-list"
+console.log('here');
 
 export function GroupPreview({ group }) {
 
