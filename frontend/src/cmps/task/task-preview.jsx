@@ -23,12 +23,12 @@ export function TaskPreview({ task }) {
         // ]
         <div className="task-preview flex align-center">
             <div className="task-title"><span>{task.title}</span></div>
-            <div className="task-persons"><span>{task.persons}</span></div>
+            <div className="task-persons"><span>{task?.persons}</span></div>
             <div className="task-status"
                 style={{ background: task.status?.color }}>
                 <span>{task.status?.txt}</span>
             </div>
-            <div className="task-date">{task.date}</div>
+            <div className="task-date">{task?.date}</div>
         </div>
     )
 }

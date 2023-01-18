@@ -9,6 +9,7 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
+    getEmptyTask,
     creatBoards
 }
 
@@ -137,7 +138,7 @@ function creatBoards() {
 
 function getEmptyTask() {
     return {
-        name: '',
+        title: '',
         persons: [],
         status: {},
         date: new Date(),
