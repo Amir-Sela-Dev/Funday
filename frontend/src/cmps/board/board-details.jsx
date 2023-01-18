@@ -15,8 +15,6 @@ export function BoardDetails() {
     const { boardId } = useParams()
     const navigate = useNavigate()
 
-
-
     useEffect(() => {
         onLoadBoard()
     }, [])

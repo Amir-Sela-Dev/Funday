@@ -1,15 +1,26 @@
 import { useState } from 'react'
-import { boardService } from '../../services/board.service'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { saveBoard } from "../../store/board.action"
+import { boardService } from '../../services/board.service'
+import { utilService } from '../../services/util.service'
+import { ADD_TASK } from '../../store/board.reducer'
+import { store } from '../../store/store'
 import { TaskList } from "../task/task-list"
 
 export function GroupPreview({ group }) {
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
+    let { board } = useSelector((storeState) => storeState.boardModule)
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
-        console.log("submit", newTask)
-        setNewTask(boardService.getEmptyTask())
+        const boardToSave = boardService.saveTask(board, group.id, newTask)
+        setNewTask({ ...boardService.getEmptyTask() })
+        try{
+            saveBoard(boardToSave)
+        }catch(err){
+            console.log('error adding task', err)
+        }
     }
 
     function handleInputChange(event) {
@@ -34,6 +45,4 @@ export function GroupPreview({ group }) {
             </div>
         </section>
     )
-
-
 }

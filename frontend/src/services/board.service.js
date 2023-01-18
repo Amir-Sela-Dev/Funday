@@ -8,6 +8,7 @@ export const boardService = {
     get,
     save,
     remove,
+    saveTask,
     getEmptyBoard,
     getEmptyTask,
     creatBoards
@@ -133,15 +134,25 @@ function creatBoards() {
         ]
         utilService.saveToStorage(STORAGE_KEY, boards)
     }
-    // boards.forEach(board => save(board))
+}
+
+// boardService
+function saveTask(board, groupId, task) {
+    let boardToSave = board
+    if (!task.id) task.id = utilService.makeId(5)
+    let refGroup = boardToSave.groups.find(group => group.id === groupId)
+    
+    refGroup.tasks.push(task)
+
+    return boardToSave
 }
 
 function getEmptyTask() {
     return {
         title: '',
-        persons: [],
+        persons: 0,
         status: {},
-        date: new Date(),
+        date: utilService.randomTime(),
     }
 }
 
