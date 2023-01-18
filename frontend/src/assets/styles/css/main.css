@@ -511,6 +511,7 @@ form > * {
 
 .task-list {
   color: #323338;
+  text-align: center;
 }
 .task-list .task-title-row {
   text-align: center;
@@ -521,6 +522,7 @@ form > * {
   border: 1px solid rgba(0, 0, 0, 0.413);
   border-collapse: collapse;
   height: 36px;
+  line-height: 36px;
 }
 
 .task-checkbox {
