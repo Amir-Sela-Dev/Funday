@@ -1,6 +1,20 @@
+import { useState } from "react";
+import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
 
 export function TaskList({ group }) {
+
+    const [newTask, setNewTask] = useState(boardService.getEmptyTask())
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log("submit", newTask)
+        setNewTask(boardService.getEmptyTask())
+    }
+
+    function handleInputChange(event) {
+        setNewTask({ ...newTask, title: event.target.value })
+    }
 
     return (
         <div className="task-list">
@@ -19,6 +33,16 @@ export function TaskList({ group }) {
             {group.tasks.map(currTask => {
                 return <TaskPreview task={currTask} />
             })}
+
+            <form onSubmit={handleSubmit}>
+                <input
+                    placeholder='Add task'
+                    type="text"
+                    value={newTask.title}
+                    onChange={handleInputChange}
+                    onBlur={ev => handleSubmit(ev)}
+                />
+            </form>
         </div>
     )
 }
