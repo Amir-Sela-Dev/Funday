@@ -11,7 +11,8 @@ export const boardService = {
     saveTask,
     getEmptyBoard,
     getEmptyTask,
-    creatBoards
+    creatBoards,
+    getEmptyGroup
 }
 
 window.cs = boardService
@@ -178,7 +179,7 @@ function saveTask(board, groupId, task) {
     let boardToSave = board
     if (!task.id) task.id = utilService.makeId(5)
     let refGroup = boardToSave.groups.find(group => group.id === groupId)
-    
+
     refGroup.tasks.push(task)
 
     return boardToSave
@@ -199,6 +200,18 @@ function getDefaultLabelSet() {
         { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
         { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' }
     ]
+}
+
+function getEmptyGroup() {
+    return {
+        id: utilService.makeId(5),
+        title: 'New group',
+        archivedAt: Date.now(),
+        tasks: [
+
+        ],
+        style: { color: '#e2445c' }
+    }
 }
 // const activity = {
 //     'id': makeId(),

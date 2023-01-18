@@ -1,20 +1,36 @@
+import { boardService } from "../../services/board.service";
+import { showErrorMsg } from "../../services/event-bus.service";
+import { addGroup, removeGroup, saveGroup } from "../../store/board.action";
 import { GroupPreview } from "./group-preview";
 
-export function GroupList({ board }) {
+export function GroupList({ board, groups }) {
 
-    console.log(board.title);
+    async function onAddGroup() {
+        try {
+            let groupToSave = boardService.getEmptyGroup()
+            await addGroup(groupToSave, board)
+        } catch (err) {
+            showErrorMsg('Cannot save board')
+        }
+    }
+
+    async function onUpdateGroup(board, groupId) {
+        saveGroup()
+    }
+
+    async function onRemoveGroup(groupId) {
+        console.log('here');
+        removeGroup(board, groupId)
+    }
 
     return <ul className="group-list">
-        <div className="board-title-group-wrap">
-            <h1 className="board-title-group">{board.title}</h1>
-            <button>i</button>
-            <button>star</button>
-        </div>
         <hr className="group-list-main-hr" />
-        <button className="new-group-btn">New Item</button>
-        {board.groups.map(group =>
+        {/* <button className="new-group-btn">New Item</button> */}
+        <button className="new-group-btn" onClick={onAddGroup}>New Group</button>
+        {groups.map(group =>
             <li className="group-preview-line" key={group.id}>
                 <GroupPreview group={group} />
+                <button onClick={() => onRemoveGroup(group.id)}>Delete</button>
             </li>)}
     </ul>
 }

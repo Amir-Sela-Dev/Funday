@@ -27,9 +27,14 @@ export function BoardDetails() {
     console.log(board);
 
     if (!board) return <div>Loading...</div>
-
-
+    const { groups } = board
     return <section className="board-details">
-        <GroupList board={board} />
+
+        <div className="board-title-wrap">
+            <h1 className="board-title">{board.title}</h1>
+            <button>i</button>
+            <button>star</button>
+        </div>
+        <GroupList board={board} groups={groups} />
     </section>
 }

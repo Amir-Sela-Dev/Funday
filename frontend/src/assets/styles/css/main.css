@@ -629,21 +629,6 @@ form > * {
   margin: 0;
 }
 
-.board-title-group-wrap {
-  padding-top: 17px;
-}
-.board-title-group-wrap button {
-  background-color: transparent;
-  color: #323338;
-}
-
-.board-title-group {
-  display: inline-block;
-  font-weight: 500;
-  font-size: 24px;
-  color: #323338;
-}
-
 .group-list-main-hr {
   width: 95%;
   margin-left: 0;
@@ -700,6 +685,26 @@ form > * {
 }
 .board-wrap a {
   padding-left: 10px;
+}
+
+.board-details {
+  grid-area: board-details;
+}
+
+.board-title-wrap {
+  padding-top: 17px;
+  padding-left: 40px;
+}
+.board-title-wrap button {
+  background-color: transparent;
+  color: #323338;
+}
+
+.board-title {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 24px;
+  color: #323338;
 }
 
 /*# sourceMappingURL=main.css.map */

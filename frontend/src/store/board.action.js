@@ -46,7 +46,6 @@ export async function removeBoard(boardId) {
 
 export async function saveBoard(board) {
     try {
-        board.price = +board.price
         const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
         const savedBoard = await boardService.save(board)
         store.dispatch({ type, board: savedBoard })
@@ -57,7 +56,6 @@ export async function saveBoard(board) {
     }
 }
 
-
 export async function loadBoard(boardId) {
     try {
         const board = await boardService.get(boardId)
@@ -67,4 +65,27 @@ export async function loadBoard(boardId) {
         console.log('Had issues loading board', err)
         throw err
     }
+}
+
+// Groups
+export async function addGroup(group, board) {
+    let boardToSave = board
+    boardToSave.groups.unshift(group)
+    saveBoard(boardToSave)
+}
+
+export async function saveGroup(board, groupId, groupToUpdate) {
+    let boardToSave = board
+    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
+    if (groupIndex === -1) console.log('Could not find group to update')
+    boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
+    saveBoard(boardToSave)
+}
+
+export async function removeGroup(board, groupId) {
+    let boardToSave = board
+    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
+    if (groupIndex === -1) console.log('Could not find group to remove')
+    boardToSave.groups.splice(groupIndex, 1)
+    saveBoard(boardToSave)
 }
