@@ -12,9 +12,15 @@ import { TaskDetails } from "../task/task-details"
 export function BoardDetails() {
     const [currboard, setBoard] = useState(null)
     const [modalState, setModalState] = useState(false)
+    const [taskId, setTaskId] = useState(null)
     let { board } = useSelector((storeState) => storeState.boardModule)
 
-    function toggleModal() {
+    function toggleModal(taskId = '') {
+        setTaskId(taskId)
+        setModalState(!modalState)
+    }
+
+    function closeModal() {
         setModalState(!modalState)
     }
 
@@ -32,6 +38,7 @@ export function BoardDetails() {
 
     const infoIcon = 'info.svg'
     const starIcon = 'star.svg'
+
     if (!board) return <div>Loading...</div>
     const { groups } = board
     return <section className="board-details">
@@ -41,8 +48,8 @@ export function BoardDetails() {
             <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
-        <GroupList board={board} groups={groups} />
+        <GroupList board={board} groups={groups} toggleModal={toggleModal} />
         <button onClick={toggleModal}>Test Task Modal</button>
-        <TaskDetails toggleModal={toggleModal} modalState={modalState} taskId={'dfsfs'} />
+        <TaskDetails closeModal={closeModal} modalState={modalState} taskId={taskId} />
     </section>
 }

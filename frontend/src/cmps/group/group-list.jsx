@@ -3,7 +3,7 @@ import { showErrorMsg } from "../../services/event-bus.service";
 import { addGroup, removeGroup, saveGroup } from "../../store/board.action";
 import { GroupPreview } from "./group-preview";
 
-export function GroupList({ board, groups }) {
+export function GroupList({ board, groups, toggleModal }) {
 
     async function onAddGroup() {
         try {
@@ -28,7 +28,7 @@ export function GroupList({ board, groups }) {
         <button className="new-group-btn" onClick={onAddGroup}>New Group</button>
         {groups.map(group =>
             <li className="group-preview-line" key={group.id}>
-                <GroupPreview group={group} />
+                <GroupPreview group={group} toggleModal={toggleModal}/>
                 <button onClick={() => onRemoveGroup(group.id)}>Delete</button>
             </li>)}
     </ul>

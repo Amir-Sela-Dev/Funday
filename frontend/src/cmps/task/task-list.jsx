@@ -5,7 +5,7 @@ import { removeTask, saveBoard, addTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { TaskTitle } from "./task-title";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-export function TaskList({ group, groupColor }) {
+export function TaskList({ group, groupColor, toggleModal }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
 
@@ -62,6 +62,7 @@ export function TaskList({ group, groupColor }) {
                     onRemoveTask={onRemoveTask}
                     group={group}
                     board={board}
+                    toggleModal={toggleModal}
 
                 />
             })}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { boardService, saveTask } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
-export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
+export function TaskPreview({ task, groupColor, onRemoveTask, board, group, toggleModal }) {
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
@@ -30,7 +30,7 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
                 <input className='task-checkbox' type="checkbox" />
             </div>
 
-            <div className="task-txt task-column flex">
+            <div className="task-txt task-column flex" onClick={() => toggleModal(task.id)}>
                 <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
                 <span>{task.title}</span>
             </div>

@@ -9,7 +9,7 @@
 import { TaskList } from "../task/task-list"
 console.log('here');
 
-export function GroupPreview({ group }) {
+export function GroupPreview({ group, toggleModal }) {
 
     // const groupColor = '#e2445c'
     const groupColor = group.style.color
@@ -18,7 +18,7 @@ export function GroupPreview({ group }) {
             <div className="group-title"
                 style={{ color: groupColor }}>
                 {group.title} <span className='number-of-tasks'>{group.tasks.length} items</span></div>
-            <TaskList group={group} groupColor={groupColor} />
+            <TaskList group={group} groupColor={groupColor} toggleModal={toggleModal}/>
             <div className="add-task">
             </div>
         </section>
