@@ -542,41 +542,13 @@ form > * {
   width: 130px;
 }
 
-.add-task-wrap .task-checkbox {
-  opacity: 0.5;
-}
-
-.task-input-row {
-  border: 0.5px solid rgba(0, 0, 0, 0.192);
-  border-collapse: collapse;
-  height: 36px;
-  width: 718px;
-}
-
-.add-task-input {
-  margin: 8px 0 8px 10px;
-  border: none;
-  padding-left: 15px;
-}
-
-.colored-tag {
-  display: inline-block;
-  height: 36px;
-  width: 6px;
-  margin-right: 3px;
-}
-
+>>>>>>> 9a5515adad9117f7922ffe46ab94dfd764cf39eb
 .group-preview-line {
   margin: 32px 0;
 }
-.group-preview-line .number-of-tasks {
-  opacity: 0;
-}
 
-.group-title:hover .number-of-tasks {
-  opacity: 1;
-  font-size: 14px;
-  color: #323338;
+.group-preview-line .group-title {
+  border-bottom: #323338 solid 1px;
 }
 
 .group-list {
