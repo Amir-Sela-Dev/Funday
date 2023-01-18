@@ -1,20 +1,28 @@
 import { useState } from "react";
 import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
-
+import { saveBoard } from "../../store/board.action"
+import { useSelector } from "react-redux";
 export function TaskList({ group, groupColor }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
 
-    function handleSubmit(event) {
+    let { board } = useSelector((storeState) => storeState.boardModule)
+    async function handleSubmit(event) {
         event.preventDefault()
-        console.log("submit", newTask)
-        setNewTask(boardService.getEmptyTask())
+        const boardToSave = boardService.saveTask(board, group.id, newTask)
+        setNewTask({ ...boardService.getEmptyTask() })
+        try {
+            saveBoard(boardToSave)
+        } catch (err) {
+            console.log('error adding task', err)
+        }
     }
 
     function handleInputChange(event) {
         setNewTask({ ...newTask, title: event.target.value })
     }
+
 
     return (
         <div className="task-list">
