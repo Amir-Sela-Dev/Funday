@@ -3,26 +3,8 @@ import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
 import { saveBoard } from "../../store/board.action"
 import { useSelector } from "react-redux";
+import { TaskTitle } from "./task-title";
 export function TaskList({ group, groupColor }) {
-
-    const [newTask, setNewTask] = useState(boardService.getEmptyTask())
-
-    let { board } = useSelector((storeState) => storeState.boardModule)
-    async function handleSubmit(event) {
-        event.preventDefault()
-        const boardToSave = boardService.saveTask(board, group.id, newTask)
-        setNewTask({ ...boardService.getEmptyTask() })
-        try {
-            saveBoard(boardToSave)
-        } catch (err) {
-            console.log('error adding task', err)
-        }
-    }
-
-    function handleInputChange(event) {
-        setNewTask({ ...newTask, title: event.target.value })
-    }
-
 
     return (
         <div className="task-list">
@@ -40,7 +22,7 @@ export function TaskList({ group, groupColor }) {
             </div>
 
             {group.tasks.map(currTask => {
-                return <TaskPreview task={currTask} groupColor={groupColor} />
+                return <TaskPreview key={currTask.id} task={currTask} group={group} />
             })}
 
             <div className="add-task-wrap flex">
@@ -48,7 +30,8 @@ export function TaskList({ group, groupColor }) {
                     <div className="colored-tag" style={{ background: groupColor }}></div>
                     <input className='task-checkbox' type="checkbox" />
                 </div>
-                <form className='task-input-row' onSubmit={handleSubmit}>
+                <TaskTitle group={group} />
+                {/* <form className='task-input-row' onSubmit={handleSubmit}>
                     <input
                         className="add-task-input"
                         placeholder='+ Add item'
@@ -57,7 +40,7 @@ export function TaskList({ group, groupColor }) {
                         onChange={handleInputChange}
                         onBlur={ev => handleSubmit(ev)}
                     />
-                </form>
+                </form> */}
             </div>
         </div>
     )
