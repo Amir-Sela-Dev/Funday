@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { boardService, saveTask } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+// import { CalendarPicker } from '@mui/x-date-pickers-pro/CalendarPicker';
 
 export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
 
@@ -53,7 +54,6 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
             <div className="remove-task task-column" onClick={() => { onRemoveTask(task.id) }}>
                 X
             </div>
-
 
         </div>
     )
