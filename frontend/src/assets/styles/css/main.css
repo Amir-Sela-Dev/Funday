@@ -464,6 +464,8 @@ form > * {
   width: 20px;
 }
 
+<<<<<<< HEAD
+=======
 .main-modal {
   background-color: #fff;
   box-shadow: 0 0 12px 1px grey;
@@ -531,6 +533,7 @@ form > * {
   width: 130px;
 }
 
+>>>>>>> 9a5515adad9117f7922ffe46ab94dfd764cf39eb
 .group-preview-line {
   margin: 32px 0;
 }
