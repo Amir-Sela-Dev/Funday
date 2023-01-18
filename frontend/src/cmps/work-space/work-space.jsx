@@ -85,7 +85,8 @@ export function WorkSpace() {
                 <div className="close-modal" onClick={() => { onCloseModal() }}>
                     <span>X</span>
                 </div>
-                <form action="" onSubmit={onAddBoard}>
+                <form action="" onSubmit={onAddBoard} className='flex'>
+                    <h1>Create board</h1>
                     <label htmlFor="">Board name:</label>
                     <input type="text" onChange={handleChange} value={boardName} />
                     <div className="modal-btns">

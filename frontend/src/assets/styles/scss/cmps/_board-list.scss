@@ -2,6 +2,17 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    .board-optins {
+        border: $clr1 solid 1px;
+        position: absolute;
+        margin-inline-start: 230px;
+        margin-bottom: 100px;
+        width: 200px;
+        height: 200px;
+        background-color: #323338;
+    }
+
 }
 
 .board-icon {
@@ -12,6 +23,7 @@
 .board-preview {
     justify-content: space-between;
     align-items: center;
+
     a {
         color: #323338;
         font-size: 14px;
@@ -22,8 +34,9 @@
 .board-wrap {
     align-items: center;
     display: flex;
+
     a {
         padding-left: 10px;
     }
-}
 
+}

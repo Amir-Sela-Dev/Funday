@@ -21,8 +21,11 @@ export async function
 // Example for Optimistic mutation:
 export async function removeBoard(boardId) {
     try {
+        await boardService.remove(boardId)
+        let boards = await boardService.query()
+        let board = boards[0]
+        store.dispatch({ type: SET_BOARD, board })
         store.dispatch({ type: REMOVE_BOARD, boardId })
-        boardService.remove(boardId)
     } catch (err) {
         store.dispatch({ type: UNDO_REMOVE_BOARD })
         console.log('Had issues Removing board', err)
