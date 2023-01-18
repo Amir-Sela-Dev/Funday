@@ -11,6 +11,7 @@ console.log('here');
 
 export function GroupPreview({ group }) {
 
+    // const groupColor = '#e2445c'
     const groupColor = group.style.color
     return (
         <section className="group-preview">

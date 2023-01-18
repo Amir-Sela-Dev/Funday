@@ -1,31 +1,32 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { boardService, saveTask } from "../../services/board.service"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
-export function TaskPreview({ task, groupColor }) {
+export function TaskPreview({ task, groupColor, onRemoveTask, board, group }) {
 
-    useEffect(() => {
-        console.log('taskprev', { ...task })
-    }, [])
+    const [lables, setLables] = useState(boardService.getDefaultLabels())
+    const [isLablesOpen, setIsLablesOpen] = useState(false)
+
+
+    async function onAddTaskStatus(label) {
+        try {
+            console.log(label)
+            let taskToSave = task
+            taskToSave.status = label
+            await saveTask(board, group.id, task.id, taskToSave)
+            showSuccessMsg('Task update')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+
+    }
+
+    console.log(task);
+
 
     const openTaskIcon = 'open-item.svg'
     return (
-        // tasks: [
-        //     {
-        //         id: utilService.makeId(5),
-        //         title: 'Mashu tov',
-        //         persons: utilService.getRandomIntInclusive(1, 3),
-        //         status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0,2)],
-        //         date: utilService.randomTime()
-        //     },
-        //     {
-        //         id: utilService.makeId(5),
-        //         title: 'Dogma 1',
-        //         persons: utilService.getRandomIntInclusive(1, 3),
-        //         status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0,2)],
-        //         date: utilService.randomTime()
-        //     }
-        // ]
         <div className="task-preview flex">
-
             <div className="checkbox-column task-column">
                 <div className="colored-tag" style={{ background: groupColor }}></div>
                 <input className='task-checkbox' type="checkbox" />
@@ -39,11 +40,23 @@ export function TaskPreview({ task, groupColor }) {
             <div className="task-persons task-column"><span>{task.persons}</span></div>
 
             <div className="task-status task-column"
+                onClick={() => { setIsLablesOpen(!isLablesOpen) }}
                 style={{ background: task.status?.color }}>
                 <span>{task.status?.txt}</span>
-            </div>
+                {isLablesOpen && <ul className="status-picker" >
+                    {lables.map(lable => (<li key={lable.id}
+                        className='label'
+                        style={{ background: lable.color }} onClick={() => { onAddTaskStatus(lable) }}>{lable.txt}</li>)
+                    )}
+
+                </ul>
+                }            </div>
 
             <div className="task-date task-column">{task.date}</div>
+            <div className="remove-task task-column" onClick={() => { onRemoveTask(task.id) }}>
+                X
+            </div>
+
 
         </div>
     )
