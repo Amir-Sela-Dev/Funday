@@ -8,6 +8,7 @@ export const boardService = {
     get,
     save,
     remove,
+    saveTask,
     getEmptyBoard,
     getEmptyTask,
     creatBoards
@@ -47,7 +48,7 @@ async function save(board) {
 function getEmptyBoard() {
     return {
         _id: '',
-        title: '',
+        title: 'New board',
         isStarred: false,
         archivedAt: Date.now(),
         createdBy: {
@@ -58,7 +59,7 @@ function getEmptyBoard() {
         groups: [
             {
                 id: utilService.makeId(5),
-                title: '',
+                title: 'Demo data',
                 archivedAt: Date.now(),
                 tasks: [
                     {
@@ -69,11 +70,12 @@ function getEmptyBoard() {
                         id: utilService.makeId(5),
                         title: 'item 2'
                     }
-                ]
+                ],
+                style: { color: '#e2445c' }
             },
             {
                 id: utilService.makeId(5),
-                title: '',
+                title: 'Another style',
                 archivedAt: Date.now(),
                 tasks: [
                     {
@@ -85,10 +87,13 @@ function getEmptyBoard() {
                         title: 'item 4'
                     }
                 ],
+                style: { color: '#a559d8' }
             }
         ]
     }
 }
+
+//#828282
 
 function creatBoards() {
     let boards = utilService.loadFromStorage(STORAGE_KEY)
@@ -116,32 +121,75 @@ function creatBoards() {
                                 // TODO: Add minimal user suport
                                 // for now we use persons as count and render icons
                                 persons: utilService.getRandomIntInclusive(1, 3),
-                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0,2)],
+                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0, 2)],
                                 date: utilService.randomTime()
                             },
                             {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
                                 persons: utilService.getRandomIntInclusive(1, 3),
-                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0,2)],
+                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0, 2)],
                                 date: utilService.randomTime()
                             }
-                        ]
+                        ],
+                        style: { color: '#579bfc' }
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Demo data',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'item 1'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'item 2'
+                            }
+                        ],
+                        style: { color: '#e2445c' }
+                    },
+                    {
+                        id: utilService.makeId(5),
+                        title: 'Another style',
+                        archivedAt: Date.now(),
+                        tasks: [
+                            {
+                                id: utilService.makeId(5),
+                                title: 'item 3'
+                            },
+                            {
+                                id: utilService.makeId(5),
+                                title: 'item 4'
+                            }
+                        ],
+                        style: { color: '#a559d8' }
                     }
                 ]
             }
         ]
         utilService.saveToStorage(STORAGE_KEY, boards)
     }
-    // boards.forEach(board => save(board))
+}
+
+// boardService
+function saveTask(board, groupId, task) {
+    let boardToSave = board
+    if (!task.id) task.id = utilService.makeId(5)
+    let refGroup = boardToSave.groups.find(group => group.id === groupId)
+    
+    refGroup.tasks.push(task)
+
+    return boardToSave
 }
 
 function getEmptyTask() {
     return {
         title: '',
-        persons: [],
+        persons: 0,
         status: {},
-        date: new Date(),
+        date: utilService.randomTime(),
     }
 }
 

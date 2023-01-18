@@ -1,7 +1,15 @@
 .group-preview-line {
-
     margin: 32px 0;
 
-    .group-title {
+    .number-of-tasks {
+        opacity: 0;
+    }
+}
+
+.group-title:hover {
+    .number-of-tasks {
+        opacity: 1;
+        font-size: 14px;
+        color: #323338;
     }
 }
