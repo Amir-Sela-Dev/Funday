@@ -7,10 +7,16 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { loadBoard } from "../../store/board.action"
 import { useDispatch, useSelector } from 'react-redux'
 import { GroupList } from "../group/group-list"
+import { TaskDetails } from "../task/task-details"
 
 export function BoardDetails() {
     const [currboard, setBoard] = useState(null)
+    const [modalState, setModalState] = useState(false)
     let { board } = useSelector((storeState) => storeState.boardModule)
+
+    function toggleModal() {
+        setModalState(!modalState)
+    }
 
     const { boardId } = useParams()
     const navigate = useNavigate()
@@ -24,9 +30,6 @@ export function BoardDetails() {
         setBoard(board)
     }
 
-    console.log(board);
-
-
     const infoIcon = 'info.svg'
     const starIcon = 'star.svg'
     if (!board) return <div>Loading...</div>
@@ -39,5 +42,7 @@ export function BoardDetails() {
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
         <GroupList board={board} groups={groups} />
+        <button onClick={toggleModal}>Test Task Modal</button>
+        <TaskDetails toggleModal={toggleModal} modalState={modalState} taskId={'dfsfs'} />
     </section>
 }

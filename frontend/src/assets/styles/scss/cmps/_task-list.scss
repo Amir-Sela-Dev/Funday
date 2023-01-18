@@ -18,6 +18,7 @@
 
 .checkbox-column {
     display: flex;
+    border-left: none;
 }
 
 .task-checkbox {
@@ -52,5 +53,12 @@
     display: inline-block;
     height: 36px;
     width: 6px;
-    margin-right: 3px;
+}
+
+.first-tag {
+    border-radius: 2rem 0 0 0;
+}
+
+.last-tag {
+    border-radius: 0 0 0 2rem;
 }

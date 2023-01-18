@@ -25,7 +25,6 @@ export function GroupList({ board, groups }) {
 
     return <ul className="group-list">
         <hr className="group-list-main-hr" />
-        {/* <button className="new-group-btn">New Item</button> */}
         <button className="new-group-btn" onClick={onAddGroup}>New Group</button>
         {groups.map(group =>
             <li className="group-preview-line" key={group.id}>

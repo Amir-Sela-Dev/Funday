@@ -46,7 +46,7 @@ export function TaskList({ group, groupColor }) {
 
             <div className="task-title-row flex">
                 <div className="checkbox-column task-column">
-                    <div className="colored-tag" style={{ background: groupColor }}></div>
+                    <div className="colored-tag first-tag" style={{ background: groupColor }}></div>
                     <input className='task-checkbox' type="checkbox" />
                 </div>
 
@@ -68,9 +68,10 @@ export function TaskList({ group, groupColor }) {
 
             <div className="add-task-wrap flex">
                 <div className="checkbox-column task-column">
-                    <div className="colored-tag" style={{ background: groupColor }}></div>
+                    <div className="colored-tag last-tag" style={{ background: groupColor }}></div>
                     <input className='task-checkbox' type="checkbox" />
                 </div>
+
                 <form className='task-input-row' onSubmit={OnAddTask}>
                     <input
                         className="add-task-input"
