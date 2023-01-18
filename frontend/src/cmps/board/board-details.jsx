@@ -26,14 +26,17 @@ export function BoardDetails() {
 
     console.log(board);
 
+
+    const infoIcon = 'info.svg'
+    const starIcon = 'star.svg'
     if (!board) return <div>Loading...</div>
     const { groups } = board
     return <section className="board-details">
 
-        <div className="board-title-wrap">
+        <div className="board-title-wrap flex">
             <h1 className="board-title">{board.title}</h1>
-            <button>i</button>
-            <button>star</button>
+            <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
+            <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
         <GroupList board={board} groups={groups} />
     </section>
