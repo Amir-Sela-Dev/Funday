@@ -1,9 +1,12 @@
 import { useEffect } from "react"
 
 export function TaskPreview({ task }) {
+
     useEffect(() => {
         console.log('taskprev', { ...task })
     }, [])
+
+    const openTaskIcon = 'open-item.svg'
     return (
         // tasks: [
         //     {
@@ -21,14 +24,20 @@ export function TaskPreview({ task }) {
         //         date: utilService.randomTime()
         //     }
         // ]
-        <div className="task-preview flex align-center">
-            <div className="task-title"><span>{task.title}</span></div>
-            <div className="task-persons"><span>{task?.persons}</span></div>
-            <div className="task-status"
+        <div className="task-preview flex">
+            <div className="checkbox-column task-column">
+                <input className='task-checkbox' type="checkbox" />
+            </div>
+            <div className="task-txt task-column flex">
+                <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
+                <span>{task.title}</span>
+            </div>
+            <div className="task-persons task-column"><span>{task.persons}</span></div>
+            <div className="task-status task-column"
                 style={{ background: task.status?.color }}>
                 <span>{task.status?.txt}</span>
             </div>
-            <div className="task-date">{task?.date}</div>
+            <div className="task-date task-column">{task.date}</div>
         </div>
     )
 }

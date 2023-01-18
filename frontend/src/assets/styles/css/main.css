@@ -518,12 +518,59 @@ form>* {
 }
 
 .task-preview {
-  padding-inline: 20px;
+  align-items: center;
+}
+
+.task-title {
+  width: 288px;
+}
+
+.task-txt {
+  width: 288px;
+  align-items: center;
+}
+.task-txt span {
+  font-size: 14px;
+}
+
+.task-status {
+  width: 130px;
+}
+
+.task-persons {
+  width: 170px;
+}
+
+.task-icon {
+  height: 22px;
+  width: 22px;
+  margin: 6px;
+}
+
+.task-list {
+  color: #323338;
+}
+.task-list .task-title-row {
+  text-align: center;
+  font-size: 14px;
+}
+
+.task-column {
+  border: 1px solid rgba(0, 0, 0, 0.413);
+  border-collapse: collapse;
+  height: 36px;
+}
+
+.task-checkbox {
+  margin: 10px;
+}
+
+.task-date {
+  width: 130px;
 }
 
 >>>>>>> 9a5515adad9117f7922ffe46ab94dfd764cf39eb
 .group-preview-line {
-  border: #323338 solid 1px;
   margin: 32px 0;
 }
 
