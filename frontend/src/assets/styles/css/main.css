@@ -527,6 +527,23 @@ form > * {
 .task-preview {
   align-items: center;
 }
+.task-preview .status-picker {
+  position: relative;
+  margin-top: 50px;
+  right: 40%;
+  background-color: #fff;
+  height: 183px;
+  width: 250px;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: #323338 solid 1px;
+}
+.task-preview .status-picker .label {
+  margin-inline: 20px;
+  margin-block: 4px;
+}
 
 .task-title {
   width: 288px;

@@ -1,5 +1,28 @@
 .task-preview {
     align-items: center;
+
+    .status-picker {
+        position: relative;
+        margin-top: 50px;
+        right: 40%;
+        background-color: #fff;
+        background-color: rgb(185, 185, 185);
+        height: 183px;
+        width: 250px;
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        border: $clr1 solid 1px;
+
+
+
+        .label {
+            margin-inline: 20px;
+            margin-block: 4px;
+        }
+    }
+
 }
 
 .task-title {
@@ -9,6 +32,7 @@
 .task-txt {
     width: 288px;
     align-items: center;
+
     span {
         font-size: 14px;
     }
@@ -28,6 +52,6 @@
     margin: 6px;
 }
 
-.colored-tag{
+.colored-tag {
     position: relative;
 }

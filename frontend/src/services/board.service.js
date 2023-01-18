@@ -11,7 +11,8 @@ export const boardService = {
     saveTask,
     getEmptyBoard,
     getEmptyTask,
-    creatBoards
+    creatBoards,
+    getDefaultLabels
 }
 
 window.cs = boardService
@@ -121,14 +122,14 @@ function creatBoards() {
                                 // TODO: Add minimal user suport
                                 // for now we use persons as count and render icons
                                 persons: utilService.getRandomIntInclusive(1, 3),
-                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0, 2)],
+                                status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 date: utilService.randomTime()
                             },
                             {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
                                 persons: utilService.getRandomIntInclusive(1, 3),
-                                status: getDefaultLabelSet()[utilService.getRandomIntInclusive(0, 2)],
+                                status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 date: utilService.randomTime()
                             }
                         ],
@@ -174,11 +175,11 @@ function creatBoards() {
 }
 
 // boardService
-function saveTask(board, groupId, task) {
+export async function saveTask(board, groupId, task) {
     let boardToSave = board
     if (!task.id) task.id = utilService.makeId(5)
     let refGroup = boardToSave.groups.find(group => group.id === groupId)
-    
+
     refGroup.tasks.push(task)
 
     return boardToSave
@@ -193,11 +194,12 @@ function getEmptyTask() {
     }
 }
 
-function getDefaultLabelSet() {
+function getDefaultLabels() {
     return [
         { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
         { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
-        { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' }
+        { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' },
+        { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
     ]
 }
 // const activity = {

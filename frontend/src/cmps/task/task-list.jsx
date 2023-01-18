@@ -1,27 +1,43 @@
 import { useState } from "react";
 import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
-import { saveBoard } from "../../store/board.action"
+import { removeTask, saveBoard, addTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 export function TaskList({ group, groupColor }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
 
     let { board } = useSelector((storeState) => storeState.boardModule)
-    async function handleSubmit(event) {
+
+    async function OnAddTask(event) {
         event.preventDefault()
-        const boardToSave = boardService.saveTask(board, group.id, newTask)
-        setNewTask({ ...boardService.getEmptyTask() })
+        if (!newTask.title) return
         try {
-            saveBoard(boardToSave)
+            await addTask(board, group.id, newTask)
+            setNewTask(boardService.getEmptyTask())
+            showSuccessMsg('Task added')
         } catch (err) {
-            console.log('error adding task', err)
+            showErrorMsg('Cannot add task')
         }
     }
 
-    function handleInputChange(event) {
-        setNewTask({ ...newTask, title: event.target.value })
+    function handleInputChange({ target }) {
+        let { value, name: field } = target
+        setNewTask((prevTask) => {
+            return { ...prevTask, [field]: value }
+        })
     }
+
+    async function onRemoveTask(taskId) {
+        try {
+            await removeTask(board, group.id, taskId)
+            showSuccessMsg('Task removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove task')
+        }
+    }
+
 
 
     return (
@@ -40,7 +56,13 @@ export function TaskList({ group, groupColor }) {
             </div>
 
             {group.tasks.map(currTask => {
-                return <TaskPreview task={currTask} groupColor={groupColor} />
+                return <TaskPreview task={currTask}
+                    groupColor={groupColor}
+                    onRemoveTask={onRemoveTask}
+                    group={group}
+                    board={board}
+
+                />
             })}
 
             <div className="add-task-wrap flex">
@@ -48,14 +70,15 @@ export function TaskList({ group, groupColor }) {
                     <div className="colored-tag" style={{ background: groupColor }}></div>
                     <input className='task-checkbox' type="checkbox" />
                 </div>
-                <form className='task-input-row' onSubmit={handleSubmit}>
+                <form className='task-input-row' onSubmit={OnAddTask}>
                     <input
                         className="add-task-input"
                         placeholder='+ Add item'
                         type="text"
+                        name="title"
                         value={newTask.title}
                         onChange={handleInputChange}
-                        onBlur={ev => handleSubmit(ev)}
+                        onBlur={ev => OnAddTask(ev)}
                     />
                 </form>
             </div>
