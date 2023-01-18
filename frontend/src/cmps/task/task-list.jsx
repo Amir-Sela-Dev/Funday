@@ -2,7 +2,7 @@ import { useState } from "react";
 import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
 
-export function TaskList({ group }) {
+export function TaskList({ group, groupColor }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
 
@@ -21,6 +21,7 @@ export function TaskList({ group }) {
 
             <div className="task-title-row flex">
                 <div className="checkbox-column task-column">
+                    <div className="colored-tag" style={{ background: groupColor }}></div>
                     <input className='task-checkbox' type="checkbox" />
                 </div>
 
@@ -31,18 +32,25 @@ export function TaskList({ group }) {
             </div>
 
             {group.tasks.map(currTask => {
-                return <TaskPreview task={currTask} />
+                return <TaskPreview task={currTask} groupColor={groupColor} />
             })}
 
-            <form onSubmit={handleSubmit}>
-                <input
-                    placeholder='Add task'
-                    type="text"
-                    value={newTask.title}
-                    onChange={handleInputChange}
-                    onBlur={ev => handleSubmit(ev)}
-                />
-            </form>
+            <div className="add-task-wrap flex">
+                <div className="checkbox-column task-column">
+                    <div className="colored-tag" style={{ background: groupColor }}></div>
+                    <input className='task-checkbox' type="checkbox" />
+                </div>
+                <form className='task-input-row' onSubmit={handleSubmit}>
+                    <input
+                        className="add-task-input"
+                        placeholder='+ Add item'
+                        type="text"
+                        value={newTask.title}
+                        onChange={handleInputChange}
+                        onBlur={ev => handleSubmit(ev)}
+                    />
+                </form>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-export function TaskPreview({ task }) {
+export function TaskPreview({ task, groupColor }) {
 
     useEffect(() => {
         console.log('taskprev', { ...task })
@@ -25,19 +25,26 @@ export function TaskPreview({ task }) {
         //     }
         // ]
         <div className="task-preview flex">
+
             <div className="checkbox-column task-column">
+                <div className="colored-tag" style={{ background: groupColor }}></div>
                 <input className='task-checkbox' type="checkbox" />
             </div>
+
             <div className="task-txt task-column flex">
                 <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
                 <span>{task.title}</span>
             </div>
+
             <div className="task-persons task-column"><span>{task.persons}</span></div>
+
             <div className="task-status task-column"
                 style={{ background: task.status?.color }}>
                 <span>{task.status?.txt}</span>
             </div>
+
             <div className="task-date task-column">{task.date}</div>
+
         </div>
     )
 }

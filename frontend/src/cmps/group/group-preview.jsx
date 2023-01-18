@@ -4,12 +4,13 @@ import { boardService } from '../../services/board.service'
 import { TaskList } from "../task/task-list"
 
 export function GroupPreview({ group }) {
-   
-
+    const groupColor = '#e2445c'
     return (
         <section className="group-preview">
-            <div className="group-title"> {group.title} {group.tasks.length} </div>
-            <TaskList group={group} />
+            <div className="group-title"
+                style={{ color: groupColor }}>
+                {group.title} <span className='number-of-tasks'>{group.tasks.length} items</span></div>
+            <TaskList group={group} groupColor={groupColor} />
             <div className="add-task">
             </div>
         </section>
