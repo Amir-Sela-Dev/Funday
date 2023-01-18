@@ -1,0 +1,22 @@
+.task-list {
+    color: #323338;
+
+    .task-title-row {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+.task-column {
+    border: 1px solid rgba(0, 0, 0, 0.413);
+    border-collapse: collapse;
+    height: 36px;
+}
+
+.task-checkbox {
+    margin: 10px;
+}
+
+.task-date {
+    width: 130px;
+}

@@ -1,3 +1,29 @@
-.task-preview{
-    padding-inline: 20px;
+.task-preview {
+    align-items: center;
+}
+
+.task-title {
+    width: 288px;
+}
+
+.task-txt {
+    width: 288px;
+    align-items: center;
+    span {
+        font-size: 14px;
+    }
+}
+
+.task-status {
+    width: 130px;
+}
+
+.task-persons {
+    width: 170px;
+}
+
+.task-icon {
+    height: 22px;
+    width: 22px;
+    margin: 6px;
 }
