@@ -62,7 +62,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
         if (filterBy.title) {
             const regex = new RegExp(filterBy.title, 'i')
             let boardGroups = boardToSave.groups
-            // let boardGroupsWithTitle = boardGroups.filter(group => regex.test(group.title))
             boardGroups = boardGroups.filter(group => {
                 if (regex.test(group.title)) return true
                 let tasks = group.tasks.filter(task => regex.test(task.title))
@@ -70,11 +69,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
                 group.tasks = tasks
                 return group
             })
-
-            console.log('boardGroups', boardGroups);
-            // console.log('boardGroupsWithTitle', boardGroupsWithTitle);
-            // boardGroups = [...boardGroups, ...boardGroupsWithTitle]
-            console.log(boardGroups);
             boardToSave.groups = boardGroups
         }
         store.dispatch({ type: SET_BOARD, boardToSave })
