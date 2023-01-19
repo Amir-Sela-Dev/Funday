@@ -435,6 +435,7 @@ form > * {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: fixed;
 }
 
 .main-logo {
@@ -463,6 +464,7 @@ form > * {
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
+  left: 66px;
 }
 .work-space p {
   color: #323338;

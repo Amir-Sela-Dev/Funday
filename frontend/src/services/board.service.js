@@ -102,7 +102,7 @@ function creatBoards() {
     if (!boards || !boards.length) {
         boards = [
             {
-                _id: utilService.makeId(5),
+                _id: 'uPD5q',
                 title: 'Robot dev proj',
                 isStarred: false,
                 archivedAt: Date.now(),

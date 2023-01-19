@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
 }
 
 .main-logo {
@@ -12,6 +13,7 @@
     width: 36px;
     margin: 10px 15px 6px;
 }
+
 .logo-hr {
     margin: 0 8px;
     width: 75%;
