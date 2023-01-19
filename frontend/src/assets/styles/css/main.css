@@ -269,23 +269,41 @@ form > * {
 
 .home-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .home-page .see-demo {
-  display: flex;
+  background-image: linear-gradient(90deg, #5034ff 25.69%, #b4b4ff 100%);
+  color: #fff;
+  min-width: 130px;
+  padding: 16px 20px 16px 30px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  font-weight: 400;
+  line-height: 17px;
+  overflow: hidden;
+  transition: padding 0.3s ease;
+}
+.home-page .see-demo:hover {
+  filter: brightness(85%);
+  outline: none;
+  padding-right: 32px;
+  text-decoration: none;
+}
+.home-page .home-page-main {
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  width: 174px;
-  height: 49px;
+  background-color: #0f1048;
+  width: 100%;
   color: white;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-  border-radius: 40px;
-  padding-inline: 20px;
-  padding-block: 16px;
+  min-height: 40vh;
 }
-.home-page:hover {
-  padding-inline-end: 30px;
+.home-page .cover-img {
+  min-height: 40vh;
 }
 
 .review-list {
