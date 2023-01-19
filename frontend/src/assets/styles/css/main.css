@@ -730,7 +730,6 @@ form > * {
   border: solid 1px rgba(0, 0, 0, 0.125);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1490196078);
   border-radius: 0.5rem;
-  z-index: 70;
   transform: translate(-50%, 18%);
   top: 18%;
   left: 50%;
