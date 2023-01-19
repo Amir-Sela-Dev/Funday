@@ -5,7 +5,6 @@ import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import { utilService } from '../services/util.service.js'
 
 export async function loadBoards(filterBy) {
-
     store.dispatch({ type: LOADING_START })
     try {
         const boards = await boardService.query(filterBy)
@@ -78,7 +77,7 @@ export async function addGroup(group, board) {
 export async function saveGroup(board, groupId, groupToUpdate) {
     let boardToSave = board
     const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
-    if (groupIndex === -1) throw new Error('Unknown group')
+    if (groupIndex === -1) console.log('Could not find group to update')
     boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
     saveBoard(boardToSave)
 }
