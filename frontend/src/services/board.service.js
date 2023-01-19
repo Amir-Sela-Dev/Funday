@@ -14,7 +14,8 @@ export const boardService = {
     creatBoards,
     getDefaultLabels,
     getEmptyGroup,
-    getDefaultBoardFilter
+    getDefaultBoardFilter,
+    getDefaultGroupFilter
 }
 
 window.cs = boardService
@@ -234,7 +235,11 @@ function getEmptyGroup() {
 }
 
 function getDefaultBoardFilter() {
-    return { title: '', isStared: false }
+    return { title: '', isStared: false, groupTitle: '' }
+}
+
+function getDefaultGroupFilter() {
+    return { title: '' }
 }
 
 

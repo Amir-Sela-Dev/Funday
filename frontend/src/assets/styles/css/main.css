@@ -769,6 +769,18 @@ form > * {
   list-style: none;
   margin: 0;
 }
+.group-list .gruop-serach-filter {
+  border-radius: 4px;
+  font-family: Poppins-Regular;
+  padding: 4px 10px;
+  margin-bottom: 50px;
+  color: white;
+  border: #323338 solid 1px;
+}
+.group-list .gruop-serach-filter input {
+  border: none;
+  width: 100%;
+}
 
 .group-list-main-hr {
   width: 95%;
