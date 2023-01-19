@@ -159,11 +159,13 @@ function creatBoards() {
                         tasks: [
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 1'
+                                title: 'item 1',
+                                status: { id: utilService.makeId(5), txt: '', color: '' }
                             },
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 2'
+                                title: 'item 2',
+                                status: { id: utilService.makeId(5), txt: '', color: '' }
                             }
                         ],
                         style: { color: '#e2445c' }
@@ -175,11 +177,13 @@ function creatBoards() {
                         tasks: [
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 3'
+                                title: 'item 3',
+                                status: { id: utilService.makeId(5), txt: '', color: '' }
                             },
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 4'
+                                title: 'item 4',
+                                status: { id: utilService.makeId(5), txt: '', color: '' }
                             }
                         ],
                         style: { color: '#a559d8' }
@@ -227,6 +231,8 @@ function getDefaultLabels() {
     ]
 }
 
+
+
 function getEmptyGroup() {
     return {
         id: utilService.makeId(5),
@@ -244,7 +250,7 @@ function getDefaultBoardFilter() {
 }
 
 function getDefaultGroupFilter() {
-    return { title: '' }
+    return { title: '', lables: [] }
 }
 
 

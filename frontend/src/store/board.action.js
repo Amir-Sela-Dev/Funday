@@ -56,15 +56,28 @@ export async function saveBoard(board) {
 }
 
 export async function loadBoard(boardId, filterBy = boardService.getDefaultGroupFilter()) {
+    console.log(filterBy);
     try {
         const board = await boardService.get(boardId)
         let boardToSave = structuredClone(board)
+        let boardGroups = boardToSave.groups
         if (filterBy.title) {
             const regex = new RegExp(filterBy.title, 'i')
-            let boardGroups = boardToSave.groups
             boardGroups = boardGroups.filter(group => {
                 if (regex.test(group.title)) return true
                 let tasks = group.tasks.filter(task => regex.test(task.title))
+                if (!tasks.length) return false
+                group.tasks = tasks
+                return group
+            })
+            boardToSave.groups = boardGroups
+        }
+
+        if (filterBy.lables.length) {
+            boardGroups = boardToSave.groups
+            console.log('boardGroups', boardGroups)
+            boardGroups = boardGroups.filter(group => {
+                let tasks = group.tasks.filter(task => filterBy.lables.includes(task.status.txt))
                 if (!tasks.length) return false
                 group.tasks = tasks
                 return group

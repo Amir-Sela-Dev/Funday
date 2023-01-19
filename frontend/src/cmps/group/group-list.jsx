@@ -4,11 +4,15 @@ import { boardService } from "../../services/board.service";
 import { showErrorMsg } from "../../services/event-bus.service";
 import { utilService } from '../../services/util.service';
 import { addGroup, removeGroup, saveGroup } from "../../store/board.action";
+import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
+
 
 export function GroupList({ board, groups, toggleModal, setFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     // setFilter = useRef(utilService.debounce(setFilter))
+    const [lables, setLables] = useState(boardService.getDefaultLabels())
+    const [isLablesOpen, setIsLablesOpen] = useState(false)
 
     useEffect(() => {
         setFilter(filterByToEdit)
@@ -38,6 +42,19 @@ export function GroupList({ board, groups, toggleModal, setFilter }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
+    function handleLableChange(lables) {
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, lables: lables }))
+    }
+
+
+    // function handleLableChange() {
+    //     const lables = selected.map(lable => {
+    //         return lable.value
+    //     })
+    //     setFilterByToEdit((prevFilter) => ({ ...prevFilter, lables: lables }))
+    // }
+
+
 
     const searchIcon = 'search-board.svg'
 
@@ -52,6 +69,9 @@ export function GroupList({ board, groups, toggleModal, setFilter }) {
                     value={filterByToEdit.title} placeholder='Search'
                     name='title' />
             </div>
+            <LabelSelect handleLableChange={handleLableChange} lables={lables} />
+
+
         </div>
 
         {groups.map(group =>
