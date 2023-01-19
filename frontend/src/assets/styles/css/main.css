@@ -545,6 +545,13 @@ form > * {
   margin-inline: 20px;
   margin-block: 4px;
 }
+.task-preview > * {
+  transition: background-color 0.15s ease-in-out;
+}
+.task-preview > *:hover {
+  background-color: rgb(221, 221, 221);
+  cursor: pointer;
+}
 
 .task-title {
   width: 288px;
@@ -662,7 +669,18 @@ form > * {
   opacity: 0;
 }
 
-.group-title:hover .number-of-tasks {
+.group-title {
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  font-family: Poppins-Regular;
+}
+.group-title:hover, .group-title:focus {
+  outline: 1px solid rgb(223, 223, 223);
+  border-radius: 0.25em;
+}
+.group-title:hover .number-of-tasks, .group-title:focus .number-of-tasks {
   opacity: 1;
   font-size: 14px;
   color: #323338;

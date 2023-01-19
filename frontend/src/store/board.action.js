@@ -91,13 +91,22 @@ export async function removeGroup(board, groupId) {
 }
 
 // Tasks
-export async function addTask(board, groupId, task) {
+export async function saveTask(board, groupId, task) {
     let boardToSave = board
-    if (!task.id) task.id = utilService.makeId(5)
     let groupToSave = boardToSave.groups.find(group => group.id === groupId)
-    groupToSave.tasks.push(task)
+
+    if (!task.id) {
+        task.id = utilService.makeId(5)
+        groupToSave.tasks.push(task)
+    }
+    else{
+        const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === task.id)
+        groupToSave.tasks.splice(taskIdx, 1, task)
+    } 
+
     saveBoard(boardToSave)
 }
+
 
 export async function removeTask(board, groupId, taskId) {
     let boardToSave = board
@@ -107,13 +116,13 @@ export async function removeTask(board, groupId, taskId) {
     saveBoard(boardToSave)
 }
 
-export async function saveTask(board, groupId, taskId, taskToUpdate) {
-    let boardToSave = board
-    let currGroup = boardToSave.groups.find(group => group.id === groupId)
-    let taksIdx = currGroup.tasks.findIndex(task => task.id === taskId)
-    console.log(taksIdx);
-    currGroup.tasks.splice(taksIdx, 1, taskToUpdate)
-    saveBoard(boardToSave)
-}
+// export async function saveTask(board, groupId, taskId, taskToUpdate) {
+//     let boardToSave = board
+//     let currGroup = boardToSave.groups.find(group => group.id === groupId)
+//     let taksIdx = currGroup.tasks.findIndex(task => task.id === taskId)
+//     console.log(taksIdx);
+//     currGroup.tasks.splice(taksIdx, 1, taskToUpdate)
+//     saveBoard(boardToSave)
+// }
 
 

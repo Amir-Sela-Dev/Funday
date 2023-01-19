@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
-import { boardService, saveTask } from "../../services/board.service"
+import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import { Button, DatePicker } from 'antd'
+import dayjs from "dayjs"
+import { saveTask } from "../../store/board.action"
 
 export function TaskPreview({ task, groupColor, onRemoveTask, board, group, toggleModal }) {
 
@@ -9,24 +12,32 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group, togg
 
     async function onAddTaskStatus(label) {
         try {
-            console.log(label)
             let taskToSave = task
             taskToSave.status = label
-            await saveTask(board, group.id, task.id, taskToSave)
+            await saveTask(board, group.id, taskToSave)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
         }
     }
 
-
+    async function onAddTaskDate(date, dateString) {
+        try {
+            let taskToSave = task
+            taskToSave.date = dateString
+            await saveTask(board, group.id, taskToSave)
+            showSuccessMsg('Task update')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+    }
 
     const openTaskIcon = 'open-item.svg'
     return (
         <div className="task-preview flex">
 
             <div className="checkbox-column task-column">
-                <div className='colored-tag' style={{ background: groupColor }}></div>
+                <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }}></div>
                 <input className='task-checkbox' type="checkbox" />
             </div>
 
@@ -50,7 +61,13 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group, togg
                     )}</ul>}
             </div>
 
-            <div className="task-date task-column">{task.date}</div>
+            <div className="task-date task-column">
+                <DatePicker
+                    defaultValue={task.date ? dayjs(task.date, 'YYYY-MM-DD') : ''}
+                    bordered={false}
+                    onChange={onAddTaskDate}
+                    placeholder="" />
+            </div>
             <div className="remove-task task-column"
                 onClick={() => { onRemoveTask(task.id) }}> X </div>
         </div>

@@ -124,14 +124,14 @@ function creatBoards() {
                                 // for now we use persons as count and render icons
                                 persons: utilService.getRandomIntInclusive(1, 3),
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
-                                date: utilService.randomTime()
+                                date: "2023-01-19"
                             },
                             {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
                                 persons: utilService.getRandomIntInclusive(1, 3),
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
-                                date: utilService.randomTime()
+                                date: "2023-01-12"
                             }
                         ],
                         style: { color: '#579bfc' }
@@ -180,7 +180,7 @@ function creatBoards() {
 export async function saveTask(board, groupId, task) {
     let boardToSave = board
     let refGroup = boardToSave.groups.find(group => group.id === groupId)
-
+    console.log(task)
     if (!task.id) {
         task.id = utilService.makeId(5)
         refGroup.tasks.push(task)
@@ -198,7 +198,7 @@ function getEmptyTask() {
         title: '',
         persons: 0,
         status: {},
-        date: utilService.randomTime(),
+        date: '',
     }
 }
 
