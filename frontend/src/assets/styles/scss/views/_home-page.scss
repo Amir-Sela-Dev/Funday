@@ -1,0 +1,22 @@
+.home-page {
+    display: flex;
+    justify-content: center;
+
+    .see-demo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 174px;
+        height: 49px;
+        color: white;
+        background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+        border-radius: 40px;
+        padding-inline: 20px;
+        padding-block: 16px;
+    }
+
+    &:hover {
+        padding-inline-end: 30px;
+    }
+}
