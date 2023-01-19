@@ -63,9 +63,19 @@ export function WorkSpace() {
     const addBoardIcon = 'add-board.svg'
     const searchIcon = 'search-board.svg'
     const filterIcon = 'filter.svg'
+    const arrowDownIcon = 'arrow-down.svg'
+    const homeIcon = 'home.svg'
 
     return <section className="work-space">
         <span className='workspace-txt'>Workspace</span>
+
+        <div className="main-workspace-dropdown flex">
+            <div className="main-icon">M
+                <img className="home-icon" src={require(`/src/assets/img/${homeIcon}`)} />
+            </div>
+            <h3>Main workspace</h3>
+            <img className="arrow-down-icon" src={require(`/src/assets/img/${arrowDownIcon}`)} />
+        </div>
 
         <div className='option-wrap flex' onClick={() => { setIsAddModalOpen(true) }}>
             <img className="add-board-icon board-icon" src={require(`/src/assets/img/${addBoardIcon}`)} />
