@@ -22,8 +22,8 @@ export async function removeBoard(boardId) {
     try {
         await boardService.remove(boardId)
         let boards = await boardService.query()
-        let board = boards[0]
-        store.dispatch({ type: SET_BOARD, board })
+        let boardToSave = boards[0]
+        store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type: REMOVE_BOARD, boardId })
     } catch (err) {
         store.dispatch({ type: UNDO_REMOVE_BOARD })
@@ -62,7 +62,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
         if (filterBy.title) {
             const regex = new RegExp(filterBy.title, 'i')
             let boardGroups = boardToSave.groups
-            // let boardGroupsWithTitle = boardGroups.filter(group => regex.test(group.title))
             boardGroups = boardGroups.filter(group => {
                 if (regex.test(group.title)) return true
                 let tasks = group.tasks.filter(task => regex.test(task.title))
@@ -70,11 +69,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
                 group.tasks = tasks
                 return group
             })
-
-            console.log('boardGroups', boardGroups);
-            // console.log('boardGroupsWithTitle', boardGroupsWithTitle);
-            // boardGroups = [...boardGroups, ...boardGroupsWithTitle]
-            console.log(boardGroups);
             boardToSave.groups = boardGroups
         }
         store.dispatch({ type: SET_BOARD, boardToSave })

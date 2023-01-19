@@ -12,6 +12,7 @@ export function BoardDetails() {
     const [taskId, setTaskId] = useState(null)
     let { board } = useSelector((storeState) => storeState.boardModule)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
+    const { boardId } = useParams()
 
     useEffect(() => {
         onLoadBoard(filterByToEdit)
@@ -27,7 +28,6 @@ export function BoardDetails() {
         setModalState(!modalState)
     }
 
-    const { boardId } = useParams()
 
 
     async function onLoadBoard(filterBy) {
