@@ -12,13 +12,15 @@ export function WorkSpace() {
     const { boards } = useSelector((storeState) => storeState.boardModule)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [boardName, setboardName] = useState('')
+    const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultBoardFilter())
+
     useEffect(() => {
         onLoadBoards()
-    }, [])
+    }, [filterByToEdit])
 
-    async function onLoadBoards(filterBy) {
+    async function onLoadBoards() {
         try {
-            await loadBoards(filterBy)
+            await loadBoards(filterByToEdit)
         }
         catch (err) {
             showErrorMsg('Cannot load boards')
@@ -41,6 +43,11 @@ export function WorkSpace() {
         let { value } = target
         console.log(value);
         setboardName(value)
+    }
+
+    function handleFilterChange({ target }) {
+        let { value, name: field } = target
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
     function onCloseModal() {
@@ -73,9 +80,12 @@ export function WorkSpace() {
             <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
             <p>Filters</p>
         </div>
-        <div className='option-wrap flex'>
+        <div className='board-filter option-wrap flex'>
             <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-            <p>Search</p>
+            <input type="text"
+                onChange={handleFilterChange}
+                value={filterByToEdit.title} placeholder='Search board'
+                name='title' />
         </div>
         <hr></hr>
         <BoardList boards={boards} />
