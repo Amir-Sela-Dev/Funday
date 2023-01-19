@@ -12,7 +12,6 @@ export function TaskList({ group, toggleModal }) {
 
     async function onSaveTask(event) {
         event.preventDefault()
-        console.log('ev', event.target)
         if (!newTask.title) return
         try {
             await saveTask(board, group.id, newTask)
@@ -23,20 +22,10 @@ export function TaskList({ group, toggleModal }) {
         }
     }
 
-    async function onSaveTask(event) {
-        event.preventDefault()
-        if (!newTask.title) return
-        try {
-            await saveTask(board, group.id, newTask)
-            setNewTask(boardService.getEmptyTask())
-            showSuccessMsg('Task added')
-        } catch (err) {
-            showErrorMsg('Cannot add task')
-        }
-    }
 
     function handleInputChange({ target }) {
         let { value, name: field } = target
+        console.log(value);
         setNewTask((prevTask) => {
             return { ...prevTask, [field]: value }
         })

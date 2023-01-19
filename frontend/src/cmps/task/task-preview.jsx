@@ -4,6 +4,7 @@ import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { saveTask } from "../../store/board.action"
 import { DatePicker } from 'antd'
 import dayjs from "dayjs"
+import { TaskTitle } from "./task-title"
 
 export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
