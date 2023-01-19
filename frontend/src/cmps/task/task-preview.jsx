@@ -57,6 +57,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                 <span>{task.status?.txt}</span>
 
                 {isLablesOpen && <ul className="status-picker" >
+                    <div className="arrow-up"></div>
                     {lables.map(lable => (<li key={lable.id}
                         className='label'
                         style={{ background: lable.color }} onClick={() => { onAddTaskStatus(lable) }}>{lable.txt}</li>)
