@@ -61,4 +61,3 @@ export function BoardList({ boards }) {
         </ul>
     )
 }
-

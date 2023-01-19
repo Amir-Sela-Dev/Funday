@@ -12,12 +12,19 @@
         height: 200px;
         background-color: #323338;
     }
-
 }
 
 .board-icon {
     height: 20px;
     width: 20px;
+}
+
+.option-icon {
+    width: 25px;
+    height: 25px;
+    fill: #323338;
+    margin-right: 1px;
+    margin-bottom: 4px;
 }
 
 .board-preview {
@@ -44,5 +51,4 @@
     a {
         padding-left: 10px;
     }
-
 }

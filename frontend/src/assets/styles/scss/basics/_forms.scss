@@ -1,7 +1,7 @@
 button {
-    border:0;
+    border: 0;
     background-color: $clr1;
-    color:whitesmoke;
+    color: whitesmoke;
     padding: 5px 10px;
     margin: 5px;
     cursor: pointer;
@@ -14,10 +14,10 @@ form > * {
 }
 
 .btn-link {
-    border:0;
+    border: 0;
     background-color: transparent;
     text-decoration: underline;
-    transition: .5s;
+    transition: 0.5s;
 }
 .btn-link:hover {
     background-color: $clr1;
@@ -37,4 +37,28 @@ form > * {
     flex-direction: column;
     border: $clr1 solid 1px;
     z-index: 70;
+}
+
+.menu-modal {
+    position: absolute;
+    background-color: #fff;
+    width: 264px;
+    list-style-type: none;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.133);
+    z-index: 70;
+    top: 24px;
+    left: 210px;
+    border-radius: 1rem;
+
+    .menu-modal-option {
+        height: 32px;
+        width: 248px;
+    }
+
+    hr {
+        width: 248px;
+        opacity: 0.3;
+        margin: 0.2 0;
+    }
 }

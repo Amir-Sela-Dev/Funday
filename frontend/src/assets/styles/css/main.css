@@ -247,6 +247,28 @@ form > * {
   z-index: 70;
 }
 
+.menu-modal {
+  position: absolute;
+  background-color: #fff;
+  width: 264px;
+  list-style-type: none;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.133);
+  z-index: 70;
+  top: 24px;
+  left: 210px;
+  border-radius: 1rem;
+}
+.menu-modal .menu-modal-option {
+  height: 32px;
+  width: 248px;
+}
+.menu-modal hr {
+  width: 248px;
+  opacity: 0.3;
+  margin: 0.2 0;
+}
+
 .fancy-box {
   background-color: gold;
   padding: 5px;
@@ -454,6 +476,7 @@ form > * {
   flex-direction: column;
   align-items: center;
   position: fixed;
+  z-index: 1;
 }
 
 .main-logo {
@@ -485,6 +508,37 @@ form > * {
   width: 255px;
   position: fixed;
   left: 66px;
+  border-right: 1px solid rgba(0, 0, 0, 0.102);
+  transition: transform 1s;
+}
+.work-space.close-workspace {
+  transform: translateX(-225px);
+}
+.work-space .workspace-header {
+  justify-content: space-between;
+  align-items: center;
+}
+.work-space .toggle-menu-btn {
+  position: absolute;
+  top: 20px;
+  left: 244px;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.102);
+}
+.work-space .toggle-menu-btn .arrow-left-icon {
+  height: 12px;
+  width: 12px;
+  margin-bottom: 3.5px;
+  margin-left: 3.5px;
+}
+.work-space .toggle-menu-btn:hover {
+  width: 35px;
+  background-color: #0073ea;
+  transform: translateX(-20%);
 }
 .work-space .main-icon {
   height: 24px;
@@ -571,7 +625,7 @@ form > * {
   transform: translate(-50%, -50%);
   transition: all 0.3s ease 0s;
   width: 437px;
-  z-index: 70;
+  z-index: 71;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -612,6 +666,7 @@ form > * {
   border-radius: 4px;
   box-shadow: none;
   border: #323338 solid 0.5px;
+  font-family: Poppins-Regular;
 }
 .work-space .main-modal h1 {
   width: 100%;
@@ -632,6 +687,7 @@ form > * {
   margin-top: 4px;
 }
 .work-space .board-filter input {
+  font-family: Poppins-Regular;
   margin: 0;
   padding-left: 30px;
   border: none;
@@ -664,6 +720,7 @@ form > * {
 .task-preview .status-picker {
   position: absolute;
   background-color: #fff;
+  color: white;
   justify-content: space-evenly;
   width: 200px;
   list-style-type: none;
@@ -723,6 +780,9 @@ form > * {
   width: 130px;
   position: relative;
 }
+.task-status span {
+  color: white;
+}
 
 .close-status-picker {
   width: 100%;
@@ -742,10 +802,6 @@ form > * {
   height: 22px;
   width: 22px;
   margin: 6px;
-}
-
-.colored-tag {
-  position: relative;
 }
 
 .task-list {
@@ -901,6 +957,14 @@ form > * {
 .board-icon {
   height: 20px;
   width: 20px;
+}
+
+.option-icon {
+  width: 25px;
+  height: 25px;
+  fill: #323338;
+  margin-right: 1px;
+  margin-bottom: 4px;
 }
 
 .board-preview {
