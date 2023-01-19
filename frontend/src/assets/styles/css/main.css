@@ -232,7 +232,7 @@ form > * {
   transform: scale(1.1);
 }
 
-.base-modal, .task-preview .user-preview, .task-preview .status-picker {
+.base-modal, .task-preview .user-preview {
   position: relative;
   margin-top: 50px;
   right: 40%;
@@ -478,11 +478,45 @@ form > * {
 .work-space {
   grid-area: work-space;
   background-color: #f6f7fb;
-  transition: 2s;
-  padding: 10px 20px;
+  padding: 10px 15px;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  position: fixed;
   left: 66px;
+}
+.work-space .main-icon {
+  height: 24px;
+  width: 24px;
+  margin: 5px;
+}
+.work-space .main-icon .home-icon {
+  height: 16px;
+  width: 16px;
+}
+.work-space .main-workspace-dropdown {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  align-items: center;
+}
+.work-space .main-workspace-dropdown .main-icon {
+  margin: 0 5px;
+  background-color: #225091;
+}
+.work-space .main-workspace-dropdown h3 {
+  display: inline-block;
+  margin: 0;
+  line-height: 24px;
+  font-size: 1rem;
+}
+.work-space .main-workspace-dropdown .arrow-down-icon {
+  height: 18px;
+  width: 18px;
+  vertical-align: middle;
+}
+.work-space .option-wrap :hover {
+  background-color: #dcdfec;
+  border-radius: 0.2rem;
 }
 .work-space p {
   color: #323338;
@@ -568,6 +602,29 @@ form > * {
 .work-space .main-modal label {
   margin-bottom: 0;
 }
+.work-space .board-filter {
+  display: flex;
+}
+.work-space .board-filter::after {
+  outline: #0073ea 1px solid;
+}
+.work-space .board-filter .search-board-icon {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 4px;
+}
+.work-space .board-filter input {
+  margin: 0;
+  padding-left: 30px;
+  border: none;
+  background-color: #f6f7fb;
+  width: 100%;
+  height: 30px;
+}
+.work-space .board-filter input:focus {
+  outline: #4d99f8 1px solid;
+  border-radius: 0.2rem;
+}
 
 .workspace-txt {
   font-size: 12.5px;
@@ -586,9 +643,36 @@ form > * {
 .task-preview {
   align-items: center;
 }
+.task-preview .status-picker {
+  position: absolute;
+  background-color: #fff;
+  justify-content: space-evenly;
+  width: 200px;
+  list-style-type: none;
+  padding: 16px 24px 8px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgba(0, 0, 0, 0.125);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1490196078);
+  border-radius: 0.5rem;
+  z-index: 70;
+  transform: translate(-50%, 18%);
+  top: 18%;
+  left: 50%;
+}
+.task-preview .status-picker .arrow-up {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, 0);
+  top: -10px;
+  left: 50%;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgb(255, 255, 255);
+}
 .task-preview .status-picker .label {
-  margin-inline: 20px;
-  margin-block: 4px;
+  margin-bottom: 8px;
 }
 .task-preview .user-preview {
   width: 400px;
@@ -619,6 +703,7 @@ form > * {
 
 .task-status {
   width: 130px;
+  position: relative;
 }
 
 .close-status-picker {

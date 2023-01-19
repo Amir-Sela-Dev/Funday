@@ -12,13 +12,15 @@ export function WorkSpace() {
     const { boards } = useSelector((storeState) => storeState.boardModule)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [boardName, setboardName] = useState('')
+    const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultBoardFilter())
+
     useEffect(() => {
         onLoadBoards()
-    }, [])
+    }, [filterByToEdit])
 
-    async function onLoadBoards(filterBy) {
+    async function onLoadBoards() {
         try {
-            await loadBoards(filterBy)
+            await loadBoards(filterByToEdit)
         }
         catch (err) {
             showErrorMsg('Cannot load boards')
@@ -43,6 +45,11 @@ export function WorkSpace() {
         setboardName(value)
     }
 
+    function handleFilterChange({ target }) {
+        let { value, name: field } = target
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    }
+
     function onCloseModal() {
         setboardName('')
         setIsAddModalOpen(false)
@@ -51,9 +58,19 @@ export function WorkSpace() {
     const addBoardIcon = 'add-board.svg'
     const searchIcon = 'search-board.svg'
     const filterIcon = 'filter.svg'
+    const arrowDownIcon = 'arrow-down.svg'
+    const homeIcon = 'home.svg'
 
     return <section className="work-space">
         <span className='workspace-txt'>Workspace</span>
+
+        <div className="main-workspace-dropdown flex">
+            <div className="main-icon">M
+                <img className="home-icon" src={require(`/src/assets/img/${homeIcon}`)} />
+            </div>
+            <h3>Main workspace</h3>
+            <img className="arrow-down-icon" src={require(`/src/assets/img/${arrowDownIcon}`)} />
+        </div>
 
         <div className='option-wrap flex' onClick={() => { setIsAddModalOpen(true) }}>
             <img className="add-board-icon board-icon" src={require(`/src/assets/img/${addBoardIcon}`)} />
@@ -63,9 +80,12 @@ export function WorkSpace() {
             <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
             <p>Filters</p>
         </div>
-        <div className='option-wrap flex'>
+        <div className='board-filter option-wrap flex'>
             <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-            <p>Search</p>
+            <input type="text"
+                onChange={handleFilterChange}
+                value={filterByToEdit.title} placeholder='Search board'
+                name='title' />
         </div>
         <hr></hr>
         <BoardList boards={boards} />
