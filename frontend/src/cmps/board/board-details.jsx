@@ -32,7 +32,6 @@ export function BoardDetails() {
 
     async function onLoadBoard(filterBy) {
         let board = await loadBoard(boardId, filterBy)
-        console.log('board from ', board);
         setBoard(board)
     }
 

@@ -67,9 +67,9 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
             <div className="task-status task-column"
                 onClick={() => { setIsLablesOpen(!isLablesOpen) }}
-                style={{ background: task.status?.color }}>
+                style={{ background: `${(task.status.txt === 'Default') ? '#fff' : task.status.color}` }}>
 
-                <span>{task.status?.txt}</span>
+                <span>{`${(task.status.txt === 'Default') ? '' : task.status.txt}`}</span>
 
                 {isLablesOpen && <ul className="status-picker" >
                     <div className="arrow-up"></div>
