@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 255px;
     position: fixed;
     left: 66px;
 
@@ -12,6 +13,8 @@
         height: 24px;
         width: 24px;
         margin: 5px;
+        font-size: 0.85rem;
+        font-weight: 500;
 
         .home-icon {
             height: 16px;
@@ -21,19 +24,34 @@
 
     .main-workspace-dropdown {
         border: 1px solid black;
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         align-items: center;
+        padding: 2px;
+        margin-bottom: 30px;
 
         .main-icon {
-            margin: 0 5px;
+            position: relative;
+            margin: 5px 5px;
             background-color: #225091;
+            color: white;
+            border-radius: 0.5rem;
+            text-align: center;
+            line-height: 24px;
+        }
+        .home-icon {
+            position: absolute;
+            top: 12px;
+            left: 17px;
         }
 
         h3 {
+            color: #323338;
             display: inline-block;
             margin: 0;
             line-height: 24px;
-            font-size: 1rem;
+            font-size: 0.85rem;
+            padding-left: 4px;
+            padding-right: 48px;
         }
 
         .arrow-down-icon {
@@ -182,7 +200,7 @@
     font-weight: 400;
     color: #676879;
     padding-top: 5px;
-    padding-bottom: 74px;
+    padding-bottom: 8px;
     margin-left: -3px;
 }
 
