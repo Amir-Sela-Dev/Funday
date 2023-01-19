@@ -234,6 +234,10 @@ function getDefaultBoardFilter() {
     return { title: '', isStared: false }
 }
 
+function getDefaultGroupFilter() {
+    return { title: '' }
+}
+
 
 // const activity = {
 //     'id': makeId(),
