@@ -676,10 +676,12 @@ form > * {
   padding: 20px;
   transform: translateX(100%);
   transition: all 0.4s;
+  display: none;
 }
 
 .task-modal-open {
   transform: translateX(0);
+  display: block;
 }
 
 .group-preview-line {
