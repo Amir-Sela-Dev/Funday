@@ -13,7 +13,8 @@ export const boardService = {
     getEmptyTask,
     creatBoards,
     getDefaultLabels,
-    getEmptyGroup
+    getEmptyGroup,
+    getDefaultBoardFilter
 }
 
 window.cs = boardService
@@ -21,7 +22,16 @@ creatBoards()
 
 async function query(filterBy = { title: '' }) {
     // return httpService.get(STORAGE_KEY, filterBy)
-    return storageService.query(STORAGE_KEY)
+    try {
+        let boards = await storageService.query(STORAGE_KEY)
+        if (filterBy.title) {
+            const regex = new RegExp(filterBy.title, 'i')
+            boards = boards.filter(board => regex.test(board.title))
+        }
+        return boards
+    } catch (err) {
+        console.log('cannot load boards', err)
+    }
 }
 
 function get(boardId) {
@@ -222,6 +232,11 @@ function getEmptyGroup() {
         style: { color: '#e2445c' }
     }
 }
+
+function getDefaultBoardFilter() {
+    return { title: '', isStared: false }
+}
+
 
 // const activity = {
 //     'id': makeId(),

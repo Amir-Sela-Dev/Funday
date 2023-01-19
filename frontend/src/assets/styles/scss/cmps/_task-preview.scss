@@ -1,11 +1,14 @@
 .task-preview {
     align-items: center;
 
-    .status-picker {
+    .task-status {
         position: relative;
-        margin-top: 50px;
-        right: 40%;
+    }
+
+    .status-picker {
+        position: absolute;
         background-color: #fff;
+        left: -50%;
         height: 183px;
         width: 250px;
         list-style-type: none;
@@ -14,8 +17,6 @@
         flex-direction: column;
         border: $clr1 solid 1px;
         z-index: 70;
-
-
 
         .label {
             margin-inline: 20px;

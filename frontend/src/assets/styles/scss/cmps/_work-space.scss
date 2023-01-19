@@ -108,6 +108,43 @@
             margin-bottom: 0;
         }
     }
+
+    .board-filter {
+        display: flex;
+        align-items: center;
+
+        &::after {
+            outline: #0073ea 1px solid;
+        }
+
+
+        .search-board-icon {
+            position: absolute;
+        }
+
+        input {
+            margin: 0;
+            padding: 0;
+            border: none;
+            margin-inline-start: 20px;
+            background-color: #f6f7fb;
+            width: 100%;
+            height: 30px;
+
+
+            &:focus {
+                outline: none;
+
+                .board-filter {
+                    outline: #0073ea 1px solid;
+                }
+
+            }
+
+
+        }
+
+    }
 }
 
 .workspace-txt {
