@@ -46,9 +46,10 @@ export async function removeBoard(boardId) {
 export async function saveBoard(board) {
     try {
         const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
-        const savedBoard = await boardService.save(board)
-        store.dispatch({ type, board: savedBoard })
-        return savedBoard
+        const boardToSave = await boardService.save(board)
+        store.dispatch({ type: SET_BOARD, boardToSave })
+        store.dispatch({ type, board: boardToSave })
+        return boardToSave
     } catch (err) {
         console.error('Cannot save board:', err)
         throw err
@@ -93,14 +94,16 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
 
 // Groups
 export async function addGroup(group, board) {
-    let boardToSave = board
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(fullBoard)
     console.log('got here')
     boardToSave.groups.unshift(group)
     saveBoard(boardToSave)
 }
 
 export async function saveGroup(board, groupId, groupToUpdate) {
-    let boardToSave = board
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(fullBoard)
     const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
     if (groupIndex === -1) console.log('Could not find group to update')
     boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
@@ -108,7 +111,8 @@ export async function saveGroup(board, groupId, groupToUpdate) {
 }
 
 export async function removeGroup(board, groupId) {
-    let boardToSave = board
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = fullBoard
     const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
     if (groupIndex === -1) console.log('Could not find group to remove')
     boardToSave.groups.splice(groupIndex, 1)
@@ -117,7 +121,8 @@ export async function removeGroup(board, groupId) {
 
 // Tasks
 export async function saveTask(board, groupId, task) {
-    let boardToSave = board
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(fullBoard)
     let groupToSave = boardToSave.groups.find(group => group.id === groupId)
 
     if (!task.id) {
@@ -132,7 +137,8 @@ export async function saveTask(board, groupId, task) {
 }
 
 export async function removeTask(board, groupId, taskId) {
-    let boardToSave = board
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(fullBoard)
     let currGroup = boardToSave.groups.find(group => group.id === groupId)
     let taksIdx = currGroup.tasks.findIndex(task => task.id === taskId)
     currGroup.tasks.splice(taksIdx, 1)
