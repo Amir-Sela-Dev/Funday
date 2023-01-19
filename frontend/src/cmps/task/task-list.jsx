@@ -4,10 +4,10 @@ import { TaskPreview } from "./task-preview";
 import { removeTask, saveTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
+
 export function TaskList({ group, toggleModal }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
-
     let { board } = useSelector((storeState) => storeState.boardModule)
 
     async function onSaveTask(event) {
@@ -22,10 +22,7 @@ export function TaskList({ group, toggleModal }) {
             showErrorMsg('Cannot add task')
         }
     }
-    const saveSomeTask = async (event) => {
-        event.preventDefault();
-        console.log("Hello");
-    }
+
     async function onSaveTask(event) {
         event.preventDefault()
         if (!newTask.title) return
@@ -53,8 +50,6 @@ export function TaskList({ group, toggleModal }) {
             showErrorMsg('Cannot remove task')
         }
     }
-
-
 
     return (
         <div className="task-list">

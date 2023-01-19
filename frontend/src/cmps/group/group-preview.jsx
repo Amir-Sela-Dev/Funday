@@ -1,17 +1,8 @@
-// import { useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-
-// import { saveBoard } from "../../store/board.action"
-// import { boardService } from '../../services/board.service'
-// import { utilService } from '../../services/util.service'
-// import { ADD_TASK } from '../../store/board.reducer'
-// import { store } from '../../store/store'
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { showSuccessMsg } from "../../services/event-bus.service";
 import { saveGroup } from "../../store/board.action";
 import { TaskList } from "../task/task-list"
-console.log('here');
 
 export function GroupPreview({ group, toggleModal }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })

@@ -1,5 +1,4 @@
 
-
 export function SideNav() {
     const logoUrl = 'logo.png'
     const workManagmentUrl = 'work-managment.svg'

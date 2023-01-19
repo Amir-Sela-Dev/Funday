@@ -1,11 +1,7 @@
-// import React from 'react';
-
-// import { boardService } from "../services/board.service.js"
-// import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { loadBoard } from "../../store/board.action"
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { GroupList } from "../group/group-list"
 import { TaskDetails } from "../task/task-details"
 
@@ -25,7 +21,6 @@ export function BoardDetails() {
     }
 
     const { boardId } = useParams()
-    const navigate = useNavigate()
 
     useEffect(() => {
         onLoadBoard()

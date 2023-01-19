@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { Button, DatePicker } from 'antd'
-import dayjs from "dayjs"
 import { saveTask } from "../../store/board.action"
+import { DatePicker } from 'antd'
+import dayjs from "dayjs"
 
-export function TaskPreview({ task, groupColor, onRemoveTask, board, group, toggleModal }) {
+export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
@@ -33,6 +33,7 @@ export function TaskPreview({ task, groupColor, onRemoveTask, board, group, togg
     }
 
     const openTaskIcon = 'open-item.svg'
+    
     return (
         <div className="task-preview flex">
 

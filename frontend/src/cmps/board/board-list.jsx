@@ -4,14 +4,9 @@ import { loadBoard, removeBoard, saveBoard } from "../../store/board.action"
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 import { boardService } from "../../services/board.service"
 
-
 export function BoardList({ boards }) {
     const navigate = useNavigate()
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
-
-
-    const boardIcon = 'board.svg'
-    const optionIcon = 'option-icon.svg'
 
     async function onLoadBoard(boardId) {
         await loadBoard(boardId)
@@ -39,8 +34,9 @@ export function BoardList({ boards }) {
 
     }
 
-
     const duplicate = 'duplicate.svg'
+    const boardIcon = 'board.svg'
+    const optionIcon = 'option-icon.svg'
 
     return (
         <ul className="boards-list">

@@ -1,14 +1,11 @@
+import React from 'react';
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-
 import { boardService } from '../../services/board.service'
-
 import { useState } from "react"
 import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
-import React from 'react';
-import ReactDOM from 'react-dom';
 
 export function WorkSpace() {
 
@@ -38,7 +35,6 @@ export function WorkSpace() {
         } catch (err) {
             showErrorMsg('Cannot save board')
         }
-
     }
 
     function handleChange({ target }) {
@@ -52,11 +48,6 @@ export function WorkSpace() {
         setIsAddModalOpen(false)
     }
 
-
-
-
-    console.log(boards)
-    console.log(isAddModalOpen)
     const addBoardIcon = 'add-board.svg'
     const searchIcon = 'search-board.svg'
     const filterIcon = 'filter.svg'
@@ -79,7 +70,6 @@ export function WorkSpace() {
         <hr></hr>
         <BoardList boards={boards} />
 
-
         {isAddModalOpen && <div className="add-modal">
             <div className="main-modal">
                 <div className="close-modal" onClick={() => { onCloseModal() }}>
@@ -98,8 +88,5 @@ export function WorkSpace() {
             <div onClick={() => { onCloseModal() }} className="dark-screen"></div>
         </div>
         }
-
-
-
     </section>
 }

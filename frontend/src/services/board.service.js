@@ -185,10 +185,10 @@ export async function saveTask(board, groupId, task) {
         task.id = utilService.makeId(5)
         refGroup.tasks.push(task)
     }
-    else{
+    else {
         const taskIdx = refGroup.tasks.findIndex(currTask => currTask.id === task.id)
         refGroup.tasks.splice(taskIdx, 1, task)
-    } 
+    }
 
     return boardToSave
 }
@@ -222,6 +222,7 @@ function getEmptyGroup() {
         style: { color: '#e2445c' }
     }
 }
+
 // const activity = {
 //     'id': makeId(),
 //     'txt': 'Changed Color',
