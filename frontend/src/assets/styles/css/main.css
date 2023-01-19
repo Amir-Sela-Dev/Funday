@@ -267,6 +267,27 @@ form > * {
   margin: 3px;
 }
 
+.home-page {
+  display: flex;
+  justify-content: center;
+}
+.home-page .see-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 174px;
+  height: 49px;
+  color: white;
+  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  border-radius: 40px;
+  padding-inline: 20px;
+  padding-block: 16px;
+}
+.home-page:hover {
+  padding-inline-end: 30px;
+}
+
 .review-list {
   list-style: none;
   display: flex;
@@ -532,7 +553,6 @@ form > * {
   margin-top: 50px;
   right: 40%;
   background-color: #fff;
-  background-color: rgb(185, 185, 185);
   height: 183px;
   width: 250px;
   list-style-type: none;

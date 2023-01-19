@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { Button, DatePicker } from 'antd'
+import { DatePicker } from 'antd'
 import dayjs from "dayjs"
 import { saveTask } from "../../store/board.action"
 
