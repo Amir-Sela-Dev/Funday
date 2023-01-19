@@ -3,23 +3,27 @@
 
     .number-of-tasks {
         opacity: 0;
-    }
-}
 
-.group-title {
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    font-size: 1em;
-    font-family: Poppins-Regular;
-    
-    &:hover, &:focus {
-        outline: 1px solid rgb(223, 223, 223);
-        border-radius: 0.25em;
-        .number-of-tasks {
+        &:hover {
             opacity: 1;
             font-size: 14px;
             color: #323338;
         }
     }
+
+    .group-title {
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        font-size: 1em;
+        font-family: Poppins-Regular;
+
+        &:hover,
+        &:focus {
+            outline: 1px solid rgb(223, 223, 223);
+            border-radius: 0.25em;
+        }
+    }
+
+
 }

@@ -580,15 +580,16 @@ form > * {
   display: flex;
   flex-direction: column;
   border: #323338 solid 1px;
+  z-index: 70;
 }
 .task-preview .status-picker .label {
   margin-inline: 20px;
   margin-block: 4px;
 }
-.task-preview > * {
+.task-preview > .task-column {
   transition: background-color 0.15s ease-in-out;
 }
-.task-preview > *:hover {
+.task-preview > .task-column:hover {
   background-color: rgb(221, 221, 221);
   cursor: pointer;
 }
@@ -607,6 +608,16 @@ form > * {
 
 .task-status {
   width: 130px;
+}
+
+.close-status-picker {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
 }
 
 .task-persons {
@@ -710,22 +721,21 @@ form > * {
 .group-preview-line .number-of-tasks {
   opacity: 0;
 }
-
-.group-title {
+.group-preview-line .number-of-tasks:hover {
+  opacity: 1;
+  font-size: 14px;
+  color: #323338;
+}
+.group-preview-line .group-title {
   box-sizing: border-box;
   outline: none;
   border: none;
   font-size: 1em;
   font-family: Poppins-Regular;
 }
-.group-title:hover, .group-title:focus {
+.group-preview-line .group-title:hover, .group-preview-line .group-title:focus {
   outline: 1px solid rgb(223, 223, 223);
   border-radius: 0.25em;
-}
-.group-title:hover .number-of-tasks, .group-title:focus .number-of-tasks {
-  opacity: 1;
-  font-size: 14px;
-  color: #323338;
 }
 
 .group-list {

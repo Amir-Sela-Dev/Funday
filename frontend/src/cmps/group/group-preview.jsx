@@ -27,9 +27,9 @@ export function GroupPreview({ group, toggleModal }) {
         setGroupToSend({ ...groupToSend, title: event.target.value })
     }
     return (
-        <section className="group-preview">
-            <div>
-                <form onSubmit={handleSubmit}>
+        <section className="group-preview ">
+            <div className="flex align-center">
+                <form onSubmit={handleSubmit} >
                     <input
                         className="group-title"
                         style={{

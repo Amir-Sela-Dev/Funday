@@ -13,6 +13,7 @@
         display: flex;
         flex-direction: column;
         border: $clr1 solid 1px;
+        z-index: 70;
 
 
 
@@ -22,7 +23,7 @@
         }
     }
 
-    &>* {
+    &>.task-column {
         transition: background-color 0.15s ease-in-out;
 
         &:hover {
@@ -48,7 +49,21 @@
 
 .task-status {
     width: 130px;
+
+
 }
+
+.close-status-picker {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+}
+
+
 
 .task-persons {
     width: 170px;

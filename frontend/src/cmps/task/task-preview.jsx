@@ -33,7 +33,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
     }
 
     const openTaskIcon = 'open-item.svg'
-    
+
     return (
         <div className="task-preview flex">
 
@@ -61,6 +61,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                         style={{ background: lable.color }} onClick={() => { onAddTaskStatus(lable) }}>{lable.txt}</li>)
                     )}</ul>}
             </div>
+            {/* <div className="close-status-picker" onClick={() => { setIsLablesOpen(!isLablesOpen) }}> </div> */}
 
             <div className="task-date task-column">
                 <DatePicker
