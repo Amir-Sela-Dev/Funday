@@ -9,7 +9,7 @@ export const ADD_TASK = 'ADD_TASK'
 
 const initialState = {
     boards: [],
-    board: null ,
+    board: null,
     lastRemovedBoard: null,
 }
 
@@ -21,7 +21,7 @@ export function boardReducer(state = initialState, action) {
         case SET_BOARDS:
             return { ...state, boards: action.boards }
         case SET_BOARD:
-            return { ...state, board: action.board }
+            return { ...state, board: action.boardToSave }
 
         case REMOVE_BOARD:
             lastRemovedBoard = state.boards.find(b => b._id === action.boardId)

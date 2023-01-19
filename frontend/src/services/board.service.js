@@ -14,7 +14,8 @@ export const boardService = {
     creatBoards,
     getDefaultLabels,
     getEmptyGroup,
-    getDefaultBoardFilter
+    getDefaultBoardFilter,
+    getDefaultGroupFilter
 }
 
 window.cs = boardService
@@ -22,16 +23,7 @@ creatBoards()
 
 async function query(filterBy = { title: '' }) {
     // return httpService.get(STORAGE_KEY, filterBy)
-    try {
-        let boards = await storageService.query(STORAGE_KEY)
-        if (filterBy.title) {
-            const regex = new RegExp(filterBy.title, 'i')
-            boards = boards.filter(board => regex.test(board.title))
-        }
-        return boards
-    } catch (err) {
-        console.log('cannot load boards', err)
-    }
+    return storageService.query(STORAGE_KEY)
 }
 
 function get(boardId) {
@@ -132,14 +124,19 @@ function creatBoards() {
                                 title: 'Mashu tov',
                                 // TODO: Add minimal user suport
                                 // for now we use persons as count and render icons
-                                persons: utilService.getRandomIntInclusive(1, 3),
+                                persons: [
+                                    { fullname: 'Amir Yakubov', imgUrl: '' },
+                                    { fullname: 'Sheilan Shamilov', imgUrl: '' },
+                                ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 date: "2023-01-19"
                             },
                             {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
-                                persons: utilService.getRandomIntInclusive(1, 3),
+                                persons: [
+                                    { fullname: 'Amir Yakubov', imgUrl: '' }
+                                ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 date: "2023-01-12"
                             }
@@ -235,6 +232,10 @@ function getEmptyGroup() {
 
 function getDefaultBoardFilter() {
     return { title: '', isStared: false }
+}
+
+function getDefaultGroupFilter() {
+    return { title: '' }
 }
 
 

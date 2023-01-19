@@ -5,7 +5,6 @@ import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import { utilService } from '../services/util.service.js'
 
 export async function loadBoards(filterBy) {
-
     store.dispatch({ type: LOADING_START })
     try {
         const boards = await boardService.query(filterBy)
@@ -56,13 +55,31 @@ export async function saveBoard(board) {
     }
 }
 
-export async function loadBoard(boardId) {
+export async function loadBoard(boardId, filterBy = boardService.getDefaultGroupFilter()) {
     try {
         const board = await boardService.get(boardId)
-        store.dispatch({ type: SET_BOARD, board })
-        return board
+        let boardToSave = structuredClone(board)
+        if (filterBy.title) {
+            const regex = new RegExp(filterBy.title, 'i')
+            let boardGroups = boardToSave.groups
+            // let boardGroupsWithTitle = boardGroups.filter(group => regex.test(group.title))
+            boardGroups = boardGroups.filter(group => {
+                if (regex.test(group.title)) return true
+                let tasks = group.tasks.filter(task => regex.test(task.title))
+                if (!tasks.length) return false
+                group.tasks = tasks
+                return group
+            })
+
+            console.log('boardGroups', boardGroups);
+            // console.log('boardGroupsWithTitle', boardGroupsWithTitle);
+            // boardGroups = [...boardGroups, ...boardGroupsWithTitle]
+            console.log(boardGroups);
+            boardToSave.groups = boardGroups
+        }
+        store.dispatch({ type: SET_BOARD, boardToSave })
+        return boardToSave
     } catch (err) {
-        console.log('Had issues loading board', err)
         throw err
     }
 }
@@ -78,7 +95,7 @@ export async function addGroup(group, board) {
 export async function saveGroup(board, groupId, groupToUpdate) {
     let boardToSave = board
     const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
-    if (groupIndex === -1) throw new Error('Unknown group')
+    if (groupIndex === -1) console.log('Could not find group to update')
     boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
     saveBoard(boardToSave)
 }
