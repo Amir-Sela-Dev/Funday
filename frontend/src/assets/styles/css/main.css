@@ -1,66 +1,15 @@
-/* Breakpoint mixins */
-/* Media  Mixins */
-@font-face {
-  font-family: Poppins-Thin;
-  src: url(../../fonts/Poppins-Thin.ttf);
-}
-@font-face {
-  font-family: Poppins-Regular;
-  src: url(../../fonts/Poppins-Regular.ttf);
-}
-@font-face {
-  font-family: Poppins-Bold;
-  src: url(../../fonts/Poppins-Bold.ttf);
-}
-.fs12 {
-  font-size: 0.75rem;
-}
+/* Error: expected "{".
+ *    ,
+ * 22 |         list-style-type: none;
+ *    |                              ^
+ *    '
+ *   src\assets\styles\scss\cmps\_task-preview.scss 22:30  @import
+ *   src\assets\styles\scss\main.scss 28:9                 root stylesheet */
 
-.fs14 {
-  font-size: 0.875rem;
-}
-
-.fs18 {
-  font-size: 1.125rem;
-}
-
-.fs20 {
-  font-size: 1.25rem;
-}
-
-.fs24 {
-  font-size: 1.5rem;
-}
-
-.fs28 {
-  font-size: 1.75rem;
-}
-
-.fs30 {
-  font-size: 1.875rem;
-}
-
-.flex {
-  display: flex;
-}
-.flex > *.full {
-  flex: 1;
-}
-.flex.column {
-  flex-direction: column;
-}
-.flex.justify-center {
-  justify-content: center;
-}
-.flex.align-center {
-  align-items: center;
-}
-
-.square-ratio {
-  position: relative;
-  overflow: hidden;
-}
-.square-ratio::before {
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
   display: block;
   content: "";
   width: 100%;
@@ -846,5 +795,3 @@ form > * {
 .board-title-wrap {
   margin-bottom: 15px;
 }
-
-/*# sourceMappingURL=main.css.map */
