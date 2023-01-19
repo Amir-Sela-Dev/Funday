@@ -5,18 +5,13 @@ export const UNDO_REMOVE_BOARD = 'UNDO_REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const SET_BOARD = 'SET_BOARD'
-
 export const ADD_TASK = 'ADD_TASK'
-
-
-
 
 const initialState = {
     boards: [],
     board: null ,
     lastRemovedBoard: null,
 }
-
 
 export function boardReducer(state = initialState, action) {
     let boards

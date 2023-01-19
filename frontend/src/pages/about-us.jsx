@@ -64,7 +64,6 @@ function SplitPane(props) {
     )
 }
 
-
 export function AboutUs() {
     const [count, setCount] = useState(100)
 
@@ -91,7 +90,6 @@ export function AboutUs() {
         </section>
     )
 }
-
 
 // Currently - no solution for using ErrorBoundaries with react hooks:
 // https://reactjs.org/docs/hooks-faq.html#do-hooks-cover-all-use-cases-for-classes
