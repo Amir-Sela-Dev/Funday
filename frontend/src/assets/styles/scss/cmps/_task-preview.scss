@@ -1,27 +1,25 @@
 .task-preview {
     align-items: center;
 
-    .task-status {
-        position: relative;
-    }
-
     .status-picker {
-        position: absolute;
-        background-color: #fff;
-        left: -50%;
-        height: 183px;
-        width: 250px;
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        border: $clr1 solid 1px;
-        z-index: 70;
+        @extend .base-modal;
 
         .label {
             margin-inline: 20px;
             margin-block: 4px;
         }
+    }
+
+    .user-preview{
+        @extend .base-modal;
+
+        .person-details{
+            .person-names{
+                padding: 10px;
+            }
+        }
+        width: 400px;
+        height: 500px;
     }
 
     &>.task-column {

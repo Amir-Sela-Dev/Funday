@@ -5,12 +5,14 @@ import { saveTask } from "../../store/board.action"
 import { DatePicker } from 'antd'
 import dayjs from "dayjs"
 import { TaskTitle } from "./task-title"
+import { TaskPerson } from "./task-person"
+import { PersonDetails } from "./person-details"
 
 export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
-
+    const [isPersonsOpen, setIsPersonsOpen] = useState(false)
     async function onAddTaskStatus(label) {
         try {
             let taskToSave = task
@@ -48,7 +50,20 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                 <span>{task.title}</span>
             </div>
 
-            <div className="task-persons task-column"><span>{task.persons}</span></div>
+            <div className="task-persons task-column"
+                onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
+                {/* <span>{task.persons}</span> */}
+                {/* {task.persons && <PersonDetails persons={task.persons} />} */}
+                {task.persons &&
+                    task.persons.map(currPerson => {
+                        return <TaskPerson person={currPerson} />
+                    })}
+                {isPersonsOpen &&
+                    <div className="user-preview" >
+                        <PersonDetails persons={task.persons} />
+                    </div>}
+
+            </div>
 
             <div className="task-status task-column"
                 onClick={() => { setIsLablesOpen(!isLablesOpen) }}
