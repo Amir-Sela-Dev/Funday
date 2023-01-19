@@ -22,8 +22,8 @@ export async function removeBoard(boardId) {
     try {
         await boardService.remove(boardId)
         let boards = await boardService.query()
-        let board = boards[0]
-        store.dispatch({ type: SET_BOARD, board })
+        let boardToSave = boards[0]
+        store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type: REMOVE_BOARD, boardId })
     } catch (err) {
         store.dispatch({ type: UNDO_REMOVE_BOARD })

@@ -1,18 +1,17 @@
 .work-space {
     grid-area: work-space;
     background-color: $work-space-bgc;
-    transition: 2s;
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    // position: fixed;
+    height: 100vh;
+    position: fixed;
     left: 66px;
 
     .main-icon {
         height: 24px;
         width: 24px;
         margin: 5px;
-        
 
         .home-icon {
             height: 16px;
