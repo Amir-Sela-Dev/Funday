@@ -49,7 +49,6 @@ export function BoardDetails() {
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
         <GroupList board={board} groups={groups} toggleModal={toggleModal} />
-        <button onClick={toggleModal}>Test Task Modal</button>
         <TaskDetails closeModal={closeModal} modalState={modalState} taskId={taskId} />
     </section>
 }
