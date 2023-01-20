@@ -268,6 +268,20 @@ form > * {
 .menu-modal.board-list-modal {
   transform: translate(199px, 25px);
 }
+.menu-modal.group-modal {
+  color: #323338;
+  transform: translate(-29px, 35px);
+  width: 215px;
+}
+.menu-modal.group-modal p {
+  color: #323338;
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding-left: 7px;
+}
+.menu-modal.group-modal .menu-modal-option {
+  width: 200px;
+}
 .menu-modal .main-option {
   top: 24px;
   left: 210px;
@@ -994,6 +1008,10 @@ form > * {
 .group-preview-line .group-title:hover, .group-preview-line .group-title:focus {
   outline: 1px solid rgb(223, 223, 223);
   border-radius: 0.25em;
+}
+
+.group-preview .option-icon {
+  margin-inline-start: -29px;
 }
 
 .group-list {

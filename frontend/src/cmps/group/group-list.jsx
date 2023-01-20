@@ -23,11 +23,11 @@ export function GroupList({ board, toggleModal, setFilter }) {
     async function onAddItem(isGroup) {
         try {
             let itemToSave;
-            if (isGroup){
+            if (isGroup) {
                 itemToSave = boardService.getEmptyGroup()
                 await addGroup(itemToSave, board)
             }
-            else{
+            else {
                 itemToSave = boardService.getEmptyTask()
                 itemToSave.title = `New Item`
                 await saveTask(board, 0, itemToSave)
@@ -76,9 +76,9 @@ export function GroupList({ board, toggleModal, setFilter }) {
 
         </div>
 
-        {board.groups.map(group =>
+        {board.groups.map((group, i) =>
             <li className="group-preview-line" key={group.id}>
-                <GroupPreview group={group} toggleModal={toggleModal} />
+                <GroupPreview group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} />
                 <button onClick={() => onRemoveGroup(group.id)}>Delete</button>
             </li>)}
     </ul>
