@@ -68,6 +68,19 @@ form > * {
         border-radius: 0.3rem;
     }
 
+    .new-group-btn-option {
+        margin: 0;
+        width: 204px;
+        padding: 0;
+        font-size: 14px;
+        color: black;
+
+        p {
+            margin: 0;
+            padding: 4px 0;
+        }
+    }
+
     .menu-modal-option:hover {
         background-color: #dcdfec;
     }

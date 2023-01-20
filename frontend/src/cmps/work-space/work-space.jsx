@@ -100,9 +100,10 @@ export function WorkSpace({ toggleWorkspace }) {
             </div>
         </ul>}
 
-
-        <div className="toggle-menu-btn" onClick={setToggleWorkspace}>
-            <img className="arrow-left-icon" src={require(`/src/assets/img/${arrowLeftIcon}`)} />
+        <div className="toggle-nemu-btn-wrap">
+            <div className="toggle-menu-btn" onClick={setToggleWorkspace}>
+                <img className="arrow-left-icon" src={require(`/src/assets/img/${arrowLeftIcon}`)} />
+            </div>
         </div>
 
         <div className="workspace-header flex">
