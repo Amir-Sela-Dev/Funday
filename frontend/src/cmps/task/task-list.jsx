@@ -25,7 +25,7 @@ export function TaskList({ group, toggleModal }) {
 
     function handleInputChange({ target }) {
         let { value, name: field } = target
-        console.log(value);
+        console.log('target', target);
         setNewTask((prevTask) => {
             return { ...prevTask, [field]: value }
         })
@@ -60,6 +60,7 @@ export function TaskList({ group, toggleModal }) {
                     key={currTask.id}
                     task={currTask}
                     onRemoveTask={onRemoveTask}
+                    onTitleInputChange={handleInputChange}
                     group={group}
                     board={board}
                     toggleModal={toggleModal}
