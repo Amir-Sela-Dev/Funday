@@ -131,8 +131,6 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'Mashu tov',
-                                // TODO: Add minimal user suport
-                                // for now we use persons as count and render icons
                                 persons: [
                                     { fullname: 'Amir Yakubov', imgUrl: '' },
                                     { fullname: 'Sheilan Shamilov', imgUrl: '' },
