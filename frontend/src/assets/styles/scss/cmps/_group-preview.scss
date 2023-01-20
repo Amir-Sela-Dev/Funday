@@ -17,6 +17,7 @@
         border: none;
         font-size: 1em;
         font-family: Poppins-Regular;
+        margin-inline-start: 5px;
 
         &:hover,
         &:focus {
@@ -31,6 +32,7 @@
 .group-preview {
 
     .option-icon {
-        margin-inline-start: -29px;
+        margin-inline-start: -33px;
+        margin-top: 4px;
     }
 }

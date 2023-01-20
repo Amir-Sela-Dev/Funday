@@ -25,7 +25,7 @@ export function GroupPreview({ group, toggleModal, onRemoveGroup }) {
     }
 
 
-    function openOptionModal(i) {
+    function openOptionModal() {
         setIsBoardOptionsOpen(!isBoardOptionsOpen)
     }
 

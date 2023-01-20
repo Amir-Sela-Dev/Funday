@@ -1,6 +1,20 @@
 .task-preview {
     align-items: center;
 
+    .checkbox-column {
+        margin-inline-start: 7px;
+    }
+
+    .task-option-icon {
+        margin-inline-start: -33px;
+        width: 25px;
+        height: 25px;
+        fill: #323338;
+        margin-right: 1px;
+        margin-bottom: 4px;
+        position: relative;
+    }
+
     .status-picker {
         position: absolute;
         background-color: #fff;
@@ -49,7 +63,7 @@
         height: 500px;
     }
 
-    & > .task-column {
+    &>.task-column {
         transition: background-color 0.15s ease-in-out;
 
         &:hover {

@@ -14,6 +14,8 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
+    const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
+
     async function onAddTaskStatus(label) {
         try {
             let taskToSave = task
@@ -50,13 +52,52 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
             showErrorMsg('Cannot update task')
         }
     }
+
+    function openOptionModal() {
+        setIsBoardOptionsOpen(!isBoardOptionsOpen)
+    }
+
+    async function onDuplicateTask(task) {
+        try {
+            let copyTask = structuredClone(task)
+            copyTask.id = ''
+            copyTask.title = 'Copy ' + copyTask.title
+            await saveTask(board, group.id, copyTask)
+        } catch (err) {
+            showErrorMsg('Cannot duplicate toy')
+        }
+
+    }
+
+
     const openTaskIcon = 'open-item.svg'
     const bubble = 'bubble.svg'
     const plusBubble = 'plus-bubble.svg'
+    const boardIcon = 'board.svg'
+    const optionIcon = 'option-icon.svg'
+    const duplicateIcon = 'duplicate.svg'
+    const openNewIcon = 'open-new.svg'
+    const renameIcon = 'rename.svg'
+    const deleteIcon = 'delete.svg'
 
     console.log(task.date);
     return (
         <div className="task-preview flex">
+            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal "} >
+                <div className="menu-modal-option flex" onClick={() => { onDuplicateTask(task) }}>
+                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                    />
+                    <p className="menu-modal-option-text">Duplicate</p>
+                </div>
+                <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
+                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                    />
+                    <p className="menu-modal-option-text" >Delete</p>
+                </div>
+            </ul>}
+            <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                onClick={() => { openOptionModal() }} />
+
             <div className="checkbox-column task-column">
                 <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }}></div>
                 <input className='task-checkbox' type="checkbox" />

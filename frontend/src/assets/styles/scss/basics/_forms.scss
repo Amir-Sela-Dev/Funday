@@ -59,7 +59,7 @@ form>* {
 
     &.group-modal {
         color: $clr1;
-        transform: translate(-29px, 35px);
+        transform: translate(-34px, 38px);
         width: 215px;
 
         p {
@@ -73,6 +73,10 @@ form>* {
             width: 200px;
 
         }
+    }
+
+    &.task-modal {
+        transform: translate(-34px, 64px);
     }
 
     .main-option {

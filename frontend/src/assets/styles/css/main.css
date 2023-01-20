@@ -270,7 +270,7 @@ form > * {
 }
 .menu-modal.group-modal {
   color: #323338;
-  transform: translate(-29px, 35px);
+  transform: translate(-34px, 38px);
   width: 215px;
 }
 .menu-modal.group-modal p {
@@ -281,6 +281,9 @@ form > * {
 }
 .menu-modal.group-modal .menu-modal-option {
   width: 200px;
+}
+.menu-modal.task-modal {
+  transform: translate(-34px, 64px);
 }
 .menu-modal .main-option {
   top: 24px;
@@ -773,6 +776,18 @@ form > * {
 .task-preview {
   align-items: center;
 }
+.task-preview .checkbox-column {
+  margin-inline-start: 7px;
+}
+.task-preview .task-option-icon {
+  margin-inline-start: -33px;
+  width: 25px;
+  height: 25px;
+  fill: #323338;
+  margin-right: 1px;
+  margin-bottom: 4px;
+  position: relative;
+}
 .task-preview .status-picker {
   position: absolute;
   background-color: #fff;
@@ -1022,6 +1037,7 @@ form > * {
   border: none;
   font-size: 1em;
   font-family: Poppins-Regular;
+  margin-inline-start: 5px;
 }
 .group-preview-line .group-title:hover, .group-preview-line .group-title:focus {
   outline: 1px solid rgb(223, 223, 223);
@@ -1029,7 +1045,8 @@ form > * {
 }
 
 .group-preview .option-icon {
-  margin-inline-start: -29px;
+  margin-inline-start: -33px;
+  margin-top: 4px;
 }
 
 .group-list {
