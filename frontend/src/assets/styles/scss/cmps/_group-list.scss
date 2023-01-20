@@ -2,11 +2,10 @@
     list-style: none;
     margin: 0;
 
-    .gruop-serach-filter {
+    .group-search-filter {
         border-radius: 4px;
         font-family: Poppins-Regular;
         padding: 4px 10px;
-        margin-bottom: 50px;
         color: white;
         border: $clr1 solid 1px;
 
@@ -17,19 +16,58 @@
     }
 }
 
-
-
 .group-list-main-hr {
     width: 95%;
     margin-left: 0;
+    margin-top: 40px;
 }
 
-.new-group-btn {
-    background-color: $primery-btn-color;
-    color: white;
-    border-radius: 4px;
-    font-family: Poppins-Regular;
-    padding: 4px 10px;
-    margin-bottom: 50px;
-    // margin-bottom: 18px;
+.board-actions {
+    height: 32px;
+    margin-bottom: 18px;
+    margin-top: 15px;
+
+    .new-group-btn {
+        background-color: $primery-btn-color;
+        color: white;
+        border-radius: 4px 0 0 4px;
+        font-family: Poppins-Regular;
+        padding: 4px 10px 4px 10px;
+        margin: 0;
+        width: 76px;
+        border-right: 1px rgba(0, 0, 0, 0.221) solid;
+
+        &.arrow-down-new-group {
+            border-radius: 0 4px 4px 0;
+            width: 28px;
+            padding: 0;
+            margin: 0;
+        }
+
+        &.arrow-down-new-group:hover {
+            background-color: #0055ae;
+        }
+
+        &.arrow-down-new-group:hover {
+            background-color: $primery-btn-color;
+        }
+
+        span {
+            font-size: 0.737rem;
+            display: inline-block;
+        }
+
+        .arrow-down-img {
+            margin-top: 5px;
+            width: 20px;
+        }
+    }
+    .new-group-btn:hover {
+        background-color: #0055ae;
+    }
+
+    .modal-wrap {
+        width: 220px;
+        transform: translate(74px, 33px);
+    }
 }

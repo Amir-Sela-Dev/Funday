@@ -279,6 +279,17 @@ form > * {
   margin: 8px 0;
   border-radius: 0.3rem;
 }
+.menu-modal .new-group-btn-option {
+  margin: 0;
+  width: 204px;
+  padding: 0;
+  font-size: 14px;
+  color: black;
+}
+.menu-modal .new-group-btn-option p {
+  margin: 0;
+  padding: 4px 0;
+}
 .menu-modal .menu-modal-option:hover {
   background-color: #dcdfec;
 }
@@ -548,7 +559,7 @@ form > * {
 }
 .work-space .toggle-menu-btn {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 228px;
   height: 24px;
   width: 24px;
@@ -975,15 +986,14 @@ form > * {
   list-style: none;
   margin: 0;
 }
-.group-list .gruop-serach-filter {
+.group-list .group-search-filter {
   border-radius: 4px;
   font-family: Poppins-Regular;
   padding: 4px 10px;
-  margin-bottom: 50px;
   color: white;
   border: #323338 solid 1px;
 }
-.group-list .gruop-serach-filter input {
+.group-list .group-search-filter input {
   border: none;
   width: 100%;
 }
@@ -991,15 +1001,50 @@ form > * {
 .group-list-main-hr {
   width: 95%;
   margin-left: 0;
+  margin-top: 40px;
 }
 
-.new-group-btn {
+.board-actions {
+  height: 32px;
+  margin-bottom: 18px;
+  margin-top: 15px;
+}
+.board-actions .new-group-btn {
   background-color: #0070e5;
   color: white;
-  border-radius: 4px;
+  border-radius: 4px 0 0 4px;
   font-family: Poppins-Regular;
-  padding: 4px 10px;
-  margin-bottom: 50px;
+  padding: 4px 10px 4px 10px;
+  margin: 0;
+  width: 76px;
+  border-right: 1px rgba(0, 0, 0, 0.221) solid;
+}
+.board-actions .new-group-btn.arrow-down-new-group {
+  border-radius: 0 4px 4px 0;
+  width: 28px;
+  padding: 0;
+  margin: 0;
+}
+.board-actions .new-group-btn.arrow-down-new-group:hover {
+  background-color: #0055ae;
+}
+.board-actions .new-group-btn.arrow-down-new-group:hover {
+  background-color: #0070e5;
+}
+.board-actions .new-group-btn span {
+  font-size: 0.737rem;
+  display: inline-block;
+}
+.board-actions .new-group-btn .arrow-down-img {
+  margin-top: 5px;
+  width: 20px;
+}
+.board-actions .new-group-btn:hover {
+  background-color: #0055ae;
+}
+.board-actions .modal-wrap {
+  width: 220px;
+  transform: translate(74px, 33px);
 }
 
 .boards-list {
@@ -1065,7 +1110,7 @@ form > * {
 }
 
 .board-title-wrap {
-  padding-top: 17px;
+  padding-top: 15px;
   padding-left: 40px;
 }
 .board-title-wrap button {
@@ -1096,7 +1141,7 @@ form > * {
 }
 
 .board-title-wrap {
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 /*# sourceMappingURL=main.css.map */
