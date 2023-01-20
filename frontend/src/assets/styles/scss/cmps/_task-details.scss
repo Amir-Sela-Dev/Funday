@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 100%;
     width: 691px;
     overflow: hidden;
     background-color: rgb(255, 255, 255);
@@ -11,9 +11,40 @@
     transform: translateX(100%);
     transition: all 0.4s;
     display: none;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .task-modal-open {
     transform: translateX(0);
-    display: block;
+    display: flex;
+    flex-direction: column;
+    color: $clr1;
+
+    button {
+        align-items: flex-start;
+    }
+
+    .comments-btn {
+        display: flex;
+        align-items: end;
+
+        button {
+            align-items: flex-start;
+            background-color: #fff;
+            color: $clr1;
+            padding-block: 0;
+            margin: 0;
+        }
+    }
+
+    .txt-editor-container {
+        height: 200px;
+        margin-bottom: 50px;
+    }
+
+    .txt-editor {
+        height: 200px;
+    }
 }

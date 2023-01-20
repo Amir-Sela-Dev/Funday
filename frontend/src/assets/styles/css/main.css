@@ -59,6 +59,12 @@
   align-items: center;
 }
 
+.board-icon {
+  height: 20px;
+  width: 20px;
+  border-radius: 0.3rem;
+}
+
 .square-ratio {
   position: relative;
   overflow: hidden;
@@ -898,7 +904,7 @@ form > * {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100vh;
+  height: 100%;
   width: 691px;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
@@ -907,11 +913,36 @@ form > * {
   transform: translateX(100%);
   transition: all 0.4s;
   display: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-modal-open {
   transform: translateX(0);
-  display: block;
+  display: flex;
+  flex-direction: column;
+  color: #323338;
+}
+.task-modal-open button {
+  align-items: flex-start;
+}
+.task-modal-open .comments-btn {
+  display: flex;
+  align-items: end;
+}
+.task-modal-open .comments-btn button {
+  align-items: flex-start;
+  background-color: #fff;
+  color: #323338;
+  padding-block: 0;
+  margin: 0;
+}
+.task-modal-open .txt-editor-container {
+  height: 200px;
+  margin-bottom: 50px;
+}
+.task-modal-open .txt-editor {
+  height: 200px;
 }
 
 .group-preview-line {
