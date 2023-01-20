@@ -8,7 +8,7 @@ import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
 
 
-export function GroupList({ board, groups, toggleModal, setFilter }) {
+export function GroupList({ board, toggleModal, setFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     // setFilter = useRef(utilService.debounce(setFilter))
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -47,14 +47,6 @@ export function GroupList({ board, groups, toggleModal, setFilter }) {
     }
 
 
-    // function handleLableChange() {
-    //     const lables = selected.map(lable => {
-    //         return lable.value
-    //     })
-    //     setFilterByToEdit((prevFilter) => ({ ...prevFilter, lables: lables }))
-    // }
-
-
 
     const searchIcon = 'search-board.svg'
 
@@ -74,7 +66,7 @@ export function GroupList({ board, groups, toggleModal, setFilter }) {
 
         </div>
 
-        {groups.map(group =>
+        {board.groups.map(group =>
             <li className="group-preview-line" key={group.id}>
                 <GroupPreview group={group} toggleModal={toggleModal} />
                 <button onClick={() => onRemoveGroup(group.id)}>Delete</button>

@@ -54,11 +54,9 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
             <div className="task-persons task-column"
                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
-                {/* <span>{task.persons}</span> */}
-                {/* {task.persons && <PersonDetails persons={task.persons} />} */}
                 {task.persons &&
                     task.persons.map(currPerson => {
-                        return <TaskPerson person={currPerson} />
+                        return <TaskPerson key={currPerson.id} person={currPerson} />
                     })}
                 {isPersonsOpen &&
                     <div className="user-preview" >
@@ -80,7 +78,6 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                         style={{ background: lable.color }} onClick={() => { onAddTaskStatus(lable) }}>{lable.txt}</li>)
                     )}</ul>}
             </div>
-            {/* <div className="close-status-picker" onClick={() => { setIsLablesOpen(!isLablesOpen) }}> </div> */}
 
             <div className="task-date task-column">
                 <DatePicker
