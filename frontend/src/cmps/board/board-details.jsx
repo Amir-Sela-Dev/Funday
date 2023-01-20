@@ -12,7 +12,8 @@ export function BoardDetails() {
     let { board } = useSelector((storeState) => storeState.boardModule)
     const [boardTitle, setBoardTitle] = useState('')
     const [modalState, setModalState] = useState(false)
-    const [taskId, setTaskId] = useState(null)
+    const [task, setTask] = useState(null)
+    const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const { boardId } = useParams()
 
@@ -20,8 +21,10 @@ export function BoardDetails() {
         onLoadBoard(filterByToEdit)
     }, [])
 
-    function toggleModal(taskId = '') {
-        setTaskId(taskId)
+
+    function toggleModal(board, group, task = '') {
+        setTask(task)
+        setGroup(group)
         setModalState(!modalState)
     }
 
@@ -81,7 +84,7 @@ export function BoardDetails() {
             <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
-        <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
-        <TaskDetails closeModal={closeModal} modalState={modalState} taskId={taskId} />
+        <GroupList board={board} groups={groups} toggleModal={toggleModal} setFilter={setFilter} />
+        <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
     </section>
 }
