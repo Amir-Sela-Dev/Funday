@@ -7,7 +7,7 @@ import { useState } from "react"
 import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
 
-export function WorkSpace() {
+export function WorkSpace({ toggleWorkspace }) {
 
     const { boards } = useSelector((storeState) => storeState.boardModule)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
@@ -57,7 +57,8 @@ export function WorkSpace() {
         setIsAddModalOpen(false)
     }
 
-    function toggleWorkspace() {
+    function setToggleWorkspace() {
+        toggleWorkspace()
         setIsNavModalClose(!isNavModalClose)
     }
 
@@ -72,31 +73,35 @@ export function WorkSpace() {
     const homeIcon = 'home.svg'
     const optionIcon = 'option-icon.svg'
     const arrowLeftIcon = 'arrow-left.svg'
+    const duplicateIcon = 'duplicate.svg'
+    const openNewIcon = 'open-new.svg'
+    const renameIcon = 'rename.svg'
+    const deleteIcon = 'delete.svg'
 
     return <section className={`work-space ${isNavModalClose ? 'close-workspace' : ''}`}>
 
-        {isOptionsModalOpen && <ul className="menu-modal" >
-            <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
+        {isOptionsModalOpen && <ul className="menu-modal main-option" >
+            <div className="menu-modal-option first flex">
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${openNewIcon}`)} />
                 <p className="menu-modal-option-text">Open Board in New Tab</p>
             </div>
             <hr />
             <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${renameIcon}`)} />
                 <p className="menu-modal-option-text">Rename</p>
             </div>
             <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)} />
                 <p className="menu-modal-option-text">Duplicate</p>
             </div>
             <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)} />
                 <p className="menu-modal-option-text">Delete</p>
             </div>
         </ul>}
 
 
-        <div className="toggle-menu-btn" onClick={toggleWorkspace}>
+        <div className="toggle-menu-btn" onClick={setToggleWorkspace}>
             <img className="arrow-left-icon" src={require(`/src/assets/img/${arrowLeftIcon}`)} />
         </div>
 

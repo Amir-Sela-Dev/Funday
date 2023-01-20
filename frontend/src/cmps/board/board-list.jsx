@@ -7,15 +7,18 @@ import { boardService } from "../../services/board.service"
 export function BoardList({ boards }) {
     const navigate = useNavigate()
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
+    const [board, setBoard] = useState(null)
 
     async function onLoadBoard(boardId) {
         await loadBoard(boardId)
+        closeModal()
         navigate(`/board/${boardId}`)
     }
 
     async function onRemoveBoard(boardId) {
         try {
             await removeBoard(boardId)
+            closeModal()
             showSuccessMsg('Board removed')
         } catch (err) {
             showErrorMsg('Cannot remove toy')
@@ -28,35 +31,66 @@ export function BoardList({ boards }) {
             duplicateBoard._id = ''
             duplicateBoard.title = 'Copy ' + duplicateBoard.title
             await saveBoard(duplicateBoard)
+            closeModal()
         } catch (err) {
             showErrorMsg('Cannot duplicate toy')
         }
 
     }
 
-    const duplicate = 'duplicate.svg'
+    function openOptionModal(boardId) {
+        const currBoard = boards.find(board => board._id === boardId)
+        setBoard(currBoard)
+        setIsBoardOptionsOpen(!isBoardOptionsOpen)
+    }
+
+    function closeModal() {
+        setBoard(null)
+        setIsBoardOptionsOpen(!isBoardOptionsOpen)
+    }
+
     const boardIcon = 'board.svg'
     const optionIcon = 'option-icon.svg'
+    const duplicateIcon = 'duplicate.svg'
+    const openNewIcon = 'open-new.svg'
+    const renameIcon = 'rename.svg'
+    const deleteIcon = 'delete.svg'
 
     return (
         <ul className="boards-list">
+
+            {(isBoardOptionsOpen && board) && <ul className="menu-modal board-list-modal" >
+                <div className="menu-modal-option first flex">
+                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${openNewIcon}`)}
+                        onClick={() => { onLoadBoard(board._id) }} />
+                    <p className="menu-modal-option-text">Open Board in New Tab</p>
+                </div>
+                <hr />
+                <div className="menu-modal-option flex">
+                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${renameIcon}`)} />
+                    <p className="menu-modal-option-text">Rename</p>
+                </div>
+                <div className="menu-modal-option flex">
+                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                        onClick={() => { onDuplicateBoard(board._id) }} />
+                    <p className="menu-modal-option-text">Duplicate</p>
+                </div>
+                <div className="menu-modal-option flex">
+                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                        onClick={() => { onRemoveBoard(board._id) }} />
+                    <p className="menu-modal-option-text" >Delete</p>
+                </div>
+            </ul>}
+
             {boards.map(board =>
                 <li className="board-preview flex" key={board._id}>
                     <div className="board-wrap">
                         <img className="board-icon" src={require(`/src/assets/img/${boardIcon}`)} />
                         <div className="board-preview-link" onClick={() => { onLoadBoard(board._id) }}>{board.title}</div>
                     </div>
-                    <div className="optins flex">
-                        <img className="duplicate-icon board-icon" src={require(`/src/assets/img/${duplicate}`)} onClick={() => { onDuplicateBoard(board._id) }} />
-                        <div className="delete-board" onClick={() => { onRemoveBoard(board._id) }}>X</div>
-                        <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)} onClick={() => { setIsBoardOptionsOpen(true) }} />
 
-                    </div>
-                    {/* {isBoardOptionsOpen && <div className="board-optins">
-                        <div className="delete-board">Delete-board</div>
-                        <div className="duplicate-board">Duplicate board</div>
-                    </div>
-                    } */}
+                    <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                        onClick={() => { openOptionModal(board._id) }} />
                 </li>)}
         </ul>
     )

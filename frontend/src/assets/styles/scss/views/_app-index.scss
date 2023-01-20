@@ -1,7 +1,10 @@
 .app-index {
     display: grid;
     grid-template-columns: 66px 254px 1fr;
-    grid-template-areas:
-        "side-nav  work-space   board-details"
-    ;
+    grid-template-areas: "side-nav  work-space   board-details";
+    transition: all .3s;
+
+    &.closeMenu {
+        grid-template-columns: 66px 30px 1fr;
+    }
 }

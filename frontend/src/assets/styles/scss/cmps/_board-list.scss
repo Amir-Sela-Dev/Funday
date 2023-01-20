@@ -17,6 +17,11 @@
 .board-icon {
     height: 20px;
     width: 20px;
+    border-radius: 0.3rem;
+}
+
+.board-icon:hover {
+    background-color: #dcdfec;
 }
 
 .option-icon {
@@ -25,6 +30,7 @@
     fill: #323338;
     margin-right: 1px;
     margin-bottom: 4px;
+    position: relative;
 }
 
 .board-preview {
@@ -52,3 +58,4 @@
         padding-left: 10px;
     }
 }
+

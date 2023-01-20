@@ -47,18 +47,38 @@ form > * {
     padding: 8px;
     border: 1px solid rgba(0, 0, 0, 0.133);
     z-index: 70;
-    top: 24px;
-    left: 210px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 1px #00000021;
+
+    transform: translate(199px, 10px);
+
+    &.board-list-modal {
+        transform: translate(199px, 25px);
+    }
+    .main-option {
+        top: 24px;
+        left: 210px;
+    }
 
     .menu-modal-option {
         height: 32px;
         width: 248px;
+        padding: 4px 8px;
+        margin: 8px 0;
+        border-radius: 0.3rem;
+    }
+
+    .menu-modal-option:hover {
+        background-color: #dcdfec;
+    }
+
+    .first {
+        margin-top: 0;
     }
 
     hr {
-        width: 248px;
+        width: 264px;
         opacity: 0.3;
-        margin: 0.2 0;
+        margin: 1px;
     }
 }
