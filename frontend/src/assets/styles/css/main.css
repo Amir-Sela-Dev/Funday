@@ -826,6 +826,10 @@ form > * {
   margin: 6px;
 }
 
+.open-task-icon {
+  opacity: 0.5;
+}
+
 .task-list {
   color: #323338;
   text-align: center;
@@ -885,7 +889,9 @@ form > * {
 }
 
 .last-tag {
-  border-radius: 0 0 0 2rem;
+  border-radius: 0 0 0 1rem;
+  opacity: 0.5;
+  height: 35px;
 }
 
 .task-details-modal {
