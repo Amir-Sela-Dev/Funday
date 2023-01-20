@@ -96,7 +96,6 @@ export function GroupList({ board, toggleModal, setFilter }) {
         {board.groups.map(group =>
             <li className="group-preview-line" key={group.id}>
                 <GroupPreview group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} />
-                <button onClick={() => onRemoveGroup(group.id)}>Delete</button>
             </li>)}
     </ul>
 }
