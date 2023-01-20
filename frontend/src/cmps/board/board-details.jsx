@@ -20,7 +20,6 @@ export function BoardDetails() {
         onLoadBoard(filterByToEdit)
     }, [])
 
-
     function toggleModal(taskId = '') {
         setTaskId(taskId)
         setModalState(!modalState)
@@ -29,8 +28,6 @@ export function BoardDetails() {
     function closeModal() {
         setModalState(!modalState)
     }
-
-
 
     async function onLoadBoard(filterBy) {
         try {
