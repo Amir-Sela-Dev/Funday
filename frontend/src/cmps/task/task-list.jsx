@@ -60,6 +60,7 @@ export function TaskList({ group, toggleModal }) {
                     key={currTask.id}
                     task={currTask}
                     onRemoveTask={onRemoveTask}
+                    setNewTask={setNewTask}
                     onTitleInputChange={handleInputChange}
                     group={group}
                     board={board}

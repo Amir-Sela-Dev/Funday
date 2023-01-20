@@ -448,4 +448,3 @@ function getDefaultComment() {
 
 //     'cmpsOrder': ['status-picker', 'member-picker', 'date-picker']
 // }
-

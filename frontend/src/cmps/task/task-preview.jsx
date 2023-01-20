@@ -8,8 +8,9 @@ import { TaskTitle } from "./task-title"
 import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 
-export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
+export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, toggleModal }) {
 
+    const [newTaskName, setNewTaskName] = useState('')
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
@@ -24,12 +25,10 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
         }
     }
 
-    async function onAddTaskDate(date, dateString) {
+    async function onAddTaskDate(date) {
         try {
-            console.log(dayjs(dateString).format('MMM D '));
             let taskToSave = task
-            taskToSave.date = dayjs(dateString).format('MMM D ')
-            console.log(dayjs(dateString).format('MMM D '));
+            taskToSave.date = date
             await saveTask(board, group.id, taskToSave)
             showSuccessMsg('Task update')
         } catch (err) {
@@ -37,6 +36,20 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
         }
     }
 
+
+    function handleNameInputChange(event) {
+        setNewTaskName(event.target.value)
+    }
+
+    async function onRenameTask(event) {
+        event.preventDefault()
+        try {
+            await saveTask(board, group.id, { ...task, title: newTaskName })
+            showSuccessMsg('Task update')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+    }
     const openTaskIcon = 'open-item.svg'
     console.log(task.date);
     return (
@@ -49,7 +62,20 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
                 <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
-                <span>{task.title}</span>
+                {/* <span>{task.title}</span> */}
+                <form onSubmit={onRenameTask} >
+                    <input
+                        className="task-title"
+                        style={{
+                            width: `${(task?.title?.length) * 1.2}ch`
+                        }}
+                        type="text"
+                        value={newTaskName || task?.title}
+                        onChange={handleNameInputChange}
+                        onBlur={ev => { onRenameTask(ev) }}
+                        onClick={ev => { ev.stopPropagation() }}
+                    />
+                </form>
             </div>
 
             <div className="task-persons task-column"
@@ -78,13 +104,13 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                         style={{ background: lable.color }} onClick={() => { onAddTaskStatus(lable) }}>{lable.txt}</li>)
                     )}</ul>}
             </div>
-
             <div className="task-date task-column">
                 <DatePicker
                     defaultValue={task.date ? dayjs(task.date) : ''}
                     bordered={false}
                     onChange={onAddTaskDate}
-                    placeholder="" />
+                    placeholder=""
+                    format={'MMM D'} />
             </div>
             <div className="remove-task task-column"
                 onClick={() => { onRemoveTask(task.id) }}> X </div>
