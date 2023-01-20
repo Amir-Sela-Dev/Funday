@@ -15,7 +15,8 @@ export const boardService = {
     getDefaultLabels,
     getEmptyGroup,
     getDefaultBoardFilter,
-    getDefaultGroupFilter
+    getDefaultGroupFilter,
+    getDefaultComment
 }
 
 window.cs = boardService
@@ -77,11 +78,15 @@ function getEmptyBoard() {
                 tasks: [
                     {
                         id: utilService.makeId(5),
-                        title: 'item 1'
+                        title: 'item 1',
+                        status: { id: utilService.makeId(5), txt: '', color: '' },
+                        comments: []
                     },
                     {
                         id: utilService.makeId(5),
-                        title: 'item 2'
+                        title: 'item 2',
+                        status: { id: utilService.makeId(5), txt: '', color: '' },
+                        comments: []
                     }
                 ],
                 style: { color: '#e2445c' }
@@ -93,11 +98,15 @@ function getEmptyBoard() {
                 tasks: [
                     {
                         id: utilService.makeId(5),
-                        title: 'item 3'
+                        title: 'item 3',
+                        status: { id: utilService.makeId(5), txt: '', color: '' },
+                        comments: []
                     },
                     {
                         id: utilService.makeId(5),
-                        title: 'item 4'
+                        title: 'item 4',
+                        status: { id: utilService.makeId(5), txt: '', color: '' },
+                        comments: []
                     }
                 ],
                 style: { color: '#a559d8' }
@@ -136,7 +145,9 @@ function creatBoards() {
                                     { fullname: 'Sheilan Shamilov', imgUrl: '' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
-                                date: "2023-01-19"
+                                date: "2023-01-19",
+                                comments: []
+
                             },
                             {
                                 id: utilService.makeId(5),
@@ -145,7 +156,9 @@ function creatBoards() {
                                     { fullname: 'Amir Yakubov', imgUrl: '' }
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
-                                date: "2023-01-12"
+                                date: "2023-01-12",
+                                comments: []
+
                             }
                         ],
                         style: { color: '#579bfc' }
@@ -157,11 +170,17 @@ function creatBoards() {
                         tasks: [
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 1'
+                                title: 'item 1',
+                                status: { id: utilService.makeId(5), txt: '', color: '' },
+                                comments: []
+
                             },
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 2'
+                                title: 'item 2',
+                                status: { id: utilService.makeId(5), txt: '', color: '' },
+                                comments: []
+
                             }
                         ],
                         style: { color: '#e2445c' }
@@ -173,11 +192,16 @@ function creatBoards() {
                         tasks: [
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 3'
+                                title: 'item 3',
+                                status: { id: utilService.makeId(5), txt: '', color: '' },
+                                comments: []
+
                             },
                             {
                                 id: utilService.makeId(5),
-                                title: 'item 4'
+                                title: 'item 4',
+                                status: { id: utilService.makeId(5), txt: '', color: '' },
+                                comments: []
                             }
                         ],
                         style: { color: '#a559d8' }
@@ -225,6 +249,8 @@ function getDefaultLabels() {
     ]
 }
 
+
+
 function getEmptyGroup() {
     return {
         id: utilService.makeId(5),
@@ -242,7 +268,20 @@ function getDefaultBoardFilter() {
 }
 
 function getDefaultGroupFilter() {
-    return { title: '' }
+    return { title: '', lables: [] }
+}
+
+function getDefaultComment() {
+    return {
+        id: utilService.makeId(5),
+        txt: '',
+        createdAt: '',
+        byMember: {
+            _id: 'u101',
+            'fullname': 'Guest',
+            imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg'
+        }
+    }
 }
 
 

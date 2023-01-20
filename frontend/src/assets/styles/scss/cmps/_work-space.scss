@@ -5,13 +5,52 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    position: fixed;
+    width: 255px;
+    // position: fixed;
     left: 66px;
+    border-right: 1px solid rgba(0, 0, 0, 0.102);
+    transition: transform 1s;
+
+    &.close-workspace {
+        transform: translateX(-225px);
+    }
+
+    .workspace-header {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle-menu-btn {
+        position: absolute;
+        top: 20px;
+        left: 244px;
+        height: 24px;
+        width: 24px;
+        background-color: white;
+        border-radius: 1rem;
+        transition: all 0.2s;
+        border: 1px solid rgba(0, 0, 0, 0.102);
+
+        .arrow-left-icon {
+            height: 12px;
+            width: 12px;
+            margin-bottom: 3.5px;
+            margin-left: 3.5px;
+        }
+    }
+
+    .toggle-menu-btn:hover {
+        width: 35px;
+        background-color: #0073ea;
+        transform: translateX(-20%);
+    }
 
     .main-icon {
         height: 24px;
         width: 24px;
         margin: 5px;
+        font-size: 0.85rem;
+        font-weight: 500;
 
         .home-icon {
             height: 16px;
@@ -21,19 +60,34 @@
 
     .main-workspace-dropdown {
         border: 1px solid black;
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         align-items: center;
+        padding: 2px;
+        margin-bottom: 30px;
 
         .main-icon {
-            margin: 0 5px;
+            position: relative;
+            margin: 5px 5px;
             background-color: #225091;
+            color: white;
+            border-radius: 0.5rem;
+            text-align: center;
+            line-height: 24px;
+        }
+        .home-icon {
+            position: absolute;
+            top: 12px;
+            left: 17px;
         }
 
         h3 {
+            color: #323338;
             display: inline-block;
             margin: 0;
             line-height: 24px;
-            font-size: 1rem;
+            font-size: 0.85rem;
+            padding-left: 4px;
+            padding-right: 48px;
         }
 
         .arrow-down-icon {
@@ -44,6 +98,7 @@
     }
 
     .option-wrap {
+        width: 224px;
         :hover {
             background-color: #dcdfec;
             border-radius: 0.2rem;
@@ -68,6 +123,7 @@
     }
 
     .dark-screen {
+        z-index: 60;
         background-color: rgba(0, 0, 0, 0.425);
         width: 100%;
         height: 100%;
@@ -79,18 +135,16 @@
     }
 
     .main-modal {
+        position: relative;
         background-color: #fff;
         box-shadow: 0 0 12px 1px grey;
         height: 245px;
-        left: 50%;
-        // padding: 1rem 3rem;
-        position: fixed;
-        top: 45%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        transform: translate(70%, -50%);
+        left: 70%;
+        top: 50%;
         transition: all 0.3s ease 0s;
         width: 437px;
-        z-index: 70;
+        z-index: 71;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -136,6 +190,7 @@
             border-radius: 4px;
             box-shadow: none;
             border: $clr1 solid 0.5px;
+            font-family: Poppins-Regular;
         }
 
         h1 {
@@ -162,6 +217,7 @@
         }
 
         input {
+            font-family: Poppins-Regular;
             margin: 0;
             padding-left: 30px;
             border: none;
@@ -182,7 +238,7 @@
     font-weight: 400;
     color: #676879;
     padding-top: 5px;
-    padding-bottom: 74px;
+    padding-bottom: 8px;
     margin-left: -3px;
 }
 

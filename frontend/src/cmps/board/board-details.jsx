@@ -5,21 +5,26 @@ import { useSelector } from 'react-redux'
 import { GroupList } from "../group/group-list"
 import { TaskDetails } from "../task/task-details"
 import { boardService } from "../../services/board.service"
+import { saveBoard } from "../../store/board.action";
+import { showSuccessMsg } from "../../services/event-bus.service"
 
 export function BoardDetails() {
-    const [currboard, setBoard] = useState(null)
-    const [modalState, setModalState] = useState(false)
-    const [taskId, setTaskId] = useState(null)
     let { board } = useSelector((storeState) => storeState.boardModule)
+    const [boardTitle, setBoardTitle] = useState('')
+    const [modalState, setModalState] = useState(false)
+    const [task, setTask] = useState(null)
+    const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
+    const { boardId } = useParams()
 
     useEffect(() => {
         onLoadBoard(filterByToEdit)
     }, [])
 
 
-    function toggleModal(taskId = '') {
-        setTaskId(taskId)
+    function toggleModal(board, group, task = '') {
+        setTask(task)
+        setGroup(group)
         setModalState(!modalState)
     }
 
@@ -27,34 +32,59 @@ export function BoardDetails() {
         setModalState(!modalState)
     }
 
-    const { boardId } = useParams()
-
-
     async function onLoadBoard(filterBy) {
-        let board = await loadBoard(boardId, filterBy)
-        console.log('board from ', board);
-        setBoard(board)
+        try {
+            await loadBoard(boardId, filterBy)
+            setBoardTitle(board?.title)
+            console.log('Loaded board successfully', board);
+        } catch (err) {
+            console.log('Couldn\'t load board..', err);
+        }
     }
 
     function setFilter(filterBy) {
         onLoadBoard(filterBy)
     }
 
+    async function onRenameBoard(event) {
+        event.preventDefault()
+        console.log('rename board');
+        if (!board?.title.length) return
+        try {
+            await saveBoard({ ...board, title: boardTitle })
+            showSuccessMsg('Board updated')
+        } catch (err) {
+            console.log('error changing board name', err)
+        }
+    }
 
+    function handleInputChange(event) {
+        setBoardTitle(event.target.value)
+    }
 
     const infoIcon = 'info.svg'
     const starIcon = 'star.svg'
 
     if (!board) return <div>Loading...</div>
-    const { groups } = board
     return <section className="board-details">
 
         <div className="board-title-wrap flex">
-            <h1 className="board-title">{board.title}</h1>
+            <form onSubmit={onRenameBoard} >
+                <input
+                    className="board-title"
+                    style={{
+                        width: `${(board?.title?.length || 10)}ch`
+                    }}
+                    type="text"
+                    value={boardTitle || board?.title}
+                    onChange={handleInputChange}
+                    onBlur={ev => { onRenameBoard(ev) }}
+                />
+            </form>
             <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
-        <GroupList board={board} groups={groups} toggleModal={toggleModal} setFilter={setFilter} />
-        <TaskDetails closeModal={closeModal} modalState={modalState} taskId={taskId} />
+        <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
+        <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
     </section>
 }

@@ -7,10 +7,12 @@ import { useState } from "react"
 import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
 
-export function WorkSpace() {
+export function WorkSpace({ toggleWorkspace }) {
 
     const { boards } = useSelector((storeState) => storeState.boardModule)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+    const [isNavModalClose, setIsNavModalClose] = useState(false)
+    const [isOptionsModalOpen, setIsOptionsModalOpen] = useState(false)
     const [boardName, setboardName] = useState('')
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultBoardFilter())
 
@@ -55,14 +57,59 @@ export function WorkSpace() {
         setIsAddModalOpen(false)
     }
 
+    function setToggleWorkspace() {
+        toggleWorkspace()
+        setIsNavModalClose(!isNavModalClose)
+    }
+
+    function toggleMenuModal() {
+        setIsOptionsModalOpen(!isOptionsModalOpen)
+    }
+
     const addBoardIcon = 'add-board.svg'
     const searchIcon = 'search-board.svg'
     const filterIcon = 'filter.svg'
     const arrowDownIcon = 'arrow-down.svg'
     const homeIcon = 'home.svg'
+    const optionIcon = 'option-icon.svg'
+    const arrowLeftIcon = 'arrow-left.svg'
+    const duplicateIcon = 'duplicate.svg'
+    const openNewIcon = 'open-new.svg'
+    const renameIcon = 'rename.svg'
+    const deleteIcon = 'delete.svg'
 
-    return <section className="work-space">
-        <span className='workspace-txt'>Workspace</span>
+    return <section className={`work-space ${isNavModalClose ? 'close-workspace' : ''}`}>
+
+        {isOptionsModalOpen && <ul className="menu-modal main-option" >
+            <div className="menu-modal-option first flex">
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${openNewIcon}`)} />
+                <p className="menu-modal-option-text">Open Board in New Tab</p>
+            </div>
+            <hr />
+            <div className="menu-modal-option flex">
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${renameIcon}`)} />
+                <p className="menu-modal-option-text">Rename</p>
+            </div>
+            <div className="menu-modal-option flex">
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)} />
+                <p className="menu-modal-option-text">Duplicate</p>
+            </div>
+            <div className="menu-modal-option flex">
+                <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)} />
+                <p className="menu-modal-option-text">Delete</p>
+            </div>
+        </ul>}
+
+
+        <div className="toggle-menu-btn" onClick={setToggleWorkspace}>
+            <img className="arrow-left-icon" src={require(`/src/assets/img/${arrowLeftIcon}`)} />
+        </div>
+
+        <div className="workspace-header flex">
+            <span className='workspace-txt'>Workspace</span>
+            <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                onClick={toggleMenuModal} />
+        </div>
 
         <div className="main-workspace-dropdown flex">
             <div className="main-icon">M
@@ -91,8 +138,9 @@ export function WorkSpace() {
         <BoardList boards={boards} />
 
         {isAddModalOpen && <div className="add-modal">
+            <div onClick={onCloseModal} className="dark-screen"></div>
             <div className="main-modal">
-                <div className="close-modal" onClick={() => { onCloseModal() }}>
+                <div className="close-modal" onClick={onCloseModal}>
                     <span>X</span>
                 </div>
                 <form action="" onSubmit={onAddBoard} className='flex'>
@@ -100,13 +148,11 @@ export function WorkSpace() {
                     <label htmlFor="">Board name:</label>
                     <input type="text" onChange={handleChange} value={boardName} />
                     <div className="modal-btns">
-                        <button type='button' className="cancel-modal" onClick={() => { onCloseModal() }}>Cancel</button>
+                        <button type='button' className="cancel-modal" onClick={onCloseModal}>Cancel</button>
                         <button className="create-board" >Create Board</button>
                     </div>
                 </form>
             </div>
-            <div onClick={() => { onCloseModal() }} className="dark-screen"></div>
-        </div>
-        }
+        </div>}
     </section>
 }
