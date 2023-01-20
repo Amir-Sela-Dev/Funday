@@ -32,8 +32,6 @@ export function BoardDetails() {
         setModalState(!modalState)
     }
 
-
-
     async function onLoadBoard(filterBy) {
         try {
             await loadBoard(boardId, filterBy)

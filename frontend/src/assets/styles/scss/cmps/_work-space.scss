@@ -6,7 +6,7 @@
     flex-direction: column;
     height: 100vh;
     width: 255px;
-    position: fixed;
+    // position: fixed;
     left: 66px;
     border-right: 1px solid rgba(0, 0, 0, 0.102);
     transition: transform 1s;
@@ -123,6 +123,7 @@
     }
 
     .dark-screen {
+        z-index: 60;
         background-color: rgba(0, 0, 0, 0.425);
         width: 100%;
         height: 100%;
@@ -134,15 +135,13 @@
     }
 
     .main-modal {
+        position: relative;
         background-color: #fff;
         box-shadow: 0 0 12px 1px grey;
         height: 245px;
-        left: 50%;
-        // padding: 1rem 3rem;
-        position: fixed;
-        top: 45%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        transform: translate(70%, -50%);
+        left: 70%;
+        top: 50%;
         transition: all 0.3s ease 0s;
         width: 437px;
         z-index: 71;

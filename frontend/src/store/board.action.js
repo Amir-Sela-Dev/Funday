@@ -123,12 +123,12 @@ export async function removeGroup(board, groupId) {
 export async function saveTask(board, groupId, task) {
     let fullBoard = await boardService.get(board._id)
     let boardToSave = structuredClone(fullBoard)
-    let groupToSave = boardToSave.groups.find(group => group.id === groupId)
+    let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
 
     if (!task.id) {
         console.log('from action no id', task);
         task.id = utilService.makeId(5)
-        groupToSave.tasks.push(task)
+        groupToSave.tasks[groupId ? 'push' : 'unshift'](task)
     }
     else {
         console.log('from action', task);

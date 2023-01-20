@@ -8,6 +8,7 @@ export function BoardList({ boards }) {
     const navigate = useNavigate()
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [board, setBoard] = useState(null)
+    const [modalTransform, setModalTransform] = useState('')
 
     async function onLoadBoard(boardId) {
         await loadBoard(boardId)
@@ -38,13 +39,15 @@ export function BoardList({ boards }) {
 
     }
 
-    function openOptionModal(boardId) {
+    function openOptionModal(boardId, i) {
+        setModalTransform(25 + (29 * i))
         const currBoard = boards.find(board => board._id === boardId)
         setBoard(currBoard)
         setIsBoardOptionsOpen(!isBoardOptionsOpen)
     }
 
     function closeModal() {
+
         setBoard(null)
         setIsBoardOptionsOpen(!isBoardOptionsOpen)
     }
@@ -56,10 +59,13 @@ export function BoardList({ boards }) {
     const renameIcon = 'rename.svg'
     const deleteIcon = 'delete.svg'
 
+
+    console.log('modalTransform', modalTransform)
     return (
         <ul className="boards-list">
 
-            {(isBoardOptionsOpen && board) && <ul className="menu-modal board-list-modal" >
+            {(isBoardOptionsOpen && board) && <ul className={"menu-modal board-list-modal"}
+                style={{ transform: `translate(199px, ${modalTransform}px)` }} >
                 <div className="menu-modal-option first flex">
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${openNewIcon}`)}
                         onClick={() => { onLoadBoard(board._id) }} />
@@ -82,16 +88,18 @@ export function BoardList({ boards }) {
                 </div>
             </ul>}
 
-            {boards.map(board =>
-                <li className="board-preview flex" key={board._id}>
-                    <div className="board-wrap">
-                        <img className="board-icon" src={require(`/src/assets/img/${boardIcon}`)} />
-                        <div className="board-preview-link" onClick={() => { onLoadBoard(board._id) }}>{board.title}</div>
-                    </div>
+            {
+                boards.map((board, i) =>
+                    <li className="board-preview flex" key={board._id}>
+                        <div className="board-wrap">
+                            <img className="board-icon" src={require(`/src/assets/img/${boardIcon}`)} />
+                            <div className="board-preview-link" onClick={() => { onLoadBoard(board._id) }}>{board.title}</div>
+                        </div>
 
-                    <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                        onClick={() => { openOptionModal(board._id) }} />
-                </li>)}
-        </ul>
+                        <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                            onClick={() => { openOptionModal(board._id, i) }} />
+                    </li>)
+            }
+        </ul >
     )
 }
