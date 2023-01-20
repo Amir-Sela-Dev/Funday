@@ -26,8 +26,10 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
     async function onAddTaskDate(date, dateString) {
         try {
+            console.log(dayjs(dateString).format('MMM D '));
             let taskToSave = task
-            taskToSave.date = dateString
+            taskToSave.date = dayjs(dateString).format('MMM D ')
+            console.log(dayjs(dateString).format('MMM D '));
             await saveTask(board, group.id, taskToSave)
             showSuccessMsg('Task update')
         } catch (err) {
@@ -36,7 +38,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
     }
 
     const openTaskIcon = 'open-item.svg'
-
+    console.log(task.date);
     return (
         <div className="task-preview flex">
 
@@ -45,7 +47,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                 <input className='task-checkbox' type="checkbox" />
             </div>
 
-            <div className="task-txt task-column flex" onClick={() => toggleModal(task.id)}>
+            <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
                 <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
                 <span>{task.title}</span>
             </div>
@@ -69,7 +71,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                 onClick={() => { setIsLablesOpen(!isLablesOpen) }}
                 style={{ background: `${(task.status.txt === 'Default') ? '#fff' : task.status.color}` }}>
 
-                <span>{`${(task.status.txt === 'Default') ? '' : task.status.txt}`}</span>
+                <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
                 {isLablesOpen && <ul className="status-picker" >
                     <div className="arrow-up"></div>
@@ -82,7 +84,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
             <div className="task-date task-column">
                 <DatePicker
-                    defaultValue={task.date ? dayjs(task.date, 'YYYY-MM-DD') : ''}
+                    defaultValue={task.date ? dayjs(task.date) : ''}
                     bordered={false}
                     onChange={onAddTaskDate}
                     placeholder="" />

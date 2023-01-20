@@ -9,7 +9,8 @@ import { boardService } from "../../services/board.service"
 export function BoardDetails() {
     const [currboard, setBoard] = useState(null)
     const [modalState, setModalState] = useState(false)
-    const [taskId, setTaskId] = useState(null)
+    const [task, setTask] = useState(null)
+    const [group, setGroup] = useState(null)
     let { board } = useSelector((storeState) => storeState.boardModule)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const { boardId } = useParams()
@@ -19,8 +20,9 @@ export function BoardDetails() {
     }, [])
 
 
-    function toggleModal(taskId = '') {
-        setTaskId(taskId)
+    function toggleModal(board, group, task = '') {
+        setTask(task)
+        setGroup(group)
         setModalState(!modalState)
     }
 
@@ -54,6 +56,6 @@ export function BoardDetails() {
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
         <GroupList board={board} groups={groups} toggleModal={toggleModal} setFilter={setFilter} />
-        <TaskDetails closeModal={closeModal} modalState={modalState} taskId={taskId} />
+        <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
     </section>
 }
