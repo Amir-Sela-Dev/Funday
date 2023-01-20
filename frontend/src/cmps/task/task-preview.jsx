@@ -160,8 +160,6 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
                     placeholder=""
                     format={'MMM D'} />
             </div>
-            <div className="remove-task task-column"
-                onClick={() => { onRemoveTask(task.id) }}> X </div>
         </div>
     )
 }
