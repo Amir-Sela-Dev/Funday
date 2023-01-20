@@ -138,8 +138,9 @@ export function WorkSpace({ toggleWorkspace }) {
         <BoardList boards={boards} />
 
         {isAddModalOpen && <div className="add-modal">
+            <div onClick={onCloseModal} className="dark-screen"></div>
             <div className="main-modal">
-                <div className="close-modal" onClick={() => { onCloseModal() }}>
+                <div className="close-modal" onClick={onCloseModal}>
                     <span>X</span>
                 </div>
                 <form action="" onSubmit={onAddBoard} className='flex'>
@@ -147,13 +148,11 @@ export function WorkSpace({ toggleWorkspace }) {
                     <label htmlFor="">Board name:</label>
                     <input type="text" onChange={handleChange} value={boardName} />
                     <div className="modal-btns">
-                        <button type='button' className="cancel-modal" onClick={() => { onCloseModal() }}>Cancel</button>
+                        <button type='button' className="cancel-modal" onClick={onCloseModal}>Cancel</button>
                         <button className="create-board" >Create Board</button>
                     </div>
                 </form>
             </div>
-            <div onClick={() => { onCloseModal() }} className="dark-screen"></div>
-        </div>
-        }
+        </div>}
     </section>
 }
