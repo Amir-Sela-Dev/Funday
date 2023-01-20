@@ -8,13 +8,9 @@ export function GroupPreview({ group, toggleModal }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
     let { board } = useSelector((storeState) => storeState.boardModule)
 
-    async function handleSubmit(event) {
+    async function onRenameGroup(event) {
         event.preventDefault()
-        if (!groupToSend?.title.length) {
-            setGroupToSend(prevGroup => {
-                return { ...prevGroup }
-            })
-        }
+        if (!groupToSend?.title.length) setGroupToSend(prevGroup => ({ ...prevGroup }))
         try {
             await saveGroup(board, group.id, groupToSend)
             showSuccessMsg('Group updated')
@@ -29,7 +25,7 @@ export function GroupPreview({ group, toggleModal }) {
     return (
         <section className="group-preview ">
             <div className="flex align-center">
-                <form onSubmit={handleSubmit} >
+                <form onSubmit={onRenameGroup} >
                     <input
                         className="group-title"
                         style={{
@@ -39,7 +35,7 @@ export function GroupPreview({ group, toggleModal }) {
                         type="text"
                         value={groupToSend.title}
                         onChange={handleInputChange}
-                        onBlur={ev => { handleSubmit(ev, ev.target.value) }}
+                        onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
                     />
                 </form>
                 <span className='number-of-tasks'>{group.tasks.length} items</span>

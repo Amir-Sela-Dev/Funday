@@ -1038,9 +1038,16 @@ form > * {
   display: inline-block;
   font-weight: 500;
   font-size: 32px;
+  font-family: Poppins-Regular;
   color: #323338;
   margin: 0;
   margin-right: 15px;
+  outline: none;
+  border: none;
+  border-radius: 0.25em;
+}
+.board-title:hover, .board-title:focus {
+  outline: 1px solid rgb(223, 223, 223);
 }
 
 .title-icon {

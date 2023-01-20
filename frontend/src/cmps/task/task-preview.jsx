@@ -56,7 +56,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                 {/* {task.persons && <PersonDetails persons={task.persons} />} */}
                 {task.persons &&
                     task.persons.map(currPerson => {
-                        return <TaskPerson person={currPerson} />
+                        return <TaskPerson key={currPerson.id} person={currPerson} />
                     })}
                 {isPersonsOpen &&
                     <div className="user-preview" >
