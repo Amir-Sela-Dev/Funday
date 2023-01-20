@@ -1,5 +1,6 @@
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
+import { utilService } from './util.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -37,7 +38,7 @@ function remove(userId) {
     // return httpService.delete(`user/${userId}`)
 }
 
-async function update({_id, score}) {
+async function update({ _id, score }) {
     const user = await storageService.get('user', _id)
     user.score = score
     await storageService.put('user', user)
@@ -81,7 +82,7 @@ async function changeScore(by) {
 
 
 function saveLocalUser(user) {
-    user = {_id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score}
+    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -90,11 +91,23 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
+// function createUsers() {
+//     let users = utilService.loadFromStorage(USER_KEY)
+//     if (!users || !users.length) {
+//     }
+//     users = [
+//         { _id: utilService.makeId(5), fullname: 'Amir Sela', username: 'amir@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' },
+//         { _id: utilService.makeId(5), fullname: 'Amir Yakobuv', username: 'amiryakubov@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg', },
+//         { _id: utilService.makeId(5), fullname: 'Sheilan Shamilov', username: 'sheilan@gmail.com', password: 'sheilan123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' }
+//     ]
+//     utilService.saveToStorage(USER_KEY, boards)
+// }
 
-// ;(async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+
+// ; (async () => {
+//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Sela', username: 'amir@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
+//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Sheilan Shamilov', username: 'sheilan@gmail.com', password: 'sheilan123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
+//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Yakobuv', username: 'amiryakubov@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
 // })()
 
 

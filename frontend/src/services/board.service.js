@@ -2,13 +2,14 @@ import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 
 const STORAGE_KEY = 'boardDB'
+const USER_KEY = 'userDB'
 
 export const boardService = {
     query,
     get,
     save,
     remove,
-    saveTask,
+    // saveTask,
     getEmptyBoard,
     getEmptyTask,
     creatBoards,
@@ -215,28 +216,29 @@ function creatBoards() {
 
 
 // boardService
-export async function saveTask(board, groupId, task) {
-    let boardToSave = board
-    let refGroup = boardToSave.groups.find(group => group.id === groupId)
-    console.log(task)
-    if (!task.id) {
-        task.id = utilService.makeId(5)
-        refGroup.tasks.push(task)
-    }
-    else {
-        const taskIdx = refGroup.tasks.findIndex(currTask => currTask.id === task.id)
-        refGroup.tasks.splice(taskIdx, 1, task)
-    }
+// export async function saveTask(board, groupId, task) {
+//     let boardToSave = board
+//     let refGroup = boardToSave.groups.find(group => group.id === groupId)
+//     console.log(task)
+//     if (!task.id) {
+//         task.id = utilService.makeId(5)
+//         refGroup.tasks.push(task)
+//     }
+//     else {
+//         const taskIdx = refGroup.tasks.findIndex(currTask => currTask.id === task.id)
+//         refGroup.tasks.splice(taskIdx, 1, task)
+//     }
 
-    return boardToSave
-}
+//     return boardToSave
+// }
 
 function getEmptyTask() {
     return {
         title: '',
-        persons: 0,
+        persons: '',
         status: {},
         date: '',
+        comments: []
     }
 }
 
@@ -283,6 +285,7 @@ function getDefaultComment() {
         }
     }
 }
+
 
 
 // const activity = {

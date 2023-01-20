@@ -38,19 +38,26 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
     }
 
     const openTaskIcon = 'open-item.svg'
+    const bubble = 'bubble.svg'
+    const plusBubble = 'plus-bubble.svg'
+
     console.log(task.date);
     return (
         <div className="task-preview flex">
-
             <div className="checkbox-column task-column">
                 <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }}></div>
                 <input className='task-checkbox' type="checkbox" />
             </div>
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} />
+                {/* <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} /> */}
                 <span>{task.title}</span>
+                <div className="comments-bubble task-column">
+                    <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" />
+                    <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>
+                </div>
             </div>
+
 
             <div className="task-persons task-column"
                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>

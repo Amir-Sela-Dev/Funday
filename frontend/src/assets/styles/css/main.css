@@ -792,6 +792,23 @@ form > * {
   background-color: rgb(221, 221, 221);
   cursor: pointer;
 }
+.task-preview .comments-bubble {
+  display: flex;
+  position: relative;
+}
+.task-preview .comments-bubble .comments-num {
+  position: absolute;
+  color: #fff;
+  left: 16px;
+  top: 17px;
+  line-height: 9px;
+  font-size: 11px;
+  font-weight: 400;
+  background: #0070e5;
+  border-radius: 10px;
+  text-align: center;
+  padding: 2px 4px;
+}
 
 .task-title {
   width: 288px;
@@ -800,6 +817,7 @@ form > * {
 .task-txt {
   width: 288px;
   align-items: center;
+  justify-content: space-between;
 }
 .task-txt span {
   font-size: 14px;
@@ -899,7 +917,6 @@ form > * {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
   width: 691px;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
@@ -934,10 +951,21 @@ form > * {
 }
 .task-modal-open .txt-editor-container {
   height: 200px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .task-modal-open .txt-editor {
-  height: 200px;
+  height: 150px;
+}
+.task-modal-open h1 {
+  font-size: 26px;
+}
+.task-modal-open .comment {
+  width: 521px;
+  height: 204px;
+  border: #323338 solid 1px;
+  line-height: 20px;
+  border-radius: 8px;
+  margin-bottom: 18px;
 }
 
 .group-preview-line {

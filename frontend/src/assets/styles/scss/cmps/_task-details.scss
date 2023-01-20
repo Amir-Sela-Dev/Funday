@@ -2,7 +2,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
     width: 691px;
     overflow: hidden;
     background-color: rgb(255, 255, 255);
@@ -41,10 +40,24 @@
 
     .txt-editor-container {
         height: 200px;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
 
     .txt-editor {
-        height: 200px;
+        height: 150px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .comment {
+        width: 521px;
+        height: 204px;
+        border: $clr1 solid 1px;
+        line-height: 20px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        // flex-direction: ;
     }
 }

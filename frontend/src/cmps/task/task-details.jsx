@@ -1,20 +1,28 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { boardService, saveTask } from "../../services/board.service"
+import { boardService } from "../../services/board.service"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { saveTask } from "../../store/board.action";
+import { utilService } from "../../services/util.service";
 
 export function TaskDetails({ board, group, task = '', closeModal, modalState }) {
     const [value, setValue] = useState('');
     const [comment, setComment] = useState(boardService.getDefaultComment());
     const emtyModalImg = 'task-modal-empty-state.svg'
     const whiteHome = 'white-home.svg'
-    console.log(task);
+
+
     async function onAddTaskComment() {
-        let newTask = structuredClone(task)
+        console.log(value);
+        if (!value) return
         comment.txt = value
-        newTask.comments.push(comment)
-        await saveTask(board, group.id, newTask)
+        comment.createdAt = Date.now
+        task.comments.push(comment)
+
+        await saveTask(board, group.id, task)
+        setComment(boardService.getDefaultComment())
+        setValue('')
     }
 
     if (!task) return
@@ -32,6 +40,12 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         <button onClick={onAddTaskComment}>Update</button>
 
         <div className="main-container">
+            {task.comments.map(comment => {
+                return <div className="comment flex">
+
+                    <div className="main-comment" dangerouslySetInnerHTML={{ __html: comment.txt }} />
+                </div>
+            })}
 
         </div>
 

@@ -126,10 +126,12 @@ export async function saveTask(board, groupId, task) {
     let groupToSave = boardToSave.groups.find(group => group.id === groupId)
 
     if (!task.id) {
+        console.log('from action no id', task);
         task.id = utilService.makeId(5)
         groupToSave.tasks.push(task)
     }
     else {
+        console.log('from action', task);
         const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === task.id)
         groupToSave.tasks.splice(taskIdx, 1, task)
     }

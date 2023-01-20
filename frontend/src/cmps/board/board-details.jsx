@@ -86,7 +86,7 @@ export function BoardDetails() {
             <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
-        <GroupList board={board} groups={groups} toggleModal={toggleModal} setFilter={setFilter} />
+        <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
         <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
     </section>
 }
