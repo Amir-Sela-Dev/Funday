@@ -543,10 +543,13 @@ form > * {
   justify-content: space-between;
   align-items: center;
 }
+.work-space .toggle-nemu-btn-wrap {
+  position: relative;
+}
 .work-space .toggle-menu-btn {
   position: absolute;
   top: 20px;
-  left: 244px;
+  left: 228px;
   height: 24px;
   width: 24px;
   background-color: white;
