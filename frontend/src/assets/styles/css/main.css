@@ -1028,6 +1028,9 @@ form > * {
   width: 181px;
   padding-inline: 10px;
 }
+.task-date .ant-picker input {
+  text-align: center;
+}
 
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
