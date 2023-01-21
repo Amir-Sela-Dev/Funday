@@ -9,7 +9,6 @@ export const boardService = {
     get,
     save,
     remove,
-    // saveTask,
     getEmptyBoard,
     getEmptyTask,
     creatBoards,
@@ -17,7 +16,8 @@ export const boardService = {
     getEmptyGroup,
     getDefaultBoardFilter,
     getDefaultGroupFilter,
-    getDefaultComment
+    getDefaultComment,
+    getDefaultUsers
 }
 
 window.cs = boardService
@@ -60,6 +60,15 @@ async function save(board) {
     return savedBoard
 }
 
+function getDefaultUsers(boardUsers = []) {
+    console.log('boardUsers', boardUsers);
+    let defaultUsers = [
+        { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
+        { id: 'u002', fullname: 'Amir Sela', imgUrl: '002.jpg' },
+        { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' }
+    ]
+    return defaultUsers.filter(user => !boardUsers.some(boardUser => boardUser?.id === user.id));
+}
 function getEmptyBoard() {
     return {
         _id: '',
@@ -142,19 +151,19 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'Mashu tov',
                                 persons: [
-                                    { fullname: 'Amir Yakubov', imgUrl: '' },
-                                    { fullname: 'Sheilan Shamilov', imgUrl: '' },
+                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
+                                    { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 date: "2023-01-19",
                                 comments: []
-
+                                
                             },
                             {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
                                 persons: [
-                                    { fullname: 'Amir Yakubov', imgUrl: '' }
+                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 date: "2023-01-12",

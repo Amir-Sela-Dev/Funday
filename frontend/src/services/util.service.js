@@ -4,6 +4,7 @@ export const utilService = {
     getRandomIntInclusive,
     debounce,
     randomTime,
+    getDateDifference,
     saveToStorage,
     loadFromStorage
 }
@@ -45,6 +46,10 @@ function randomTime() {
     return Date.now() + getRandomIntInclusive(0, 1) ? timeDifference : (-timeDifference)
 }
 
+function getDateDifference(date){
+    console.log(date)
+    return Date.now() - date
+}
 function debounce(func, timeout = 300){
     let timer
     return (...args) => {

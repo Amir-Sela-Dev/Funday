@@ -27,8 +27,10 @@
 }
 
 .task-date {
-    width: 130px;
+    width: 181px;
+    padding-inline: 10px;
 }
+
 
 .add-task-wrap {
     .task-checkbox {
@@ -40,7 +42,8 @@
     border: 0.5px solid rgba(0, 0, 0, 0.192);
     border-collapse: collapse;
     height: 36px;
-    width: 718px;
+    width: 769px;
+    border-block-start: none;
 }
 
 .add-task-input {

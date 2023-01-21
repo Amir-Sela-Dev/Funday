@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { saveTask } from "../../store/board.action"
@@ -7,15 +7,19 @@ import dayjs from "dayjs"
 import { TaskTitle } from "./task-title"
 import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
+import { utilService } from "../../services/util.service"
 
-export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, toggleModal }) {
+export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
-    const [newTaskName, setNewTaskName] = useState('')
+    const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
 
+    useEffect(() => {
+        console.log('useEffectDate', taskToUpdate.date)
+    }, [])
     async function onAddTaskStatus(label) {
         try {
             let taskToSave = task
@@ -29,24 +33,46 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
 
     async function onAddTaskDate(date) {
         try {
-            let taskToSave = task
-            taskToSave.date = date
-            await saveTask(board, group.id, taskToSave)
+            setTaskToUpdate({ ...taskToUpdate, date })
+            await saveTask(board, group.id, { ...taskToUpdate, date })
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
         }
     }
 
+    async function onAddTaskPerson(person) {
+        console.log('person added', person)
+        try {
+            setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
+            await saveTask(board, group.id, { ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
+            showSuccessMsg('Task update')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+    }
 
+    async function onRemoveTaskPerson(person) {
+        try {
+            setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
+            await saveTask(
+                board,
+                group.id,
+                { ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
+            showSuccessMsg('Task update')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+    }
     function handleNameInputChange(event) {
-        setNewTaskName(event.target.value)
+        console.log('length', event.target.value.length)
+        setTaskToUpdate({ ...taskToUpdate, title: event.target.value })
     }
 
     async function onRenameTask(event) {
         event.preventDefault()
         try {
-            await saveTask(board, group.id, { ...task, title: newTaskName })
+            await saveTask(board, group.id, taskToUpdate)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -104,16 +130,11 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
             </div>
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                {/* <img className="open-task-icon task-icon" src={require(`/src/assets/img/${openTaskIcon}`)} /> */}
-                {/* <span>{task.title}</span> */}
                 <form onSubmit={onRenameTask} >
                     <input
-                        className="task-title"
-                        style={{
-                            width: `${(task?.title?.length) * 1.2}ch`
-                        }}
+                        className="task-title-input"
                         type="text"
-                        value={newTaskName || task?.title}
+                        value={taskToUpdate.title}
                         onChange={handleNameInputChange}
                         onBlur={ev => { onRenameTask(ev) }}
                         onClick={ev => { ev.stopPropagation() }}
@@ -126,17 +147,16 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
             </div>
 
 
-            <div className="task-persons task-column"
+            <div className="task-persons task-column task-persons task-column flex align-center justify-center"
                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
-                {task.persons &&
+                {task.persons && !isPersonsOpen &&
                     task.persons.map(currPerson => {
                         return <TaskPerson key={currPerson.id} person={currPerson} />
                     })}
                 {isPersonsOpen &&
-                    <div className="user-preview" >
-                        <PersonDetails persons={task.persons} />
+                    <div className="user-preview open">
+                        <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
                     </div>}
-
             </div>
 
             <div className="task-status task-column"
@@ -153,12 +173,15 @@ export function TaskPreview({ task, setNewTask, onRemoveTask, board, group, togg
                     )}</ul>}
             </div>
             <div className="task-date task-column">
+                {/* {(task.date - Date.now() > 0)  && 'x'} */}
                 <DatePicker
                     defaultValue={task.date ? dayjs(task.date) : ''}
                     bordered={false}
                     onChange={onAddTaskDate}
                     placeholder=""
-                    format={'MMM D'} />
+                    format={'MMM D'}
+                    suffixIcon
+                />
             </div>
         </div>
     )
