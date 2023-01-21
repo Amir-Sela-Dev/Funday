@@ -2,13 +2,9 @@
     margin: 32px 0;
 
     .number-of-tasks {
+        font-size: 14px;
+        color: #323338;
         opacity: 0;
-
-        &:hover {
-            opacity: 1;
-            font-size: 14px;
-            color: #323338;
-        }
     }
 
     .group-title {
@@ -25,14 +21,22 @@
             border-radius: 0.25em;
         }
     }
-
-
 }
 
 .group-preview {
-
     .option-icon {
         margin-inline-start: -33px;
         margin-top: 4px;
+        opacity: 0;
+    }
+
+    .group-title-container:hover {
+        .option-icon {
+            opacity: 1;
+        }
+
+        .number-of-tasks {
+            opacity: 1;
+        }
     }
 }

@@ -1,3 +1,4 @@
+@import "monday-ui-react-core/dist/main.css";
 /* Breakpoint mixins */
 /* Media  Mixins */
 @font-face {
@@ -1205,12 +1206,9 @@ form > * {
   margin: 32px 0;
 }
 .group-preview-line .number-of-tasks {
-  opacity: 0;
-}
-.group-preview-line .number-of-tasks:hover {
-  opacity: 1;
   font-size: 14px;
   color: #323338;
+  opacity: 0;
 }
 .group-preview-line .group-title {
   box-sizing: border-box;
@@ -1228,6 +1226,13 @@ form > * {
 .group-preview .option-icon {
   margin-inline-start: -33px;
   margin-top: 4px;
+  opacity: 0;
+}
+.group-preview .group-title-container:hover .option-icon {
+  opacity: 1;
+}
+.group-preview .group-title-container:hover .number-of-tasks {
+  opacity: 1;
 }
 
 .group-list {
