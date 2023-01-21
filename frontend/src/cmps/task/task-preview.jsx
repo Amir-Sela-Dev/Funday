@@ -16,6 +16,7 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
     const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
+    const [showOptions, setShowOptions] = useState(false);
 
     useEffect(() => {
         console.log('useEffectDate', taskToUpdate.date)
@@ -108,8 +109,11 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
 
     console.log(task.date);
     return (
-        <div className="task-preview flex">
-            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal "} >
+        <div
+            className="task-preview flex"
+            onMouseEnter={() => setShowOptions(true)}
+            onMouseLeave={() => setShowOptions(false)}>
+            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal"} >
                 <div className="menu-modal-option flex" onClick={() => { onDuplicateTask(task) }}>
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
                     />
@@ -121,8 +125,8 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                     <p className="menu-modal-option-text" >Delete</p>
                 </div>
             </ul>}
-            <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                onClick={() => { openOptionModal() }} />
+            {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                onClick={() => { openOptionModal() }} />}
 
             <div className="checkbox-column task-column">
                 <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }}></div>
