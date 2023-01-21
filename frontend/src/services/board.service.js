@@ -61,14 +61,15 @@ async function save(board) {
 }
 
 function getDefaultUsers(boardUsers = []) {
-    console.log('boardUsers', boardUsers);
     let defaultUsers = [
         { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
         { id: 'u002', fullname: 'Amir Sela', imgUrl: '002.jpg' },
         { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' }
     ]
-    return defaultUsers.filter(user => !boardUsers.some(boardUser => boardUser?.id === user.id));
+    if (boardUsers) return defaultUsers.filter(user => !boardUsers.some(boardUser => boardUser?.id === user.id));
+    return defaultUsers
 }
+
 function getEmptyBoard() {
     return {
         _id: '',

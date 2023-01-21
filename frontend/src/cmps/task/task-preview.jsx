@@ -9,9 +9,10 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 
-export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
+export function TaskPreview({ task, onRemoveTask, board, group, toggleModal, isAllSelected }) {
 
     const [taskToUpdate, setTaskToUpdate] = useState(task)
+    const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
@@ -107,7 +108,6 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
     const renameIcon = 'rename.svg'
     const deleteIcon = 'delete.svg'
 
-    console.log(task.date);
     return (
         <div
             className="task-preview flex"
@@ -125,12 +125,16 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal }) {
                     <p className="menu-modal-option-text" >Delete</p>
                 </div>
             </ul>}
-            {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                onClick={() => { openOptionModal() }} />}
+            {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                onClick={() => { openOptionModal() }} />} */}
+            <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                onClick={() => { openOptionModal() }} />
 
-            <div className="checkbox-column task-column">
-                <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }}></div>
-                <input className='task-checkbox' type="checkbox" />
+            <div
+                className="checkbox-column task-column"
+                onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
+                <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }} />
+                <input className='task-checkbox' type="checkbox" checked={isAllSelected || isTaskSelected} />
             </div>
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>

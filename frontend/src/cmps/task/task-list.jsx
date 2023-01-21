@@ -8,6 +8,7 @@ import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 export function TaskList({ group, toggleModal }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
+    const [isAllSelected, setIsAllSelected] = useState(false)
     let { board } = useSelector((storeState) => storeState.boardModule)
 
     async function onSaveTask(event) {
@@ -44,9 +45,10 @@ export function TaskList({ group, toggleModal }) {
         <div className="task-list">
 
             <div className="task-title-row flex">
-                <div className="checkbox-column task-column">
+                <div className="checkbox-column task-column"
+                    onClick={() => { setIsAllSelected(!isAllSelected) }}>
                     <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div>
-                    <input className='task-checkbox' type="checkbox" />
+                    <input className='task-checkbox' type="checkbox" checked={isAllSelected} />
                 </div>
 
                 <div className="task-title task-column">Item</div>
@@ -65,13 +67,15 @@ export function TaskList({ group, toggleModal }) {
                     group={group}
                     board={board}
                     toggleModal={toggleModal}
+                    isAllSelected={isAllSelected}
                 />
             })}
 
             <div className="add-task-wrap flex">
                 <div className="checkbox-column task-column">
-                    <div className="colored-tag last-tag" style={{ background: group.style?.color }}></div>
-                    <input className='task-checkbox' type="checkbox" />
+                    <div className="colored-tag last-tag"
+                        style={{ background: group.style?.color }} />
+                    <input className='task-checkbox' type="checkbox" disabled={true} />
                 </div>
 
                 <form className='task-input-row' onSubmit={onSaveTask}>
