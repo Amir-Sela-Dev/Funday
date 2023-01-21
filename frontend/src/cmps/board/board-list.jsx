@@ -60,7 +60,6 @@ export function BoardList({ boards }) {
     const deleteIcon = 'delete.svg'
 
 
-    console.log('modalTransform', modalTransform)
     return (
         <ul className="boards-list">
 

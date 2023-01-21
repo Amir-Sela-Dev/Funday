@@ -19,11 +19,21 @@
 .checkbox-column {
     display: flex;
     border-left: none;
+    cursor: pointer;
+
+    &.disabled {
+        cursor: default;
+    }
 }
 
 .task-checkbox {
     margin: 8px;
-    z-index: -1;
+    cursor: pointer;
+
+    // z-index: -1;
+    &.disabled {
+        cursor: default;
+    }
 }
 
 .task-date {

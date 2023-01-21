@@ -9,7 +9,14 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 
-export function TaskPreview({ task, onRemoveTask, board, group, toggleModal, isAllSelected }) {
+export function TaskPreview({
+    task,
+    onRemoveTask,
+    board,
+    group,
+    toggleModal,
+    isAllSelected,
+    updateSelectedTasks }) {
 
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
@@ -19,9 +26,6 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal, isA
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [showOptions, setShowOptions] = useState(false);
 
-    useEffect(() => {
-        console.log('useEffectDate', taskToUpdate.date)
-    }, [])
     async function onAddTaskStatus(label) {
         try {
             let taskToSave = task
@@ -134,7 +138,13 @@ export function TaskPreview({ task, onRemoveTask, board, group, toggleModal, isA
                 className="checkbox-column task-column"
                 onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
                 <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }} />
-                <input className='task-checkbox' type="checkbox" checked={isAllSelected || isTaskSelected} />
+                <input className='task-checkbox' type="checkbox"
+                    checked={isAllSelected || isTaskSelected || false}
+                    onChange={ev => {
+                        ev.stopPropagation()
+                        if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
+                        setIsTaskSelected(!isTaskSelected)
+                    }} />
             </div>
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>

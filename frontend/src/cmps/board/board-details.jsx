@@ -36,7 +36,6 @@ export function BoardDetails() {
         try {
             await loadBoard(boardId, filterBy)
             setBoardTitle(board?.title)
-            console.log('Loaded board successfully', board);
         } catch (err) {
             console.log('Couldn\'t load board..', err);
         }

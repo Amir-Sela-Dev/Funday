@@ -863,7 +863,7 @@ form > * {
 }
 
 .person-names {
-  margin-block-end: 16px;
+  margin-block-end: 1em;
   flex-wrap: wrap;
 }
 .person-names > .person-item {
@@ -893,7 +893,7 @@ form > * {
 
 .suggested-people {
   margin-block-end: 10px;
-  max-width: 99%;
+  min-width: 99%;
 }
 .suggested-people > input {
   width: 100%;
@@ -905,6 +905,10 @@ form > * {
   flex-direction: column;
   justify-content: flex-start;
 }
+.suggested-people > h4 {
+  text-align: start;
+  margin-block: 1em;
+}
 .suggested-people .person-item {
   padding-inline-end: 10px;
   margin-inline-end: 10px;
@@ -912,7 +916,7 @@ form > * {
   align-items: center;
   justify-content: flex-start;
   border-radius: 0.5em;
-  width: 328px;
+  width: 100%;
 }
 .suggested-people .person-item:hover {
   background: rgb(220, 223, 236);
@@ -1017,11 +1021,18 @@ form > * {
 .checkbox-column {
   display: flex;
   border-left: none;
+  cursor: pointer;
+}
+.checkbox-column.disabled {
+  cursor: default;
 }
 
 .task-checkbox {
   margin: 8px;
-  z-index: 1;
+  cursor: pointer;
+}
+.task-checkbox.disabled {
+  cursor: default;
 }
 
 .task-date {
