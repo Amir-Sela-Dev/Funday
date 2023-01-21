@@ -179,7 +179,7 @@ export function TaskPreview({
 
             <div className="task-status task-column"
                 onClick={() => { setIsLablesOpen(!isLablesOpen) }}
-                style={{ background: `${(task.status.txt === 'Default') ? '#fff' : task.status.color}` }}>
+                style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 

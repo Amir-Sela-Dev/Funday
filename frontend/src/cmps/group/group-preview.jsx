@@ -1,3 +1,4 @@
+import { Tooltip } from "antd";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { showSuccessMsg } from "../../services/event-bus.service";
@@ -51,9 +52,10 @@ export function GroupPreview({ group, toggleModal, onRemoveGroup }) {
                 </div>
             </ul>}
 
-            <div className="flex align-center">
+            <div className="group-title-container flex align-center">
                 <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                     onClick={() => { openOptionModal() }} />
+              
                 <form onSubmit={onRenameGroup} >
                     <input
                         className="group-title"
@@ -67,6 +69,7 @@ export function GroupPreview({ group, toggleModal, onRemoveGroup }) {
                         onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
                     />
                 </form>
+
                 <span className='number-of-tasks'>{group.tasks.length} items</span>
             </div>
             <TaskList group={group} toggleModal={toggleModal} />
