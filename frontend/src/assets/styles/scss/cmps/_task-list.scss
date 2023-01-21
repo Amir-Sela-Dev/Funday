@@ -29,8 +29,13 @@
 .task-date {
     width: 181px;
     padding-inline: 10px;
-}
 
+    .ant-picker {
+        input {
+            text-align: center;
+        }
+    }
+}
 
 .add-task-wrap {
     .task-checkbox {
@@ -65,6 +70,6 @@
 
 .last-tag {
     border-radius: 0 0 0 1rem;
-    opacity: .5;
+    opacity: 0.5;
     height: 35px;
 }
