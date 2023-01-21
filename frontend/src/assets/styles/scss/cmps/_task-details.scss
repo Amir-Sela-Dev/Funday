@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
 
+
 }
 
 .task-modal-open {
@@ -21,13 +22,26 @@
     flex-direction: column;
     color: $clr1;
 
+    h3 {
+        margin-inline-start: 4px;
+        margin-bottom: 10px;
+    }
+
     button {
         align-items: flex-start;
+    }
+
+    hr {
+        color: rgba(50, 51, 56, 0.2941176471);
+        height: 1px;
+        width: 98%
     }
 
     .comments-btn {
         display: flex;
         align-items: end;
+        margin-inline-start: 4px;
+        border-bottom: #0070e5 solid 1px;
 
         button {
             align-items: flex-start;
@@ -40,7 +54,9 @@
 
     .txt-editor-container {
         height: 200px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
+        margin-inline-start: 4px;
+
     }
 
     .txt-editor {
@@ -52,12 +68,86 @@
     }
 
     .comment {
-        width: 521px;
+        width: 100%;
         height: 204px;
         border: $clr1 solid 1px;
         line-height: 20px;
         border-radius: 8px;
         margin-bottom: 18px;
-        // flex-direction: ;
+        flex-direction: column;
+
+        &>* {
+            margin-inline-start: 16px;
+        }
+    }
+
+    .close-modal {
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 8px;
+        color: #777777;
+        font-size: 16px;
+        background-color: #fff;
+
+        &:hover {
+            background-color: #dcdfec;
+            border-radius: 0.2rem;
+        }
+    }
+
+    .update-btn {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        background-color: #0070e5;
+        color: white;
+        border-radius: 4px;
+        font-family: Poppins-Regular;
+        padding: 4px 8px;
+        margin: 0;
+        width: 62.4063px;
+        height: 31.9844px;
+        margin-bottom: 20px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-inline-end: 10px;
+    }
+
+    .is-active {
+        background-color: #00c875;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        display: inline-block
+    }
+
+    .user-line {
+        height: 67px;
+        align-items: center;
+    }
+
+    a {
+        margin-inline-end: 4px;
+
+    }
+
+    .clock-img {
+        width: 15px;
+        height: 15px;
+        margin-inline-end: 2px;
+    }
+
+    .date {
+        margin-inline-end: 68px;
+        font-size: 14px;
     }
 }
