@@ -9,7 +9,13 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 
-export function TaskPreview({ task, onRemoveTask, board, group, toggleModal, isAllSelected }) {
+export function TaskPreview({
+    task,
+    onRemoveTask,
+    board,
+    group,
+    toggleModal,
+    isAllSelected }) {
 
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
