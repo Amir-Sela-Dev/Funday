@@ -132,7 +132,7 @@ export function WorkSpace({ toggleWorkspace }) {
             <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
             <input type="text"
                 onChange={handleFilterChange}
-                value={filterByToEdit.title} placeholder='Search board'
+                value={filterByToEdit.title} placeholder='Search'
                 name='title' />
         </div>
         <hr></hr>
