@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    color: $clr1;
 
     .board-optins {
         border: $clr1 solid 1px;
@@ -43,6 +44,12 @@
         color: #323338;
         font-size: 14px;
         padding: 10px 0;
+    }
+
+    &:hover {
+        background-color: #dcdfec;
+        border-radius: 0.2rem;
+        cursor: pointer;
     }
 }
 

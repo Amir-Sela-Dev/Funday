@@ -2,6 +2,7 @@
     color: #323338;
     text-align: center;
     font-size: 14px;
+    color: $clr1;
 
     .task-title-row {
         text-align: center;
@@ -40,6 +41,9 @@
     .ant-picker {
         input {
             text-align: center;
+            padding-inline-start: 15px;
+            font-size: 13px;
+            color: #666666
         }
     }
 }

@@ -1,5 +1,7 @@
 .board-details {
     grid-area: board-details;
+    color: $clr1;
+
 }
 
 .board-title-wrap {
@@ -39,6 +41,7 @@
     height: 24px;
     width: 20px;
     margin-right: 12px;
+    margin-top: 4px;
 }
 
 // .info-icon {

@@ -6,9 +6,11 @@ import { boardService } from '../../services/board.service'
 import { useState } from "react"
 import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
-import { SplitButton } from "monday-ui-react-core";
-export function WorkSpace({ toggleWorkspace }) {
+import { SplitButton, Icon } from "monday-ui-react-core";
+import { Add, Filter, Search } from "monday-ui-react-core/icons";
 
+
+export function WorkSpace({ toggleWorkspace }) {
     const { boards } = useSelector((storeState) => storeState.boardModule)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [isNavModalClose, setIsNavModalClose] = useState(false)
@@ -121,15 +123,16 @@ export function WorkSpace({ toggleWorkspace }) {
         </div>
 
         <div className='board-add option-wrap flex align-center' onClick={() => { setIsAddModalOpen(true) }}>
-            <img className="add-board-icon board-icon" src={require(`/src/assets/img/${addBoardIcon}`)} />
+            <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} />
             <p>Add</p>
         </div>
         <div className='board-filter option-wrap flex align-center'>
-            <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
+            <Icon icon={Filter} iconLabel="my bolt svg icon" iconSize={20} />
             <p>Filters</p>
         </div>
         <div className='board-search option-wrap flex align-center'>
-            <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
+            {/* <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} /> */}
+            <Icon className="search-board-icon" icon={Search} iconLabel="my bolt svg icon" iconSize={20} />
             <input type="text"
                 onChange={handleFilterChange}
                 value={filterByToEdit.title} placeholder='Search'

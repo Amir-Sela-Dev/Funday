@@ -569,6 +569,7 @@ form > * {
   border-right: 1px solid rgba(0, 0, 0, 0.102);
   transition: transform 1s;
   font-family: Figtree;
+  color: #323338;
 }
 .work-space.close-workspace {
   transform: translateX(-225px);
@@ -614,7 +615,7 @@ form > * {
   width: 16px;
 }
 .work-space .main-workspace-dropdown {
-  border: 1px solid black;
+  border: 1px solid #323338;
   border-radius: 0.25rem;
   align-items: center;
   padding: 2px;
@@ -752,6 +753,7 @@ form > * {
 }
 .work-space .board-search .search-board-icon {
   position: absolute;
+  padding-top: 2px;
 }
 .work-space .board-search input {
   font-family: Figtree;
@@ -761,6 +763,7 @@ form > * {
   background-color: #f6f7fb;
   width: 100%;
   height: 30px;
+  padding-top: 3px;
 }
 .work-space .board-search input:focus {
   outline: #4d99f8 1px solid;
@@ -793,10 +796,14 @@ form > * {
 .task-preview {
   align-items: center;
   max-width: 776px;
+  color: #323338;
 }
 .task-preview:hover {
   background-color: rgb(230, 230, 230);
   cursor: pointer;
+}
+.task-preview:hover .preview-task-status .status-picker {
+  opacity: 1;
 }
 .task-preview:hover .task-option-icon {
   opacity: 1;
@@ -1038,6 +1045,7 @@ form > * {
   color: #323338;
   text-align: center;
   font-size: 14px;
+  color: #323338;
 }
 .task-list .task-title-row {
   text-align: center;
@@ -1071,6 +1079,9 @@ form > * {
 }
 .task-date .ant-picker input {
   text-align: center;
+  padding-inline-start: 15px;
+  font-size: 13px;
+  color: #666666;
 }
 
 .add-task-wrap .task-checkbox {
@@ -1113,7 +1124,6 @@ form > * {
   top: 0;
   right: 0;
   width: 691px;
-  height: 100vh;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1882352941);
@@ -1122,6 +1132,7 @@ form > * {
   transition: all 0.4s;
   display: none;
   flex-direction: column;
+  color: #323338;
 }
 
 .task-modal-open {
@@ -1160,7 +1171,7 @@ form > * {
 }
 .task-modal-open .txt-editor-container {
   height: 200px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   margin-inline-start: 4px;
 }
 .task-modal-open .txt-editor {
@@ -1244,6 +1255,7 @@ form > * {
 
 .group-preview-line {
   margin: 32px 0;
+  color: #323338;
 }
 .group-preview-line .number-of-tasks {
   font-size: 14px;
@@ -1260,6 +1272,8 @@ form > * {
   margin-inline-start: 44px;
   margin-top: 13px;
   margin-bottom: 5px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
 }
 .group-preview-line .group-title:hover, .group-preview-line .group-title:focus {
   outline: 1px solid rgb(223, 223, 223);
@@ -1286,6 +1300,7 @@ form > * {
 .group-list {
   list-style: none;
   margin: 0;
+  color: #323338;
 }
 .group-list .group-search-filter {
   border-radius: 4px;
@@ -1363,13 +1378,23 @@ form > * {
   margin-left: 21px;
 }
 .board-actions .bar-person {
-  margin-left: 2px;
+  margin-left: 17px;
+}
+.board-actions .bar-filter {
+  margin-left: 17px;
+}
+.board-actions .bar-sort {
+  margin-left: 36px;
+}
+.board-actions .search-btn-board-details {
+  margin-left: 23px;
 }
 
 .boards-list {
   margin: 0;
   padding: 0;
   list-style: none;
+  color: #323338;
 }
 .boards-list .board-optins {
   border: #323338 solid 1px;
@@ -1411,6 +1436,11 @@ form > * {
   font-size: 14px;
   padding: 10px 0;
 }
+.board-preview:hover {
+  background-color: #dcdfec;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
 
 .board-preview-link {
   font-size: 14px;
@@ -1428,6 +1458,7 @@ form > * {
 
 .board-details {
   grid-area: board-details;
+  color: #323338;
 }
 
 .board-title-wrap {
@@ -1464,6 +1495,7 @@ form > * {
   height: 24px;
   width: 20px;
   margin-right: 12px;
+  margin-top: 4px;
 }
 
 .board-title-wrap {

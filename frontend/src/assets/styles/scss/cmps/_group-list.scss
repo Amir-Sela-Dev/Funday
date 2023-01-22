@@ -1,6 +1,7 @@
 .group-list {
     list-style: none;
     margin: 0;
+    color: $clr1;
 
     .group-search-filter {
         border-radius: 4px;
@@ -14,6 +15,7 @@
             width: 100%;
         }
     }
+
 }
 
 .group-list-main-hr {
@@ -70,6 +72,7 @@
             margin-top: 8px;
             width: 16px;
         }
+
     }
 
     .new-group-btn:hover {
@@ -91,6 +94,19 @@
     }
 
     .bar-person {
-        margin-left: 2px;
+        margin-left: 17px;
     }
+
+    .bar-filter {
+        margin-left: 17px;
+    }
+
+    .bar-sort {
+        margin-left: 36px;
+    }
+
+    .search-btn-board-details {
+        margin-left: 23px;
+    }
+
 }

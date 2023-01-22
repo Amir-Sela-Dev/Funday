@@ -3,7 +3,7 @@
     top: 0;
     right: 0;
     width: 691px;
-    height: 100vh;
+    // height: 100vh;
     overflow: hidden;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 10px 1px #00000030;
@@ -13,6 +13,8 @@
     display: none;
     // display: flex;
     flex-direction: column;
+    color: $clr1;
+
 }
 
 .task-modal-open {
@@ -57,7 +59,7 @@
 
     .txt-editor-container {
         height: 200px;
-        margin-bottom: 10px;
+        margin-bottom: 16px;
         margin-inline-start: 4px;
     }
 
@@ -78,7 +80,7 @@
         margin-bottom: 18px;
         flex-direction: column;
 
-        & > * {
+        &>* {
             margin-inline-start: 16px;
         }
     }

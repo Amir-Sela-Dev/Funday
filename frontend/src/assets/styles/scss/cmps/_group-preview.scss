@@ -1,9 +1,10 @@
 .group-preview-line {
     margin: 32px 0;
+    color: $clr1;
 
     .number-of-tasks {
         font-size: 14px;
-        color: #323338;
+        color: $clr1;
         opacity: 0;
         margin-top: 13px
     }
@@ -17,6 +18,8 @@
         margin-inline-start: 44px;
         margin-top: 13px;
         margin-bottom: 5px;
+        letter-spacing: -0.2px;
+        font-weight: 600;
 
         &:hover,
         &:focus {

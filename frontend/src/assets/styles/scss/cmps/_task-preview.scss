@@ -1,10 +1,20 @@
 .task-preview {
     align-items: center;
     max-width: 776px;
+    color: $clr1;
 
     &:hover {
         background-color: rgb(230, 230, 230);
         cursor: pointer;
+
+        .preview-task-status {
+            // opacity: 0.7;
+
+            .status-picker {
+                opacity: 1;
+            }
+        }
+
 
         .task-option-icon {
             opacity: 1;

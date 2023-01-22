@@ -115,10 +115,10 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         name='title' />
                 </div>
 
-                <Button kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                <Button className='bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
                     Person
                 </Button>
-                <Button kind={Button.kinds.TERTIARY}
+                <Button className='bar-filter' kind={Button.kinds.TERTIARY}
                     onClick={toggleFilterModal}
                     leftIcon={Filter}>
                     Filter
@@ -126,7 +126,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         <LabelSelect handleLableChange={handleLableChange} lables={lables} />
                     </div>}
                 </Button>
-                <Button kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                <Button className='bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
                     Sort
                 </Button>
             </Flex>
