@@ -7,7 +7,7 @@
     align-items: center;
     position: fixed;
     z-index: 1;
-
+    justify-content: space-between;
 }
 
 .main-logo {
@@ -27,4 +27,24 @@
     height: 25px;
     width: 29px;
     margin: 18px 15px;
+}
+
+.component-icon {
+    width: 32px;
+}
+
+.main-user-nav {
+    margin: 16px auto;
+    width: 45px;
+    border: 2px white solid;
+    border-radius: 50%;
+    transition: all 0.4s;
+
+    &:hover {
+        transform: scale(85%);
+    }
+}
+.low-nav {
+    flex-direction: column;
+    align-items: center;
 }

@@ -6,6 +6,9 @@ import routes from './routes'
 import { UserDetails } from './pages/user-details'
 import { AppIndex } from './pages/app-index'
 import { BoardDetails } from './cmps/board/board-details'
+import { Login } from './pages/login'
+import { HomePage } from './pages/home-page.jsx'
+import { AboutUs } from './pages/about-us.jsx'
 
 export function RootCmp() {
 
@@ -13,17 +16,22 @@ export function RootCmp() {
         <div>
             <main>
                 <Routes>
-                    {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+                    {/* {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)} */}
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/about" element={<AboutUs />} />
+                    <Route path="auth/login" element={<Login />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="/board" element={<AppIndex />} >
                         <Route element={<BoardDetails />} path="/board/:boardId" />
-                        {/* <Route element={<TaskDetails />} path="/board/:boardId/:taskId" /> */}
                         <Route />
                     </Route>
                 </Routes>
             </main>
         </div>
     )
+
 }
+
+
 
 

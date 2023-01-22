@@ -19,10 +19,11 @@
 @import "views/home-page";
 @import "views/review-app";
 @import "views/user-details";
-@import "views/_app-index.scss";
+@import "views/app-index";
+@import "views/login-page";
 
 // Components
-@import "cmps/app-header";
+@import "cmps/header";
 @import "cmps/app-footer";
 @import "cmps/user-msg";
 @import "cmps/shopping-cart";
