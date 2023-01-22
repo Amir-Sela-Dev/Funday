@@ -7,7 +7,7 @@ button {
     cursor: pointer;
 }
 
-form>* {
+form > * {
     display: block;
     width: 200px;
     margin: 10px 0px;
@@ -70,7 +70,6 @@ form>* {
 
         .menu-modal-option {
             width: 200px;
-
         }
     }
 
@@ -89,6 +88,7 @@ form>* {
         padding: 4px 8px;
         margin: 8px 0;
         border-radius: 0.3rem;
+        align-items: center;
     }
 
     .new-group-btn-option {
