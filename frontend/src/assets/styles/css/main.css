@@ -1439,11 +1439,14 @@ form > * {
   font-family: Poppins-Regular;
   color: #323338;
   margin: 0;
-  margin-right: 15px;
+  margin-right: 8px;
   outline: none;
   border: none;
   border-radius: 0.25em;
   margin-top: 4px;
+  letter-spacing: -0.2px;
+  padding-inline-start: 1px;
+  width: 12ch;
 }
 .board-title:hover, .board-title:focus {
   outline: 1px solid rgb(223, 223, 223);
@@ -1452,7 +1455,7 @@ form > * {
 .title-icon {
   height: 24px;
   width: 20px;
-  margin-right: 15px;
+  margin-right: 12px;
 }
 
 .info-icon {
