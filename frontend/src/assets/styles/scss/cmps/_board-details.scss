@@ -13,7 +13,6 @@
     }
 }
 
-
 .board-title {
     display: inline-block;
     font-weight: 500;
@@ -42,6 +41,29 @@
     margin-right: 12px;
 }
 
+.info-icon {
+    margin-left: -26px;
+}
+
 .board-title-wrap {
     margin-bottom: 14px;
+}
+
+.tab--wrapper .board-details-tab {
+    margin-bottom: 20px;
+    margin-top: -15px;
+}
+
+.board-details-tab {
+    height: 40px;
+    margin-left: 40px;
+}
+
+.tab--wrapper .tab-inner {
+    font-size: 14px;
+    padding: 0;
+}
+
+.search-btn-board-details {
+    // margin-left: 22px;
 }
