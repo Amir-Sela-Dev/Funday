@@ -165,7 +165,7 @@ export function TaskPreview({
             </div>
 
 
-            <div className="task-persons task-column task-persons task-column flex align-center justify-center"
+            <div className="task-persons task-column flex align-center justify-center"
                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
                 {task.persons && !isPersonsOpen &&
                     task.persons.map(currPerson => {
@@ -177,7 +177,7 @@ export function TaskPreview({
                     </div>}
             </div>
 
-            <div className="task-status task-column"
+            <div className="preview-task-status  task-column"
                 onClick={() => { setIsLablesOpen(!isLablesOpen) }}
                 style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 

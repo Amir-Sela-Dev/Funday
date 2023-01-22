@@ -7,6 +7,8 @@ import { TaskDetails } from "../task/task-details"
 import { boardService } from "../../services/board.service"
 import { saveBoard } from "../../store/board.action";
 import { showSuccessMsg } from "../../services/event-bus.service"
+import { Tab } from "monday-ui-react-core";
+import { Home } from "monday-ui-react-core/icons";
 
 export function BoardDetails() {
     let { board } = useSelector((storeState) => storeState.boardModule)
@@ -51,6 +53,7 @@ export function BoardDetails() {
         if (!board?.title.length) return
         try {
             await saveBoard({ ...board, title: boardTitle })
+            setBoardTitle('')
             showSuccessMsg('Board updated')
         } catch (err) {
             console.log('error changing board name', err)
@@ -83,6 +86,9 @@ export function BoardDetails() {
             <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
+        <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
+            Main Table
+        </Tab>
         <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
         <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
     </section>

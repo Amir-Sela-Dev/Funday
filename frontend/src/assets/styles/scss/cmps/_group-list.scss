@@ -19,13 +19,20 @@
 .group-list-main-hr {
     width: 95%;
     margin-left: 0;
-    margin-top: 40px;
+    margin-top: 0;
 }
 
 .board-actions {
     height: 32px;
-    margin-bottom: 18px;
+    margin-bottom: -5px;
     margin-top: 15px;
+
+    button {
+        font-size: 14px;
+        padding: 0;
+        --element-width: 20px;
+        margin-left: 10px;
+    }
 
     .new-group-btn {
         background-color: $primery-btn-color;
@@ -36,6 +43,8 @@
         margin: 0;
         width: 76px;
         border-right: 1px rgba(0, 0, 0, 0.221) solid;
+        height: 100%;
+        position: relative;
 
         &.arrow-down-new-group {
             border-radius: 0 4px 4px 0;
@@ -45,23 +54,24 @@
         }
 
         &.arrow-down-new-group:hover {
-            background-color: #0055ae;
-        }
-
-        &.arrow-down-new-group:hover {
             background-color: $primery-btn-color;
         }
 
         span {
-            font-size: 0.737rem;
+            position: absolute;
+            // font-size: 0.737rem;
             display: inline-block;
+            bottom: 6px;
+            left: -6.900000000000006px;
+            width: 90px;
         }
 
         .arrow-down-img {
-            margin-top: 5px;
-            width: 20px;
+            margin-top: 8px;
+            width: 16px;
         }
     }
+
     .new-group-btn:hover {
         background-color: #0055ae;
     }
@@ -69,5 +79,18 @@
     .modal-wrap {
         width: 220px;
         transform: translate(74px, 33px);
+    }
+
+    .filter-modal {
+        position: absolute;
+        transform: translate(58px, 55px);
+    }
+
+    .search-btn-board-details {
+        margin-left: 21px;
+    }
+
+    .bar-person {
+        margin-left: 2px;
     }
 }

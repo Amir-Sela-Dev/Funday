@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
@@ -6,7 +6,7 @@ import { boardService } from '../../services/board.service'
 import { useState } from "react"
 import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
-
+import { SplitButton } from "monday-ui-react-core";
 export function WorkSpace({ toggleWorkspace }) {
 
     const { boards } = useSelector((storeState) => storeState.boardModule)
@@ -120,19 +120,19 @@ export function WorkSpace({ toggleWorkspace }) {
             <img className="arrow-down-icon" src={require(`/src/assets/img/${arrowDownIcon}`)} />
         </div>
 
-        <div className='option-wrap flex' onClick={() => { setIsAddModalOpen(true) }}>
+        <div className='board-add option-wrap flex align-center' onClick={() => { setIsAddModalOpen(true) }}>
             <img className="add-board-icon board-icon" src={require(`/src/assets/img/${addBoardIcon}`)} />
             <p>Add</p>
         </div>
-        <div className='option-wrap flex'>
+        <div className='board-filter option-wrap flex align-center'>
             <img className="filter-icon board-icon" src={require(`/src/assets/img/${filterIcon}`)} />
             <p>Filters</p>
         </div>
-        <div className='board-filter option-wrap flex'>
+        <div className='board-search option-wrap flex align-center'>
             <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
             <input type="text"
                 onChange={handleFilterChange}
-                value={filterByToEdit.title} placeholder='Search board'
+                value={filterByToEdit.title} placeholder='Search'
                 name='title' />
         </div>
         <hr></hr>

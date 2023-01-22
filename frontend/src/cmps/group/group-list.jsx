@@ -6,6 +6,8 @@ import { utilService } from '../../services/util.service';
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
+import { Button, Flex } from "monday-ui-react-core";
+import { Add, Search, Person, Filter, Sort, group } from "monday-ui-react-core/icons";
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -14,6 +16,8 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false)
+    const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+    const [isSeachClicked, setIsSeachClicked] = useState(false)
 
     useEffect(() => {
         setFilter(filterByToEdit)
@@ -60,37 +64,77 @@ export function GroupList({ board, toggleModal, setFilter }) {
         setIsNewTaskModalOpen(!isNewTaskModalOpen)
     }
 
+    function toggleFilterModal() {
+        setIsFilterModalOpen(!isFilterModalOpen)
+    }
+
+    function toggleSearchBar() {
+        setIsSeachClicked(true)
+    }
+
     const searchIcon = 'search-board.svg'
     const arrowDown = 'arrow-down.svg'
+    const arrowDownWhite = 'arrow-down.png'
 
     return <ul className="group-list">
         <hr className="group-list-main-hr" />
         <div className="board-actions flex">
-            <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New Task</span></button>
-            <button className='new-group-btn arrow-down-new-group'
-                onClick={toggleNewTaskModal}>
-                <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDown}`)} />
-            </button>
+            <Flex>
+                <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
 
-            {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
+                <button className='new-group-btn arrow-down-new-group'
+                    onClick={toggleNewTaskModal}>
+                    <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
+                </button>
 
-                <div className="new-task-modal">
-                    <div className="menu-modal-option new-group-btn-option flex"
-                        onClick={() => { onAddItem(true) }}>
-                        <p >New Group</p>
+                {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
+
+                    <div className="new-task-modal">
+                        <div className="menu-modal-option new-group-btn-option flex"
+                            onClick={() => { onAddItem(true) }}>
+                            <p>New Group</p>
+                        </div>
                     </div>
+
+                </div>}
+
+                {/* <Button leftIcon={Add}>Add</Button> */}
+                <Button className={`search-btn-board-details`}
+                    onClick={toggleSearchBar}
+                    style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
+                    kind={Button.kinds.TERTIARY} leftIcon={Search}>
+                    Search
+                </Button>
+
+                <div className={`group-search-filter flex`}
+                    style={{ display: isSeachClicked ? 'flex' : 'none' }}>
+                    <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
+                    <input type="text"
+                        onChange={handleFilterChange}
+                        value={filterByToEdit.title} placeholder='Search'
+                        name='title' />
                 </div>
 
-            </div>}
+                <Button kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                    Person
+                </Button>
+                <Button kind={Button.kinds.TERTIARY}
+                    onClick={toggleFilterModal}
+                    leftIcon={Filter}>
+                    Filter
+                    {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal">
+                        <LabelSelect handleLableChange={handleLableChange} lables={lables} />
+                    </div>}
+                </Button>
+                <Button kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                    Sort
+                </Button>
+            </Flex>
 
-            <div className='group-search-filter flex'>
-                <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-                <input type="text"
-                    onChange={handleFilterChange}
-                    value={filterByToEdit.title} placeholder='Search'
-                    name='title' />
-            </div>
-            <LabelSelect handleLableChange={handleLableChange} lables={lables} />
+
+
+
+
 
         </div>
         {board.groups.map(group =>
