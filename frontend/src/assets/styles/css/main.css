@@ -1299,13 +1299,19 @@ form > * {
 .group-list-main-hr {
   width: 95%;
   margin-left: 0;
-  margin-top: 45px;
+  margin-top: 0;
 }
 
 .board-actions {
   height: 32px;
   margin-bottom: -5px;
   margin-top: 15px;
+}
+.board-actions button {
+  font-size: 14px;
+  padding: 0;
+  --element-width: 20px;
+  margin-left: 22px;
 }
 .board-actions .new-group-btn {
   background-color: #0070e5;
@@ -1317,6 +1323,7 @@ form > * {
   width: 76px;
   border-right: 1px rgba(0, 0, 0, 0.221) solid;
   height: 100%;
+  position: relative;
 }
 .board-actions .new-group-btn.arrow-down-new-group {
   border-radius: 0 4px 4px 0;
@@ -1328,8 +1335,11 @@ form > * {
   background-color: #0070e5;
 }
 .board-actions .new-group-btn span {
-  font-size: 0.737rem;
+  position: absolute;
   display: inline-block;
+  bottom: 6px;
+  left: -6.9px;
+  width: 90px;
 }
 .board-actions .new-group-btn .arrow-down-img {
   margin-top: 8px;
@@ -1414,6 +1424,7 @@ form > * {
 .board-title-wrap {
   padding-top: 15px;
   padding-left: 40px;
+  align-items: center;
 }
 .board-title-wrap button {
   background-color: transparent;
@@ -1443,8 +1454,27 @@ form > * {
   margin-right: 15px;
 }
 
+.info-icon {
+  margin-left: -26px;
+}
+
 .board-title-wrap {
   margin-bottom: 14px;
+}
+
+.tab--wrapper .board-details-tab {
+  margin-bottom: 20px;
+  margin-top: -15px;
+}
+
+.board-details-tab {
+  height: 40px;
+  margin-left: 40px;
+}
+
+.tab--wrapper .tab-inner {
+  font-size: 14px;
+  padding: 0;
 }
 
 /*# sourceMappingURL=main.css.map */
