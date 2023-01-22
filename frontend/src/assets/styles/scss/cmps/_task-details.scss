@@ -41,14 +41,18 @@
         display: flex;
         align-items: end;
         margin-inline-start: 4px;
-        border-bottom: #0070e5 solid 1px;
 
-        button {
-            align-items: flex-start;
+        .tab {
             background-color: #fff;
             color: $clr1;
-            padding-block: 0;
+            padding: 0;
             margin: 0;
+            font-size: 14px;
+
+            .white-home {
+                width: 15px;
+                height: 15px;
+            }
         }
     }
 

@@ -19,12 +19,12 @@
 .group-list-main-hr {
     width: 95%;
     margin-left: 0;
-    margin-top: 40px;
+    margin-top: 45px;
 }
 
 .board-actions {
     height: 32px;
-    margin-bottom: 18px;
+    margin-bottom: -5px;
     margin-top: 15px;
 
     .new-group-btn {
@@ -62,6 +62,7 @@
             width: 20px;
         }
     }
+
     .new-group-btn:hover {
         background-color: #0055ae;
     }

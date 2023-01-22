@@ -6,6 +6,8 @@ import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
 import { utilService } from "../../services/util.service";
 import dayjs from "dayjs"
+import { Tab } from "monday-ui-react-core";
+import { Home } from "monday-ui-react-core/icons";
 var weekday = require('dayjs/plugin/weekday')
 
 export function TaskDetails({ board, group, task = '', closeModal, modalState }) {
@@ -21,7 +23,7 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         if (!value) return
         comment.txt = value
         comment.createdAt = Date.now()
-        task.comments.push(comment)
+        task.comments.unshift(comment)
 
         await saveTask(board, group.id, task)
         setComment(boardService.getDefaultComment())
@@ -33,11 +35,10 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         <button className="close-modal" onClick={closeModal}> X </button>
         <h3>{task.title}</h3>
         <div className="comments-btn">
-            <img className="white-home board-icon" src={require(`/src/assets/img/${whiteHome}`)} alt="" />
-            <button>Updates</button>
-
+            <Tab className='tab' style={{ color: "  #0070e5" }} icon={Home} active>
+                Updates
+            </Tab>
         </div>
-
         <hr />
 
         <div className="txt-editor-container">

@@ -19,11 +19,13 @@
 .checkbox-column {
     display: flex;
     border-left: none;
+    width: 39px
 }
 
 .task-checkbox {
-    margin: 8px;
     z-index: -1;
+    transform: scale(1.3);
+    margin-inline: 10px;
 }
 
 .task-date {

@@ -67,7 +67,7 @@
         border-radius: 0.25rem;
         align-items: center;
         padding: 2px;
-        margin-bottom: 30px;
+        margin-bottom: 17px;
 
         .main-icon {
             position: relative;
@@ -78,6 +78,7 @@
             text-align: center;
             line-height: 24px;
         }
+
         .home-icon {
             position: absolute;
             top: 12px;
@@ -103,6 +104,9 @@
 
     .option-wrap {
         width: 224px;
+        height: 32px;
+        margin-inline-start: 3px;
+
         :hover {
             background-color: #dcdfec;
             border-radius: 0.2rem;
@@ -112,14 +116,16 @@
     p {
         color: #323338;
         font-size: 14px;
-        margin-bottom: 8px;
         padding-left: 7px;
+        margin-top: 17px
     }
 
     hr {
         color: #3233384b;
         height: 1px;
         width: 95%;
+        margin-top: 17px;
+        margin-bottom: 23px
     }
 
     .close {
@@ -207,7 +213,7 @@
         }
     }
 
-    .board-filter {
+    .board-search {
         display: flex;
 
         &::after {
@@ -216,14 +222,14 @@
 
         .search-board-icon {
             position: absolute;
-            margin-left: 5px;
-            margin-top: 4px;
+            // margin-left: 5px;
+            // margin-top: 4px;
         }
 
         input {
             font-family: Poppins-Regular;
             margin: 0;
-            padding-left: 30px;
+            padding-left: 27px;
             border: none;
             background-color: #f6f7fb;
             width: 100%;
@@ -235,6 +241,17 @@
             }
         }
     }
+
+    .board-filter,
+    .board-add {
+        width: 100%;
+
+        &:hover {
+            background-color: #dcdfec;
+            border-radius: 0.2rem
+        }
+    }
+
 }
 
 .workspace-txt {

@@ -1,9 +1,11 @@
 .task-preview {
     align-items: center;
     max-width: 805px;
+
     &:hover {
         background-color: rgb(230, 230, 230);
         cursor: pointer;
+
         .task-option-icon {
             opacity: 1;
         }
@@ -75,13 +77,15 @@
         }
     }
 
-    & > .task-column {
+    &>.task-column {
         transition: background-color 0.15s ease-in-out;
     }
 
     .comments-bubble {
         display: flex;
         position: relative;
+        border: none;
+        border-left: rgba(0, 0, 0, 0.192) 1px solid;
 
         .comments-num {
             position: absolute;
@@ -103,11 +107,12 @@
     width: 25px;
     border-radius: 50%;
 }
+
 .person-names {
     margin-block-end: 16px;
     flex-wrap: wrap;
 
-    & > .person-item {
+    &>.person-item {
         margin-inline-end: 10px;
         margin-block-start: 10px;
         display: flex;
@@ -116,13 +121,13 @@
         background: #e5f4ff;
         border-radius: 999px;
 
-        & > img {
+        &>img {
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        & > span {
+        &>span {
             font-size: 12px;
             line-height: 16px;
             padding-inline-end: 10px;
@@ -140,11 +145,11 @@
     margin-block-end: 10px;
     max-width: 99%;
 
-    & > input {
+    &>input {
         width: 100%;
     }
 
-    & > ul {
+    &>ul {
         padding: 0;
         list-style-type: none;
         display: flex;
@@ -165,25 +170,26 @@
             background: rgb(220, 223, 236);
         }
 
-        & > img {
+        &>img {
             border-radius: 50%;
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        & > span {
+        &>span {
             font-size: 14px;
         }
     }
 }
 
 .task-title {
-    width: 288px;
+    width: 360px;
     border: none;
     outline: none;
     font-family: Poppins-Regular;
     font-size: 14px;
+    padding-inline-start: 4px
 }
 
 .task-title-input {
@@ -191,10 +197,12 @@
     outline: none;
     border: none;
     font-size: 1em;
-    font-family: Poppins-Regular;
+    font-family: Figtree;
     margin-inline-start: 5px;
     width: 95%;
     background: transparent;
+    padding-inline-start: 27px;
+    padding-bottom: 3px;
 
     &:hover,
     &:focus {
@@ -208,7 +216,7 @@
 }
 
 .task-txt {
-    width: 288px;
+    width: 431.5px;
     align-items: center;
     justify-content: space-between;
 
@@ -216,7 +224,7 @@
         font-size: 14px;
     }
 
-    & > form {
+    &>form {
         width: 100%;
     }
 }

@@ -36,6 +36,8 @@
 .board-preview {
     justify-content: space-between;
     align-items: center;
+    margin-inline-start: 4px;
+    margin-bottom: 5px;
 
     a {
         color: #323338;
@@ -46,7 +48,7 @@
 
 .board-preview-link {
     font-size: 14px;
-    padding-left: 10px;
+    padding-left: 8px;
     color: #323338;
 }
 
@@ -58,4 +60,3 @@
         padding-left: 10px;
     }
 }
-
