@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { saveTask } from "../../store/board.action"
-import { DatePicker } from 'antd'
+import { DatePicker, Space, } from 'antd'
 import dayjs from "dayjs"
 import { TaskTitle } from "./task-title"
 import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
+import { DynamicModal } from "../dynamicModal"
 
 export function TaskPreview({
     task,
@@ -21,21 +22,18 @@ export function TaskPreview({
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
+    const [prioreties, setPriorety] = useState(boardService.getDefaultPriorities())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
+    const [isPriorityOpen, setIsPriorityOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [showOptions, setShowOptions] = useState(false);
-
-    async function onAddTaskStatus(label) {
-        try {
-            let taskToSave = task
-            taskToSave.status = label
-            await saveTask(board, group.id, taskToSave)
-            showSuccessMsg('Task update')
-        } catch (err) {
-            showErrorMsg('Cannot update task')
-        }
-    }
+    const { RangePicker } = DatePicker;
+    const [size, setSize] = useState('small');
+    const handleSizeChange = (e) => {
+        setSize(e.target.value);
+    };
+    const monthFormat = 'MM/DD';
 
     async function onAddTaskDate(date) {
         try {
@@ -102,6 +100,13 @@ export function TaskPreview({
     }
 
 
+
+    // function showTimeLine() {
+    //     return <DialogContentContainer className={styles.datepickerDialogContentContainer}>
+    //         <DatePicker date={date.startDate} endDate={date.endDate} range data-testid="date-picker" onPickDate={d => setDate(d)} />
+    //     </DialogContentContainer>;
+    // }
+
     const openTaskIcon = 'open-item.svg'
     const bubble = 'bubble.svg'
     const plusBubble = 'plus-bubble.svg'
@@ -112,6 +117,8 @@ export function TaskPreview({
     const renameIcon = 'rename.svg'
     const deleteIcon = 'delete.svg'
 
+    const style = { color: ' rgba(0, 0, 0, 0.192)' };
+    style.color = ' rgba(0, 0, 0, 0.192)'
     return (
         <div
             className="task-preview flex"
@@ -183,12 +190,7 @@ export function TaskPreview({
 
                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
-                {isLablesOpen && <ul className="status-picker" >
-                    <div className="arrow-up"></div>
-                    {lables.map(lable => (<li key={lable.id}
-                        className='label'
-                        style={{ background: lable.color }} onClick={() => { onAddTaskStatus(lable) }}>{lable.txt}</li>)
-                    )}</ul>}
+                {isLablesOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
             </div>
             <div className="task-date task-column">
                 {/* {(task.date - Date.now() > 0)  && 'x'} */}
@@ -201,6 +203,28 @@ export function TaskPreview({
                     suffixIcon
                 />
             </div>
+            <div className="preview-timeline task-column">
+                <Space direction="vertical" >
+                    <RangePicker bordered={false}
+                        size={size}
+                        defaultValue={dayjs('2015/01', monthFormat)}
+                        format={'MMM D'}
+                    // style={{ width: '70%' }} 
+                    />
+                </Space>
+            </div>
+
+            <div className="preview-task-status  task-column"
+                onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
+                style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
+
+                <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
+                {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
+
+            </div>
+
+
+
         </div>
     )
 }

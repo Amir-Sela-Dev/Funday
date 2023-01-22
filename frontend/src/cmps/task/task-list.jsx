@@ -78,6 +78,8 @@ export function TaskList({ group, toggleModal }) {
                 <div className="task-persons task-column"><span>Person</span></div>
                 <div className="task-status task-column">Status</div>
                 <div className="task-date task-column">Date</div>
+                <div className="task-timeline task-column">Timeline</div>
+                <div className="task-status task-column">Priority</div>
             </div>
 
             {group.tasks.map(currTask => {

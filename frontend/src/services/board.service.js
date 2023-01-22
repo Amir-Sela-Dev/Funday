@@ -17,7 +17,8 @@ export const boardService = {
     getDefaultBoardFilter,
     getDefaultGroupFilter,
     getDefaultComment,
-    getDefaultUsers
+    getDefaultUsers,
+    getDefaultPriorities
 }
 
 window.cs = boardService
@@ -91,12 +92,14 @@ function getEmptyBoard() {
                         id: utilService.makeId(5),
                         title: 'item 1',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
+                        priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: []
                     },
                     {
                         id: utilService.makeId(5),
                         title: 'item 2',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
+                        priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: []
                     }
                 ],
@@ -111,12 +114,14 @@ function getEmptyBoard() {
                         id: utilService.makeId(5),
                         title: 'item 3',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
+                        priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: []
                     },
                     {
                         id: utilService.makeId(5),
                         title: 'item 4',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
+                        priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: []
                     }
                 ],
@@ -156,9 +161,10 @@ function creatBoards() {
                                     { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
+                                priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 date: "2023-01-19",
                                 comments: []
-                                
+
                             },
                             {
                                 id: utilService.makeId(5),
@@ -167,6 +173,7 @@ function creatBoards() {
                                     { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
+                                priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 date: "2023-01-12",
                                 comments: []
 
@@ -183,6 +190,7 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'item 1',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
+                                priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: []
 
                             },
@@ -190,6 +198,7 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'item 2',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
+                                priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: []
 
                             }
@@ -205,6 +214,7 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'item 3',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
+                                priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: []
 
                             },
@@ -212,6 +222,7 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'item 4',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
+                                priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: []
                             }
                         ],
@@ -248,7 +259,8 @@ function getEmptyTask() {
         persons: '',
         status: {},
         date: '',
-        comments: []
+        comments: [],
+        priority: {},
     }
 }
 
@@ -257,6 +269,17 @@ function getDefaultLabels() {
         { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
         { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
         { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' },
+        { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
+    ]
+}
+
+
+function getDefaultPriorities() {
+    return [
+        { id: utilService.makeId(5), txt: 'Critical', color: 'rgb(51, 51, 51)' },
+        { id: utilService.makeId(5), txt: 'High', color: 'rgb(64, 22, 148)' },
+        { id: utilService.makeId(5), txt: 'Medium', color: 'rgb(85, 89, 223)' },
+        { id: utilService.makeId(5), txt: 'Low', color: 'rgb(87, 155, 252)' },
         { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
     ]
 }

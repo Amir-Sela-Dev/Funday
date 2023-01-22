@@ -14,6 +14,10 @@
             margin: 0;
         }
     }
+
+    .task-timeline {
+        width: 187px;
+    }
 }
 
 .task-column {
@@ -31,6 +35,7 @@
     &.disabled {
         cursor: default;
     }
+
     width: 39px
 }
 

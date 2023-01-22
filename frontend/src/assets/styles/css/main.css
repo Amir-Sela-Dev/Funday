@@ -795,7 +795,6 @@ form > * {
 
 .task-preview {
   align-items: center;
-  max-width: 776px;
   color: #323338;
 }
 .task-preview:hover {
@@ -896,6 +895,9 @@ form > * {
   width: 140px;
   position: relative;
   color: #fff;
+}
+.task-preview .preview-timeline {
+  width: 187px;
 }
 
 .person-img {
@@ -1057,6 +1059,9 @@ form > * {
 }
 .task-list .menu-modal p {
   margin: 0;
+}
+.task-list .task-timeline {
+  width: 187px;
 }
 
 .task-column {

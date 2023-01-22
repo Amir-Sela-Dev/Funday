@@ -1,6 +1,6 @@
 .task-preview {
     align-items: center;
-    max-width: 776px;
+    // max-width: 776px;
     color: $clr1;
 
     &:hover {
@@ -124,6 +124,11 @@
         color: #fff;
 
     }
+
+    .preview-timeline {
+        width: 187px;
+    }
+
 }
 
 .person-img {
@@ -179,10 +184,12 @@
         flex-direction: column;
         justify-content: flex-start;
     }
-    &>h4{
+
+    &>h4 {
         text-align: start;
         margin-block: 1em;
     }
+
     & .person-item {
         padding-inline-end: 10px;
         margin-inline-end: 10px;
