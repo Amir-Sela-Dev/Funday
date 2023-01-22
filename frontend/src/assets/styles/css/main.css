@@ -559,7 +559,7 @@ form > * {
 .work-space {
   grid-area: work-space;
   background-color: #f6f7fb;
-  padding: 10px 15px;
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -567,6 +567,7 @@ form > * {
   left: 66px;
   border-right: 1px solid rgba(0, 0, 0, 0.102);
   transition: transform 1s;
+  font-family: Figtree;
 }
 .work-space.close-workspace {
   transform: translateX(-225px);
@@ -733,7 +734,7 @@ form > * {
   border-radius: 4px;
   box-shadow: none;
   border: #323338 solid 0.5px;
-  font-family: Poppins-Regular;
+  font-family: Figtree;
 }
 .work-space .main-modal h1 {
   width: 100%;
@@ -752,7 +753,7 @@ form > * {
   position: absolute;
 }
 .work-space .board-search input {
-  font-family: Poppins-Regular;
+  font-family: Figtree;
   margin: 0;
   padding-left: 27px;
   border: none;
@@ -861,14 +862,19 @@ form > * {
 }
 .task-preview .comments-bubble {
   display: flex;
+  align-items: center;
   position: relative;
   border: none;
   border-left: rgba(0, 0, 0, 0.192) 1px solid;
+  width: 77px;
+}
+.task-preview .comments-bubble img {
+  margin-inline-start: 20px;
 }
 .task-preview .comments-bubble .comments-num {
   position: absolute;
   color: #fff;
-  left: 16px;
+  left: 32px;
   top: 17px;
   line-height: 9px;
   font-size: 11px;
@@ -877,6 +883,11 @@ form > * {
   border-radius: 10px;
   text-align: center;
   padding: 2px 4px;
+}
+.task-preview .preview-task-status {
+  width: 140px;
+  position: relative;
+  color: #fff;
 }
 
 .person-img {
@@ -953,7 +964,7 @@ form > * {
   width: 360px;
   border: none;
   outline: none;
-  font-family: Poppins-Regular;
+  font-family: Figtree;
   font-size: 14px;
   padding-inline-start: 4px;
 }
@@ -979,7 +990,7 @@ form > * {
 }
 
 .task-txt {
-  width: 431.5px;
+  width: 360.5px;
   align-items: center;
   justify-content: space-between;
 }
@@ -991,7 +1002,7 @@ form > * {
 }
 
 .task-status {
-  width: 130px;
+  width: 140px;
   position: relative;
 }
 .task-status span {
@@ -1009,7 +1020,7 @@ form > * {
 }
 
 .task-persons {
-  width: 170px;
+  width: 98px;
 }
 
 .task-icon {
@@ -1052,7 +1063,7 @@ form > * {
 }
 
 .task-date {
-  width: 181px;
+  width: 139px;
   padding-inline: 10px;
 }
 .task-date .ant-picker input {
@@ -1067,14 +1078,15 @@ form > * {
   border: 0.5px solid rgba(0, 0, 0, 0.192);
   border-collapse: collapse;
   height: 36px;
-  width: 769px;
+  width: 737.5px;
   border-block-start: none;
 }
 
 .add-task-input {
   margin: 8px 0 8px 10px;
   border: none;
-  padding-left: 15px;
+  padding-left: 16px;
+  padding-top: 2px;
 }
 
 .colored-tag {
@@ -1234,6 +1246,7 @@ form > * {
   font-size: 14px;
   color: #323338;
   opacity: 0;
+  margin-top: 13px;
 }
 .group-preview-line .group-title {
   box-sizing: border-box;
@@ -1253,6 +1266,7 @@ form > * {
 .group-preview {
   margin-inline-start: 2px;
   font-family: Figtree;
+  margin-bottom: 57px;
 }
 .group-preview .option-icon {
   margin-inline-start: -33px;

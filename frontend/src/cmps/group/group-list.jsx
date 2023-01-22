@@ -79,7 +79,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
         <hr className="group-list-main-hr" />
         <div className="board-actions flex">
             <Flex>
-                <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New Task</span></button>
+                <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
 
                 <button className='new-group-btn arrow-down-new-group'
                     onClick={toggleNewTaskModal}>

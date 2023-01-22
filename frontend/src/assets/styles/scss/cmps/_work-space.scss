@@ -1,7 +1,7 @@
 .work-space {
     grid-area: work-space;
     background-color: $work-space-bgc;
-    padding: 10px 15px;
+    padding: 8px 16px;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -10,6 +10,8 @@
     left: 66px;
     border-right: 1px solid rgba(0, 0, 0, 0.102);
     transition: transform 1s;
+    font-family: Figtree;
+
 
     &.close-workspace {
         transform: translateX(-225px);
@@ -200,7 +202,7 @@
             border-radius: 4px;
             box-shadow: none;
             border: $clr1 solid 0.5px;
-            font-family: Poppins-Regular;
+            font-family: Figtree;
         }
 
         h1 {
@@ -227,7 +229,7 @@
         }
 
         input {
-            font-family: Poppins-Regular;
+            font-family: Figtree;
             margin: 0;
             padding-left: 27px;
             border: none;

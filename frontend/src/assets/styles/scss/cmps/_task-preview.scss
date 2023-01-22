@@ -83,14 +83,20 @@
 
     .comments-bubble {
         display: flex;
+        align-items: center;
         position: relative;
         border: none;
         border-left: rgba(0, 0, 0, 0.192) 1px solid;
+        width: 77px;
+
+        img {
+            margin-inline-start: 20px
+        }
 
         .comments-num {
             position: absolute;
             color: #fff;
-            left: 16px;
+            left: 32px;
             top: 17px;
             line-height: 9px;
             font-size: 11px;
@@ -100,6 +106,13 @@
             text-align: center;
             padding: 2px 4px;
         }
+    }
+
+    .preview-task-status {
+        width: 140px;
+        position: relative;
+        color: #fff;
+
     }
 }
 
@@ -187,7 +200,7 @@
     width: 360px;
     border: none;
     outline: none;
-    font-family: Poppins-Regular;
+    font-family: Figtree;
     font-size: 14px;
     padding-inline-start: 4px
 }
@@ -216,7 +229,7 @@
 }
 
 .task-txt {
-    width: 431.5px;
+    width: 360.5px;
     align-items: center;
     justify-content: space-between;
 
@@ -230,7 +243,7 @@
 }
 
 .task-status {
-    width: 130px;
+    width: 140px;
     position: relative;
 
     span {
@@ -249,7 +262,7 @@
 }
 
 .task-persons {
-    width: 170px;
+    width: 98px
 }
 
 .task-icon {
