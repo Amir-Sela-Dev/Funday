@@ -102,11 +102,11 @@ function getLoggedinUser() {
 // }
 
 
-// ; (async () => {
-//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Sela', username: 'amir@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
-//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Sheilan Shamilov', username: 'sheilan@gmail.com', password: 'sheilan123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
-//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Yakobuv', username: 'amiryakubov@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
-// })()
+; (async () => {
+    await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Sela', username: 'amir@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
+    await userService.signup({ _id: utilService.makeId(5), fullname: 'Sheilan Shamilov', username: 'sheilan@gmail.com', password: 'sheilan123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
+    await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Yakobuv', username: 'amiryakubov@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674231080/img3_iq3nsz.jpg' })
+})()
 
 
 
