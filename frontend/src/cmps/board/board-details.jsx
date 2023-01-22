@@ -54,6 +54,7 @@ export function BoardDetails() {
         if (!board?.title.length) return
         try {
             await saveBoard({ ...board, title: boardTitle })
+            setBoardTitle('')
             showSuccessMsg('Board updated')
         } catch (err) {
             console.log('error changing board name', err)

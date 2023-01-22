@@ -7,7 +7,8 @@ import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.ac
 import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
 import { Button, Flex } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort } from "monday-ui-react-core/icons";
+import { Add, Search, Person, Filter, Sort, group } from "monday-ui-react-core/icons";
+
 
 export function GroupList({ board, toggleModal, setFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
@@ -91,7 +92,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
                     <div className="new-task-modal">
                         <div className="menu-modal-option new-group-btn-option flex"
                             onClick={() => { onAddItem(true) }}>
-                            <p >New Group</p>
+                            <p>New Group</p>
                         </div>
                     </div>
 

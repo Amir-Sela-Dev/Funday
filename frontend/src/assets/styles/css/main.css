@@ -299,6 +299,7 @@ form > * {
   padding: 4px 8px;
   margin: 8px 0;
   border-radius: 0.3rem;
+  align-items: center;
 }
 .menu-modal .new-group-btn-option {
   margin: 0;
@@ -1109,6 +1110,7 @@ form > * {
   top: 0;
   right: 0;
   width: 691px;
+  height: 100vh;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1882352941);
@@ -1116,7 +1118,6 @@ form > * {
   transform: translateX(100%);
   transition: all 0.4s;
   display: none;
-  display: flex;
   flex-direction: column;
 }
 
