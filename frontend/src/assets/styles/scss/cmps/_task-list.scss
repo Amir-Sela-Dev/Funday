@@ -19,15 +19,17 @@
 .checkbox-column {
     display: flex;
     border-left: none;
+    width: 39px
 }
 
 .task-checkbox {
-    margin: 8px;
     z-index: -1;
+    transform: scale(1.3);
+    margin-inline: 10px;
 }
 
 .task-date {
-    width: 181px;
+    width: 139px;
     padding-inline: 10px;
 
     .ant-picker {
@@ -47,7 +49,7 @@
     border: 0.5px solid rgba(0, 0, 0, 0.192);
     border-collapse: collapse;
     height: 36px;
-    width: 769px;
+    width: 737.5px;
     border-block-start: none;
 }
 
@@ -55,7 +57,8 @@
     // margin-left: 10px;
     margin: 8px 0 8px 10px;
     border: none;
-    padding-left: 15px;
+    padding-left: 16px;
+    padding-top: 2px;
 }
 
 .colored-tag {

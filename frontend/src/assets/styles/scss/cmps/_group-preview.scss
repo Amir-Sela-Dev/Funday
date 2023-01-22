@@ -2,13 +2,10 @@
     margin: 32px 0;
 
     .number-of-tasks {
+        font-size: 14px;
+        color: #323338;
         opacity: 0;
-
-        &:hover {
-            opacity: 1;
-            font-size: 14px;
-            color: #323338;
-        }
+        margin-top: 13px
     }
 
     .group-title {
@@ -17,7 +14,9 @@
         border: none;
         font-size: 1em;
         font-family: Poppins-Regular;
-        margin-inline-start: 5px;
+        margin-inline-start: 44px;
+        margin-top: 13px;
+        margin-bottom: 5px;
 
         &:hover,
         &:focus {
@@ -25,14 +24,26 @@
             border-radius: 0.25em;
         }
     }
-
-
 }
 
 .group-preview {
+    margin-inline-start: 2px;
+    font-family: Figtree;
+    margin-bottom: 57px;
 
     .option-icon {
         margin-inline-start: -33px;
         margin-top: 4px;
+        opacity: 0;
+    }
+
+    .group-title-container:hover {
+        .option-icon {
+            opacity: 1;
+        }
+
+        .number-of-tasks {
+            opacity: 1;
+        }
     }
 }
