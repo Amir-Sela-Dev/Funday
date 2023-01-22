@@ -57,7 +57,6 @@ export async function saveBoard(board) {
 }
 
 export async function loadBoard(boardId, filterBy = boardService.getDefaultGroupFilter()) {
-    console.log(filterBy);
     try {
         const board = await boardService.get(boardId)
         let boardToSave = structuredClone(board)
@@ -124,16 +123,16 @@ export async function saveTask(board, groupId, task) {
     let fullBoard = await boardService.get(board._id)
     let boardToSave = structuredClone(fullBoard)
     let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
-
-    if (!task.id) {
-        console.log('from action no id', task);
-        task.id = utilService.makeId(5)
-        groupToSave.tasks[groupId ? 'push' : 'unshift'](task)
+    let taskToSave = { ...task }
+    if (!taskToSave.id) {
+        console.log('from action no id', taskToSave);
+        taskToSave.id = utilService.makeId(5)
+        await groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
     }
     else {
-        console.log('from action', task);
-        const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === task.id)
-        groupToSave.tasks.splice(taskIdx, 1, task)
+        console.log('from action', taskToSave);
+        const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === taskToSave.id)
+        await groupToSave.tasks.splice(taskIdx, 1, taskToSave)
     }
     saveBoard(boardToSave)
 }

@@ -9,6 +9,7 @@ export function TaskList({ group, toggleModal }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
     const [isAllSelected, setIsAllSelected] = useState(false)
+    const [selectedTasks, setSelectedTasks] = useState([])
     let { board } = useSelector((storeState) => storeState.boardModule)
 
     async function onSaveTask(event) {
@@ -41,6 +42,22 @@ export function TaskList({ group, toggleModal }) {
         }
     }
 
+    async function onDuplicateSelectedTasks(isInGroup) {
+        if (selectedTasks.length) {
+            try {
+                for (const selectedTask of selectedTasks) {
+                    const { id, ...taskToSave } = selectedTask;
+                    await saveTask(board, group.id, taskToSave)
+                }
+            }
+            catch (err) {
+                console.log('Could not duplicate tasks', err)
+            }
+        }
+    }
+    function updateSelectedTasks(task) {
+        setSelectedTasks([...selectedTasks, task])
+    }
     return (
         <div className="task-list">
 
@@ -48,7 +65,13 @@ export function TaskList({ group, toggleModal }) {
                 <div className="checkbox-column task-column"
                     onClick={() => { setIsAllSelected(!isAllSelected) }}>
                     <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div>
-                    <input className='task-checkbox' type="checkbox" checked={isAllSelected} />
+                    <input className='task-checkbox'
+                        type="checkbox"
+                        checked={isAllSelected}
+                        onChange={ev => {
+                            ev.stopPropagation()
+                            setIsAllSelected(!isAllSelected)
+                        }} />
                 </div>
 
                 <div className="task-title task-column">Item</div>
@@ -68,14 +91,15 @@ export function TaskList({ group, toggleModal }) {
                     board={board}
                     toggleModal={toggleModal}
                     isAllSelected={isAllSelected}
+                    updateSelectedTasks={updateSelectedTasks}
                 />
             })}
 
             <div className="add-task-wrap flex">
-                <div className="checkbox-column task-column">
+                <div className="checkbox-column task-column disabled">
                     <div className="colored-tag last-tag"
                         style={{ background: group.style?.color }} />
-                    <input className='task-checkbox' type="checkbox" disabled={true} />
+                    <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                 </div>
 
                 <form className='task-input-row' onSubmit={onSaveTask}>
@@ -90,6 +114,9 @@ export function TaskList({ group, toggleModal }) {
                     />
                 </form>
             </div>
+            {/* <div>
+                <button onClick={() => onDuplicateSelectedTasks(true)}>Duplicate to task</button>
+            </div> */}
         </div>
     )
 }

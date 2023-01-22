@@ -132,7 +132,7 @@
 }
 
 .person-names {
-    margin-block-end: 16px;
+    margin-block-end: 1em;
     flex-wrap: wrap;
 
     &>.person-item {
@@ -166,7 +166,7 @@
 
 .suggested-people {
     margin-block-end: 10px;
-    max-width: 99%;
+    min-width: 99%;
 
     &>input {
         width: 100%;
@@ -179,7 +179,10 @@
         flex-direction: column;
         justify-content: flex-start;
     }
-
+    &>h4{
+        text-align: start;
+        margin-block: 1em;
+    }
     & .person-item {
         padding-inline-end: 10px;
         margin-inline-end: 10px;
@@ -187,7 +190,7 @@
         align-items: center;
         justify-content: flex-start;
         border-radius: 0.5em;
-        width: 328px;
+        width: 100%;
 
         &:hover {
             background: rgb(220, 223, 236);

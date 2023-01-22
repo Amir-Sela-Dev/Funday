@@ -39,6 +39,7 @@ function getRandomIntInclusive(min, max) {
 
 function randomTime() {
     const HOUR = 1000 * 60 * 60
+    
     const DAY = 1000 * 60 * 60 * 24
     const WEEK = 1000 * 60 * 60 * 24 * 7
 
@@ -47,7 +48,6 @@ function randomTime() {
 }
 
 function getDateDifference(date){
-    console.log(date)
     return Date.now() - date
 }
 function debounce(func, timeout = 300){
