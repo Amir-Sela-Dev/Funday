@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
+import { File } from "monday-ui-react-core/icons";
+import { Icon, Avatar } from "monday-ui-react-core";
 
 export function ImgUploader({ onUploaded = null }) {
   const [imgData, setImgData] = useState({
@@ -24,8 +26,15 @@ export function ImgUploader({ onUploaded = null }) {
 
   return (
     <div className="upload-preview">
-      {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '200px', float: 'right' }} />}
-      <label htmlFor="imgUpload">{getUploadLabel()}</label>
+      {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '40px' }} />}
+      {/* {imgData.imgUrl && <Avatar
+        ariaLabel="Hadas Fahri"
+        size="large"
+        src={imgData.imgUrl}
+        type="img"
+      />} */}
+      <label htmlFor="imgUpload"> <Icon icon={File} iconLabel="my bolt svg icon" iconSize={20} />
+      </label>
       <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
     </div>
   )

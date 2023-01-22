@@ -899,6 +899,9 @@ form > * {
 .task-preview .preview-timeline {
   width: 187px;
 }
+.task-preview .preview-files {
+  width: 139px;
+}
 
 .person-img {
   width: 25px;
@@ -1063,6 +1066,9 @@ form > * {
 .task-list .task-timeline {
   width: 187px;
 }
+.task-list .task-files {
+  width: 139px;
+}
 
 .task-column {
   border: 0.5px solid rgba(0, 0, 0, 0.192);
@@ -1108,7 +1114,7 @@ form > * {
   border: 0.5px solid rgba(0, 0, 0, 0.192);
   border-collapse: collapse;
   height: 36px;
-  width: 737.5px;
+  width: 100%;
   border-block-start: none;
 }
 
@@ -1532,6 +1538,10 @@ form > * {
   font-size: 14px;
   padding: 0;
   padding-left: 4px;
+}
+
+.upload-preview input {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */
