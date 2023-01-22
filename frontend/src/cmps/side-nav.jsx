@@ -14,6 +14,7 @@ export function SideNav() {
             </div>
 
             <div className="low-nav flex">
+                <div class="logo-hr"></div>
                 <img className="component-icon" src={require(`../assets/img/${componemtUrl}`)} />
                 <Link to="/auth/login">
                     <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' alt="" className="main-user-nav" />

@@ -619,7 +619,7 @@ button {
   flex-direction: column;
   align-items: center;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   justify-content: space-between;
 }
 
@@ -631,7 +631,7 @@ button {
 
 .logo-hr {
   margin: 0 8px;
-  width: 75%;
+  width: 48px;
   height: 1px;
   background-color: #676879;
 }
@@ -644,6 +644,7 @@ button {
 
 .component-icon {
   width: 32px;
+  margin-top: 12px;
 }
 
 .main-user-nav {
@@ -675,9 +676,13 @@ button {
   transition: transform 1s;
   font-family: Figtree;
   color: #323338;
+  z-index: 1;
 }
 .work-space.close-workspace {
   transform: translateX(-225px);
+}
+.work-space.close-workspace:hover {
+  transform: translateX(0);
 }
 .work-space .workspace-header {
   justify-content: space-between;

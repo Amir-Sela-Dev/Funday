@@ -12,10 +12,14 @@
     transition: transform 1s;
     font-family: Figtree;
     color: $clr1;
-
+    z-index: 1;
 
     &.close-workspace {
         transform: translateX(-225px);
+
+        &:hover {
+            transform: translateX(0);
+        }
     }
 
     .workspace-header {
@@ -120,7 +124,7 @@
         color: #323338;
         font-size: 14px;
         padding-left: 7px;
-        margin-top: 17px
+        margin-top: 17px;
     }
 
     hr {
@@ -128,7 +132,7 @@
         height: 1px;
         width: 95%;
         margin-top: 17px;
-        margin-bottom: 23px
+        margin-bottom: 23px;
     }
 
     .close {
@@ -227,7 +231,7 @@
             position: absolute;
             // margin-left: 5px;
             // margin-top: 4px;
-            padding-top: 2px
+            padding-top: 2px;
         }
 
         input {
@@ -253,10 +257,9 @@
 
         &:hover {
             background-color: #dcdfec;
-            border-radius: 0.2rem
+            border-radius: 0.2rem;
         }
     }
-
 }
 
 .workspace-txt {
