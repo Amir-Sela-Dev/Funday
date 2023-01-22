@@ -9,6 +9,9 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
+import { File } from "monday-ui-react-core/icons";
+import { Icon } from "monday-ui-react-core";
+import { ImgUploader } from "../img-uploader"
 
 export function TaskPreview({
     task,
@@ -96,8 +99,20 @@ export function TaskPreview({
         } catch (err) {
             showErrorMsg('Cannot duplicate toy')
         }
-
     }
+    async function onUploaded(imgUrl) {
+        try {
+            let taskToSave = structuredClone(task)
+            taskToSave.file = imgUrl
+            await saveTask(board, group.id, taskToSave)
+            console.log(imgUrl);
+        } catch (err) {
+            showErrorMsg('Cannot duplicate toy')
+        }
+    }
+
+
+
 
 
 
@@ -221,6 +236,11 @@ export function TaskPreview({
                 <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
                 {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
 
+            </div>
+
+            <div className="preview-files  task-column">
+                {!task.file && <ImgUploader onUploaded={onUploaded} />}
+                {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
             </div>
 
 
