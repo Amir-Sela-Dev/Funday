@@ -1106,6 +1106,15 @@ button {
 .task-preview .preview-files {
   width: 139px;
 }
+.task-preview .preview-files:hover .file-icon {
+  display: block;
+}
+.task-preview .preview-checkbox {
+  width: 65px;
+}
+.task-preview .preview-add-colume {
+  width: 100px;
+}
 
 .person-img {
   width: 25px;
@@ -1272,6 +1281,12 @@ button {
 }
 .task-list .task-files {
   width: 139px;
+}
+.task-list .checkbox {
+  width: 65px;
+}
+.task-list .add-colume {
+  width: 100px;
 }
 
 .task-column {
@@ -1477,6 +1492,9 @@ button {
 .task-modal-open .date {
   margin-inline-end: 68px;
   font-size: 14px;
+}
+.task-modal-open ul {
+  padding: 0;
 }
 
 .group-preview-line {
@@ -1746,6 +1764,49 @@ button {
 
 .upload-preview input {
   display: none;
+}
+.upload-preview .file-icon {
+  display: none;
+}
+
+.task-activity-log {
+  min-height: 100vh;
+  color: #323338;
+}
+.task-activity-log .activity-btns {
+  margin-bottom: 25px;
+}
+.task-activity-log .wrapper {
+  padding-inline: 15px;
+  align-items: center;
+}
+.task-activity-log .activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 55px;
+}
+.task-activity-log .activity h5 {
+  margin: 0;
+  font-weight: 100;
+}
+.task-activity-log .activity img {
+  width: 25px;
+  height: 25px;
+}
+.task-activity-log .activity .first-details {
+  width: 191px;
+}
+.task-activity-log .activity .type {
+  width: 84px;
+  align-items: center;
+}
+.task-activity-log .activity hr {
+  color: rgba(50, 51, 56, 0.2941176471);
+  height: 1px;
+  width: 100%;
+  justify-self: flex-end;
+  margin-block-end: 13px;
 }
 
 /*# sourceMappingURL=main.css.map */

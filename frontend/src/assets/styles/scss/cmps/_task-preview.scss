@@ -131,6 +131,21 @@
 
     .preview-files {
         width: 139px;
+
+        &:hover {
+            .file-icon {
+                display: block;
+
+            }
+        }
+    }
+
+    .preview-checkbox {
+        width: 65px;
+    }
+
+    .preview-add-colume {
+        width: 100px
     }
 
 }
