@@ -3,6 +3,7 @@ import { store } from './store.js'
 import { REMOVE_BOARD, SET_BOARDS, ADD_BOARD, UPDATE_BOARD, UNDO_REMOVE_BOARD, SET_BOARD } from '../store/board.reducer.js'
 import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import { utilService } from '../services/util.service.js'
+import { userService } from '../services/user.service.js'
 
 export async function loadBoards(filterBy) {
     store.dispatch({ type: LOADING_START })
@@ -46,7 +47,9 @@ export async function removeBoard(boardId) {
 export async function saveBoard(board) {
     try {
         const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
+        console.log('lalala', board)
         const boardToSave = await boardService.save(board)
+        console.log('boardToSave', boardToSave)
         store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type, board: boardToSave })
         return boardToSave
@@ -119,7 +122,7 @@ export async function removeGroup(board, groupId) {
 }
 
 // Tasks
-export async function saveTask(board, groupId, task) {
+export async function saveTask(board, groupId, task, type, txt) {
     let fullBoard = await boardService.get(board._id)
     let boardToSave = structuredClone(fullBoard)
     let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
@@ -128,12 +131,14 @@ export async function saveTask(board, groupId, task) {
         console.log('from action no id', taskToSave);
         taskToSave.id = utilService.makeId(5)
         await groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
+        saveBoard(boardToSave)
     }
     else {
         console.log('from action', taskToSave);
         const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === taskToSave.id)
         await groupToSave.tasks.splice(taskIdx, 1, taskToSave)
     }
+    boardToSave = await addActivity(boardToSave, type, txt, task)
     saveBoard(boardToSave)
 }
 
@@ -145,3 +150,31 @@ export async function removeTask(board, groupId, taskId) {
     currGroup.tasks.splice(taksIdx, 1)
     saveBoard(boardToSave)
 }
+
+
+// activities//
+
+export async function addActivity(board, type, txt, task) {
+    try {
+        let fullBoard = await boardService.get(board._id)
+        let boardToSave = structuredClone(board)
+        let activityToAdd = boardService.getEmptyActivity()
+        activityToAdd = { ...activityToAdd, txt, task, type, createdAt: Date.now(), byMember: userService.getLoggedinUser() }
+        boardToSave.activities.push(activityToAdd)
+        saveBoard(boardToSave)
+        return boardToSave
+    } catch (err) {
+        console.log('ActivityActions: err in addActivity', err)
+        throw err
+    }
+}
+
+// export async function removeActivity(activityId) {
+//     try {
+//         await activityService.remove(activityId)
+//         store.dispatch(getActionRemoveActivity(activityId))
+//     } catch (err) {
+//         console.log('ActivityActions: err in removeActivity', err)
+//         throw err
+//     }
+// }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { saveTask } from "../../store/board.action"
+import { addActivity, saveTask } from "../../store/board.action"
 import { DatePicker, Space, } from 'antd'
 import dayjs from "dayjs"
 import { TaskTitle } from "./task-title"
@@ -21,7 +21,6 @@ export function TaskPreview({
     toggleModal,
     isAllSelected,
     updateSelectedTasks }) {
-
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -37,6 +36,10 @@ export function TaskPreview({
         setSize(e.target.value);
     };
     const monthFormat = 'MM/DD';
+
+    useEffect(() => {
+        setTaskToUpdate(task)
+    }, [])
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -61,8 +64,10 @@ export function TaskPreview({
 
     async function onAddTaskDate(date) {
         try {
-            setTaskToUpdate({ ...taskToUpdate, date })
-            await saveTask(board, group.id, { ...taskToUpdate, date })
+            console.log(dayjs(date));
+            let taskToSave = structuredClone(task)
+            // await addActivity(board, 'Date', 'Change date', taskToSave)
+            await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -72,8 +77,11 @@ export function TaskPreview({
     async function onAddTaskPerson(person) {
         console.log('person added', person)
         try {
-            setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
-            await saveTask(board, group.id, { ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
+            // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
+            let taskToSave = structuredClone(task)
+
+            // await addActivity(board, 'Person', 'Add person', taskToSave)
+            await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person')
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -82,11 +90,13 @@ export function TaskPreview({
 
     async function onRemoveTaskPerson(person) {
         try {
-            setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
+            let taskToSave = structuredClone(task)
+            // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
+            await addActivity(board, 'Person', 'Remove person', taskToSave)
             await saveTask(
                 board,
                 group.id,
-                { ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
+                { ...taskToSave, persons: [...taskToSave.persons.filter(currPerson => currPerson.id !== person.id)] })
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -94,13 +104,18 @@ export function TaskPreview({
     }
     function handleNameInputChange(event) {
         console.log('length', event.target.value.length)
+
         setTaskToUpdate({ ...taskToUpdate, title: event.target.value })
     }
 
     async function onRenameTask(event) {
         event.preventDefault()
         try {
-            await saveTask(board, group.id, taskToUpdate)
+            let taskToSave = structuredClone(task)
+            taskToSave.title = taskToUpdate.title
+
+            await addActivity(board, 'Text', 'Rename task', taskToSave)
+            await saveTask(board, group.id, taskToSave)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -118,24 +133,24 @@ export function TaskPreview({
             copyTask.title = 'Copy ' + copyTask.title
             await saveTask(board, group.id, copyTask)
         } catch (err) {
-            showErrorMsg('Cannot duplicate toy')
+            showErrorMsg('Cannot duplicate task')
         }
     }
     async function onUploaded(imgUrl) {
         try {
             let taskToSave = structuredClone(task)
             taskToSave.file = imgUrl
+            await addActivity(board, 'File', 'Add file', taskToSave)
             await saveTask(board, group.id, taskToSave)
-            console.log(imgUrl);
         } catch (err) {
-            showErrorMsg('Cannot duplicate toy')
+            showErrorMsg('Cannot upload file')
         }
     }
 
 
 
 
-
+    console.log(task.status.txt);
 
     // function showTimeLine() {
     //     return <DialogContentContainer className={styles.datepickerDialogContentContainer}>
@@ -158,8 +173,7 @@ export function TaskPreview({
     return (
         <div
             className="task-preview flex"
-            onMouseEnter={() => setShowOptions(true)}
-            onMouseLeave={() => setShowOptions(false)}>
+        >
             {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                 <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}

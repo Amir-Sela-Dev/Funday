@@ -18,7 +18,9 @@ export const boardService = {
     getDefaultGroupFilter,
     getDefaultComment,
     getDefaultUsers,
-    getDefaultPriorities
+    getDefaultPriorities,
+    getEmptyActivity,
+
 }
 
 window.cs = boardService
@@ -77,6 +79,7 @@ function getEmptyBoard() {
         title: 'New board',
         isStarred: false,
         archivedAt: Date.now(),
+        activities: [],
         createdBy: {
             _id: utilService.makeId(5),
             fullname: '',
@@ -94,7 +97,8 @@ function getEmptyBoard() {
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: [],
-                        persons: []
+                        persons: [],
+                        date: '',
                     },
                     {
                         id: utilService.makeId(5),
@@ -102,7 +106,8 @@ function getEmptyBoard() {
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: [],
-                        persons: []
+                        persons: [],
+                        date: '',
                     }
                 ],
                 style: { color: '#e2445c' }
@@ -118,7 +123,8 @@ function getEmptyBoard() {
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: [],
-                        persons: []
+                        persons: [],
+                        date: '',
                     },
                     {
                         id: utilService.makeId(5),
@@ -126,7 +132,8 @@ function getEmptyBoard() {
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
                         comments: [],
-                        persons: []
+                        persons: [],
+                        date: '',
                     }
                 ],
                 style: { color: '#a559d8' }
@@ -146,6 +153,7 @@ function creatBoards() {
                 title: 'Robot dev proj',
                 isStarred: false,
                 archivedAt: Date.now(),
+                activities: [],
                 createdBy: {
                     _id: utilService.makeId(5),
                     fullname: 'Abi Abambi',
@@ -196,7 +204,8 @@ function creatBoards() {
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: [],
-                                persons: []
+                                persons: [],
+                                date: '',
 
                             },
                             {
@@ -205,7 +214,8 @@ function creatBoards() {
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: [],
-                                persons: []
+                                persons: [],
+                                date: '',
 
                             }
                         ],
@@ -222,7 +232,8 @@ function creatBoards() {
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: [],
-                                persons: []
+                                persons: [],
+                                date: '',
 
                             },
                             {
@@ -231,7 +242,8 @@ function creatBoards() {
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
                                 comments: [],
-                                persons: []
+                                persons: [],
+                                date: '',
                             }
                         ],
                         style: { color: '#a559d8' }
@@ -324,6 +336,18 @@ function getDefaultComment() {
             'fullname': 'Guest',
             imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg'
         }
+    }
+}
+
+function getEmptyActivity() {
+
+    return {
+        'id': utilService.makeId(),
+        'txt': '',
+        'type': '',
+        'createdAt': '',
+        'byMember': {},
+        'task': ''
     }
 }
 

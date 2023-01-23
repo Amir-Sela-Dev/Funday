@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
-import { saveTask } from "../store/board.action";
+import { addActivity, saveTask } from "../store/board.action";
 
 
 export function DynamicModal({ lables, task, group, board, lableName }) {
@@ -9,7 +9,8 @@ export function DynamicModal({ lables, task, group, board, lableName }) {
         try {
             let taskToSave = structuredClone(task)
             taskToSave[lableName] = lable
-            await saveTask(board, group.id, taskToSave)
+            // await addActivity(board, lableName, `Add label  ${lable.txt}`, taskToSave)
+            await saveTask(board, group.id, taskToSave, lableName, `Add label  ${lable.txt}`)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')

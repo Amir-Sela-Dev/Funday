@@ -1384,6 +1384,9 @@ button {
   margin-inline-end: 68px;
   font-size: 14px;
 }
+.task-modal-open ul {
+  padding: 0;
+}
 
 .group-preview-line {
   margin: 32px 0;
