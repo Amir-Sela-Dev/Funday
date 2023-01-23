@@ -20,12 +20,12 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
 
     const xIcon = 'x-icon.svg'
     return (
-        <div className="person-details flex column">
+        <div className="person-details flex column modal">
             <div className="person-names flex">
                 {persons &&
                     persons.map((currPerson, currIdx) => {
                         return (
-                            <div className="person-item flex align-center" onClick={() =>  onRemoveTaskPerson(currPerson) }>
+                            <div className="person-item flex align-center" onClick={() => onRemoveTaskPerson(currPerson)}>
                                 <img
                                     className="person-img"
                                     src={require(`/src/assets/img/user/${currPerson.imgUrl}`)} />

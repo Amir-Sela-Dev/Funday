@@ -26,17 +26,38 @@ export function TaskPreview({
     const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [prioreties, setPriorety] = useState(boardService.getDefaultPriorities())
-    const [isLablesOpen, setIsLablesOpen] = useState(false)
     const [isPriorityOpen, setIsPriorityOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [showOptions, setShowOptions] = useState(false);
     const { RangePicker } = DatePicker;
     const [size, setSize] = useState('small');
+    const [isOpen, setIsOpen] = useState(false);
     const handleSizeChange = (e) => {
         setSize(e.target.value);
     };
     const monthFormat = 'MM/DD';
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (event.target.closest('.modal') === null) {
+                setIsOpen(false);
+                setIsPriorityOpen(false)
+                setIsPersonsOpen(false)
+                setIsBoardOptionsOpen(false)
+            }
+        }
+
+        if (isOpen || isPriorityOpen || isPersonsOpen || isBoardOptionsOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen, isPriorityOpen, isPersonsOpen, isBoardOptionsOpen]);
 
     async function onAddTaskDate(date) {
         try {
@@ -139,8 +160,8 @@ export function TaskPreview({
             className="task-preview flex"
             onMouseEnter={() => setShowOptions(true)}
             onMouseLeave={() => setShowOptions(false)}>
-            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal"} >
-                <div className="menu-modal-option flex" onClick={() => { onDuplicateTask(task) }}>
+            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
+                <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
                     />
                     <p className="menu-modal-option-text">Duplicate</p>
@@ -200,12 +221,12 @@ export function TaskPreview({
             </div>
 
             <div className="preview-task-status  task-column"
-                onClick={() => { setIsLablesOpen(!isLablesOpen) }}
+                onClick={() => { setIsOpen(!isOpen) }}
                 style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
-                {isLablesOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
+                {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
             </div>
             <div className="task-date task-column">
                 {/* {(task.date - Date.now() > 0)  && 'x'} */}

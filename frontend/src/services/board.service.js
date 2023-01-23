@@ -93,14 +93,16 @@ function getEmptyBoard() {
                         title: 'item 1',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
-                        comments: []
+                        comments: [],
+                        persons: []
                     },
                     {
                         id: utilService.makeId(5),
                         title: 'item 2',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
-                        comments: []
+                        comments: [],
+                        persons: []
                     }
                 ],
                 style: { color: '#e2445c' }
@@ -115,14 +117,16 @@ function getEmptyBoard() {
                         title: 'item 3',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
-                        comments: []
+                        comments: [],
+                        persons: []
                     },
                     {
                         id: utilService.makeId(5),
                         title: 'item 4',
                         status: { id: utilService.makeId(5), txt: '', color: '' },
                         priority: { id: utilService.makeId(5), txt: '', color: '' },
-                        comments: []
+                        comments: [],
+                        persons: []
                     }
                 ],
                 style: { color: '#a559d8' }
@@ -191,7 +195,8 @@ function creatBoards() {
                                 title: 'item 1',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
-                                comments: []
+                                comments: [],
+                                persons: []
 
                             },
                             {
@@ -199,7 +204,8 @@ function creatBoards() {
                                 title: 'item 2',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
-                                comments: []
+                                comments: [],
+                                persons: []
 
                             }
                         ],
@@ -215,7 +221,8 @@ function creatBoards() {
                                 title: 'item 3',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
-                                comments: []
+                                comments: [],
+                                persons: []
 
                             },
                             {
@@ -223,7 +230,8 @@ function creatBoards() {
                                 title: 'item 4',
                                 status: { id: utilService.makeId(5), txt: '', color: '' },
                                 priority: { id: utilService.makeId(5), txt: '', color: '' },
-                                comments: []
+                                comments: [],
+                                persons: []
                             }
                         ],
                         style: { color: '#a559d8' }
