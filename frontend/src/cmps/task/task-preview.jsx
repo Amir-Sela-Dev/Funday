@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, React } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { saveTask } from "../../store/board.action"
@@ -12,6 +12,7 @@ import { DynamicModal } from "../dynamicModal"
 import { File } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
+
 
 export function TaskPreview({
     task,
@@ -34,9 +35,9 @@ export function TaskPreview({
     const [size, setSize] = useState('small');
     const [isOpen, setIsOpen] = useState(false);
     const handleSizeChange = (e) => {
-        setSize(e.target.value);
-    };
-    const monthFormat = 'MM/DD';
+        setSize(e.target.value)
+    }
+    const monthFormat = 'MM/DD'
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -49,20 +50,22 @@ export function TaskPreview({
         }
 
         if (isOpen || isPriorityOpen || isPersonsOpen || isBoardOptionsOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside)
         } else {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside)
         }
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside)
         };
-    }, [isOpen, isPriorityOpen, isPersonsOpen, isBoardOptionsOpen]);
+    }, [isOpen, isPriorityOpen, isPersonsOpen, isBoardOptionsOpen])
 
     async function onAddTaskDate(date) {
         try {
-            setTaskToUpdate({ ...taskToUpdate, date })
+            console.log('date', date);
+            // setTaskToUpdate({ ...taskToUpdate, date })
             await saveTask(board, group.id, { ...taskToUpdate, date })
+            console.log('task to update', taskToUpdate);
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -132,11 +135,6 @@ export function TaskPreview({
         }
     }
 
-
-
-
-
-
     // function showTimeLine() {
     //     return <DialogContentContainer className={styles.datepickerDialogContentContainer}>
     //         <DatePicker date={date.startDate} endDate={date.endDate} range data-testid="date-picker" onPickDate={d => setDate(d)} />
@@ -158,8 +156,10 @@ export function TaskPreview({
     return (
         <div
             className="task-preview flex"
-            onMouseEnter={() => setShowOptions(true)}
-            onMouseLeave={() => setShowOptions(false)}>
+            // onMouseEnter={() => setShowOptions(true)}
+            // onMouseLeave={() => setShowOptions(false)}
+        >
+
             {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                 <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
@@ -172,8 +172,10 @@ export function TaskPreview({
                     <p className="menu-modal-option-text" >Delete</p>
                 </div>
             </ul>}
+
             {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={() => { openOptionModal() }} />} */}
+
             <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={() => { openOptionModal() }} />
 
@@ -240,6 +242,7 @@ export function TaskPreview({
                 />
             </div>
             <div className="preview-timeline task-column">
+
                 <Space direction="vertical" >
                     <RangePicker bordered={false}
                         size={size}
@@ -263,8 +266,6 @@ export function TaskPreview({
                 {!task.file && <ImgUploader onUploaded={onUploaded} />}
                 {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
             </div>
-
-
 
         </div>
     )

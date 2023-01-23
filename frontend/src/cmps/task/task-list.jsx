@@ -4,6 +4,7 @@ import { TaskPreview } from "./task-preview";
 import { removeTask, saveTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 export function TaskList({ group, toggleModal }) {
 
@@ -58,6 +59,7 @@ export function TaskList({ group, toggleModal }) {
     function updateSelectedTasks(task) {
         setSelectedTasks([...selectedTasks, task])
     }
+
     return (
         <div className="task-list">
 
@@ -83,6 +85,8 @@ export function TaskList({ group, toggleModal }) {
                 <div className="task-files task-column">Files</div>
             </div>
 
+
+
             {group.tasks.map(currTask => {
                 return <TaskPreview
                     key={currTask.id}
@@ -97,6 +101,7 @@ export function TaskList({ group, toggleModal }) {
                     updateSelectedTasks={updateSelectedTasks}
                 />
             })}
+
 
             <div className="add-task-wrap flex">
                 <div className="checkbox-column task-column disabled">
