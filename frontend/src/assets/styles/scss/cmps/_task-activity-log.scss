@@ -1,0 +1,49 @@
+.task-activity-log {
+    min-height: 100vh;
+    color: $clr1;
+
+    .activity-btns {
+        margin-bottom: 25px;
+    }
+
+    .wrapper {
+        padding-inline: 15px;
+        align-items: center;
+    }
+
+    .activity {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 55px;
+
+        h5 {
+            margin: 0;
+            font-weight: 100;
+        }
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .first-details {
+            width: 191px;
+        }
+
+        .type {
+            width: 84px;
+            align-items: center;
+        }
+
+        hr {
+            color: #3233384b;
+            height: 1px;
+            width: 100%;
+            justify-self: flex-end;
+            margin-block-end: 13px;
+
+        }
+
+    }
+}

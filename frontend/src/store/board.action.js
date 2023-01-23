@@ -131,7 +131,6 @@ export async function saveTask(board, groupId, task, type, txt) {
         console.log('from action no id', taskToSave);
         taskToSave.id = utilService.makeId(5)
         await groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
-        saveBoard(boardToSave)
     }
     else {
         console.log('from action', taskToSave);
@@ -156,7 +155,6 @@ export async function removeTask(board, groupId, taskId) {
 
 export async function addActivity(board, type, txt, task) {
     try {
-        let fullBoard = await boardService.get(board._id)
         let boardToSave = structuredClone(board)
         let activityToAdd = boardService.getEmptyActivity()
         activityToAdd = { ...activityToAdd, txt, task, type, createdAt: Date.now(), byMember: userService.getLoggedinUser() }

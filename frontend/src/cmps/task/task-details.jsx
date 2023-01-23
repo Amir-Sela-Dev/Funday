@@ -21,6 +21,10 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     const whiteHome = 'white-home.svg'
     const clock = 'clock.svg'
 
+    function onCloseModal() {
+        setIsActivityOpen(false)
+        closeModal()
+    }
 
     async function onAddTaskComment() {
         console.log(value);
@@ -36,7 +40,7 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
 
     if (!task) return
     return <section className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
-        <button className="close-modal" onClick={closeModal}> X </button>
+        <button className="close-modal" onClick={onCloseModal}> X </button>
         <h3>{task.title}</h3>
         <div className="comments-btn">
             <TabList>

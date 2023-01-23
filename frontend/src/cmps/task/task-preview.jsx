@@ -62,10 +62,11 @@ export function TaskPreview({
         };
     }, [isOpen, isPriorityOpen, isPersonsOpen, isBoardOptionsOpen]);
 
+
     async function onAddTaskDate(date) {
         try {
-            console.log(dayjs(date));
             let taskToSave = structuredClone(task)
+            console.log('lalalal', taskToSave);
             // await addActivity(board, 'Date', 'Change date', taskToSave)
             await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
             showSuccessMsg('Task update')
@@ -92,11 +93,11 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task)
             // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
-            await addActivity(board, 'Person', 'Remove person', taskToSave)
+            // await addActivity(board, 'Person', 'Remove person', taskToSave)
             await saveTask(
                 board,
                 group.id,
-                { ...taskToSave, persons: [...taskToSave.persons.filter(currPerson => currPerson.id !== person.id)] })
+                { ...taskToSave, persons: [...taskToSave.persons.filter(currPerson => currPerson.id !== person.id)] }, 'Person', 'Remove person')
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')

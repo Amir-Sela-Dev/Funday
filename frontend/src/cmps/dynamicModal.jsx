@@ -10,7 +10,7 @@ export function DynamicModal({ lables, task, group, board, lableName }) {
             let taskToSave = structuredClone(task)
             taskToSave[lableName] = lable
             // await addActivity(board, lableName, `Add label  ${lable.txt}`, taskToSave)
-            await saveTask(board, group.id, taskToSave, lableName, `Add label  ${lable.txt}`)
+            await saveTask(board, group.id, taskToSave, lableName, `Change label to ${lable.txt}`)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
