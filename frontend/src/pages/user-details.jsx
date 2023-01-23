@@ -6,6 +6,8 @@ import { loadUser } from '../store/user.actions'
 import { store } from '../store/store'
 import { showSuccessMsg } from '../services/event-bus.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from '../services/socket.service'
+import { SideNav } from '../cmps/side-nav'
+import { Tab } from "monday-ui-react-core";
 
 export function UserDetails() {
 
@@ -29,20 +31,33 @@ export function UserDetails() {
     store.dispatch({ type: 'SET_WATCHED_USER', user })
   }
 
+  const emailUrl = 'email.svg'
+
   return (
-    <section className="user-details">
-      <h1>User Details</h1>
-      {user && <div>
-        <h3>
-          {user.fullname}
-        </h3>
-        {/* Demo for dynamic images: */}
-        <div className="user-img" style={{ backgroundImage: `url('/img/u${0}.png')` }}>
-        </div>
-        <pre>
-          {JSON.stringify(user, null, 2)}
-        </pre>
-      </div>}
+    <section className="main-user-details">
+      <SideNav />
+      <section className="user-details">
+        {user && <div>
+          <img className="user-img" src={user.imgUrl} />
+          <p>
+            {user.fullname}
+          </p>
+          <Tab className='user-details-tab' style={{ color: "  #0070e5" }} active>
+            Personal info
+          </Tab>
+        </div>}
+
+      </section>
+      <section className="user-info">
+        <p className='overview'>Overview</p>
+        {user && <div className="email-wrap flex">
+          <div className="user-details-icon-border">
+            <img className="user-details-icon mail-icon" src={require(`../assets/img/${emailUrl}`)} />
+          </div>
+          <p>Email: <span className='email'>{user.username}</span></p>
+        </div>}
+      </section>
+
     </section>
   )
 }
