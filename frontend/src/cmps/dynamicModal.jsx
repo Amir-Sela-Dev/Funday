@@ -17,7 +17,7 @@ export function DynamicModal({ lables, task, group, board, lableName }) {
     }
 
     if (!lables) return
-    return <ul className="status-picker" >
+    return <ul className="status-picker modal" >
         <div className="arrow-up"></div>
         {lables.map(lable => (<li key={lable.id}
             className='label'
