@@ -1106,6 +1106,15 @@ button {
 .task-preview .preview-files {
   width: 139px;
 }
+.task-preview .preview-files:hover .file-icon {
+  display: block;
+}
+.task-preview .preview-checkbox {
+  width: 65px;
+}
+.task-preview .preview-add-colume {
+  width: 100px;
+}
 
 .person-img {
   width: 25px;
@@ -1272,6 +1281,12 @@ button {
 }
 .task-list .task-files {
   width: 139px;
+}
+.task-list .checkbox {
+  width: 65px;
+}
+.task-list .add-colume {
+  width: 100px;
 }
 
 .task-column {
@@ -1748,6 +1763,9 @@ button {
 }
 
 .upload-preview input {
+  display: none;
+}
+.upload-preview .file-icon {
   display: none;
 }
 

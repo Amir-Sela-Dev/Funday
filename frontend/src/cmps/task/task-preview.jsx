@@ -9,7 +9,7 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
-import { File } from "monday-ui-react-core/icons";
+import { File, Check } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
 
@@ -20,7 +20,8 @@ export function TaskPreview({
     group,
     toggleModal,
     isAllSelected,
-    updateSelectedTasks }) {
+    updateSelectedTasks,
+    columes }) {
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -32,6 +33,7 @@ export function TaskPreview({
     const { RangePicker } = DatePicker;
     const [size, setSize] = useState('small');
     const [isOpen, setIsOpen] = useState(false);
+    const [isMark, setIsMark] = useState(false);
     const handleSizeChange = (e) => {
         setSize(e.target.value);
     };
@@ -67,7 +69,6 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task)
             console.log('lalalal', taskToSave);
-            // await addActivity(board, 'Date', 'Change date', taskToSave)
             await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
             showSuccessMsg('Task update')
         } catch (err) {
@@ -104,7 +105,6 @@ export function TaskPreview({
         }
     }
     function handleNameInputChange(event) {
-        console.log('length', event.target.value.length)
 
         setTaskToUpdate({ ...taskToUpdate, title: event.target.value })
     }
@@ -115,8 +115,7 @@ export function TaskPreview({
             let taskToSave = structuredClone(task)
             taskToSave.title = taskToUpdate.title
 
-            await addActivity(board, 'Text', 'Rename task', taskToSave)
-            await saveTask(board, group.id, taskToSave)
+            await saveTask(board, group.id, taskToSave, 'Text', 'Rename task')
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -141,12 +140,13 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task)
             taskToSave.file = imgUrl
-            await addActivity(board, 'File', 'Add file', taskToSave)
-            await saveTask(board, group.id, taskToSave)
+            await saveTask(board, group.id, taskToSave, 'File', 'Add file')
         } catch (err) {
             showErrorMsg('Cannot upload file')
         }
     }
+
+
 
 
 
@@ -223,7 +223,7 @@ export function TaskPreview({
             </div>
 
 
-            <div className="task-persons task-column flex align-center justify-center"
+            {columes.includes('person') && <div className="task-persons task-column flex align-center justify-center"
                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
                 {task.persons && !isPersonsOpen &&
                     task.persons.map(currPerson => {
@@ -233,17 +233,18 @@ export function TaskPreview({
                     <div className="user-preview open">
                         <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
                     </div>}
-            </div>
+            </div>}
 
-            <div className="preview-task-status  task-column"
+            {columes.includes('status') && <div className="preview-task-status  task-column"
                 onClick={() => { setIsOpen(!isOpen) }}
                 style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
                 {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
-            </div>
-            <div className="task-date task-column">
+            </div>}
+
+            {columes.includes('date') && <div className="task-date task-column">
                 {/* {(task.date - Date.now() > 0)  && 'x'} */}
                 <DatePicker
                     defaultValue={task.date ? dayjs(task.date) : ''}
@@ -253,8 +254,9 @@ export function TaskPreview({
                     format={'MMM D'}
                     suffixIcon
                 />
-            </div>
-            <div className="preview-timeline task-column">
+            </div>}
+
+            {columes.includes('timeline') && <div className="preview-timeline task-column">
                 <Space direction="vertical" >
                     <RangePicker bordered={false}
                         size={size}
@@ -263,23 +265,27 @@ export function TaskPreview({
                     // style={{ width: '70%' }} 
                     />
                 </Space>
-            </div>
+            </div>}
 
-            <div className="preview-task-status  task-column"
+            {columes.includes('priority') && <div className="preview-task-status  task-column"
                 onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
                 style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
 
                 <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
                 {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
 
-            </div>
+            </div>}
 
-            <div className="preview-files  task-column">
+            {columes.includes('files') && <div className="preview-files  task-column flex align-center justify-center">
                 {!task.file && <ImgUploader onUploaded={onUploaded} />}
                 {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
+            </div>}
+
+            {columes.includes('checkbox') && <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
+                {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
             </div>
-
-
+            }
+            <div className="preview-add-colume task-column "> </div>
 
         </div>
     )

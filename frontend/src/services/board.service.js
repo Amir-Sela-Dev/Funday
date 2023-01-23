@@ -20,6 +20,7 @@ export const boardService = {
     getDefaultUsers,
     getDefaultPriorities,
     getEmptyActivity,
+    getDefualtBoardColumes
 
 }
 
@@ -349,6 +350,10 @@ function getEmptyActivity() {
         'byMember': {},
         'task': ''
     }
+}
+
+function getDefualtBoardColumes() {
+    return ['person', 'status', 'date']
 }
 
 

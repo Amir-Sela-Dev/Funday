@@ -44,10 +44,11 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         <h3>{task.title}</h3>
         <div className="comments-btn">
             <TabList>
-                <Tab className='tab' style={{ color: "  #0070e5" }} icon={Home} active onClick={() => { setIsActivityOpen(false) }}>
+                <Tab className='tab' active style={{ backgroundolor: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(false) }}>
                     Updates
                 </Tab>
-                <Tab className='tab' style={{ color: "  #0070e5" }} icon={Home} active onClick={() => { setIsActivityOpen(true) }}>
+
+                <Tab className='tab' style={{ color: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(true) }}>
                     Activitiy Log
                 </Tab>
             </TabList>

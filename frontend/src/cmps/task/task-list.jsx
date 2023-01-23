@@ -4,12 +4,15 @@ import { TaskPreview } from "./task-preview";
 import { removeTask, saveTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
+import { Add } from "monday-ui-react-core/icons";
+import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-core";
 
 export function TaskList({ group, toggleModal }) {
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
     const [isAllSelected, setIsAllSelected] = useState(false)
     const [selectedTasks, setSelectedTasks] = useState([])
+    const [columes, setColumes] = useState(boardService.getDefualtBoardColumes())
     let { board } = useSelector((storeState) => storeState.boardModule)
 
     async function onSaveTask(event) {
@@ -58,6 +61,18 @@ export function TaskList({ group, toggleModal }) {
     function updateSelectedTasks(task) {
         setSelectedTasks([...selectedTasks, task])
     }
+
+    function onAddColume(columeName) {
+        setColumes([...columes, columeName])
+    }
+
+    function onRemoveColume(colume) {
+        let newColumes = structuredClone(columes)
+        let columeIdx = newColumes.findIndex(c => c === colume)
+        newColumes.splice(columeIdx, 1)
+        setColumes(newColumes)
+    }
+
     return (
         <div className="task-list">
 
@@ -75,12 +90,63 @@ export function TaskList({ group, toggleModal }) {
                 </div>
 
                 <div className="task-title task-column">Item</div>
-                <div className="task-persons task-column"><span>Person</span></div>
-                <div className="task-status task-column">Status</div>
-                <div className="task-date task-column">Date</div>
-                <div className="task-timeline task-column">Timeline</div>
-                <div className="task-status task-column">Priority</div>
-                <div className="task-files task-column">Files</div>
+                {columes.includes('person') && <div className="task-persons task-column"><span>Person</span></div>}
+                {columes.includes('status') && <div className="task-status task-column">Status</div>}
+                {columes.includes('date') && <div className="task-date task-column">Date</div>}
+                {columes.includes('timeline') && <div className="task-timeline task-column">Timeline</div>}
+                {columes.includes('priority') && <div className="task-status task-column">Priority</div>}
+                {columes.includes('files') && <div className="task-files task-column">Files</div>}
+                {columes.includes('checkbox') && <div className="checkbox task-column">Checkbox</div>}
+                <div className="add-colume task-column flex align-center justify-center">
+                    <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
+                    <MenuButton>
+                        <ul className={"menu-modal board-list-modal"}>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('person') }}>
+                                <p className="menu-modal-option-text" >Person</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('status') }}>
+                                <p className="menu-modal-option-text" >Status</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('date') }}>
+                                <p className="menu-modal-option-text" >Date</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('timeline') }}>
+                                <p className="menu-modal-option-text" >Timeline</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('priority') }}>
+                                <p className="menu-modal-option-text">priority</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('files') }}>
+                                <p className="menu-modal-option-text" >files</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onAddColume('checkbox') }}>
+                                <p className="menu-modal-option-text" >checkbox</p>
+                            </div>
+                        </ul>
+
+                    </MenuButton>
+                    <MenuButton>
+                        <Menu
+                            id="menu"
+                            size="medium"
+                        >
+                            <MenuTitle
+                                caption="Remove item"
+                                captionPosition="top"
+                            />
+
+                            {columes.map(colume => {
+                                return <MenuItem
+                                    icon={function noRefCheck() { }}
+                                    iconType="SVG"
+                                    onClick={() => { onRemoveColume(colume) }}
+                                    title={`${colume}`}
+                                />
+                            })}
+
+                        </Menu>
+                    </MenuButton>
+                </div>
             </div>
 
             {group.tasks.map(currTask => {
@@ -95,6 +161,7 @@ export function TaskList({ group, toggleModal }) {
                     toggleModal={toggleModal}
                     isAllSelected={isAllSelected}
                     updateSelectedTasks={updateSelectedTasks}
+                    columes={columes}
                 />
             })}
 
@@ -117,9 +184,7 @@ export function TaskList({ group, toggleModal }) {
                     />
                 </form>
             </div>
-            {/* <div>
-                <button onClick={() => onDuplicateSelectedTasks(true)}>Duplicate to task</button>
-            </div> */}
+
         </div>
     )
 }
