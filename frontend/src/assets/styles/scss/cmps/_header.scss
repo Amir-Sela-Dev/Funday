@@ -6,21 +6,21 @@
     margin-bottom: 20px;
 
     .main-logo {
-        margin-right: 0;
+        margin-right: -6px;
+        width: 49px;
+        height: 49px;
     }
 
     h1 {
         margin: 0;
         padding: 0;
-        font-family: Figtree;
+        font-family: Poppins-Bold;
         font-size: 40px;
         color: black;
-        letter-spacing: 0.5;
+        letter-spacing: -2.5px;
     }
 
     .user-info {
-        // background-color: $clr2;
-        // padding: 2px 8px;
         padding-left: 100px;
         color: $clr1;
 
