@@ -152,7 +152,6 @@ export function TaskPreview({
 
 
 
-    console.log(task.status.txt);
 
     // function showTimeLine() {
     //     return <DialogContentContainer className={styles.datepickerDialogContentContainer}>

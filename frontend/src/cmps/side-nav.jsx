@@ -43,7 +43,7 @@ export function SideNav() {
 
             <div className="low-nav flex">
 
-                <div class="logo-hr"></div>
+                <div className="logo-hr"></div>
 
                 <img className="component-icon" src={require(`../assets/img/${componemtUrl}`)} />
 
