@@ -917,17 +917,6 @@ button {
 .work-space .close {
   transform: translateX(100%);
 }
-.work-space .dark-screen {
-  z-index: 60;
-  background-color: rgba(0, 0, 0, 0.425);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: auto;
-  bottom: auto;
-}
 .work-space .main-modal {
   position: relative;
   background-color: #fff;
@@ -1031,6 +1020,18 @@ button {
 .search-board-icon {
   height: 20px;
   width: 20px;
+}
+
+.dark-screen {
+  z-index: 60;
+  background-color: rgba(0, 0, 0, 0.425);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
 }
 
 .task-preview {
@@ -1410,7 +1411,7 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  width: 691px;
+  width: 608px;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1882352941);
@@ -1420,6 +1421,9 @@ button {
   display: none;
   flex-direction: column;
   color: #323338;
+  z-index: 70;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .task-modal-open {
@@ -1428,12 +1432,18 @@ button {
   flex-direction: column;
   color: #323338;
 }
+.task-modal-open .dark-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 .task-modal-open h3 {
   margin-inline-start: 4px;
   margin-bottom: 10px;
 }
-.task-modal-open button {
-  align-items: flex-start;
+.task-modal-open .close-btn {
+  width: 30px;
+  height: 30px;
 }
 .task-modal-open hr {
   color: rgba(50, 51, 56, 0.2941176471);
@@ -1511,15 +1521,15 @@ button {
   margin-bottom: 20px;
 }
 .task-modal-open .user {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   margin-inline-end: 10px;
 }
 .task-modal-open .is-active {
   background-color: #00c875;
-  height: 10px;
-  width: 10px;
+  height: 9px;
+  width: 9px;
   border-radius: 50%;
   display: inline-block;
 }
@@ -1529,6 +1539,8 @@ button {
 }
 .task-modal-open a {
   margin-inline-end: 4px;
+  font-size: 16px;
+  font-family: Figtree;
 }
 .task-modal-open .clock-img {
   width: 15px;
@@ -1536,7 +1548,7 @@ button {
   margin-inline-end: 2px;
 }
 .task-modal-open .date {
-  margin-inline-end: 68px;
+  margin-inline-end: 20px;
   font-size: 14px;
 }
 .task-modal-open ul {

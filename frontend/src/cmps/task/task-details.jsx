@@ -6,8 +6,8 @@ import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
 import { utilService } from "../../services/util.service";
 import dayjs from "dayjs"
-import { Tab, TabList } from "monday-ui-react-core";
-import { Home } from "monday-ui-react-core/icons";
+import { Tab, TabList, IconButton } from "monday-ui-react-core";
+import { Home, Close } from "monday-ui-react-core/icons";
 import { TaskUpdates } from "./task-updates";
 import { TaskActivityLog } from "./task-activity-log";
 var weekday = require('dayjs/plugin/weekday')
@@ -22,7 +22,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     const clock = 'clock.svg'
 
     function onCloseModal() {
-        setIsActivityOpen(false)
         closeModal()
     }
 
@@ -38,27 +37,48 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         setValue('')
     }
 
+    function formatTime(timestamp) {
+        const time = timestamp;
+        const difference = time - timestamp;
+        let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        if (days === 0) {
+            return "now";
+        }
+        console.log(days);
+        return `${days}d`;
+    }
+
+
     if (!task) return
-    return <section className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
-        <button className="close-modal" onClick={onCloseModal}> X </button>
-        <h3>{task.title}</h3>
-        <div className="comments-btn">
-            <TabList>
-                <Tab className='tab' active style={{ backgroundolor: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(false) }}>
-                    Updates
-                </Tab>
+    return (
+        <section>
+            {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
 
-                <Tab className='tab' style={{ color: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(true) }}>
-                    Activitiy Log
-                </Tab>
-            </TabList>
-        </div>
-        <hr />
+            <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
+                <IconButton
+                    ariaLabel="Close"
+                    icon={Close}
+                    onClick={onCloseModal}
+                    size="xxs"
+                    className="close-btn"
+                />
+                <h3>{task.title}</h3>
+                <div className="comments-btn">
+                    <TabList>
+                        <Tab className='tab' active style={{ backgroundolor: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(false) }}>
+                            Updates
+                        </Tab>
 
-        {!isActivityOpen && <TaskUpdates board={board} group={group} task={task} />}
+                        <Tab className='tab' style={{ color: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(true) }}>
+                            Activitiy Log
+                        </Tab>
+                    </TabList>
+                </div>
+                <hr />
+                {!isActivityOpen && <TaskUpdates board={board} group={group} task={task} formatTime={formatTime} />}
 
-        {isActivityOpen && <TaskActivityLog board={board} group={group} task={task} />}
-        {/* <div className="txt-editor-container">
+                {isActivityOpen && <TaskActivityLog board={board} group={group} task={task} formatTime={formatTime} />}
+                {/* <div className="txt-editor-container">
             <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
         </div>
         <button className="update-btn" onClick={onAddTaskComment}>Update</button>
@@ -88,5 +108,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
             <img className="emty-modal-img" src={require(`/src/assets/img/${emtyModalImg}`)} />
         </div>
         }     */}
-    </section>
+            </div>
+        </section>)
 }
