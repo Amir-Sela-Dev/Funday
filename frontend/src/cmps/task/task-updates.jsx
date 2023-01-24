@@ -32,8 +32,10 @@ export function TaskUpdates({ board, group, task = '' }) {
         <button className="update-btn" onClick={onAddTaskComment}>Update</button>
 
         <div className="main-details-container">
-            {task.comments.map(comment => {
-                return <div className="comment flex">
+            {task.comments.map((comment, idx) => {
+                return <div className="comment flex"
+                    key={idx}
+                >
 
                     <div className="user-line flex justify-between">
                         <div className="flex align-center">

@@ -6,12 +6,24 @@ export const utilService = {
     randomTime,
     getDateDifference,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    makeStringId
 }
 
 function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+
+    return txt
+}
+
+function makeStringId(length = 5) {
+    var txt = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
     for (var i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))
@@ -39,7 +51,7 @@ function getRandomIntInclusive(min, max) {
 
 function randomTime() {
     const HOUR = 1000 * 60 * 60
-    
+
     const DAY = 1000 * 60 * 60 * 24
     const WEEK = 1000 * 60 * 60 * 24 * 7
 
@@ -47,14 +59,14 @@ function randomTime() {
     return Date.now() + getRandomIntInclusive(0, 1) ? timeDifference : (-timeDifference)
 }
 
-function getDateDifference(date){
+function getDateDifference(date) {
     return Date.now() - date
 }
-function debounce(func, timeout = 300){
+function debounce(func, timeout = 300) {
     let timer
     return (...args) => {
-      clearTimeout(timer)
-      timer = setTimeout(() => { func.apply(this, args) }, timeout)
+        clearTimeout(timer)
+        timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
 }
 

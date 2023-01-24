@@ -22,7 +22,7 @@ function Contacts() {
 function Projects() {
     const [projs, setProjs] = useState(['Puki Proj', 'Muki Proj'])
     const projList = projs.map((proj, idx) => (
-        <article className="proj-preview" key={proj} onClick={(ev) => {
+        <article className="proj-preview" key={idx} onClick={(ev) => {
             ev.stopPropagation();
             setProjs(projs.filter(p => p !== proj))
         }}>

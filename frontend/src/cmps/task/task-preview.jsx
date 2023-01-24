@@ -12,6 +12,7 @@ import { DynamicModal } from "../dynamicModal"
 import { File, Check } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
+import { Draggable } from "react-beautiful-dnd"
 
 
 export function TaskPreview({
@@ -22,6 +23,7 @@ export function TaskPreview({
     toggleModal,
     isAllSelected,
     updateSelectedTasks,
+    index,
     columes }) {
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
@@ -173,123 +175,131 @@ export function TaskPreview({
     const style = { color: ' rgba(0, 0, 0, 0.192)' };
     style.color = ' rgba(0, 0, 0, 0.192)'
     return (
-        <div
-            className="task-preview flex"
-        >
-            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
-                <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
-                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
-                    />
-                    <p className="menu-modal-option-text">Duplicate</p>
-                </div>
-                <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
-                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
-                    />
-                    <p className="menu-modal-option-text" >Delete</p>
-                </div>
-            </ul>}
+        <Draggable draggableId={task.id} index={index}>
+            {(provided) => (
+                <div
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                   
+                    ref={provided.innerRef}
+                    className="task-preview flex"
+                >
+                    {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
+                        <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
+                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                            />
+                            <p className="menu-modal-option-text">Duplicate</p>
+                        </div>
+                        <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
+                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                            />
+                            <p className="menu-modal-option-text" >Delete</p>
+                        </div>
+                    </ul>}
 
-            {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                    {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={() => { openOptionModal() }} />} */}
 
-            <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                onClick={() => { openOptionModal() }} />
+                    <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                        onClick={() => { openOptionModal() }} />
 
-            <div
-                className="checkbox-column task-column"
-                onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
-                <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }} />
-                <input className='task-checkbox' type="checkbox"
-                    checked={isAllSelected || isTaskSelected || false}
-                    onChange={ev => {
-                        ev.stopPropagation()
-                        if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
-                        setIsTaskSelected(!isTaskSelected)
-                    }} />
-            </div>
+                    <div
+                        className="checkbox-column task-column"
+                        onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
+                        <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }} />
+                        <input className='task-checkbox' type="checkbox"
+                            checked={isAllSelected || isTaskSelected || false}
+                            onChange={ev => {
+                                ev.stopPropagation()
+                                if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
+                                setIsTaskSelected(!isTaskSelected)
+                            }} />
+                    </div>
 
-            <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                <form onSubmit={onRenameTask} >
-                    <input
-                        className="task-title-input"
-                        type="text"
-                        value={taskToUpdate.title}
-                        onChange={handleNameInputChange}
-                        onBlur={ev => { onRenameTask(ev) }}
-                        onClick={ev => { ev.stopPropagation() }}
-                    />
-                </form>
-                <div className="comments-bubble task-column">
-                    <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" />
-                    <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>
-                </div>
-            </div>
+                    <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
+                        <form onSubmit={onRenameTask} >
+                            <input
+                                className="task-title-input"
+                                type="text"
+                                value={taskToUpdate.title}
+                                onChange={handleNameInputChange}
+                                onBlur={ev => { onRenameTask(ev) }}
+                                onClick={ev => { ev.stopPropagation() }}
+                            />
+                        </form>
+                        <div className="comments-bubble task-column">
+                            <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" />
+                            <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>
+                        </div>
+                    </div>
 
 
-            {columes.includes('person') && <div className="task-persons task-column flex align-center justify-center"
-                onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
-                {task.persons && !isPersonsOpen &&
-                    task.persons.map(currPerson => {
-                        return <TaskPerson key={currPerson.id} person={currPerson} />
-                    })}
-                {isPersonsOpen &&
-                    <div className="user-preview open">
-                        <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
+                    {columes.includes('person') && <div className="task-persons task-column flex align-center justify-center"
+                        onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
+                        {task.persons && !isPersonsOpen &&
+                            task.persons.map(currPerson => {
+                                return <TaskPerson key={currPerson.id} person={currPerson} />
+                            })}
+                        {isPersonsOpen &&
+                            <div className="user-preview open">
+                                <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
+                            </div>}
                     </div>}
-            </div>}
 
-            {columes.includes('status') && <div className="preview-task-status  task-column"
-                onClick={() => { setIsOpen(!isOpen) }}
-                style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
+                    {columes.includes('status') && <div className="preview-task-status  task-column"
+                        onClick={() => { setIsOpen(!isOpen) }}
+                        style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
-                <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
+                        <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
-                {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
-            </div>}
+                        {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
+                    </div>}
 
-            {columes.includes('date') && <div className="task-date task-column">
-                {/* {(task.date - Date.now() > 0)  && 'x'} */}
-                <DatePicker
-                    defaultValue={task.date ? dayjs(task.date) : ''}
-                    bordered={false}
-                    onChange={onAddTaskDate}
-                    placeholder=""
-                    format={'MMM D'}
-                    suffixIcon
-                />
-            </div>}
+                    {columes.includes('date') && <div className="task-date task-column">
+                        {/* {(task.date - Date.now() > 0)  && 'x'} */}
+                        <DatePicker
+                            defaultValue={task.date ? dayjs(task.date) : ''}
+                            bordered={false}
+                            onChange={onAddTaskDate}
+                            placeholder=""
+                            format={'MMM D'}
+                            suffixIcon
+                        />
+                    </div>}
 
-            {columes.includes('timeline') && <div className="preview-timeline task-column">
-                <Space direction="vertical" >
-                    <RangePicker bordered={false}
-                        size={size}
-                        defaultValue={dayjs('2015/01', monthFormat)}
-                        format={'MMM D'}
-                    // style={{ width: '70%' }} 
-                    />
-                </Space>
-            </div>}
+                    {columes.includes('timeline') && <div className="preview-timeline task-column">
+                        <Space direction="vertical" >
+                            <RangePicker bordered={false}
+                                size={size}
+                                defaultValue={dayjs('2015/01', monthFormat)}
+                                format={'MMM D'}
+                            // style={{ width: '70%' }} 
+                            />
+                        </Space>
+                    </div>}
 
-            {columes.includes('priority') && <div className="preview-task-status  task-column"
-                onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
-                style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
+                    {columes.includes('priority') && <div className="preview-task-status  task-column"
+                        onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
+                        style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
 
-                <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
-                {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
+                        <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
+                        {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
 
-            </div>}
+                    </div>}
 
-            {columes.includes('files') && <div className="preview-files  task-column flex align-center justify-center">
-                {!task.file && <ImgUploader onUploaded={onUploaded} />}
-                {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
-            </div>}
+                    {columes.includes('files') && <div className="preview-files  task-column flex align-center justify-center">
+                        {!task.file && <ImgUploader onUploaded={onUploaded} />}
+                        {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
+                    </div>}
 
-            {columes.includes('checkbox') && <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
-                {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
-            </div>
-            }
-            <div className="preview-add-colume task-column "> </div>
+                    {columes.includes('checkbox') && <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
+                        {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
+                    </div>
+                    }
+                    <div className="preview-add-colume task-column "> </div>
 
-        </div>
+                </div>
+            )}
+        </Draggable>
     )
 }

@@ -29,7 +29,7 @@ export function TaskActivityLog({ board, group, task = '' }) {
         </div>
         <div className="main-activity-container">
             {activities.map(activity => {
-                return <div className="activity">
+                return <div className="activity" key={activity.id}>
                     <div className="wrapper flex">
                         <div className="first-details flex align-center">
                             <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' alt="" className="user" />

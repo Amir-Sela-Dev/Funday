@@ -55,8 +55,7 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         </div>
         <hr />
 
-        {!isActivityOpen && <TaskUpdates board={board} group={group} task={task} />
-        }
+        {!isActivityOpen && <TaskUpdates board={board} group={group} task={task} />}
 
         {isActivityOpen && <TaskActivityLog board={board} group={group} task={task} />}
         {/* <div className="txt-editor-container">

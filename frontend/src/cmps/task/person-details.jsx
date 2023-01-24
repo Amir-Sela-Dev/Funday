@@ -25,7 +25,7 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                 {persons &&
                     persons.map((currPerson, currIdx) => {
                         return (
-                            <div className="person-item flex align-center" onClick={() => onRemoveTaskPerson(currPerson)}>
+                            <div key={currPerson.id} className="person-item flex align-center" onClick={() => onRemoveTaskPerson(currPerson)}>
                                 <img
                                     className="person-img"
                                     src={require(`/src/assets/img/user/${currPerson.imgUrl}`)} />
@@ -46,6 +46,7 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                     {defaultUsers.map(currPerson => {
                         return (
                             <div className="person-item flex align-center"
+                                key={currPerson.id}
                                 onClick={() => { onAddTaskPerson(currPerson) }}>
                                 <img src={require(`/src/assets/img/user/${currPerson.imgUrl}`)} />
                                 <span>{currPerson.fullname}</span>

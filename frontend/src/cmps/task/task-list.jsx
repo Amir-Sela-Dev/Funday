@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { Add } from "monday-ui-react-core/icons";
 import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-core";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 
 export function TaskList({ group, toggleModal }) {
 
@@ -75,6 +75,7 @@ export function TaskList({ group, toggleModal }) {
     }
 
     return (
+
         <div className="task-list">
 
             <div className="task-title-row flex">
@@ -136,8 +137,9 @@ export function TaskList({ group, toggleModal }) {
                                 captionPosition="top"
                             />
 
-                            {columes.map(colume => {
+                            {columes.map((colume, idx) => {
                                 return <MenuItem
+                                    key={idx}
                                     icon={function noRefCheck() { }}
                                     iconType="SVG"
                                     onClick={() => { onRemoveColume(colume) }}
@@ -150,23 +152,41 @@ export function TaskList({ group, toggleModal }) {
                 </div>
             </div>
 
+            <Droppable droppableId="tasksList">
+                {(provided) => (
+
+                    <div className="drag-tasks-container"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+
+                    >
+                        {
+                            group.tasks.map((currTask, idx) => {
+                                return (
+                                    <TaskPreview
+                                        index={idx}
+                                        key={currTask.id}
+                                        task={currTask}
+                                        onRemoveTask={onRemoveTask}
+                                        setNewTask={setNewTask}
+                                        onTitleInputChange={handleInputChange}
+                                        group={group}
+                                        board={board}
+                                        toggleModal={toggleModal}
+                                        isAllSelected={isAllSelected}
+                                        updateSelectedTasks={updateSelectedTasks}
+                                        columes={columes}
+                                    />
+                                )
+                            })
+                        }
+                        {provided.placeholder}
+                    </div>
+
+                )}
+            </Droppable>
 
 
-            {group.tasks.map(currTask => {
-                return <TaskPreview
-                    key={currTask.id}
-                    task={currTask}
-                    onRemoveTask={onRemoveTask}
-                    setNewTask={setNewTask}
-                    onTitleInputChange={handleInputChange}
-                    group={group}
-                    board={board}
-                    toggleModal={toggleModal}
-                    isAllSelected={isAllSelected}
-                    updateSelectedTasks={updateSelectedTasks}
-                    columes={columes}
-                />
-            })}
 
 
             <div className="add-task-wrap flex">
@@ -190,5 +210,6 @@ export function TaskList({ group, toggleModal }) {
             </div>
 
         </div>
+
     )
 }
