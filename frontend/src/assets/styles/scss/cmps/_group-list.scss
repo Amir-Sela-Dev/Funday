@@ -19,14 +19,13 @@
     @include for-mobile-layout {
         padding-inline-start: 15px;
     }
-
 }
 
 .group-list-main-hr {
     width: 95%;
     margin-left: 0;
     margin-top: 0;
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         display: none;
     }
 }
@@ -35,6 +34,10 @@
     height: 32px;
     margin-bottom: -5px;
     margin-top: 15px;
+
+    .bar-icon {
+        opacity: 0.75;
+    }
 
     button {
         font-size: 14px;
@@ -96,7 +99,6 @@
             margin-top: 8px;
             width: 16px;
         }
-
     }
 
     .new-group-btn:hover {

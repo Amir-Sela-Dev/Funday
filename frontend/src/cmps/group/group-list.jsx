@@ -98,14 +98,14 @@ export function GroupList({ board, toggleModal, setFilter }) {
                 </div>}
 
                 {/* <Button leftIcon={Add}>Add</Button> */}
-                <Button className={`search-btn-board-details`}
+                <Button className={`bar-icon search-btn-board-details`}
                     onClick={toggleSearchBar}
                     style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
                     kind={Button.kinds.TERTIARY} leftIcon={Search}>
                     Search
                 </Button>
 
-                <div className={`group-search-filter flex`}
+                <div className={`bar-icon group-search-filter flex`}
                     style={{ display: isSeachClicked ? 'flex' : 'none' }}>
                     <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
                     <input type="text"
@@ -114,10 +114,10 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         name='title' />
                 </div>
 
-                <Button className='bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
                     Person
                 </Button>
-                <Button className='bar-filter' kind={Button.kinds.TERTIARY}
+                <Button className='bar-icon bar-filter' kind={Button.kinds.TERTIARY}
                     onClick={toggleFilterModal}
                     leftIcon={Filter}>
                     Filter
@@ -125,7 +125,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         <LabelSelect handleLableChange={handleLableChange} lables={lables} />
                     </div>}
                 </Button>
-                <Button className='bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
                     Sort
                 </Button>
             </Flex>

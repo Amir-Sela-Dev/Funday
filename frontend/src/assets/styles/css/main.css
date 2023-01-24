@@ -711,6 +711,11 @@ button {
   z-index: 2;
   justify-content: space-between;
 }
+.side-nav .high-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .main-logo {
   height: 36px;
@@ -729,6 +734,7 @@ button {
   height: 25px;
   width: 29px;
   margin: 18px 15px;
+  margin-top: 18px;
 }
 
 .component-icon {
@@ -802,6 +808,7 @@ button {
   transition: transform 1s;
   color: #323338;
   z-index: 1;
+  position: fixed;
 }
 .work-space.close-workspace {
   transform: translateX(-225px);
@@ -1123,6 +1130,7 @@ button {
 }
 .task-preview > .task-column {
   transition: background-color 0.15s ease-in-out;
+  background-color: white;
 }
 .task-preview .comments-bubble {
   display: flex;
@@ -1641,6 +1649,9 @@ button {
   height: 32px;
   margin-bottom: -5px;
   margin-top: 15px;
+}
+.board-actions .bar-icon {
+  opacity: 0.75;
 }
 .board-actions button {
   font-size: 14px;

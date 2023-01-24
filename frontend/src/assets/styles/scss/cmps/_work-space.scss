@@ -11,6 +11,7 @@
     transition: transform 1s;
     color: $clr1;
     z-index: 1;
+    position: fixed;
 
     &.close-workspace {
         transform: translateX(-225px);
@@ -24,7 +25,6 @@
             .arrow-left-icon {
                 margin-right: 5px;
             }
-
         }
 
         .arrow-left-icon {
@@ -32,12 +32,8 @@
             transition: 0.1s;
         }
 
-
-
-
         &:hover {
             transform: translateX(0);
-
         }
     }
 
@@ -45,7 +41,7 @@
         justify-content: space-between;
         align-items: center;
 
-        &>span {
+        & > span {
             font-size: em(14px, 1em);
             font-weight: 400;
             color: $placeholder-on-secondary-color;
@@ -89,7 +85,6 @@
         .arrow-left-icon {
             margin-right: 15px;
         }
-
     }
 
     .main-icon {
@@ -106,6 +101,7 @@
     }
 
     .main-workspace-dropdown {
+        // display: none;
         border: 1px solid $clr1;
         border-radius: 0.25rem;
         align-items: center;
@@ -305,8 +301,6 @@
         }
     }
 }
-
-
 
 .search-board-icon {
     height: 20px;
