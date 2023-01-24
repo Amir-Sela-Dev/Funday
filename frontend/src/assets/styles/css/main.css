@@ -1073,9 +1073,6 @@ button {
 .task-preview:hover .task-option-icon {
   opacity: 1;
 }
-.task-preview .checkbox-column {
-  margin-inline-start: 8px;
-}
 .task-preview .task-option-icon {
   margin-inline-start: -31px;
   width: 25px;
@@ -1420,16 +1417,19 @@ button {
   display: inline-block;
   height: 36px;
   width: 6px;
+  margin-inline-start: 8px;
 }
 
 .first-tag {
   border-radius: 2rem 0 0 0;
+  margin-left: 0;
 }
 
 .last-tag {
   border-radius: 0 0 0 1rem;
   opacity: 0.5;
-  height: 35px;
+  height: 36.4px;
+  margin-left: 0;
 }
 
 .task-details-modal {
