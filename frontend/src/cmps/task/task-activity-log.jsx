@@ -33,7 +33,7 @@ export function TaskActivityLog({ board, group, task = '' }) {
         </div>
         <div className="main-activity-container">
             {activities.map(activity => {
-                return <div className="activity">
+                return <div className="activity" key={activity.id}>
                     <div className="wrapper flex">
                         <div className="first-details flex align-center">
                             <img src={activity.byMember.imgUrl} alt="" className="user" />
