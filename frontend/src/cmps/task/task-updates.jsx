@@ -28,7 +28,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
 
 
     if (!task) return
-    return <section className='task-updates'>
+    return <section className='task-updates flex'>
         <div className="txt-editor-container">
             <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
         </div>

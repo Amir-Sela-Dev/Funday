@@ -1431,7 +1431,7 @@ button {
   width: 608px;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1882352941);
+  box-shadow: -3px 0px 2px 9px rgba(33, 33, 33, 0.77);
   padding: 20px;
   transform: translateX(100%);
   transition: all 0.4s;
@@ -1443,16 +1443,15 @@ button {
   height: 100vh;
 }
 
+.board-details .dark-screen:hover {
+  opacity: 0.1;
+}
+
 .task-modal-open {
   transform: translateX(0);
   display: flex;
   flex-direction: column;
   color: #323338;
-}
-.task-modal-open .dark-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 .task-modal-open h3 {
   margin-inline-start: 4px;
@@ -1461,11 +1460,16 @@ button {
 .task-modal-open .close-btn {
   width: 30px;
   height: 30px;
+  margin-bottom: 15px;
 }
 .task-modal-open hr {
   color: rgba(50, 51, 56, 0.2941176471);
   height: 1px;
   width: 98%;
+}
+.task-modal-open .task-updates {
+  flex-direction: column;
+  justify-content: center;
 }
 .task-modal-open .comments-btn {
   display: flex;
@@ -1479,14 +1483,16 @@ button {
   margin: 0;
   font-size: 14px;
 }
+.task-modal-open .comments-btn .tab .tab-inner {
+  padding: 0;
+  padding-inline-end: 15px;
+}
 .task-modal-open .comments-btn .tab .white-home {
   width: 15px;
   height: 15px;
 }
 .task-modal-open .txt-editor-container {
   height: 200px;
-  margin-bottom: 16px;
-  margin-inline-start: 4px;
 }
 .task-modal-open .txt-editor {
   height: 150px;
@@ -1505,6 +1511,7 @@ button {
 }
 .task-modal-open .comment > * {
   margin-inline-start: 16px;
+  font-size: 16px;
 }
 .task-modal-open .close-modal {
   align-self: flex-start;
@@ -1525,6 +1532,7 @@ button {
 }
 .task-modal-open .update-btn {
   align-self: flex-end;
+  justify-self: center;
   display: flex;
   align-items: center;
   background-color: #0070e5;
@@ -1535,7 +1543,7 @@ button {
   margin: 0;
   width: 62.4063px;
   height: 31.9844px;
-  margin-bottom: 20px;
+  margin-block: 15px;
 }
 .task-modal-open .user {
   width: 25px;
