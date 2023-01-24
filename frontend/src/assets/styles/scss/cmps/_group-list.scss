@@ -26,12 +26,13 @@
 
 .board-actions {
     height: 32px;
-    margin-bottom: -5px;
-    margin-top: 15px;
+    // margin-bottom: -5px;
+    // margin-top: 15px;
 
     button {
         font-size: 14px;
         padding: 0;
+        padding-inline: 10px;
         --element-width: 20px;
         margin-left: 10px;
     }

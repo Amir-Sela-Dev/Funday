@@ -255,7 +255,8 @@
     background: transparent;
     padding-inline-start: 2px;
     padding-bottom: 3px;
-
+    color: $primary-text-color;
+    
     &:hover,
     &:focus {
         outline: 1px solid rgb(100, 100, 100);

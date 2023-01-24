@@ -1228,6 +1228,7 @@ button {
   background: transparent;
   padding-inline-start: 2px;
   padding-bottom: 3px;
+  color: #323338;
 }
 .task-title-input:hover, .task-title-input:focus {
   outline: 1px solid rgb(100, 100, 100);
@@ -1339,9 +1340,9 @@ button {
 }
 .task-date .ant-picker input {
   text-align: center;
-  padding-inline-start: 15px;
+  padding-inline-start: 2px;
   font-size: 13px;
-  color: #666666;
+  color: #323338;
 }
 
 .add-task-wrap .task-checkbox {
@@ -1586,12 +1587,11 @@ button {
 
 .board-actions {
   height: 32px;
-  margin-bottom: -5px;
-  margin-top: 15px;
 }
 .board-actions button {
   font-size: 14px;
   padding: 0;
+  padding-inline: 10px;
   --element-width: 20px;
   margin-left: 10px;
 }
