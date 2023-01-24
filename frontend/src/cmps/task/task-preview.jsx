@@ -71,7 +71,6 @@ export function TaskPreview({
     async function onAddTaskDate(date) {
         try {
             let taskToSave = structuredClone(task)
-            console.log('lalalal', taskToSave);
             await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
             showSuccessMsg('Task update')
         } catch (err) {
@@ -210,7 +209,7 @@ export function TaskPreview({
             </div>
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }}/>
+                <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
                 <form onSubmit={onRenameTask} >
                     <input
                         className="task-title-input"

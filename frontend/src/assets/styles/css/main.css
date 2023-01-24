@@ -789,6 +789,18 @@ button {
 .work-space.close-workspace {
   transform: translateX(-225px);
 }
+.work-space.close-workspace .toggle-menu-btn:hover {
+  width: 35px;
+  background-color: #0073ea;
+  transform: translateX(20%);
+}
+.work-space.close-workspace .toggle-menu-btn:hover .arrow-left-icon {
+  margin-left: 16.5px;
+}
+.work-space.close-workspace .arrow-left-icon {
+  transform: scaleX(-1);
+  transition: 0.2s;
+}
 .work-space.close-workspace:hover {
   transform: translateX(0);
 }
