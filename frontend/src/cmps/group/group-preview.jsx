@@ -27,7 +27,6 @@ export function GroupPreview({ group, toggleModal, onRemoveGroup }) {
         setGroupToSend({ ...groupToSend, title: event.target.value })
     }
 
-
     function openOptionModal() {
         setIsBoardOptionsOpen(!isBoardOptionsOpen)
     }
