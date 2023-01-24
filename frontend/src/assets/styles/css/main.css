@@ -185,6 +185,7 @@ html {
 
 body {
   font-size: 1.125rem;
+  font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
   margin: 0;
   margin: auto;
 }
@@ -195,7 +196,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Poppins-Regular;
   margin: 0 0 0.6em;
   line-height: 1;
 }
@@ -315,6 +315,21 @@ button {
   width: 264px;
   opacity: 0.3;
   margin: 1px;
+}
+
+.list-item-icon {
+  margin-right: 0;
+  width: 19px;
+  height: 19px;
+  transform: translateY(-2px);
+}
+.list-item-icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.list-item span {
+  padding-inline-start: 7px;
 }
 
 .fancy-box {
@@ -666,7 +681,7 @@ button {
 .work-space {
   grid-area: work-space;
   background-color: #f6f7fb;
-  padding: 8px 16px;
+  padding: 8px 12px;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -674,7 +689,6 @@ button {
   left: 66px;
   border-right: 1px solid rgba(0, 0, 0, 0.102);
   transition: transform 1s;
-  font-family: Figtree;
   color: #323338;
   z-index: 1;
 }
@@ -687,6 +701,12 @@ button {
 .work-space .workspace-header {
   justify-content: space-between;
   align-items: center;
+}
+.work-space .workspace-header > span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #676879;
+  line-height: 21px;
 }
 .work-space .toggle-nemu-btn-wrap {
   position: relative;
@@ -745,14 +765,15 @@ button {
   top: 12px;
   left: 17px;
 }
-.work-space .main-workspace-dropdown h3 {
+.work-space .main-workspace-dropdown span {
   color: #323338;
+  font-weight: 600;
+  font-size: 16px;
   display: inline-block;
   margin: 0;
   line-height: 24px;
-  font-size: 0.85rem;
   padding-left: 4px;
-  padding-right: 48px;
+  padding-right: 40px;
 }
 .work-space .main-workspace-dropdown .arrow-down-icon {
   height: 18px;
@@ -857,26 +878,31 @@ button {
 }
 .work-space .board-search {
   display: flex;
+  flex: 1;
 }
 .work-space .board-search::after {
   outline: #0073ea 1px solid;
+}
+.work-space .board-search:focus {
+  background-color: red;
 }
 .work-space .board-search .search-board-icon {
   position: absolute;
   padding-top: 2px;
 }
 .work-space .board-search input {
-  font-family: Figtree;
+  font-family: inherit;
+  font-size: 14px;
   margin: 0;
-  padding-left: 27px;
+  padding-left: 9px;
   border: none;
-  background-color: #f6f7fb;
+  background-color: transparent;
   width: 100%;
   height: 30px;
   padding-top: 3px;
 }
 .work-space .board-search input:focus {
-  outline: #4d99f8 1px solid;
+  outline: none;
   border-radius: 0.2rem;
 }
 .work-space .board-filter,
@@ -887,15 +913,7 @@ button {
 .work-space .board-add:hover {
   background-color: #dcdfec;
   border-radius: 0.2rem;
-}
-
-.workspace-txt {
-  font-size: 12.5px;
-  font-weight: 400;
-  color: #676879;
-  padding-top: 5px;
-  padding-bottom: 8px;
-  margin-left: -3px;
+  cursor: pointer;
 }
 
 .search-board-icon {
@@ -1105,7 +1123,7 @@ button {
   margin-inline-start: 5px;
   width: 95%;
   background: transparent;
-  padding-inline-start: 27px;
+  padding-inline-start: 2px;
   padding-bottom: 3px;
 }
 .task-title-input:hover, .task-title-input:focus {
@@ -1117,7 +1135,7 @@ button {
 }
 
 .task-txt {
-  width: 360.5px;
+  width: 360px;
   align-items: center;
   justify-content: space-between;
 }
@@ -1181,7 +1199,7 @@ button {
 }
 
 .task-column {
-  border: 0.5px solid rgba(0, 0, 0, 0.192);
+  outline: 0.5px solid rgba(0, 0, 0, 0.192);
   border-collapse: collapse;
   height: 36px;
   line-height: 36px;
@@ -1199,6 +1217,7 @@ button {
 
 .task-checkbox {
   transform: scale(1.3);
+  margin: auto;
   cursor: pointer;
 }
 .task-checkbox.disabled {
@@ -1233,6 +1252,7 @@ button {
   border: none;
   padding-left: 16px;
   padding-top: 2px;
+  float: left;
 }
 
 .colored-tag {
@@ -1576,16 +1596,28 @@ button {
 
 .board-preview-link {
   font-size: 14px;
-  padding-left: 8px;
+  letter-spacing: -0.2px;
   color: #323338;
+}
+
+.board-item {
+  padding-inline: 6px;
+  padding-block: 0;
+  justify-content: space-between;
 }
 
 .board-wrap {
   align-items: center;
   display: flex;
+  flex-basis: 81.415%;
 }
 .board-wrap a {
   padding-left: 10px;
+}
+
+.board-menu-icon {
+  width: 26px;
+  height: 26px;
 }
 
 .board-details {

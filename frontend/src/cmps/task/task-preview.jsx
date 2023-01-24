@@ -12,6 +12,8 @@ import { DynamicModal } from "../dynamicModal"
 import { File } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
+import { ListItemIcon } from "monday-ui-react-core"
+import { DropdownChevronRight } from "monday-ui-react-core/icons";
 
 export function TaskPreview({
     task,
@@ -170,6 +172,7 @@ export function TaskPreview({
             </div>
 
             <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
+                <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }}/>
                 <form onSubmit={onRenameTask} >
                     <input
                         className="task-title-input"

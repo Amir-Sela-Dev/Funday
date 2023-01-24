@@ -47,23 +47,37 @@
     }
 
     &:hover {
-        background-color: #dcdfec;
+        background-color: $primary-background-hover-color;
         border-radius: 0.2rem;
         cursor: pointer;
     }
 }
 
 .board-preview-link {
-    font-size: 14px;
-    padding-left: 8px;
-    color: #323338;
+    font-size: em(14px, 1em);
+    // line-height: em(21px, 1em);
+    letter-spacing: -0.2px;
+    color: $primary-text-color;
+}
+
+.board-item {
+    padding-inline: 6px;
+    padding-block: 0;
+    justify-content: space-between;
 }
 
 .board-wrap {
     align-items: center;
     display: flex;
+    flex-basis: 81.415%;
 
     a {
         padding-left: 10px;
     }
+
+}
+
+.board-menu-icon{
+    width: 26px;
+    height: 26px;
 }
