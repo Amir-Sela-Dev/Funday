@@ -7,14 +7,13 @@ import { saveTask } from "../../store/board.action";
 import { Button, SplitButton, icon } from "monday-ui-react-core";
 import { Checkbox, Status, Numbers, PersonRound, TextCopy } from "monday-ui-react-core/icons";
 
-export function TaskActivityLog({ board, group, task = '' }) {
+export function TaskActivityLog({ board, group, task = '', formatTime }) {
     const [activities, setActivities] = useState([]);
 
     useEffect(() => {
         onLoadTaskActivities()
     }, [])
 
-    console.log(activities);
     function onLoadTaskActivities() {
         let taskActivities = board.activities.filter(activity => activity.task.id === task.id)
         setActivities(taskActivities)
@@ -23,6 +22,7 @@ export function TaskActivityLog({ board, group, task = '' }) {
     function getActivityType(activity) {
 
     }
+
 
     return <section className='task-activity-log'>
         <div className="activity-btns flex">
@@ -36,7 +36,7 @@ export function TaskActivityLog({ board, group, task = '' }) {
                 return <div className="activity" key={activity.id}>
                     <div className="wrapper flex">
                         <div className="first-details flex align-center">
-                            <img src={activity.byMember.imgUrl} alt="" className="user" />
+                            <img src={(activity.byMember?.imgUrl) ? activity.byMember.imgUrl : 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'} alt="" className="user" />
                             <h5>{task.title}</h5>
                         </div>
                         <h5 className="type"> {activity.type}</h5>

@@ -1,19 +1,19 @@
 import { useEffect } from "react"
 import { useState } from "react"
+import { useSelector } from "react-redux";
 import { boardService } from "../../services/board.service"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
 
-export function TaskUpdates({ board, group, task = '' }) {
+export function TaskUpdates({ board, group, task = '', formatTime }) {
+    let { user } = useSelector((storeState) => storeState.userModule)
     const [value, setValue] = useState('');
     const [comment, setComment] = useState(boardService.getDefaultComment());
     const emtyModalImg = 'task-modal-empty-state.svg'
     const clock = 'clock.svg'
 
-
     async function onAddTaskComment() {
-        console.log(value);
         if (!value) return
         comment.txt = value
         comment.createdAt = Date.now()
@@ -24,8 +24,11 @@ export function TaskUpdates({ board, group, task = '' }) {
         setValue('')
     }
 
+
+
+
     if (!task) return
-    return <section className='task-updates'>
+    return <section className='task-updates flex'>
         <div className="txt-editor-container">
             <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
         </div>
@@ -39,13 +42,14 @@ export function TaskUpdates({ board, group, task = '' }) {
 
                     <div className="user-line flex justify-between">
                         <div className="flex align-center">
-                            <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' alt="" className="user" />
+                            <img src={(user?.imgUrl) ? user.imgUrl : 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'} alt="" className="user" />
+                            {/* <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' alt="" className="user" /> */}
                             <a> Guest </a>
                             <div className="is-active"></div>
                         </div>
                         <div className="date flex align-center">
                             <img className="clock-img" src={require(`/src/assets/img/${clock}`)} />
-                            <div className="comment-date">1d</div>
+                            <div className="comment-date"> {formatTime(comment.createdAt)} </div>
                         </div>
                     </div>
 

@@ -150,7 +150,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
         </div>
         {board.groups.map(group =>
             <li className="group-preview-line" key={group.id}>
-                <GroupPreview group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} />
+                <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} />
             </li>)}
     </ul>
 }
