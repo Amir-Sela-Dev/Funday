@@ -22,7 +22,7 @@
     }
 
     @include for-mobile-layout {
-        padding-left: 0;
+        padding: 0;
     }
 }
 
@@ -42,17 +42,21 @@
     padding-inline-start: 1px;
     width: 3ch;
 
-    &:hover,
-    &:focus {
-        outline: 1px solid rgb(223, 223, 223);
+    @include for-narrow-layout {
+
+        &:hover,
+        &:focus {
+            outline: 1px solid rgb(223, 223, 223);
+        }
     }
 
     &.mobile {
         display: none;
+        margin-block-end: 10px;
 
         @include for-mobile-layout {
             display: inline-block;
-            margin: auto;
+            // margin: auto;
             font-size: 1em;
         }
     }
@@ -110,6 +114,19 @@
     padding-left: 4px;
 }
 
-.search-btn-board-details {
-    // margin-left: 22px;
+.icon-btn-add {
+    display: none;
+    background-color: $primary-color;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    svg {
+        width: 25px;
+        height: 25px;
+    }
+    @include for-mobile-layout {
+        display: flex;
+    }
 }
