@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { loadBoard, removeBoard, saveBoard } from "../../store/board.action"
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 import { boardService } from "../../services/board.service"
+import { ListItem, ListItemIcon } from "monday-ui-react-core"
+import { Board, Menu } from "monday-ui-react-core/icons";
 
 export function BoardList({ boards }) {
     const navigate = useNavigate()
@@ -86,19 +88,18 @@ export function BoardList({ boards }) {
                     <p className="menu-modal-option-text" >Delete</p>
                 </div>
             </ul>}
-
             {
                 boards.map((board, i) =>
-                    <li className="board-preview flex" key={board._id}>
+                    <ListItem className="board-item" key={board._id}>
                         <div className="board-wrap">
-                            <img className="board-icon" src={require(`/src/assets/img/${boardIcon}`)} />
-                            <div className="board-preview-link" onClick={() => { onLoadBoard(board._id) }}>{board.title}</div>
+                            <ListItemIcon icon={Board} />
+                            <span className="board-preview-link" onClick={() => { onLoadBoard(board._id) }}>{board.title}</span>
                         </div>
-
-                        <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                            onClick={() => { openOptionModal(board._id, i) }} />
-                    </li>)
-            }
+                        <div onClick={() => { openOptionModal(board._id, i) }}>
+                            <ListItemIcon className="board-menu-icon" icon={Menu} />
+                        </div>
+                    </ListItem>
+                )}
         </ul >
     )
 }

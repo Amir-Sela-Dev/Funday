@@ -195,7 +195,17 @@ export function TaskList({ group, toggleModal }) {
                         style={{ background: group.style?.color }} />
                     <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                 </div>
-
+                {/* <div style={{ width: '30px', display: 'flex' }} /> */}
+                {/* <form onSubmit={onSaveTask} >
+                    <input
+                        className="task-title-input"
+                        placeholder='Add item'
+                        type="text"
+                        value={newTask.title}
+                        onChange={handleInputChange}
+                        onBlur={ev => onSaveTask(ev)}
+                    />
+                </form> */}
                 <form className='task-input-row' onSubmit={onSaveTask}>
                     <input
                         className="add-task-input"

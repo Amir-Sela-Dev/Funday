@@ -8,7 +8,9 @@ import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
 import { SplitButton, Icon } from "monday-ui-react-core";
 import { Add, Filter, Search } from "monday-ui-react-core/icons";
-
+import { DynDropdownSelect } from '../dynamic/dynDropdownSelect.jsx';
+import { ListItem, ListItemIcon, Menu, MenuItem } from "monday-ui-react-core"
+import { Add as AddIcon, Filter as FilterIcon, Search as SearchIcon } from "monday-ui-react-core/icons";
 
 export function WorkSpace({ toggleWorkspace }) {
     const { boards } = useSelector((storeState) => storeState.boardModule)
@@ -113,16 +115,39 @@ export function WorkSpace({ toggleWorkspace }) {
             <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={toggleMenuModal} />
         </div>
-
         <div className="main-workspace-dropdown flex">
+            <div className="main-workspace-dropdown">
+
+            </div>
             <div className="main-icon">M
                 <img className="home-icon" src={require(`/src/assets/img/${homeIcon}`)} />
             </div>
-            <h3>Main workspace</h3>
+            <span>Main workspace</span>
             <img className="arrow-down-icon" src={require(`/src/assets/img/${arrowDownIcon}`)} />
         </div>
+        <ListItem className="board-item" onClick={() => { setIsAddModalOpen(true) }}>
+            <div className="board-wrap">
+                <ListItemIcon icon={AddIcon} />
+                <span>Add</span>
+            </div>
+        </ListItem>
+        <ListItem className="board-item">
+            <div className="board-wrap">
+                <ListItemIcon icon={FilterIcon} />
+                <span>Filters</span>
+            </div>
+        </ListItem>
+        <ListItem className="board-item">
+            <div className="board-wrap board-search">
+                <ListItemIcon icon={SearchIcon} />
+                <input type="text"
+                    onChange={handleFilterChange}
+                    value={filterByToEdit.title} placeholder='Search'
+                    name='title' />
+            </div>
+        </ListItem>
 
-        <div className='board-add option-wrap flex align-center' onClick={() => { setIsAddModalOpen(true) }}>
+        {/* <div className='board-add option-wrap flex align-center' onClick={() => { setIsAddModalOpen(true) }}>
             <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} />
             <p>Add</p>
         </div>
@@ -131,13 +156,12 @@ export function WorkSpace({ toggleWorkspace }) {
             <p>Filters</p>
         </div>
         <div className='board-search option-wrap flex align-center'>
-            {/* <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} /> */}
             <Icon className="search-board-icon" icon={Search} iconLabel="my bolt svg icon" iconSize={20} />
             <input type="text"
                 onChange={handleFilterChange}
                 value={filterByToEdit.title} placeholder='Search'
                 name='title' />
-        </div>
+        </div> */}
         <hr></hr>
         <BoardList boards={boards} />
 

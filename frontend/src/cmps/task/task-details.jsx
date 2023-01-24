@@ -62,7 +62,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
             <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
         </div>
         <button className="update-btn" onClick={onAddTaskComment}>Update</button>
-
         <div className="main-details-container">
             {task.comments.map(comment => {
                 return <div className="comment flex">
@@ -83,7 +82,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
                     <div className="main-comment" dangerouslySetInnerHTML={{ __html: comment.txt }} />
                 </div>
             })}
-
         </div>
 
         {!task.comments.length && <div className="img-container">

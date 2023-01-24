@@ -1,30 +1,55 @@
 .work-space {
     grid-area: work-space;
     background-color: $work-space-bgc;
-    padding: 8px 16px;
+    padding: 8px 12px;
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 255px;
-    // position: fixed;
     left: 66px;
     border-right: 1px solid rgba(0, 0, 0, 0.102);
     transition: transform 1s;
-    font-family: Figtree;
     color: $clr1;
     z-index: 1;
 
     &.close-workspace {
         transform: translateX(-225px);
 
+        .toggle-menu-btn:hover {
+            width: 35px;
+            background-color: #0073ea;
+            transform: translateX(20%);
+
+            .arrow-left-icon {
+                margin-left: 16.5px;
+            }
+
+        }
+
+        .arrow-left-icon {
+            transform: scaleX(-1);
+            transition: 0.2s;
+        }
+
+
+
+
         &:hover {
             transform: translateX(0);
+
         }
     }
 
     .workspace-header {
         justify-content: space-between;
         align-items: center;
+
+        &>span {
+            font-size: em(14px, 1em);
+            font-weight: 400;
+            color: $placeholder-on-secondary-color;
+            line-height: em(21px, 1em);
+        }
     }
 
     .toggle-nemu-btn-wrap {
@@ -92,14 +117,15 @@
             left: 17px;
         }
 
-        h3 {
-            color: #323338;
+        span {
+            color: $primary-text-color;
+            font-weight: 600;
+            font-size: em(16px, 1em);
             display: inline-block;
             margin: 0;
-            line-height: 24px;
-            font-size: 0.85rem;
+            line-height: em(24px, 1em);
             padding-left: 4px;
-            padding-right: 48px;
+            padding-right: 40px;
         }
 
         .arrow-down-icon {
@@ -222,9 +248,14 @@
 
     .board-search {
         display: flex;
+        flex: 1;
 
         &::after {
             outline: #0073ea 1px solid;
+        }
+
+        &:focus {
+            background-color: red;
         }
 
         .search-board-icon {
@@ -235,17 +266,18 @@
         }
 
         input {
-            font-family: Figtree;
+            font-family: inherit;
+            font-size: em(14px, 1em);
             margin: 0;
-            padding-left: 27px;
+            padding-left: 9px;
             border: none;
-            background-color: #f6f7fb;
+            background-color: transparent;
             width: 100%;
             height: 30px;
             padding-top: 3px;
 
             &:focus {
-                outline: #4d99f8 1px solid;
+                outline: none;
                 border-radius: 0.2rem;
             }
         }
@@ -258,18 +290,12 @@
         &:hover {
             background-color: #dcdfec;
             border-radius: 0.2rem;
+            cursor: pointer;
         }
     }
 }
 
-.workspace-txt {
-    font-size: 12.5px;
-    font-weight: 400;
-    color: #676879;
-    padding-top: 5px;
-    padding-bottom: 8px;
-    margin-left: -3px;
-}
+
 
 .search-board-icon {
     height: 20px;

@@ -253,9 +253,10 @@
     margin-inline-start: 5px;
     width: 95%;
     background: transparent;
-    padding-inline-start: 27px;
+    padding-inline-start: 2px;
     padding-bottom: 3px;
-
+    color: $primary-text-color;
+    
     &:hover,
     &:focus {
         outline: 1px solid rgb(100, 100, 100);
@@ -268,7 +269,7 @@
 }
 
 .task-txt {
-    width: 360.5px;
+    width: 360px;
     align-items: center;
     justify-content: space-between;
 

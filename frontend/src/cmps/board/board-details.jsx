@@ -38,7 +38,7 @@ export function BoardDetails() {
     async function onLoadBoard(filterBy) {
         try {
             await loadBoard(boardId, filterBy)
-            setBoardTitle(board.title)
+            setBoardTitle(board?.title)
             console.log('Loaded board successfully', board);
         } catch (err) {
             console.log('Couldn\'t load board..', err);
@@ -51,7 +51,6 @@ export function BoardDetails() {
 
     async function onRenameBoard(event) {
         event.preventDefault()
-        console.log('rename board');
         if (!board?.title.length) return
         try {
             await saveBoard({ ...board, title: boardTitle })
