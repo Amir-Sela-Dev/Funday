@@ -8,3 +8,12 @@
 @function em($pixels, $context: 16px) {
     @return calc(($pixels/$context) * 1em);
 }
+
+// Layout
+@function calculate-width($width, $inner-padding) {
+    @return calc($width - ($inner-padding * 2));
+}
+
+@function someFunc() {
+    @return #{$viewport-width - 10px};
+}

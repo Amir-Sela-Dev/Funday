@@ -9,15 +9,25 @@
         padding: 4px 10px;
         color: white;
         border: $clr1 solid 1px;
+        order: 3;
 
         input {
             border: none;
             width: 100%;
+            outline: none;
+        }
+
+        @include for-mobile-layout {
+            width: 100%;
+
+            .board-icon:hover {
+                background: none;
+            }
         }
     }
 
     @include for-mobile-layout {
-        padding-inline-start: 15px;
+        padding-inline-start: $inner-padding-mobile;
     }
 
 }
@@ -26,15 +36,16 @@
     width: 95%;
     margin-left: 0;
     margin-top: 0;
-    @include for-mobile-layout{
+
+    @include for-mobile-layout {
         display: none;
     }
 }
 
 .board-actions {
-    height: 32px;
     margin-bottom: -5px;
     margin-top: 15px;
+    height: 32px;
 
     button {
         font-size: 14px;
@@ -44,15 +55,24 @@
         margin-left: 0;
         display: flex;
         transition: all 0.2s;
-        margin-right: 0;
-        &:not(:first-child) {
-            margin-right: 21px;
-        }
+        margin-right: 21px;
+        position: relative;
+        right: 0%;
 
         @include for-mobile-layout {
+            margin-right: 10px;
+            height: 30px;
             background: $primary-background-hover-color;
         }
     }
+
+    // .bar-search-container {
+    //     order: 2;
+
+    //     @include for-mobile-layout {
+    //         display: none;
+    //     }
+    // }
 
     .new-group-btn {
         background-color: $primery-btn-color;
@@ -73,6 +93,7 @@
 
         &.arrow-down-new-group {
             border-radius: 0 4px 4px 0;
+            margin-right: 21px;
             width: 28px;
             padding: 0;
             // margin: 0;
@@ -114,11 +135,36 @@
     }
 
     .search-btn-board-details {
-        // margin-left: 21px;
         order: 2;
+        // width: auto;
+        width: fit-content;
 
         @include for-mobile-layout {
             order: 3;
+            margin: 0;
+            padding-inline: 5px;
+            // margin-inline-start: 105px;
+            margin-left: auto;
+
+            span {
+                display: none;
+            }
+
+            svg {
+                margin: auto;
+            }
+        }
+    }
+
+    .cancel-btn {
+        margin-right: 10px;
+        font-size: em(16px, 1em);
+        display: none;
+
+        @include for-mobile-layout {
+            &.on {
+                display: inline-block;
+            }
         }
     }
 
@@ -137,6 +183,11 @@
 
         @include for-mobile-layout {
             order: 2;
+
+            &.search-clicked {
+                // right: 100%;
+                display: none;
+            }
         }
     }
 
@@ -146,6 +197,25 @@
 
         @include for-mobile-layout {
             display: none;
+        }
+    }
+
+    @include for-mobile-layout {
+        max-width: calculate-width(100vw, $inner-padding-mobile);
+
+    }
+
+    .bar-tables {
+        display: none;
+
+
+        @include for-mobile-layout {
+            display: flex;
+
+            &.search-clicked {
+                // right: 100%;
+                display: none;
+            }
         }
     }
 }
