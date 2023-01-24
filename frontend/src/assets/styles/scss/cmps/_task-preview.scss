@@ -94,6 +94,7 @@
     .comments-bubble {
         display: flex;
         align-items: center;
+        justify-content: center;
         position: relative;
         border: none;
         border-left: rgba(0, 0, 0, 0.192) 1px solid;
@@ -101,6 +102,19 @@
 
         img {
             margin-inline-start: 20px
+        }
+
+        .icon_component {
+            path {
+                transition: 0.2s;
+            }
+        }
+
+        .icon_component:hover {
+
+            path {
+                color: #0073ea
+            }
         }
 
         .comments-num {
@@ -256,7 +270,7 @@
     padding-inline-start: 2px;
     padding-bottom: 3px;
     color: $primary-text-color;
-    
+
     &:hover,
     &:focus {
         outline: 1px solid rgb(100, 100, 100);

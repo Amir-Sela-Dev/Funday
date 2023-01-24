@@ -793,13 +793,14 @@ button {
   width: 35px;
   background-color: #0073ea;
   transform: translateX(20%);
+  justify-content: flex-end;
 }
 .work-space.close-workspace .toggle-menu-btn:hover .arrow-left-icon {
-  margin-left: 16.5px;
+  margin-right: 5px;
 }
 .work-space.close-workspace .arrow-left-icon {
   transform: scaleX(-1);
-  transition: 0.2s;
+  transition: 0.1s;
 }
 .work-space.close-workspace:hover {
   transform: translateX(0);
@@ -827,17 +828,22 @@ button {
   border-radius: 1rem;
   transition: all 0.2s;
   border: 1px solid rgba(0, 0, 0, 0.102);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .work-space .toggle-menu-btn .arrow-left-icon {
   height: 12px;
   width: 12px;
-  margin-bottom: 3.5px;
-  margin-left: 3.5px;
+  transition: 0.2s;
 }
 .work-space .toggle-menu-btn:hover {
   width: 35px;
   background-color: #0073ea;
   transform: translateX(-20%);
+}
+.work-space .toggle-menu-btn:hover .arrow-left-icon {
+  margin-right: 15px;
 }
 .work-space .main-icon {
   height: 24px;
@@ -1104,6 +1110,7 @@ button {
 .task-preview .comments-bubble {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   border: none;
   border-left: rgba(0, 0, 0, 0.192) 1px solid;
@@ -1111,6 +1118,12 @@ button {
 }
 .task-preview .comments-bubble img {
   margin-inline-start: 20px;
+}
+.task-preview .comments-bubble .icon_component path {
+  transition: 0.2s;
+}
+.task-preview .comments-bubble .icon_component:hover path {
+  color: #0073ea;
 }
 .task-preview .comments-bubble .comments-num {
   position: absolute;

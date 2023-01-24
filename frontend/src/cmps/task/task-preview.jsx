@@ -9,7 +9,7 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
-import { File, Check } from "monday-ui-react-core/icons";
+import { File, Check, AddUpdate, Update } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
 import { ListItemIcon } from "monday-ui-react-core"
@@ -220,9 +220,11 @@ export function TaskPreview({
                         onClick={ev => { ev.stopPropagation() }}
                     />
                 </form>
-                <div className="comments-bubble task-column">
-                    <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" />
-                    <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>
+                <div className="comments-bubble task-column flex">
+                    {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
+                    {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
+                    {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
+                    {task.comments?.length > 0 && <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>}
                 </div>
             </div>
 
