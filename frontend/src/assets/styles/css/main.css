@@ -430,10 +430,65 @@ button {
   margin: 5px;
 }
 
+.user-details {
+  text-align: center;
+  margin: 0 auto;
+  background-color: #0073ea;
+  color: white;
+  box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.2);
+}
+.user-details .user-details-tab .tab-inner {
+  color: white;
+  font-family: Figtree;
+}
+.user-details .user-details-tab .tab-inner:hover {
+  background-color: transparent;
+}
+.user-details .tab--wrapper:after {
+  border-bottom-color: white;
+}
+.user-details p {
+  font-family: Figtree;
+  font-size: 30px;
+}
 .user-details .user-img {
-  height: 200px;
-  width: 200px;
+  margin: 0 auto;
+  height: 135px;
+  width: 135px;
+  margin-top: 70px;
+  border-radius: 50%;
   background-size: contain;
+}
+
+.user-info {
+  width: 550px;
+  margin: 0 auto;
+  padding-top: 30px;
+  color: rgba(50, 51, 56, 0.7215686275);
+  font-size: 15px;
+}
+.user-info .overview {
+  font-size: 18px;
+}
+.user-info .user-details-icon {
+  width: 25px;
+}
+.user-info .email-wrap {
+  align-items: center;
+}
+.user-info .email-wrap p {
+  margin: 0;
+  padding-left: 15px;
+}
+.user-info .user-details-icon-border {
+  border-radius: 50%;
+  border: 1px rgba(50, 51, 56, 0.7333333333) solid;
+  width: 40px;
+  height: 40px;
+  padding: 6.5px;
+}
+.user-info .email {
+  color: #0073ea;
 }
 
 .app-index {
@@ -531,15 +586,17 @@ button {
   margin-bottom: 20px;
 }
 .main-header .main-logo {
-  margin-right: 0;
+  margin-right: -6px;
+  width: 49px;
+  height: 49px;
 }
 .main-header h1 {
   margin: 0;
   padding: 0;
-  font-family: Figtree;
+  font-family: Poppins-Bold;
   font-size: 40px;
   color: black;
-  letter-spacing: 0.5;
+  letter-spacing: -2.5px;
 }
 .main-header .user-info {
   padding-left: 100px;
@@ -668,6 +725,7 @@ button {
   border: 2px white solid;
   border-radius: 50%;
   transition: all 0.4s;
+  position: relative;
 }
 .main-user-nav:hover {
   transform: scale(85%);
@@ -676,6 +734,42 @@ button {
 .low-nav {
   flex-direction: column;
   align-items: center;
+}
+
+.user-modal {
+  position: absolute;
+  background-color: white;
+  left: 61px;
+  margin-top: 25px;
+  border-radius: 0.5rem;
+  width: 150px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.13);
+  border: 1px solid rgba(0, 0, 0, 0.133);
+  padding: 8px;
+}
+.user-modal a {
+  text-decoration: none;
+}
+.user-modal div {
+  margin: 5px 0;
+  height: 32px;
+  align-items: center;
+  border-radius: 0.3rem;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.user-modal div:hover {
+  background-color: #dcdfec;
+}
+.user-modal p {
+  margin: 0;
+  padding-left: 7px;
+  font-size: 14px;
+  color: #676879;
+}
+.user-modal .nav-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .work-space {
@@ -1030,6 +1124,15 @@ button {
 .task-preview .preview-files {
   width: 139px;
 }
+.task-preview .preview-files:hover .file-icon {
+  display: block;
+}
+.task-preview .preview-checkbox {
+  width: 65px;
+}
+.task-preview .preview-add-colume {
+  width: 100px;
+}
 
 .person-img {
   width: 25px;
@@ -1196,6 +1299,12 @@ button {
 }
 .task-list .task-files {
   width: 139px;
+}
+.task-list .checkbox {
+  width: 65px;
+}
+.task-list .add-colume {
+  width: 100px;
 }
 
 .task-column {
@@ -1403,6 +1512,9 @@ button {
 .task-modal-open .date {
   margin-inline-end: 68px;
   font-size: 14px;
+}
+.task-modal-open ul {
+  padding: 0;
 }
 
 .group-preview-line {
@@ -1684,6 +1796,49 @@ button {
 
 .upload-preview input {
   display: none;
+}
+.upload-preview .file-icon {
+  display: none;
+}
+
+.task-activity-log {
+  min-height: 100vh;
+  color: #323338;
+}
+.task-activity-log .activity-btns {
+  margin-bottom: 25px;
+}
+.task-activity-log .wrapper {
+  padding-inline: 15px;
+  align-items: center;
+}
+.task-activity-log .activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 55px;
+}
+.task-activity-log .activity h5 {
+  margin: 0;
+  font-weight: 100;
+}
+.task-activity-log .activity img {
+  width: 25px;
+  height: 25px;
+}
+.task-activity-log .activity .first-details {
+  width: 191px;
+}
+.task-activity-log .activity .type {
+  width: 84px;
+  align-items: center;
+}
+.task-activity-log .activity hr {
+  color: rgba(50, 51, 56, 0.2941176471);
+  height: 1px;
+  width: 100%;
+  justify-self: flex-end;
+  margin-block-end: 13px;
 }
 
 /*# sourceMappingURL=main.css.map */

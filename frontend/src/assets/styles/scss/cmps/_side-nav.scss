@@ -40,6 +40,7 @@
     border: 2px white solid;
     border-radius: 50%;
     transition: all 0.4s;
+    position: relative;
 
     &:hover {
         transform: scale(85%);
@@ -48,4 +49,45 @@
 .low-nav {
     flex-direction: column;
     align-items: center;
+}
+
+.user-modal {
+    position: absolute;
+    background-color: white;
+    left: 61px;
+    margin-top: 25px;
+    border-radius: 0.5rem;
+    width: 150px;
+    box-shadow: 0 0 10px 1px rgb(0 0 0 / 13%);
+    border: 1px solid rgba(0, 0, 0, 0.133);
+    padding: 8px;
+
+    a {
+        text-decoration: none;
+    }
+
+    div {
+        margin: 5px 0;
+        height: 32px;
+        align-items: center;
+        border-radius: 0.3rem;
+        padding: 4px 8px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #dcdfec;
+        }
+    }
+
+    p {
+        margin: 0;
+        padding-left: 7px;
+        font-size: 14px;
+        color: #676879;
+    }
+
+    .nav-icon {
+        width: 20px;
+        height: 20px;
+    }
 }

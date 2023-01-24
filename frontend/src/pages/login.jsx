@@ -35,7 +35,7 @@ export function Login() {
 
     return <section className='login-container'>
         <Header />
-        {user &&
+        {/* {user &&
             <span className="user-info">
                 <Link to={`user/${user._id}`}>
                     {user.imgUrl && <img src={user.imgUrl} />}
@@ -44,10 +44,10 @@ export function Login() {
                 <span className="score">{user.score?.toLocaleString()}</span>
                 <button onClick={onLogout}>Logout</button>
             </span>
-        }
+        } */}
         {!user &&
             <section className="login-signup">
-                <LoginSignup onLogin={onLogin} onSignup={onSignup} />
+                <LoginSignup onLogin={onLogin} onSignup={onSignup} onLogout={onLogout} />
             </section>
         }
     </section>

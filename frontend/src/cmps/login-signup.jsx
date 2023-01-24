@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { userService } from '../services/user.service'
 import { ImgUploader } from '../cmps/img-uploader'
 import { Header } from './header'
+import { useNavigate } from 'react-router-dom'
 
 export function LoginSignup(props) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadUsers()
@@ -32,6 +34,7 @@ export function LoginSignup(props) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         props.onLogin(credentials)
+        navigate(`/board/uPD5q`)
         clearState()
     }
 
@@ -53,20 +56,12 @@ export function LoginSignup(props) {
     return (
         <div className="login-page">
 
-
             {!isSignup && <form className="login-form" onSubmit={onLogin}>
                 <div className="login-form-title">
                     <h2 className='log-title'>Log</h2><h2 className='in-title'>in</h2>
                 </div>
-                <p>last connected user</p>
-                {/* <select
-                    name="username"
-                    value={credentials.username}
-                    onChange={handleChange}
-                >
-                    <option value="">Select User</option>
-                    {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-                </select> */}
+                <p>Welcome back</p>
+
                 <div className="email-wrap">
                     <label htmlFor="username">Email</label>
                     <input
@@ -74,7 +69,6 @@ export function LoginSignup(props) {
                         type="text"
                         name="username"
                         // value={username}
-                        // placeholder="Username"
                         onChange={handleChange}
                         required
                         autoFocus
@@ -89,7 +83,6 @@ export function LoginSignup(props) {
                         type="password"
                         name="password"
                         // value={password}
-                        // placeholder="Password"
                         onChange={handleChange}
                         required
                     />
