@@ -353,7 +353,7 @@ function getEmptyActivity() {
 }
 
 function getDefualtBoardColumes() {
-    return ['person', 'status', 'date']
+    return ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox']
 }
 
 
