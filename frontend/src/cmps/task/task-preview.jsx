@@ -174,6 +174,8 @@ export function TaskPreview({
 
     const style = { color: ' rgba(0, 0, 0, 0.192)' };
     style.color = ' rgba(0, 0, 0, 0.192)'
+
+    
     return (
         <Draggable draggableId={task.id} index={index}>
             {(provided) => (
@@ -217,7 +219,7 @@ export function TaskPreview({
                     </div>
 
                     <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                        <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
+                                <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
                         <form onSubmit={onRenameTask} >
                             <input
                                 className="task-title-input"

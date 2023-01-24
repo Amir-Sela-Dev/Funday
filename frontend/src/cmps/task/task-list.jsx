@@ -8,13 +8,15 @@ import { Add } from "monday-ui-react-core/icons";
 import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-core";
 import { Droppable } from 'react-beautiful-dnd';
 
-export function TaskList({ group, toggleModal }) {
+export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
+
+    let { board } = useSelector((storeState) => storeState.boardModule)
 
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
+
     const [isAllSelected, setIsAllSelected] = useState(false)
     const [selectedTasks, setSelectedTasks] = useState([])
     const [columes, setColumes] = useState(boardService.getDefualtBoardColumes())
-    let { board } = useSelector((storeState) => storeState.boardModule)
 
     async function onSaveTask(event) {
         event.preventDefault()
@@ -158,10 +160,9 @@ export function TaskList({ group, toggleModal }) {
                     <div className="drag-tasks-container"
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-
                     >
                         {
-                            group.tasks.map((currTask, idx) => {
+                            tasks.map((currTask, idx) => {
                                 return (
                                     <TaskPreview
                                         index={idx}

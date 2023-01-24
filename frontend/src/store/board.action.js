@@ -123,8 +123,8 @@ export async function removeGroup(board, groupId) {
 
 // Tasks
 export async function saveTask(board, groupId, task, type, txt) {
-    let fullBoard = await boardService.get(board._id)
-    let boardToSave = structuredClone(fullBoard)
+    // let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(board)
     let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
     let taskToSave = { ...task }
     if (!taskToSave.id) {
