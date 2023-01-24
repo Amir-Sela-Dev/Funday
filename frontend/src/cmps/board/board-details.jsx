@@ -7,8 +7,8 @@ import { TaskDetails } from "../task/task-details"
 import { boardService } from "../../services/board.service"
 import { saveBoard } from "../../store/board.action";
 import { showSuccessMsg } from "../../services/event-bus.service"
-import { Tab } from "monday-ui-react-core";
-import { Home } from "monday-ui-react-core/icons";
+import { Tab, IconButton } from "monday-ui-react-core";
+import { Add as AddIcon, Home } from "monday-ui-react-core/icons";
 
 export function BoardDetails() {
     let { board } = useSelector((storeState) => storeState.boardModule)
@@ -70,7 +70,13 @@ export function BoardDetails() {
 
     if (!board) return <div>Loading...</div>
     return <section className="board-details">
-
+        <IconButton
+            className="icon-btn-add"
+            ariaLabel="Add"
+            icon={AddIcon}
+            color={IconButton.colors.ON_PRIMARY_COLOR}
+            size={IconButton.sizes.LARGE}
+        />
         <div className="board-title-wrap flex">
             <span
                 className="board-title mobile"
@@ -93,9 +99,11 @@ export function BoardDetails() {
             <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
             <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
         </div>
-        <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
-            Main Table
-        </Tab>
+        <div>
+            <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
+                Main Table
+            </Tab>
+        </div>
         <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
         <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
     </section>
