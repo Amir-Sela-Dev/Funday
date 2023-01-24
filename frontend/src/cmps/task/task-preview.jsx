@@ -10,7 +10,7 @@ import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
 import { File, Check, AddUpdate, Update, Menu } from "monday-ui-react-core/icons";
-import { Icon } from "monday-ui-react-core";
+import { AvatarGroup, Icon, Avatar, StoryDescription, Flex } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
 import { ListItemIcon } from "monday-ui-react-core"
 import { DropdownChevronRight } from "monday-ui-react-core/icons";
@@ -242,10 +242,14 @@ export function TaskPreview({
 
                     {columes.includes('person') && <div className="task-persons task-column flex align-center justify-center"
                         onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
+
                         {task.persons && !isPersonsOpen &&
-                            task.persons.map(currPerson => {
-                                return <TaskPerson key={currPerson.id} person={currPerson} />
-                            })}
+
+                            <AvatarGroup size="small" max={3} vertical >
+                                {task.persons.map(currPerson => <TaskPerson key={currPerson.id} person={currPerson} />)}
+                                {/* <Avatar type={Avatar.types.TEXT} size="small" text="hey" ariaLabel="hey" /> */}
+                            </AvatarGroup>
+                        }
                         {isPersonsOpen &&
                             <div className="user-preview open">
                                 <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />

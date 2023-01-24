@@ -266,6 +266,9 @@ button {
 .menu-modal.board-list-modal {
   transform: translate(199px, 25px);
 }
+.menu-modal.board-list-modal hr {
+  margin: 1px;
+}
 .menu-modal.group-modal {
   color: #323338;
   transform: translate(-34px, 38px);
@@ -274,7 +277,7 @@ button {
 .menu-modal.group-modal p {
   color: #323338;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin: 0;
   padding-left: 7px;
 }
 .menu-modal.group-modal .menu-modal-option {
@@ -1176,6 +1179,10 @@ button {
 .task-preview .preview-add-colume {
   width: 100px;
 }
+.task-preview .AvatarGroup-module_avatarGroupContainer__9H7Sk {
+  flex-wrap: nowrap;
+  padding: 0;
+}
 
 .person-img {
   width: 25px;
@@ -1485,7 +1492,7 @@ button {
 }
 .task-modal-open .comments-btn .tab .tab-inner {
   padding: 0;
-  padding-inline-end: 15px;
+  padding-inline: 8px;
 }
 .task-modal-open .comments-btn .tab .white-home {
   width: 15px;
