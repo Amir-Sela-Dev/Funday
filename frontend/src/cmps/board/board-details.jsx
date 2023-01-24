@@ -72,6 +72,12 @@ export function BoardDetails() {
     return <section className="board-details">
 
         <div className="board-title-wrap flex">
+            <span
+                className="board-title mobile"
+                style={{
+                    width: `${(board?.title?.length - 1.5 || 10)}ch`
+                }}>{boardTitle || board.title}
+            </span>
             <form onSubmit={onRenameBoard} >
                 <input
                     className="board-title"

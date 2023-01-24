@@ -81,7 +81,6 @@ export function GroupList({ board, toggleModal, setFilter }) {
         <div className="board-actions flex">
             <Flex>
                 <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
-
                 <button className='new-group-btn arrow-down-new-group'
                     onClick={toggleNewTaskModal}>
                     <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
