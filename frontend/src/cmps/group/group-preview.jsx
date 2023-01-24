@@ -52,7 +52,6 @@ export function GroupPreview({ group, toggleModal, onRemoveGroup }) {
         const [removed] = newItems.splice(items.findIndex(i => i.id === id), 1)
         newItems.splice(newIndex, 0, removed)
         setItems(newItems)
-        console.log('newItems@@@@@@@@@@@@@@@@@@@', newItems)
         try {
             await saveGroup(board, group.id, { ...group, tasks: newItems })
             // showSuccessMsg('Group updated')

@@ -1,6 +1,7 @@
 @import "monday-ui-react-core/dist/main.css";
 /* Breakpoint mixins */
 /* Media  Mixins */
+/* HELPERS */
 @font-face {
   font-family: Poppins-Thin;
   src: url(../../fonts/Poppins-Thin.ttf);
@@ -493,12 +494,28 @@ button {
 
 .app-index {
   display: grid;
-  grid-template-columns: 66px 254px 1fr;
-  grid-template-areas: "side-nav  work-space   board-details";
   transition: all 0.3s;
 }
 .app-index.closeMenu {
   grid-template-columns: 66px 30px 1fr;
+}
+@media (min-width: 500px) {
+  .app-index {
+    grid-template-columns: 66px 254px 1fr;
+    grid-template-areas: "side-nav  work-space  board-details";
+  }
+}
+@media (max-width: 500px) {
+  .app-index {
+    grid-template-rows: 90% 10%;
+    grid-template-areas: "board-details" "side-nav";
+  }
+  .app-index .work-space {
+    display: none;
+  }
+  .app-index .side-nav {
+    display: none;
+  }
 }
 
 .login-container .login-form {
@@ -1590,11 +1607,21 @@ button {
   border: none;
   width: 100%;
 }
+@media (max-width: 500px) {
+  .group-list {
+    padding-inline-start: 15px;
+  }
+}
 
 .group-list-main-hr {
   width: 95%;
   margin-left: 0;
   margin-top: 0;
+}
+@media (max-width: 500px) {
+  .group-list-main-hr {
+    display: none;
+  }
 }
 
 .board-actions {
@@ -1607,7 +1634,18 @@ button {
   padding: 0;
   padding-inline: 10px;
   --element-width: 20px;
-  margin-left: 10px;
+  margin-left: 0;
+  display: flex;
+  transition: all 0.2s;
+  margin-right: 0;
+}
+.board-actions button:not(:first-child) {
+  margin-right: 21px;
+}
+@media (max-width: 500px) {
+  .board-actions button {
+    background: #dcdfec;
+  }
 }
 .board-actions .new-group-btn {
   background-color: #0070e5;
@@ -1620,12 +1658,18 @@ button {
   border-right: 1px rgba(0, 0, 0, 0.221) solid;
   height: 100%;
   position: relative;
+  order: 0;
+}
+@media (max-width: 500px) {
+  .board-actions .new-group-btn {
+    display: none;
+  }
 }
 .board-actions .new-group-btn.arrow-down-new-group {
   border-radius: 0 4px 4px 0;
   width: 28px;
   padding: 0;
-  margin: 0;
+  order: 1;
 }
 .board-actions .new-group-btn.arrow-down-new-group:hover {
   background-color: #0070e5;
@@ -1653,19 +1697,36 @@ button {
   transform: translate(58px, 55px);
 }
 .board-actions .search-btn-board-details {
-  margin-left: 21px;
+  order: 2;
+}
+@media (max-width: 500px) {
+  .board-actions .search-btn-board-details {
+    order: 3;
+  }
 }
 .board-actions .bar-person {
-  margin-left: 17px;
+  order: 3;
+}
+@media (max-width: 500px) {
+  .board-actions .bar-person {
+    display: none;
+  }
 }
 .board-actions .bar-filter {
-  margin-left: 17px;
+  order: 4;
+}
+@media (max-width: 500px) {
+  .board-actions .bar-filter {
+    order: 2;
+  }
 }
 .board-actions .bar-sort {
-  margin-left: 36px;
+  order: 5;
 }
-.board-actions .search-btn-board-details {
-  margin-left: 23px;
+@media (max-width: 500px) {
+  .board-actions .bar-sort {
+    display: none;
+  }
 }
 
 .boards-list {
@@ -1760,6 +1821,11 @@ button {
   background-color: transparent;
   color: #323338;
 }
+@media (max-width: 500px) {
+  .board-title-wrap {
+    padding-left: 0;
+  }
+}
 
 .board-title {
   display: inline-block;
@@ -1775,10 +1841,26 @@ button {
   margin-top: 4px;
   letter-spacing: -0.2px;
   padding-inline-start: 1px;
-  width: 12ch;
+  width: 3ch;
 }
 .board-title:hover, .board-title:focus {
   outline: 1px solid rgb(223, 223, 223);
+}
+.board-title.mobile {
+  display: none;
+}
+@media (max-width: 500px) {
+  .board-title.mobile {
+    display: inline-block;
+    margin: auto;
+    font-size: 1em;
+  }
+}
+@media (max-width: 500px) {
+  .board-title {
+    margin: auto;
+    padding: 0;
+  }
 }
 
 .title-icon {
@@ -1791,6 +1873,18 @@ button {
 .board-title-wrap {
   margin-bottom: 5px;
 }
+@media (max-width: 500px) {
+  .board-title-wrap .title-icon,
+  .board-title-wrap form {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .board-title-wrap {
+    max-width: 100vw;
+    text-align: center;
+  }
+}
 
 .tab--wrapper .board-details-tab {
   margin-bottom: 20px;
@@ -1800,6 +1894,11 @@ button {
 .board-details-tab {
   height: 40px;
   margin-left: 40px;
+}
+@media (max-width: 500px) {
+  .board-details-tab {
+    display: none;
+  }
 }
 
 .tab--wrapper .tab-inner {
