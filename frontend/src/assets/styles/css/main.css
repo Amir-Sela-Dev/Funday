@@ -495,6 +495,7 @@ button {
 .app-index {
   display: grid;
   transition: all 0.3s;
+  width: 100%;
 }
 .app-index.closeMenu {
   grid-template-columns: 66px 30px 1fr;
@@ -1066,15 +1067,14 @@ button {
   opacity: 1;
 }
 .task-preview .checkbox-column {
-  margin-inline-start: 7px;
+  margin-inline-start: 8px;
 }
 .task-preview .task-option-icon {
-  margin-inline-start: -33px;
+  margin-inline-start: -31px;
   width: 25px;
   height: 25px;
   fill: #323338;
   margin-right: 1px;
-  margin-bottom: 4px;
   position: relative;
   opacity: 0;
 }
@@ -1493,9 +1493,11 @@ button {
 }
 .task-modal-open .txt-editor-container {
   height: 200px;
+  border-radius: 8px;
 }
 .task-modal-open .txt-editor {
   height: 150px;
+  border-radius: 8px;
 }
 .task-modal-open h1 {
   font-size: 26px;
@@ -1596,7 +1598,7 @@ button {
   border: none;
   font-size: 1em;
   font-family: Poppins-Regular;
-  margin-inline-start: 44px;
+  margin-inline-start: 5px;
   margin-top: 13px;
   margin-bottom: 5px;
   letter-spacing: -0.2px;
@@ -1793,7 +1795,7 @@ button {
   height: 25px;
   fill: #323338;
   margin-right: 1px;
-  margin-bottom: 4px;
+  margin-bottom: -4px;
   position: relative;
 }
 
@@ -1825,24 +1827,35 @@ button {
   padding-block: 0;
   justify-content: space-between;
 }
+.board-item:hover .board-menu-icon {
+  display: block;
+}
 
 .board-wrap {
   align-items: center;
   display: flex;
   flex-basis: 81.415%;
 }
+.board-wrap .list-item-icon {
+  transform: translate(0);
+}
 .board-wrap a {
   padding-left: 10px;
 }
 
 .board-menu-icon {
-  width: 26px;
-  height: 26px;
+  width: 25px;
+  height: 25px;
+  margin-top: 3px;
+  display: none;
 }
 
 .board-details {
   grid-area: board-details;
   color: #323338;
+}
+.board-details a.tab-inner {
+  padding-inline: 8px;
 }
 
 .board-title-wrap {

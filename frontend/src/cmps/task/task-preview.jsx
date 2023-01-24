@@ -9,7 +9,7 @@ import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
-import { File, Check, AddUpdate, Update } from "monday-ui-react-core/icons";
+import { File, Check, AddUpdate, Update, Menu } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
 import { ListItemIcon } from "monday-ui-react-core"
@@ -175,7 +175,7 @@ export function TaskPreview({
     const style = { color: ' rgba(0, 0, 0, 0.192)' };
     style.color = ' rgba(0, 0, 0, 0.192)'
 
-    
+
     return (
         <Draggable draggableId={task.id} index={index}>
             {(provided) => (
@@ -202,8 +202,9 @@ export function TaskPreview({
                     {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={() => { openOptionModal() }} />} */}
 
-                    <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                        onClick={() => { openOptionModal() }} />
+                    {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                        onClick={() => { openOptionModal() }} /> */}
+                    <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
 
                     <div
                         className="checkbox-column task-column"
@@ -219,7 +220,7 @@ export function TaskPreview({
                     </div>
 
                     <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                                <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
+                        <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
                         <form onSubmit={onRenameTask} >
                             <input
                                 className="task-title-input"
