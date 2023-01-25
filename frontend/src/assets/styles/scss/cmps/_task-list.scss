@@ -4,9 +4,16 @@
     font-size: 14px;
     color: $clr1;
 
+    .drag-tasks-container {
+        > * {
+            min-width: min-content;
+        }
+    }
+
     .task-title-row {
         text-align: center;
         font-size: 14px;
+        min-width: min-content;
     }
 
     .menu-modal {
@@ -29,14 +36,19 @@
 
     .add-colume {
         width: 100px;
+        flex: 1;
     }
 }
 
 .task-column {
-    outline: 0.5px solid rgba(0, 0, 0, 0.192);
-    border-collapse: collapse;
+    border-right: 1px solid #d0d4e4;
+    border-bottom: 1px solid #d0d4e4;
     height: 36px;
     line-height: 36px;
+}
+
+.upper-task {
+    border-top: #d0d4e4 1px solid;
 }
 
 .checkbox-column {
@@ -58,6 +70,7 @@
     // margin-inline: 10px;
     &.disabled {
         cursor: default;
+        width: 39px;
     }
 }
 
@@ -82,7 +95,9 @@
 }
 
 .task-input-row {
-    border: 0.5px solid rgba(0, 0, 0, 0.192);
+    // border: 0.5px solid rgba(0, 0, 0, 0.192);
+    border-right: #d0d4e4 1px solid;
+    border-bottom: #d0d4e4 1px solid;
     border-collapse: collapse;
     height: 36px;
     width: 100%;

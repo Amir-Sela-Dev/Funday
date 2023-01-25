@@ -500,6 +500,7 @@ button {
   display: grid;
   transition: all 0.3s;
   width: 100%;
+  height: 100vh;
 }
 .app-index.closeMenu {
   grid-template-columns: 66px 30px 1fr;
@@ -1183,7 +1184,11 @@ button {
   width: 65px;
 }
 .task-preview .preview-add-colume {
-  width: 100px;
+  display: flex;
+  flex: 1;
+}
+.task-preview .preview-add-colume .white-block {
+  min-width: 100px;
 }
 .task-preview .AvatarGroup-module_avatarGroupContainer__9H7Sk {
   flex-wrap: nowrap;
@@ -1344,9 +1349,13 @@ button {
   font-size: 14px;
   color: #323338;
 }
+.task-list .drag-tasks-container > * {
+  min-width: min-content;
+}
 .task-list .task-title-row {
   text-align: center;
   font-size: 14px;
+  min-width: min-content;
 }
 .task-list .menu-modal p {
   margin: 0;
@@ -1362,13 +1371,18 @@ button {
 }
 .task-list .add-colume {
   width: 100px;
+  flex: 1;
 }
 
 .task-column {
-  outline: 0.5px solid rgba(0, 0, 0, 0.192);
-  border-collapse: collapse;
+  border-right: 1px solid #d0d4e4;
+  border-bottom: 1px solid #d0d4e4;
   height: 36px;
   line-height: 36px;
+}
+
+.upper-task {
+  border-top: #d0d4e4 1px solid;
 }
 
 .checkbox-column {
@@ -1388,6 +1402,7 @@ button {
 }
 .task-checkbox.disabled {
   cursor: default;
+  width: 39px;
 }
 
 .task-date {
@@ -1406,7 +1421,8 @@ button {
 }
 
 .task-input-row {
-  border: 0.5px solid rgba(0, 0, 0, 0.192);
+  border-right: #d0d4e4 1px solid;
+  border-bottom: #d0d4e4 1px solid;
   border-collapse: collapse;
   height: 36px;
   width: 100%;
@@ -1923,6 +1939,7 @@ button {
 .board-details {
   grid-area: board-details;
   color: #323338;
+  overflow: auto;
 }
 .board-details a.tab-inner {
   padding-inline: 8px;

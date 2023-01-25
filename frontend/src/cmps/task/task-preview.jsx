@@ -204,7 +204,7 @@ export function TaskPreview({
                     {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                         onClick={() => { openOptionModal() }} /> */}
                     <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
-                    <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
+                    <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                     <div className="checkbox-wrap">
                         <div
                             className="checkbox-column task-column"
@@ -307,7 +307,9 @@ export function TaskPreview({
                         {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
                     </div>
                     }
-                    <div className="preview-add-colume task-column "> </div>
+                    <div className="preview-add-colume task-column ">
+                        <div className="white-block"></div>
+                    </div>
 
                 </div>
             )}

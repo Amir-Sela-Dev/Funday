@@ -1,12 +1,12 @@
 .app-index {
     display: grid;
-    transition: all .3s;
+    transition: all 0.3s;
     width: 100%;
+    height: 100vh;
 
     &.closeMenu {
         grid-template-columns: 66px 30px 1fr;
     }
-
 
     @include for-narrow-layout {
         grid-template-columns: 66px 254px 1fr;

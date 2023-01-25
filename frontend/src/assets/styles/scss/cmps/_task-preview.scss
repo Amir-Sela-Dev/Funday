@@ -85,7 +85,7 @@
         }
     }
 
-    &>.task-column {
+    & > .task-column {
         transition: background-color 0.15s ease-in-out;
         background-color: white;
     }
@@ -155,7 +155,12 @@
     }
 
     .preview-add-colume {
-        width: 100px;
+        display: flex;
+        flex: 1;
+
+        .white-block {
+            min-width: 100px;
+        }
     }
 
     .AvatarGroup-module_avatarGroupContainer__9H7Sk {
@@ -173,7 +178,7 @@
     margin-block-end: 1em;
     flex-wrap: wrap;
 
-    &>.person-item {
+    & > .person-item {
         margin-inline-end: 10px;
         margin-block-start: 10px;
         display: flex;
@@ -182,13 +187,13 @@
         background: #e5f4ff;
         border-radius: 999px;
 
-        &>img {
+        & > img {
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        &>span {
+        & > span {
             font-size: 12px;
             line-height: 16px;
             padding-inline-end: 10px;
@@ -206,11 +211,11 @@
     margin-block-end: 10px;
     min-width: 99%;
 
-    &>input {
+    & > input {
         width: 100%;
     }
 
-    &>ul {
+    & > ul {
         padding: 0;
         list-style-type: none;
         display: flex;
@@ -218,7 +223,7 @@
         justify-content: flex-start;
     }
 
-    &>h4 {
+    & > h4 {
         text-align: start;
         margin-block: 1em;
     }
@@ -236,14 +241,14 @@
             background: rgb(220, 223, 236);
         }
 
-        &>img {
+        & > img {
             border-radius: 50%;
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        &>span {
+        & > span {
             font-size: 14px;
         }
     }
@@ -291,7 +296,7 @@
         font-size: 14px;
     }
 
-    &>form {
+    & > form {
         width: 100%;
     }
 }
