@@ -15,14 +15,13 @@
             }
         }
 
-
         .task-option-icon {
             opacity: 1;
         }
     }
 
     .checkbox-column {
-        margin-inline-start: 8px;
+        // margin-inline-start: 8px;
     }
 
     .task-option-icon {
@@ -86,8 +85,9 @@
         }
     }
 
-    &>.task-column {
+    & > .task-column {
         transition: background-color 0.15s ease-in-out;
+        background-color: white;
     }
 
     .comments-bubble {
@@ -100,7 +100,7 @@
         width: 77px;
 
         img {
-            margin-inline-start: 20px
+            margin-inline-start: 20px;
         }
 
         .icon_component {
@@ -110,9 +110,8 @@
         }
 
         .icon_component:hover {
-
             path {
-                color: #0073ea
+                color: #0073ea;
             }
         }
 
@@ -135,7 +134,6 @@
         width: 140px;
         position: relative;
         color: #fff;
-
     }
 
     .preview-timeline {
@@ -148,7 +146,6 @@
         &:hover {
             .file-icon {
                 display: block;
-
             }
         }
     }
@@ -158,9 +155,8 @@
     }
 
     .preview-add-colume {
-        width: 100px
+        width: 100px;
     }
-
 }
 
 .person-img {
@@ -172,7 +168,7 @@
     margin-block-end: 1em;
     flex-wrap: wrap;
 
-    &>.person-item {
+    & > .person-item {
         margin-inline-end: 10px;
         margin-block-start: 10px;
         display: flex;
@@ -181,13 +177,13 @@
         background: #e5f4ff;
         border-radius: 999px;
 
-        &>img {
+        & > img {
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        &>span {
+        & > span {
             font-size: 12px;
             line-height: 16px;
             padding-inline-end: 10px;
@@ -205,11 +201,11 @@
     margin-block-end: 10px;
     min-width: 99%;
 
-    &>input {
+    & > input {
         width: 100%;
     }
 
-    &>ul {
+    & > ul {
         padding: 0;
         list-style-type: none;
         display: flex;
@@ -217,7 +213,7 @@
         justify-content: flex-start;
     }
 
-    &>h4 {
+    & > h4 {
         text-align: start;
         margin-block: 1em;
     }
@@ -235,14 +231,14 @@
             background: rgb(220, 223, 236);
         }
 
-        &>img {
+        & > img {
             border-radius: 50%;
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        &>span {
+        & > span {
             font-size: 14px;
         }
     }
@@ -254,7 +250,7 @@
     outline: none;
     font-family: Figtree;
     font-size: 14px;
-    padding-inline-start: 4px
+    padding-inline-start: 4px;
 }
 
 .task-title-input {
@@ -285,12 +281,11 @@
     width: 360px;
     align-items: center;
     justify-content: space-between;
-
     span {
         font-size: 14px;
     }
 
-    &>form {
+    & > form {
         width: 100%;
     }
 }
@@ -315,7 +310,7 @@
 }
 
 .task-persons {
-    width: 98px
+    width: 98px;
 }
 
 .task-icon {

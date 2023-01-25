@@ -205,18 +205,20 @@ export function TaskPreview({
                     {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                         onClick={() => { openOptionModal() }} /> */}
                     <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
+                    <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
+                    <div className="checkbox-wrap">
+                        <div
+                            className="checkbox-column task-column"
+                            onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
 
-                    <div
-                        className="checkbox-column task-column"
-                        onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
-                        <div className='colored-tag' style={{ background: group.style?.color || '#FFF000' }} />
-                        <input className='task-checkbox' type="checkbox"
-                            checked={isAllSelected || isTaskSelected || false}
-                            onChange={ev => {
-                                ev.stopPropagation()
-                                if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
-                                setIsTaskSelected(!isTaskSelected)
-                            }} />
+                            <input className='task-checkbox' type="checkbox"
+                                checked={isAllSelected || isTaskSelected || false}
+                                onChange={ev => {
+                                    ev.stopPropagation()
+                                    if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
+                                    setIsTaskSelected(!isTaskSelected)
+                                }} />
+                        </div>
                     </div>
 
                     <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
