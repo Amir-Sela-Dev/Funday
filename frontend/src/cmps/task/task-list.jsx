@@ -33,7 +33,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
     function handleInputChange({ target }) {
         let { value, name: field } = target
-        console.log('target', target);
         setNewTask((prevTask) => {
             return { ...prevTask, [field]: value }
         })

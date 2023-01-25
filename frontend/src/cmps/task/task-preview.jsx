@@ -81,7 +81,6 @@ export function TaskPreview({
     }
 
     async function onAddTaskPerson(person) {
-        console.log('person added', person)
         try {
             // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
             let taskToSave = structuredClone(task)
