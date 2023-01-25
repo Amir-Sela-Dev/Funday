@@ -6,8 +6,8 @@ import { utilService } from '../../services/util.service';
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
-import { Button, Flex, IconButton, MenuButton, DialogContentContainer, Icon, Menu, MenuItem, MenuDivider } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Item, Table, DropdownChevronDown, Group as GroupIcon } from "monday-ui-react-core/icons";
+import { Button, Flex, IconButton, Menu, MenuItem, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
+import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon } from "monday-ui-react-core/icons";
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -91,25 +91,11 @@ export function GroupList({ board, toggleModal, setFilter }) {
             <DialogContentContainer
                 key="small"
                 className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
-                {/* <Menu className="board-actions-mobile">
-                    
-                </Menu> */}
-                <MenuButton
-                    className="board-actions-mobile"
-                    text="New item"
-                    onClick={() => { onAddItem(false) }}
-                    component={Item}
-                    componentPosition={MenuButton.componentPositions.END} />
-                <MenuDivider />
-                <MenuButton
-                    className="board-actions-mobile"
-                    text="New Group"
-                    onClick={() => { onAddItem(true) }}
-                    component={Group}
-                    componentPosition={MenuButton.componentPositions.END} />
-                {/* <MenuButton className="board-actions-mobile" text="Open" component={DropdownChevronDown} componentPosition={MenuButton.componentPositions.END} onClick={() => {
-                    console.log('hi')
-                }} /> */}
+                <Menu className="board-actions-mobile">
+                    <MenuItem title="New Task" onClick={() => { onAddItem(false) }} />
+                    <MenuDivider />
+                    <MenuItem title="New Group" onClick={() => { onAddItem(true) }} />
+                </Menu>
             </DialogContentContainer>
         }
         <hr className="group-list-main-hr" />
@@ -126,7 +112,6 @@ export function GroupList({ board, toggleModal, setFilter }) {
                     <div className="new-task-modal">
                         <div className="menu-modal-option new-group-btn-option flex"
                             onClick={() => { onAddItem(true) }}>
-                            <Icon icon={GroupIcon} />
                             <Icon icon={GroupIcon} />
                             <p>New Group</p>
                         </div>
@@ -159,7 +144,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
 
                 </Button> */}
 
-                <Button className='bar-icon bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
                     Person
                 </Button>
                 <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
@@ -172,16 +157,13 @@ export function GroupList({ board, toggleModal, setFilter }) {
                     leftIcon={Filter}>
                     Filter
 
-
                     {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
-                        onClick={(e) => { e.stopPropagation() }}
                         onClick={(e) => { e.stopPropagation() }}>
                         <LabelSelect handleLableChange={handleLableChange} lables={lables} />
                     </div>}
 
-
                 </Button>
-                <Button className='bar-icon bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
                     Sort
                 </Button>
             </Flex>
