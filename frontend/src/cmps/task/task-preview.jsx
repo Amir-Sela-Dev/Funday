@@ -245,7 +245,6 @@ export function TaskPreview({
                         onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
 
                         {task.persons && !isPersonsOpen &&
-
                             <AvatarGroup size="small" max={3} vertical >
                                 {task.persons.map(currPerson => <TaskPerson key={currPerson.id} person={currPerson} />)}
                                 {/* <Avatar type={Avatar.types.TEXT} size="small" text="hey" ariaLabel="hey" /> */}

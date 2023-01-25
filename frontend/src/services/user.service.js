@@ -107,6 +107,3 @@ function getLoggedinUser() {
 //     await userService.signup({ _id: utilService.makeId(5), fullname: 'Sheilan Shamilov', username: 'sheilan@gmail.com', password: 'sheilan123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png' })
 //     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Yakobuv', username: 'amiryakubov@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' })
 // })()
-
-
-

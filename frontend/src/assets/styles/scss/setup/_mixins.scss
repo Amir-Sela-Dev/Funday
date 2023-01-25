@@ -6,6 +6,18 @@
     }
 }
 
+@mixin for-mobile-layout-small {
+    @media (max-width: calc($mobile-breakpoint)) {
+        @content;
+    }
+}
+
+@mixin for-mobile-layout-xs {
+    @media (max-width: calc($mobile-breakpoint - 40px)) {
+        @content;
+    }
+}
+
 @mixin for-narrow-layout {
     @media (min-width: calc($mobile-breakpoint + 40px)) {
         @content;
@@ -21,6 +33,17 @@
 @mixin for-wide-layout {
     @media (min-width: calc($normal-breakpoint + 40px)) {
         @content;
+    }
+}
+
+@mixin mobile-modal {
+    position: fixed;
+    bottom: -500px;
+    left: 2.5vw;
+    min-width: 95vw;
+    &.open {
+        bottom: 0;
+        // top: 77vh;
     }
 }
 
