@@ -29,7 +29,6 @@
     @include for-mobile-layout {
         padding-inline-start: $inner-padding-mobile;
     }
-
 }
 
 .group-list-main-hr {
@@ -46,6 +45,10 @@
     margin-bottom: -5px;
     margin-top: 15px;
     height: 32px;
+
+    .bar-icon {
+        opacity: 0.75;
+    }
 
     button {
         font-size: 14px;
@@ -114,10 +117,9 @@
         }
 
         .arrow-down-img {
-            margin-top: 8px;
+            margin: 9px auto;
             width: 16px;
         }
-
     }
 
     .new-group-btn:hover {
@@ -202,12 +204,10 @@
 
     @include for-mobile-layout {
         max-width: calculate-width(100vw, $inner-padding-mobile);
-
     }
 
     .bar-tables {
         display: none;
-
 
         @include for-mobile-layout {
             display: flex;

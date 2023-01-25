@@ -80,10 +80,11 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
         <div className="task-list">
 
-            <div className="task-title-row flex">
+            <div className="task-title-row flex ">
+                <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
                 <div className="checkbox-column task-column"
                     onClick={() => { setIsAllSelected(!isAllSelected) }}>
-                    <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div>
+                    {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
                     <input className='task-checkbox'
                         type="checkbox"
                         checked={isAllSelected}
@@ -191,9 +192,10 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
 
             <div className="add-task-wrap flex">
+                <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
                 <div className="checkbox-column task-column disabled">
-                    <div className="colored-tag last-tag"
-                        style={{ background: group.style?.color }} />
+                    {/* <div className="colored-tag last-tag"
+                        style={{ background: group.style?.color }} /> */}
                     <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                 </div>
                 {/* <div style={{ width: '30px', display: 'flex' }} /> */}

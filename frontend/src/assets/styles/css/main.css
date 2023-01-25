@@ -308,6 +308,7 @@ button {
 .menu-modal .new-group-btn-option p {
   margin: 0;
   padding: 4px 0;
+  padding-left: 8px;
 }
 .menu-modal .menu-modal-option:hover {
   background-color: #dcdfec;
@@ -715,6 +716,11 @@ button {
   z-index: 2;
   justify-content: space-between;
 }
+.side-nav .high-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .main-logo {
   height: 36px;
@@ -733,6 +739,7 @@ button {
   height: 25px;
   width: 29px;
   margin: 18px 15px;
+  margin-top: 18px;
 }
 
 .component-icon {
@@ -806,6 +813,7 @@ button {
   transition: transform 1s;
   color: #323338;
   z-index: 1;
+  position: fixed;
 }
 .work-space.close-workspace {
   transform: translateX(-225px);
@@ -1069,9 +1077,6 @@ button {
 .task-preview:hover .task-option-icon {
   opacity: 1;
 }
-.task-preview .checkbox-column {
-  margin-inline-start: 8px;
-}
 .task-preview .task-option-icon {
   margin-inline-start: -31px;
   width: 25px;
@@ -1127,6 +1132,7 @@ button {
 }
 .task-preview > .task-column {
   transition: background-color 0.15s ease-in-out;
+  background-color: white;
 }
 .task-preview .comments-bubble {
   display: flex;
@@ -1419,16 +1425,19 @@ button {
   display: inline-block;
   height: 36px;
   width: 6px;
+  margin-inline-start: 8px;
 }
 
 .first-tag {
   border-radius: 2rem 0 0 0;
+  margin-left: 0;
 }
 
 .last-tag {
   border-radius: 0 0 0 1rem;
   opacity: 0.5;
-  height: 35px;
+  height: 36.4px;
+  margin-left: 0;
 }
 
 .task-details-modal {
@@ -1681,6 +1690,9 @@ button {
   margin-top: 15px;
   height: 32px;
 }
+.board-actions .bar-icon {
+  opacity: 0.75;
+}
 .board-actions button {
   font-size: 14px;
   padding: 0;
@@ -1736,7 +1748,7 @@ button {
   width: 90px;
 }
 .board-actions .new-group-btn .arrow-down-img {
-  margin-top: 8px;
+  margin: 9px auto;
   width: 16px;
 }
 .board-actions .new-group-btn:hover {
@@ -1954,7 +1966,7 @@ button {
 }
 .board-title.mobile {
   display: none;
-  margin-block-end: 10px;
+  margin-block: 10px;
 }
 @media (max-width: 500px) {
   .board-title.mobile {
@@ -2025,10 +2037,29 @@ button {
   width: 25px;
   height: 25px;
 }
+.icon-btn-add.active {
+  transform: rotate(-135deg);
+}
 @media (max-width: 500px) {
   .icon-btn-add {
     display: flex;
   }
+}
+
+.board-actions-modal {
+  position: absolute;
+  bottom: 90px;
+  right: 25px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.board-actions-modal .board-actions-mobile {
+  width: 100%;
+}
+.board-actions-modal.active {
+  width: 60vw;
+  height: auto;
 }
 
 .upload-preview input {
