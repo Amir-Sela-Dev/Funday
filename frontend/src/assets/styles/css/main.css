@@ -500,7 +500,6 @@ button {
   display: grid;
   transition: all 0.3s;
   width: 100%;
-  height: 100vh;
 }
 .app-index.closeMenu {
   grid-template-columns: 66px 30px 1fr;
@@ -1181,10 +1180,10 @@ button {
   display: block;
 }
 .task-preview .preview-checkbox {
-  width: 80px;
+  width: 65px;
 }
 .task-preview .preview-add-colume {
-  flex: 1;
+  width: 100px;
 }
 .task-preview .AvatarGroup-module_avatarGroupContainer__9H7Sk {
   flex-wrap: nowrap;
@@ -1267,14 +1266,11 @@ button {
 
 .task-title {
   width: 360px;
+  border: none;
   outline: none;
   font-family: Figtree;
   font-size: 14px;
   padding-inline-start: 4px;
-}
-
-.first-row {
-  border-top: 1px solid #d0d4e4;
 }
 
 .task-title-input {
@@ -1348,13 +1344,9 @@ button {
   font-size: 14px;
   color: #323338;
 }
-.task-list .drag-tasks-container {
-  min-width: min-content;
-}
 .task-list .task-title-row {
   text-align: center;
   font-size: 14px;
-  min-width: min-content;
 }
 .task-list .menu-modal p {
   margin: 0;
@@ -1366,18 +1358,17 @@ button {
   width: 139px;
 }
 .task-list .checkbox {
-  width: 80px;
+  width: 65px;
 }
 .task-list .add-colume {
-  flex: 1;
+  width: 100px;
 }
 
 .task-column {
-  border-right: 1px solid #d0d4e4;
-  border-bottom: 1px solid #d0d4e4;
+  outline: 0.5px solid rgba(0, 0, 0, 0.192);
+  border-collapse: collapse;
   height: 36px;
   line-height: 36px;
-  overflow: hidden;
 }
 
 .checkbox-column {
@@ -1388,7 +1379,6 @@ button {
 }
 .checkbox-column.disabled {
   cursor: default;
-  min-width: 39px;
 }
 
 .task-checkbox {
@@ -1411,19 +1401,16 @@ button {
   color: #323338;
 }
 
-.add-task-wrap {
-  min-width: min-content;
-}
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
 }
 
 .task-input-row {
-  border-bottom: 1px solid #d0d4e4;
-  border-right: 1px solid #d0d4e4;
+  border: 0.5px solid rgba(0, 0, 0, 0.192);
+  border-collapse: collapse;
   height: 36px;
-  display: flex;
-  flex: 1;
+  width: 100%;
+  border-block-start: none;
 }
 
 .add-task-input {
@@ -1936,7 +1923,6 @@ button {
 .board-details {
   grid-area: board-details;
   color: #323338;
-  overflow: auto;
 }
 .board-details a.tab-inner {
   padding-inline: 8px;

@@ -50,7 +50,6 @@ export function GroupList({ board, toggleModal, setFilter }) {
     }
 
     async function onRemoveGroup(groupId) {
-        console.log('here');
         removeGroup(board, groupId)
     }
 

@@ -26,7 +26,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     }
 
     async function onAddTaskComment() {
-        console.log(value);
         if (!value) return
         comment.txt = value
         comment.createdAt = Date.now()
@@ -44,7 +43,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         if (days === 0) {
             return "now";
         }
-        console.log(days);
         return `${days}d`;
     }
 

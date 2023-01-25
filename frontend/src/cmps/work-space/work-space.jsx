@@ -47,7 +47,6 @@ export function WorkSpace({ toggleWorkspace }) {
 
     function handleChange({ target }) {
         let { value } = target
-        console.log(value);
         setboardName(value)
     }
 
