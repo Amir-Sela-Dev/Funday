@@ -49,8 +49,10 @@
         border-radius: 0.5rem;
         z-index: 70;
         transform: translate(-50%, 18%);
-        top: 18%;
-        left: 50%;
+        @include for-narrow-layout{
+            top: 18%;
+            left: 50%;
+        }
 
         .arrow-up {
             position: absolute;
@@ -67,14 +69,26 @@
         .label {
             margin-bottom: 8px;
         }
+
+        @include for-mobile-layout {
+            @include mobile-modal;
+            left: 50vw;
+            &.open{
+                bottom: 30px;
+            }
+
+        }
     }
 
     .user-preview {
         @extend .base-modal;
-        top: 200%;
-        right: 0;
-        min-width: 420px;
+        @include for-narrow-layout{
+            top: 200%;
+            right: 0;
+            min-width: 420px;
+        }
 
+        transition: all 0.5s;
         .person-details {
             padding: 16px 16px 0 16px;
             align-items: flex-start;
@@ -82,6 +96,11 @@
             &:hover {
                 cursor: default;
             }
+
+        }
+
+        @include for-mobile-layout {
+            @include mobile-modal
         }
     }
 
