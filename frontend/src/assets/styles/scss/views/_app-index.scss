@@ -2,8 +2,9 @@
     display: grid;
     transition: all 0.3s;
     width: 100%;
+    // SHEILAN'S TESTING GROUND
+    overflow-y: hidden;
     height: 100vh;
-
     &.closeMenu {
         grid-template-columns: 66px 30px 1fr;
     }

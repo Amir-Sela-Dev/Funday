@@ -1141,8 +1141,12 @@ button {
   border-radius: 0.5rem;
   z-index: 70;
   transform: translate(-50%, 18%);
-  top: 18%;
-  left: 50%;
+}
+@media (min-width: 500px) {
+  .task-preview .status-picker {
+    top: 18%;
+    left: 50%;
+  }
 }
 .task-preview .status-picker .arrow-up {
   position: absolute;
@@ -1158,10 +1162,30 @@ button {
 .task-preview .status-picker .label {
   margin-bottom: 8px;
 }
+@media (max-width: 500px) {
+  .task-preview .status-picker {
+    position: fixed;
+    bottom: -500px;
+    left: 2.5vw;
+    min-width: 95vw;
+    left: 50vw;
+  }
+  .task-preview .status-picker.open {
+    bottom: 0;
+  }
+  .task-preview .status-picker.open {
+    bottom: 30px;
+  }
+}
 .task-preview .user-preview {
-  top: 200%;
-  right: 0;
-  min-width: 420px;
+  transition: all 0.5s;
+}
+@media (min-width: 500px) {
+  .task-preview .user-preview {
+    top: 200%;
+    right: 0;
+    min-width: 420px;
+  }
 }
 .task-preview .user-preview .person-details {
   padding: 16px 16px 0 16px;
@@ -1169,6 +1193,17 @@ button {
 }
 .task-preview .user-preview .person-details:hover {
   cursor: default;
+}
+@media (max-width: 500px) {
+  .task-preview .user-preview {
+    position: fixed;
+    bottom: -500px;
+    left: 2.5vw;
+    min-width: 95vw;
+  }
+  .task-preview .user-preview.open {
+    bottom: 0;
+  }
 }
 .task-preview > .task-column {
   transition: background-color 0.15s ease-in-out;
