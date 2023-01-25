@@ -20,8 +20,13 @@
         }
     }
 
-    .checkbox-column {
-        // margin-inline-start: 8px;
+    .white-background {
+        position: absolute;
+        background-color: #fff;
+        height: 37px;
+        width: 40px;
+        left: -40px;
+        // z-index: 5;
     }
 
     .task-option-icon {
@@ -32,6 +37,16 @@
         margin-right: 1px;
         position: relative;
         opacity: 0;
+    }
+
+    .wrap-modal {
+        position: relative;
+        z-index: 71;
+    }
+
+    .wrap-group-modal {
+        position: relative;
+        z-index: 71;
     }
 
     .status-picker {

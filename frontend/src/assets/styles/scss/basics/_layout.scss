@@ -11,19 +11,19 @@
     }
 
     @include for-narrow-layout {
-        grid-template-columns: 
+        grid-template-columns:
             minmax(20px, 1fr)
             minmax(auto, $mobile-breakpoint)
             minmax(20px, 1fr);
     }
     @include for-normal-layout {
-        grid-template-columns: 
+        grid-template-columns:
             minmax(20px, 1fr)
             minmax(auto, $narrow-breakpoint)
             minmax(20px, 1fr);
     }
     @include for-wide-layout {
-        grid-template-columns: 
+        grid-template-columns:
             minmax(20px, 1fr)
             minmax(auto, $normal-breakpoint)
             minmax(20px, 1fr);
@@ -36,3 +36,25 @@
     grid-gap: 20px;
 }
 
+.sticky-grid {
+    position: sticky;
+    left: 40px;
+    z-index: 5;
+    background-color: white;
+}
+
+.sticky-board-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+}
+
+.group-sticky-header {
+    position: sticky;
+    top: 101px;
+    left: 40px;
+    z-index: 10;
+    background-color: white;
+}

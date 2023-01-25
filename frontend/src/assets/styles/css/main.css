@@ -169,6 +169,29 @@
   grid-gap: 20px;
 }
 
+.sticky-grid {
+  position: sticky;
+  left: 40px;
+  z-index: 5;
+  background-color: white;
+}
+
+.sticky-board-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.group-sticky-header {
+  position: sticky;
+  top: 101px;
+  left: 40px;
+  z-index: 10;
+  background-color: white;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -264,15 +287,16 @@ button {
   transform: translate(199px, 10px);
 }
 .menu-modal.board-list-modal {
-  transform: translate(199px, 25px);
+  transform: translate(-241px, -26px);
 }
 .menu-modal.board-list-modal hr {
   margin: 1px;
 }
 .menu-modal.group-modal {
   color: #323338;
-  transform: translate(-34px, 38px);
+  transform: translate(-34px, 44px);
   width: 215px;
+  z-index: 71;
 }
 .menu-modal.group-modal p {
   color: #323338;
@@ -284,7 +308,7 @@ button {
   width: 200px;
 }
 .menu-modal.task-modal {
-  transform: translate(-34px, 64px);
+  transform: translate(-35px, 5px);
 }
 .menu-modal .main-option {
   top: 24px;
@@ -714,7 +738,7 @@ button {
   flex-direction: column;
   align-items: center;
   position: fixed;
-  z-index: 2;
+  z-index: 21;
   justify-content: space-between;
 }
 .side-nav .high-nav {
@@ -813,7 +837,7 @@ button {
   border-right: 1px solid rgba(0, 0, 0, 0.102);
   transition: transform 1s;
   color: #323338;
-  z-index: 1;
+  z-index: 20;
   position: fixed;
 }
 .work-space.close-workspace {
@@ -1078,6 +1102,13 @@ button {
 .task-preview:hover .task-option-icon {
   opacity: 1;
 }
+.task-preview .white-background {
+  position: absolute;
+  background-color: #fff;
+  height: 37px;
+  width: 40px;
+  left: -40px;
+}
 .task-preview .task-option-icon {
   margin-inline-start: -31px;
   width: 25px;
@@ -1086,6 +1117,14 @@ button {
   margin-right: 1px;
   position: relative;
   opacity: 0;
+}
+.task-preview .wrap-modal {
+  position: relative;
+  z-index: 71;
+}
+.task-preview .wrap-group-modal {
+  position: relative;
+  z-index: 71;
 }
 .task-preview .status-picker {
   position: absolute;
@@ -1352,6 +1391,13 @@ button {
 .task-list .drag-tasks-container > * {
   min-width: min-content;
 }
+.task-list .white-background {
+  position: absolute;
+  background-color: #fff;
+  height: 37px;
+  width: 40px;
+  left: -40px;
+}
 .task-list .task-title-row {
   text-align: center;
   font-size: 14px;
@@ -1452,8 +1498,9 @@ button {
 .last-tag {
   border-radius: 0 0 0 1rem;
   opacity: 0.5;
-  height: 36.4px;
+  height: 36px;
   margin-left: 0;
+  min-width: 6px;
 }
 
 .task-details-modal {
@@ -1883,6 +1930,7 @@ button {
   margin-right: 1px;
   margin-bottom: -4px;
   position: relative;
+  z-index: 5;
 }
 
 .board-preview {

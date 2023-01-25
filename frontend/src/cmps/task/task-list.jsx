@@ -78,22 +78,25 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
     return (
 
         <div className="task-list">
-
             <div className="task-title-row flex">
-                <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
-                <div className="checkbox-column task-column upper-task"
-                    onClick={() => { setIsAllSelected(!isAllSelected) }}>
-                    {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
-                    <input className='task-checkbox'
-                        type="checkbox"
-                        checked={isAllSelected}
-                        onChange={ev => {
-                            ev.stopPropagation()
-                            setIsAllSelected(!isAllSelected)
-                        }} />
-                </div>
+                <div className="sticky-grid flex">
+                    <div class="white-background"></div>
+                    <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                    <div className="checkbox-column task-column upper-task"
+                        onClick={() => { setIsAllSelected(!isAllSelected) }}>
+                        {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
+                        <input className='task-checkbox'
+                            type="checkbox"
+                            checked={isAllSelected}
+                            onChange={ev => {
+                                ev.stopPropagation()
+                                setIsAllSelected(!isAllSelected)
+                            }} />
+                    </div>
 
-                <div className="task-title task-column upper-task">Item</div>
+                    <div className="task-title task-column upper-task">Item</div>
+
+                </div>
                 {columes.includes('person') && <div className="task-persons task-column upper-task"><span>Person</span></div>}
                 {columes.includes('status') && <div className="task-status task-column upper-task">Status</div>}
                 {columes.includes('date') && <div className="task-date task-column upper-task">Date</div>}
@@ -191,36 +194,26 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
 
             <div className="add-task-wrap flex">
-                <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
-                <div className="checkbox-column task-column disabled">
-                    {/* <div className="colored-tag last-tag"
-                        style={{ background: group.style?.color }} /> */}
-                    <input className='task-checkbox disabled' type="checkbox" disabled={true} />
-                </div>
-                {/* <div style={{ width: '30px', display: 'flex' }} /> */}
-                {/* <form onSubmit={onSaveTask} >
-                    <input
-                        className="task-title-input"
-                        placeholder='Add item'
-                        type="text"
-                        value={newTask.title}
-                        onChange={handleInputChange}
-                        onBlur={ev => onSaveTask(ev)}
-                    />
-                </form> */}
-                <form className='task-input-row' onSubmit={onSaveTask}>
-                    <input
-                        className="add-task-input"
-                        placeholder='+ Add item'
-                        type="text"
-                        name="title"
-                        value={newTask.title}
-                        onChange={handleInputChange}
-                        onBlur={ev => onSaveTask(ev)}
-                    />
-                </form>
-            </div>
+                <div className="sticky-grid flex">
 
+                    <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                    <div className="checkbox-column task-column disabled">
+                        <input className='task-checkbox disabled' type="checkbox" disabled={true} />
+                    </div>
+
+                    <form className='task-input-row' onSubmit={onSaveTask}>
+                        <input
+                            className="add-task-input"
+                            placeholder='+ Add item'
+                            type="text"
+                            name="title"
+                            value={newTask.title}
+                            onChange={handleInputChange}
+                            onBlur={ev => onSaveTask(ev)}
+                        />
+                    </form>
+                </div>
+            </div>
         </div>
 
     )
