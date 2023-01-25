@@ -116,9 +116,9 @@ export function WorkSpace({ toggleWorkspace }) {
                 onClick={toggleMenuModal} />
         </div>
         <div className="main-workspace-dropdown flex">
-            <div className="main-workspace-dropdown">
+            {/* <div className="main-workspace-dropdown">
 
-            </div>
+            </div> */}
             <div className="main-icon">M
                 <img className="home-icon" src={require(`/src/assets/img/${homeIcon}`)} />
             </div>

@@ -8,6 +8,12 @@
     position: fixed;
     z-index: 2;
     justify-content: space-between;
+
+    .high-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .main-logo {
@@ -27,6 +33,7 @@
     height: 25px;
     width: 29px;
     margin: 18px 15px;
+    margin-top: 18px;
 }
 
 .component-icon {
