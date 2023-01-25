@@ -30,7 +30,6 @@ export function GroupBottomBar({ board, group }) {
         });
         return files
     }
-    getAllPeople()
     function getAllPeople() {
         let persons = []
         group.tasks.forEach(task => {
@@ -43,6 +42,19 @@ export function GroupBottomBar({ board, group }) {
         });
         // console.log(persons);
         return persons
+    }
+
+
+    function getAllMark() {
+        let markStateMap = { numOfCheck: 0, numOfTask: 0 }
+        group.tasks.forEach(task => {
+            if (task.isMark) {
+                markStateMap.numOfCheck++
+            }
+            markStateMap.numOfTask++
+        });
+        console.log(markStateMap);
+        return markStateMap
     }
 
 
@@ -79,13 +91,14 @@ export function GroupBottomBar({ board, group }) {
                                 </AvatarGroup>
                             </div>
                         case 'checkbox':
-                            return <div className="checkbox task-column">Checkbox</div>
+                            return <div className="checkbox task-column">
+                                <span>{getAllMark().numOfCheck} </span> / <span>{getAllMark().numOfTask} </span>
+                            </div>
                         default:
                             return <div className="task-persons task-column">
                                 <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
                                     {getAllPeople().map((person, i) => <Avatar key={i} type={Avatar.types.IMG} isSquare={true} size="small" src={person.imgUrl} />)}
                                 </AvatarGroup>
-
                             </div>
                     }
 

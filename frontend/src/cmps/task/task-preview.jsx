@@ -185,6 +185,18 @@ export function TaskPreview({
         }
     }
 
+    async function onSetMark() {
+        try {
+            setIsMark(!isMark)
+            let taskToSave = structuredClone(task)
+            taskToSave.isMark = !taskToSave.isMark
+            await saveTask(board, group.id, taskToSave, 'Check', `change value to ${isMark}`)
+        } catch (err) {
+            showErrorMsg('Cannot upload file')
+        }
+
+    }
+
 
 
 
@@ -369,8 +381,8 @@ export function TaskPreview({
                                         {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
                                     </div>
                                 case 'checkbox':
-                                    return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
-                                        {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
+                                    return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { onSetMark() }}>
+                                        {task.isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
                                     </div>
                                 default:
                                     return <div className="task-persons task-column"><span>Person</span></div>
