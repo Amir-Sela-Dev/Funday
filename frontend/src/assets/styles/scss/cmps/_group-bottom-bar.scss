@@ -1,0 +1,21 @@
+.group-bottom-bar {
+    border: $clr1 solid 1px;
+    margin-left: 402px;
+
+    .label-progress-bar {
+        margin-block: 6px;
+        margin-inline: 8px;
+        width: 100%;
+
+    }
+
+    .status-progress {
+        transition: 0.2s;
+
+        &:hover {
+            margin-block: -3px;
+            border-radius: 2px;
+
+        }
+    }
+}

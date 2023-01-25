@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { boardService } from "../../services/board.service";
 import { TaskPreview } from "./task-preview";
-import { removeTask, saveTask } from "../../store/board.action"
+import { removeTask, saveBoard, saveTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { Add } from "monday-ui-react-core/icons";
 import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-core";
 import { Droppable } from 'react-beautiful-dnd';
+import { GroupBottomBar } from "../group/group-bottom-bar";
 
 export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
@@ -65,14 +66,16 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
     }
 
     function onAddColume(columeName) {
-        setColumes([...columes, columeName])
+        let boardToSave = structuredClone(board)
+        boardToSave.cmpsOrder.push(columeName)
+        saveBoard(boardToSave)
     }
 
     function onRemoveColume(colume) {
-        let newColumes = structuredClone(columes)
-        let columeIdx = newColumes.findIndex(c => c === colume)
-        newColumes.splice(columeIdx, 1)
-        setColumes(newColumes)
+        let boardToSave = structuredClone(board)
+        let columeIdx = boardToSave.cmpsOrder.findIndex(c => c === colume)
+        boardToSave.cmpsOrder.splice(columeIdx, 1)
+        saveBoard(boardToSave)
     }
 
     return (
@@ -94,13 +97,26 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                 </div>
 
                 <div className="task-title task-column">Item</div>
-                {columes.includes('person') && <div className="task-persons task-column"><span>Person</span></div>}
-                {columes.includes('status') && <div className="task-status task-column">Status</div>}
-                {columes.includes('date') && <div className="task-date task-column">Date</div>}
-                {columes.includes('timeline') && <div className="task-timeline task-column">Timeline</div>}
-                {columes.includes('priority') && <div className="task-status task-column">Priority</div>}
-                {columes.includes('files') && <div className="task-files task-column">Files</div>}
-                {columes.includes('checkbox') && <div className="checkbox task-column">Checkbox</div>}
+                {board.cmpsOrder.map(cmp => {
+                    switch (cmp) {
+                        case 'person':
+                            return <div className="task-persons task-column"><span>Person</span></div>
+                        case 'status':
+                            return <div className="task-status task-column">Status</div>
+                        case 'date':
+                            return <div className="task-date task-column">Date</div>
+                        case 'timeline':
+                            return <div className="task-timeline task-column">Timeline</div>
+                        case 'priority':
+                            return <div className="task-status task-column">Priority</div>
+                        case 'files':
+                            return <div className="task-files task-column">Files</div>
+                        case 'checkbox':
+                            return <div className="checkbox task-column">Checkbox</div>
+                        default:
+                            return <div className="task-persons task-column"><span>Person</span></div>
+                    }
+                })}
                 <div className="add-colume task-column flex align-center justify-center">
                     <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
                     <MenuButton>
@@ -139,7 +155,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                                 captionPosition="top"
                             />
 
-                            {columes.map((colume, idx) => {
+                            {board.cmpsOrder.map((colume, idx) => {
                                 return <MenuItem
                                     key={idx}
                                     icon={function noRefCheck() { }}
@@ -220,6 +236,8 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                     />
                 </form>
             </div>
+
+            <GroupBottomBar board={board} group={group} />
 
         </div>
 

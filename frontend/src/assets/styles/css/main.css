@@ -2109,4 +2109,21 @@ button {
   margin-block-end: 13px;
 }
 
+.group-bottom-bar {
+  border: #323338 solid 1px;
+  margin-left: 402px;
+}
+.group-bottom-bar .label-progress-bar {
+  margin-block: 6px;
+  margin-inline: 8px;
+  width: 100%;
+}
+.group-bottom-bar .status-progress {
+  transition: 0.2s;
+}
+.group-bottom-bar .status-progress:hover {
+  margin-block: -3px;
+  border-radius: 2px;
+}
+
 /*# sourceMappingURL=main.css.map */

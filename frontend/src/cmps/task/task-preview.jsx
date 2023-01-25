@@ -240,73 +240,79 @@ export function TaskPreview({
                         </div>
                     </div>
 
+                    {board.cmpsOrder.map(cmp => {
+                        switch (cmp) {
+                            case 'person':
+                                return <div className="task-persons task-column flex align-center justify-center"
+                                    onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
 
-                    {columes.includes('person') && <div className="task-persons task-column flex align-center justify-center"
-                        onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
+                                    {task.persons && !isPersonsOpen &&
 
-                        {task.persons && !isPersonsOpen &&
+                                        <AvatarGroup size="small" max={2} vertical >
+                                            {task.persons.map(currPerson => <TaskPerson key={currPerson.id} person={currPerson} />)}
+                                            {/* <Avatar type={Avatar.types.TEXT} size="small" text="hey" ariaLabel="hey" /> */}
+                                        </AvatarGroup>
+                                    }
+                                    {isPersonsOpen &&
+                                        <div className="user-preview open">
+                                            <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
+                                        </div>}
+                                </div>
+                            case 'status':
+                                return <div className="preview-task-status  task-column"
+                                    onClick={() => { setIsOpen(!isOpen) }}
+                                    style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
-                            <AvatarGroup size="small" max={3} vertical >
-                                {task.persons.map(currPerson => <TaskPerson key={currPerson.id} person={currPerson} />)}
-                                {/* <Avatar type={Avatar.types.TEXT} size="small" text="hey" ariaLabel="hey" /> */}
-                            </AvatarGroup>
+                                    <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
+
+                                    {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
+                                </div>
+                            case 'date':
+                                return <div className="task-date task-column">
+                                    {/* {(task.date - Date.now() > 0)  && 'x'} */}
+                                    <DatePicker
+                                        defaultValue={task.date ? dayjs(task.date) : ''}
+                                        bordered={false}
+                                        onChange={onAddTaskDate}
+                                        placeholder=""
+                                        format={'MMM D'}
+                                        suffixIcon
+                                    />
+                                </div>
+                            case 'timeline':
+                                return <div className="preview-timeline task-column">
+                                    <Space direction="vertical" >
+                                        <RangePicker bordered={false}
+                                            size={size}
+                                            defaultValue={dayjs('2015/01', monthFormat)}
+                                            format={'MMM D'}
+                                        // style={{ width: '70%' }} 
+                                        />
+                                    </Space>
+                                </div>
+                            case 'priority':
+                                return <div className="preview-task-status  task-column"
+                                    onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
+                                    style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
+
+                                    <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
+                                    {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
+
+                                </div>
+                            case 'files':
+                                return <div className="preview-files  task-column flex align-center justify-center">
+                                    {!task.file && <ImgUploader onUploaded={onUploaded} />}
+                                    {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
+                                </div>
+                            case 'checkbox':
+                                return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
+                                    {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
+                                </div>
+                            default:
+                                return <div className="task-persons task-column"><span>Person</span></div>
                         }
-                        {isPersonsOpen &&
-                            <div className="user-preview open">
-                                <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
-                            </div>}
-                    </div>}
+                    })}
 
-                    {columes.includes('status') && <div className="preview-task-status  task-column"
-                        onClick={() => { setIsOpen(!isOpen) }}
-                        style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
-
-                        <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
-
-                        {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
-                    </div>}
-
-                    {columes.includes('date') && <div className="task-date task-column">
-                        {/* {(task.date - Date.now() > 0)  && 'x'} */}
-                        <DatePicker
-                            defaultValue={task.date ? dayjs(task.date) : ''}
-                            bordered={false}
-                            onChange={onAddTaskDate}
-                            placeholder=""
-                            format={'MMM D'}
-                            suffixIcon
-                        />
-                    </div>}
-
-                    {columes.includes('timeline') && <div className="preview-timeline task-column">
-                        <Space direction="vertical" >
-                            <RangePicker bordered={false}
-                                size={size}
-                                defaultValue={dayjs('2015/01', monthFormat)}
-                                format={'MMM D'}
-                            // style={{ width: '70%' }} 
-                            />
-                        </Space>
-                    </div>}
-
-                    {columes.includes('priority') && <div className="preview-task-status  task-column"
-                        onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
-                        style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
-
-                        <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
-                        {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
-
-                    </div>}
-
-                    {columes.includes('files') && <div className="preview-files  task-column flex align-center justify-center">
-                        {!task.file && <ImgUploader onUploaded={onUploaded} />}
-                        {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
-                    </div>}
-
-                    {columes.includes('checkbox') && <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
-                        {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
-                    </div>
-                    }
                     <div className="preview-add-colume task-column "> </div>
 
                 </div>

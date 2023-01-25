@@ -80,6 +80,20 @@ function getEmptyBoard() {
         isStarred: false,
         archivedAt: Date.now(),
         activities: [],
+        cmpsOrder: ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox'],
+        status: [
+            { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
+            { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
+            { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' },
+            { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
+        ],
+        priority: [
+            { id: utilService.makeId(5), txt: 'Critical', color: 'rgb(51, 51, 51)' },
+            { id: utilService.makeId(5), txt: 'High', color: 'rgb(64, 22, 148)' },
+            { id: utilService.makeId(5), txt: 'Medium', color: 'rgb(85, 89, 223)' },
+            { id: utilService.makeId(5), txt: 'Low', color: 'rgb(87, 155, 252)' },
+            { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
+        ],
         createdBy: {
             _id: utilService.makeId(5),
             fullname: '',
@@ -94,8 +108,8 @@ function getEmptyBoard() {
                     {
                         id: utilService.makeId(5),
                         title: 'item 1',
-                        status: { id: utilService.makeId(5), txt: '', color: '' },
-                        priority: { id: utilService.makeId(5), txt: '', color: '' },
+                        status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                        priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                         comments: [],
                         persons: [],
                         date: '',
@@ -103,8 +117,8 @@ function getEmptyBoard() {
                     {
                         id: utilService.makeId(5),
                         title: 'item 2',
-                        status: { id: utilService.makeId(5), txt: '', color: '' },
-                        priority: { id: utilService.makeId(5), txt: '', color: '' },
+                        status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                        priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                         comments: [],
                         persons: [],
                         date: '',
@@ -120,8 +134,8 @@ function getEmptyBoard() {
                     {
                         id: utilService.makeId(5),
                         title: 'item 3',
-                        status: { id: utilService.makeId(5), txt: '', color: '' },
-                        priority: { id: utilService.makeId(5), txt: '', color: '' },
+                        status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                        priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                         comments: [],
                         persons: [],
                         date: '',
@@ -129,8 +143,8 @@ function getEmptyBoard() {
                     {
                         id: utilService.makeId(5),
                         title: 'item 4',
-                        status: { id: utilService.makeId(5), txt: '', color: '' },
-                        priority: { id: utilService.makeId(5), txt: '', color: '' },
+                        status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                        priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                         comments: [],
                         persons: [],
                         date: '',
@@ -153,6 +167,20 @@ function creatBoards() {
                 isStarred: false,
                 archivedAt: Date.now(),
                 activities: [],
+                cmpsOrder: ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox'],
+                status: [
+                    { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
+                    { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
+                    { id: utilService.makeId(5), txt: 'Stuck', color: '#E2445C' },
+                    { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
+                ],
+                priority: [
+                    { id: utilService.makeId(5), txt: 'Critical', color: 'rgb(51, 51, 51)' },
+                    { id: utilService.makeId(5), txt: 'High', color: 'rgb(64, 22, 148)' },
+                    { id: utilService.makeId(5), txt: 'Medium', color: 'rgb(85, 89, 223)' },
+                    { id: utilService.makeId(5), txt: 'Low', color: 'rgb(87, 155, 252)' },
+                    { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' }
+                ],
                 createdBy: {
                     _id: utilService.makeId(5),
                     fullname: 'Abi Abambi',
@@ -172,7 +200,7 @@ function creatBoards() {
                                     { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
-                                priority: { id: utilService.makeId(5), txt: '', color: '' },
+                                priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 date: "2023-01-19",
                                 comments: []
 
@@ -184,7 +212,7 @@ function creatBoards() {
                                     { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
-                                priority: { id: utilService.makeId(5), txt: '', color: '' },
+                                priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 date: "2023-01-12",
                                 comments: []
 
@@ -200,8 +228,8 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'item 1',
-                                status: { id: utilService.makeId(5), txt: '', color: '' },
-                                priority: { id: utilService.makeId(5), txt: '', color: '' },
+                                status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                                priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 comments: [],
                                 persons: [],
                                 date: '',
@@ -210,12 +238,11 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'item 2',
-                                status: { id: utilService.makeId(5), txt: '', color: '' },
-                                priority: { id: utilService.makeId(5), txt: '', color: '' },
+                                status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                                priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 comments: [],
                                 persons: [],
                                 date: '',
-
                             }
                         ],
                         style: { color: '#e2445c' }
@@ -228,8 +255,8 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'item 3',
-                                status: { id: utilService.makeId(5), txt: '', color: '' },
-                                priority: { id: utilService.makeId(5), txt: '', color: '' },
+                                status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                                priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 comments: [],
                                 persons: [],
                                 date: '',
@@ -238,8 +265,8 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'item 4',
-                                status: { id: utilService.makeId(5), txt: '', color: '' },
-                                priority: { id: utilService.makeId(5), txt: '', color: '' },
+                                status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+                                priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 comments: [],
                                 persons: [],
                                 date: '',
@@ -258,10 +285,10 @@ function getEmptyTask() {
     return {
         title: '',
         persons: '',
-        status: {},
+        status: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
         date: '',
         comments: [],
-        priority: {},
+        priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
     }
 }
 
