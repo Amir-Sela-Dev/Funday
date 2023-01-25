@@ -92,8 +92,10 @@
 
 .task-input-row {
     border-bottom: 1px solid #d0d4e4;
+    border-right: 1px solid #d0d4e4;
     height: 36px;
-    width: 100%;
+    display: flex;
+    flex: 1;
 }
 
 .add-task-input {
