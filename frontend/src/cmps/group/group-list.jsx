@@ -18,7 +18,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isSeachClicked, setIsSeachClicked] = useState(false)
     const [boardActionsModal, setBoardActionsModal] = useState(false)
-    
+
     function onToggleBoardActionsModal() {
         setBoardActionsModal(!boardActionsModal)
     }
@@ -167,12 +167,6 @@ export function GroupList({ board, toggleModal, setFilter }) {
                     Sort
                 </Button>
             </Flex>
-
-
-
-
-
-
         </div>
         {board.groups.map(group =>
             <li className="group-preview-line" key={group.id}>
