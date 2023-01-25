@@ -81,8 +81,8 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
         <div className="task-list">
 
             <div className="task-title-row flex ">
-                <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
-                <div className="checkbox-column task-column"
+                <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                <div className="checkbox-column task-column first-row"
                     onClick={() => { setIsAllSelected(!isAllSelected) }}>
                     {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
                     <input className='task-checkbox'
@@ -94,15 +94,15 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                         }} />
                 </div>
 
-                <div className="task-title task-column">Item</div>
-                {columes.includes('person') && <div className="task-persons task-column"><span>Person</span></div>}
-                {columes.includes('status') && <div className="task-status task-column">Status</div>}
-                {columes.includes('date') && <div className="task-date task-column">Date</div>}
-                {columes.includes('timeline') && <div className="task-timeline task-column">Timeline</div>}
-                {columes.includes('priority') && <div className="task-status task-column">Priority</div>}
-                {columes.includes('files') && <div className="task-files task-column">Files</div>}
-                {columes.includes('checkbox') && <div className="checkbox task-column">Checkbox</div>}
-                <div className="add-colume task-column flex align-center justify-center">
+                <div className="task-title task-column first-row">Item</div>
+                {columes.includes('person') && <div className="task-persons task-column first-row"><span>Person</span></div>}
+                {columes.includes('status') && <div className="task-status task-column first-row">Status</div>}
+                {columes.includes('date') && <div className="task-date task-column first-row">Date</div>}
+                {columes.includes('timeline') && <div className="task-timeline task-column first-row">Timeline</div>}
+                {columes.includes('priority') && <div className="task-status task-column first-row">Priority</div>}
+                {columes.includes('files') && <div className="task-files task-column first-row">Files</div>}
+                {columes.includes('checkbox') && <div className="checkbox task-column first-row">Check</div>}
+                <div className="add-colume task-column flex align-center justify-center first-row">
                     <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
                     <MenuButton>
                         <ul className={"menu-modal board-list-modal"}>
@@ -192,7 +192,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
 
             <div className="add-task-wrap flex">
-                <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
+                <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                 <div className="checkbox-column task-column disabled">
                     {/* <div className="colored-tag last-tag"
                         style={{ background: group.style?.color }} /> */}

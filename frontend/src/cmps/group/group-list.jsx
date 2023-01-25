@@ -6,8 +6,8 @@ import { utilService } from '../../services/util.service';
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
-import { Button, Flex, IconButton, Menu, MenuItem, MenuDivider, MenuButton, DialogContentContainer, Icon } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Item, Table, DropdownChevronDown, Group as GroupIcon } from "monday-ui-react-core/icons";
+import { Button, Flex, IconButton, MenuButton, DialogContentContainer, Icon, IconButton, Menu, MenuItem, MenuDivider } from "monday-ui-react-core";
+import { Add, Search, Person, Filter, Sort, Group, Item, Table, DropdownChevronDown, Group as GroupIcon, Group as GroupIcon } from "monday-ui-react-core/icons";
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -18,7 +18,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isSeachClicked, setIsSeachClicked] = useState(false)
     const [boardActionsModal, setBoardActionsModal] = useState(false)
-
+    
     function onToggleBoardActionsModal() {
         setBoardActionsModal(!boardActionsModal)
     }
@@ -127,6 +127,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         <div className="menu-modal-option new-group-btn-option flex"
                             onClick={() => { onAddItem(true) }}>
                             <Icon icon={GroupIcon} />
+                            <Icon icon={GroupIcon} />
                             <p>New Group</p>
                         </div>
                     </div>
@@ -134,6 +135,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
                 </div>}
 
                 {/* <Button leftIcon={Add}>Add</Button> */}
+                <Button className={`bar-icon search-btn-board-details`}
                 <Button className={`bar-icon search-btn-board-details`}
                     onClick={toggleSearchBar}
                     style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
@@ -158,7 +160,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
 
                 </Button> */}
 
-                <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                <Button className='bar-icon bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
                     Person
                 </Button>
                 <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
@@ -171,13 +173,16 @@ export function GroupList({ board, toggleModal, setFilter }) {
                     leftIcon={Filter}>
                     Filter
 
+
                     {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
+                        onClick={(e) => { e.stopPropagation() }}
                         onClick={(e) => { e.stopPropagation() }}>
                         <LabelSelect handleLableChange={handleLableChange} lables={lables} />
                     </div>}
 
+
                 </Button>
-                <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                <Button className='bar-icon bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
                     Sort
                 </Button>
             </Flex>

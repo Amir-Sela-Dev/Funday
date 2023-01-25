@@ -500,6 +500,7 @@ button {
   display: grid;
   transition: all 0.3s;
   width: 100%;
+  height: 100vh;
 }
 .app-index.closeMenu {
   grid-template-columns: 66px 30px 1fr;
@@ -1133,6 +1134,7 @@ button {
 .task-preview > .task-column {
   transition: background-color 0.15s ease-in-out;
   background-color: white;
+  background-color: white;
 }
 .task-preview .comments-bubble {
   display: flex;
@@ -1180,10 +1182,10 @@ button {
   display: block;
 }
 .task-preview .preview-checkbox {
-  width: 65px;
+  width: 80px;
 }
 .task-preview .preview-add-colume {
-  width: 100px;
+  flex: 1;
 }
 .task-preview .AvatarGroup-module_avatarGroupContainer__9H7Sk {
   flex-wrap: nowrap;
@@ -1266,11 +1268,14 @@ button {
 
 .task-title {
   width: 360px;
-  border: none;
   outline: none;
   font-family: Figtree;
   font-size: 14px;
   padding-inline-start: 4px;
+}
+
+.first-row {
+  border-top: 1px solid #d0d4e4;
 }
 
 .task-title-input {
@@ -1344,9 +1349,13 @@ button {
   font-size: 14px;
   color: #323338;
 }
+.task-list .drag-tasks-container {
+  min-width: min-content;
+}
 .task-list .task-title-row {
   text-align: center;
   font-size: 14px;
+  min-width: min-content;
 }
 .task-list .menu-modal p {
   margin: 0;
@@ -1358,17 +1367,18 @@ button {
   width: 139px;
 }
 .task-list .checkbox {
-  width: 65px;
+  width: 80px;
 }
 .task-list .add-colume {
-  width: 100px;
+  flex: 1;
 }
 
 .task-column {
-  outline: 0.5px solid rgba(0, 0, 0, 0.192);
-  border-collapse: collapse;
+  border-right: 1px solid #d0d4e4;
+  border-bottom: 1px solid #d0d4e4;
   height: 36px;
   line-height: 36px;
+  overflow: hidden;
 }
 
 .checkbox-column {
@@ -1379,6 +1389,7 @@ button {
 }
 .checkbox-column.disabled {
   cursor: default;
+  min-width: 39px;
 }
 
 .task-checkbox {
@@ -1401,16 +1412,19 @@ button {
   color: #323338;
 }
 
+.add-task-wrap {
+  min-width: min-content;
+}
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
 }
 
 .task-input-row {
-  border: 0.5px solid rgba(0, 0, 0, 0.192);
-  border-collapse: collapse;
+  border-bottom: 1px solid #d0d4e4;
+  border-right: 1px solid #d0d4e4;
   height: 36px;
-  width: 100%;
-  border-block-start: none;
+  display: flex;
+  flex: 1;
 }
 
 .add-task-input {
@@ -1426,10 +1440,12 @@ button {
   height: 36px;
   width: 6px;
   margin-inline-start: 8px;
+  margin-inline-start: 8px;
 }
 
 .first-tag {
   border-radius: 2rem 0 0 0;
+  margin-left: 0;
   margin-left: 0;
 }
 
@@ -1923,6 +1939,7 @@ button {
 .board-details {
   grid-area: board-details;
   color: #323338;
+  overflow: auto;
 }
 .board-details a.tab-inner {
   padding-inline: 8px;
@@ -1966,6 +1983,7 @@ button {
 }
 .board-title.mobile {
   display: none;
+  margin-block: 10px;
   margin-block: 10px;
 }
 @media (max-width: 500px) {
@@ -2036,6 +2054,9 @@ button {
 .icon-btn-add svg {
   width: 25px;
   height: 25px;
+}
+.icon-btn-add.active {
+  transform: rotate(-135deg);
 }
 .icon-btn-add.active {
   transform: rotate(-135deg);
