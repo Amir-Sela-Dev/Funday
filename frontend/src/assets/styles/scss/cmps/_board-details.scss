@@ -1,12 +1,12 @@
 .board-details {
     grid-area: board-details;
     color: $clr1;
+    overflow: auto;
 
     // position: relative;
     a.tab-inner {
         padding-inline: 8px;
     }
-
 }
 
 .board-title-wrap {
@@ -41,7 +41,6 @@
     width: 3ch;
 
     @include for-narrow-layout {
-
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
@@ -133,8 +132,6 @@
         display: flex;
     }
 }
-
-
 
 .board-actions-modal {
     position: absolute;

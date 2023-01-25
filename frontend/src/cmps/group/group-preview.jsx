@@ -94,8 +94,22 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup }) {
     return (
         <DragDropContext onDragEnd={handleOnDragEnd}>
 
-            <section className="group-preview ">
-                {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
+            <section className="group-preview">
+                <div className="wrap-group-modal">
+                    {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
+                        <div className="menu-modal-option flex">
+                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                                onClick={() => { }} />
+                            <p className="menu-modal-option-text">Duplicate</p>
+                        </div>
+                        <div className="menu-modal-option flex">
+                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                                onClick={() => { onRemoveGroup(group.id) }} />
+                            <p className="menu-modal-option-text" >Delete</p>
+                        </div>
+                    </ul>}
+                </div>
+                {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
                     <div className="menu-modal-option flex">
                         <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
                             onClick={() => { }} />
@@ -106,13 +120,17 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup }) {
                             onClick={() => { onRemoveGroup(group.id) }} />
                         <p className="menu-modal-option-text" >Delete</p>
                     </div>
-                </ul>}
+                </ul>} */}
+                <div className="flex">
 
-                <div className="group-title-container flex align-center">
-                    <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                        onClick={() => { openOptionModal() }} />
+                    <div className="group-title-container flex align-center">
 
-                    <form onSubmit={onRenameGroup} >
+
+                        <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                            onClick={() => { openOptionModal() }} />
+                    </div>
+
+                    <form className="sticky-grid" onSubmit={onRenameGroup} >
                         <input
                             className="group-title"
                             style={{

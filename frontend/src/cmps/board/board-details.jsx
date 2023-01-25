@@ -74,33 +74,36 @@ export function BoardDetails() {
 
     if (!board) return <div>Loading...</div>
     return <section className="board-details">
+        <div className="sticky-board-header">
 
-        <div className="board-title-wrap flex">
-            <span
-                className="board-title mobile"
-                style={{
-                    width: `${(board?.title?.length - 1.5 || 10)}ch`
-                }}>{boardTitle || board.title}
-            </span>
-            <form onSubmit={onRenameBoard} >
-                <input
-                    className="board-title"
+
+            <div className="board-title-wrap flex">
+                <span
+                    className="board-title mobile"
                     style={{
                         width: `${(board?.title?.length - 1.5 || 10)}ch`
-                    }}
-                    type="text"
-                    value={boardTitle || board.title}
-                    onChange={handleInputChange}
-                    onBlur={ev => { onRenameBoard(ev) }}
-                />
-            </form>
-            <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
-            <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
-        </div>
-        <div>
-            <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
-                Main Table
-            </Tab>
+                    }}>{boardTitle || board.title}
+                </span>
+                <form onSubmit={onRenameBoard} >
+                    <input
+                        className="board-title"
+                        style={{
+                            width: `${(board?.title?.length - 1.5 || 10)}ch`
+                        }}
+                        type="text"
+                        value={boardTitle || board.title}
+                        onChange={handleInputChange}
+                        onBlur={ev => { onRenameBoard(ev) }}
+                    />
+                </form>
+                <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
+                <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
+            </div>
+            <div>
+                <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
+                    Main Table
+                </Tab>
+            </div>
         </div>
         <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
         <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />

@@ -185,11 +185,10 @@ export function TaskPreview({
                 <div
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-
                     ref={provided.innerRef}
                     className="task-preview flex"
                 >
-                    {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
+                    {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                         <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
                             <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
                             />
@@ -200,47 +199,66 @@ export function TaskPreview({
                             />
                             <p className="menu-modal-option-text" >Delete</p>
                         </div>
-                    </ul>}
+                    </ul>} */}
 
                     {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={() => { openOptionModal() }} />} */}
 
                     {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                         onClick={() => { openOptionModal() }} /> */}
-                    <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
-                    <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', outline: 'none' }} />
-                    <div className="checkbox-wrap">
-                        <div
-                            className="checkbox-column task-column"
-                            onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
 
-                            <input className='task-checkbox' type="checkbox"
-                                checked={isAllSelected || isTaskSelected || false}
-                                onChange={ev => {
-                                    ev.stopPropagation()
-                                    if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
-                                    setIsTaskSelected(!isTaskSelected)
-                                }} />
-                        </div>
+                    <div className="wrap-modal">
+                        {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
+                            <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
+                                <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                                />
+                                <p className="menu-modal-option-text">Duplicate</p>
+                            </div>
+                            <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
+                                <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                                />
+                                <p className="menu-modal-option-text" >Delete</p>
+                            </div>
+                        </ul>}
                     </div>
+                    <div className="sticky-grid flex">
+                        <div className="white-background"></div>
+                        <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
 
-                    <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                        <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
-                        <form onSubmit={onRenameTask} >
-                            <input
-                                className="task-title-input"
-                                type="text"
-                                value={taskToUpdate.title}
-                                onChange={handleNameInputChange}
-                                onBlur={ev => { onRenameTask(ev) }}
-                                onClick={ev => { ev.stopPropagation() }}
-                            />
-                        </form>
-                        <div className="comments-bubble task-column flex">
-                            {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
-                            {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
-                            {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
-                            {task.comments?.length > 0 && <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>}
+                        <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                        <div className="checkbox-wrap">
+                            <div
+                                className="checkbox-column task-column"
+                                onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
+
+                                <input className='task-checkbox' type="checkbox"
+                                    checked={isAllSelected || isTaskSelected || false}
+                                    onChange={ev => {
+                                        ev.stopPropagation()
+                                        if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
+                                        setIsTaskSelected(!isTaskSelected)
+                                    }} />
+                            </div>
+                        </div>
+
+                        <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
+                            <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
+                            <form onSubmit={onRenameTask} >
+                                <input
+                                    className="task-title-input"
+                                    type="text"
+                                    value={taskToUpdate.title}
+                                    onChange={handleNameInputChange}
+                                    onBlur={ev => { onRenameTask(ev) }}
+                                    onClick={ev => { ev.stopPropagation() }}
+                                />
+                            </form>
+                            <div className="comments-bubble task-column flex">
+                                {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
+                                {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
+                                {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
+                                {task.comments?.length > 0 && <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>}
+                            </div>
                         </div>
                     </div>
 
