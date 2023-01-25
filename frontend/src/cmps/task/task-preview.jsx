@@ -271,7 +271,7 @@ export function TaskPreview({
                                     {task.persons && !isPersonsOpen &&
 
                                         <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
-                                            {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={require(`/src/assets/img/user/${person.imgUrl}`)} ariaLabel={person.fullname} />)}
+                                            {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
                                         </AvatarGroup>
                                     }
                                     {isPersonsOpen &&

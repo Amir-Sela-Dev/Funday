@@ -524,6 +524,7 @@ button {
   display: grid;
   transition: all 0.3s;
   width: 100%;
+  overflow-y: hidden;
   height: 100vh;
 }
 .app-index.closeMenu {
@@ -2209,9 +2210,9 @@ button {
   margin-block-end: 13px;
 }
 
-.group-bottom-bar {
-  border: #323338 solid 1px;
-  margin-left: 402px;
+.group-bottom-bar .bar-person {
+  border-radius: 0 0 0 8px;
+  border-left: #d0d4e4 solid 1px;
 }
 .group-bottom-bar .label-progress-bar {
   margin-block: 6px;
@@ -2224,6 +2225,10 @@ button {
 .group-bottom-bar .status-progress:hover {
   margin-block: -3px;
   border-radius: 2px;
+}
+.group-bottom-bar .bar-place-holder {
+  width: 403px;
+  border: none;
 }
 
 /*# sourceMappingURL=main.css.map */

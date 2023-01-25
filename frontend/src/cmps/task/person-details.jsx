@@ -28,7 +28,7 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                             <div key={currPerson.id} className="person-item flex align-center" onClick={() => onRemoveTaskPerson(currPerson)}>
                                 <img
                                     className="person-img"
-                                    src={require(`/src/assets/img/user/${currPerson.imgUrl}`)} />
+                                    src={currPerson.imgUrl} />
                                 <span>{minifyName(currPerson.fullname)}</span>
                                 <img
                                     className="icon-x"
@@ -48,7 +48,7 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                             <div className="person-item flex align-center"
                                 key={currPerson.id}
                                 onClick={() => { onAddTaskPerson(currPerson) }}>
-                                <img src={require(`/src/assets/img/user/${currPerson.imgUrl}`)} />
+                                <img src={currPerson.imgUrl} />
                                 <span>{currPerson.fullname}</span>
                             </div>
                         )

@@ -1,6 +1,10 @@
 .group-bottom-bar {
-    border: $clr1 solid 1px;
-    margin-left: 402px;
+    .bar-person {
+
+        border-radius: 0 0 0 8px;
+        border-left: #d0d4e4 solid 1px;
+
+    }
 
     .label-progress-bar {
         margin-block: 6px;
@@ -17,5 +21,11 @@
             border-radius: 2px;
 
         }
+    }
+
+    .bar-place-holder {
+        width: 403px;
+        border: none;
+        // border-right: #d0d4e4 solid 1px;
     }
 }

@@ -231,7 +231,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                 </div>
             </div>
             <GroupBottomBar board={board} group={group} />
-
         </div>
 
 

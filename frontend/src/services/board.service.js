@@ -66,9 +66,9 @@ async function save(board) {
 
 function getDefaultUsers(boardUsers = []) {
     let defaultUsers = [
-        { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
-        { id: 'u002', fullname: 'Amir Sela', imgUrl: '002.jpg' },
-        { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' }
+        { id: 'u001', fullname: 'Amir Yakubov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' },
+        { id: 'u002', fullname: 'Amir Sela', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462764/img3_zynodi.jpg' },
+        { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png' }
     ]
     if (boardUsers) return defaultUsers.filter(user => !boardUsers.some(boardUser => boardUser?.id === user.id));
     return defaultUsers
@@ -205,8 +205,8 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'Mashu tov',
                                 persons: [
-                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
-                                    { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: '003.jpg' },
+                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' },
+                                    { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
@@ -220,7 +220,7 @@ function creatBoards() {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
                                 persons: [
-                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: '001.jpg' },
+                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' },
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
