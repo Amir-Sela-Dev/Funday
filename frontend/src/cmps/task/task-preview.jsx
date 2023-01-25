@@ -80,6 +80,10 @@ export function TaskPreview({
         }
     }
 
+    async function onAddTaskTimeline(timeline) {
+        console.log(dayjs('2019-01-25'));
+    }
+
     async function onAddTaskPerson(person) {
         try {
             // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
@@ -248,9 +252,8 @@ export function TaskPreview({
 
                                     {task.persons && !isPersonsOpen &&
 
-                                        <AvatarGroup size="small" max={2} vertical >
-                                            {task.persons.map(currPerson => <TaskPerson key={currPerson.id} person={currPerson} />)}
-                                            {/* <Avatar type={Avatar.types.TEXT} size="small" text="hey" ariaLabel="hey" /> */}
+                                        <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
+                                            {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={require(`/src/assets/img/user/${person.imgUrl}`)} ariaLabel={person.fullname} />)}
                                         </AvatarGroup>
                                     }
                                     {isPersonsOpen &&
@@ -271,12 +274,12 @@ export function TaskPreview({
                                 return <div className="task-date task-column">
                                     {/* {(task.date - Date.now() > 0)  && 'x'} */}
                                     <DatePicker
-                                        defaultValue={task.date ? dayjs(task.date) : ''}
+                                        defaultValue={task.date ? dayjs(task.date, 'MM/DD') : ''}
                                         bordered={false}
                                         onChange={onAddTaskDate}
                                         placeholder=""
                                         format={'MMM D'}
-                                        suffixIcon
+
                                     />
                                 </div>
                             case 'timeline':
@@ -285,6 +288,7 @@ export function TaskPreview({
                                         <RangePicker bordered={false}
                                             size={size}
                                             defaultValue={dayjs('2015/01', monthFormat)}
+                                            onChange={onAddTaskTimeline}
                                             format={'MMM D'}
                                         // style={{ width: '70%' }} 
                                         />

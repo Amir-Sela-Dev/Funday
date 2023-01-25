@@ -114,6 +114,7 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        isMark: false
                     },
                     {
                         id: utilService.makeId(5),
@@ -123,6 +124,8 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        isMark: false
+
                     }
                 ],
                 style: { color: '#e2445c' }
@@ -140,6 +143,8 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        isMark: false
+
                     },
                     {
                         id: utilService.makeId(5),
@@ -149,6 +154,8 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        isMark: false
+
                     }
                 ],
                 style: { color: '#a559d8' }
@@ -204,7 +211,9 @@ function creatBoards() {
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 date: "2023-01-19",
-                                comments: []
+                                comments: [],
+                                isMark: false
+
 
                             },
                             {
@@ -216,7 +225,9 @@ function creatBoards() {
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 date: "2023-01-12",
-                                comments: []
+                                comments: [],
+                                isMark: false
+
 
                             }
                         ],
@@ -235,6 +246,8 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                isMark: false
+
 
                             },
                             {
@@ -245,6 +258,8 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                isMark: false
+
                             }
                         ],
                         style: { color: '#e2445c' }
@@ -262,6 +277,8 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                isMark: false
+
 
                             },
                             {
@@ -272,6 +289,8 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                isMark: false
+
                             }
                         ],
                         style: { color: '#a559d8' }
@@ -309,6 +328,8 @@ function getEmptyTask() {
         date: '',
         comments: [],
         priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
+        isMark: false
+
     }
 }
 

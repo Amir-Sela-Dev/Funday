@@ -1,29 +1,34 @@
+import { AvatarGroup, Avatar } from "monday-ui-react-core";
 
 
 export function GroupBottomBar({ board, group }) {
-    console.log(group);
-    getStatuscount()
-    function getStatuscount() {
-        let statusCount = []
-        let statusCountMap = {}
+    function getStatuscount(labelsName) {
+        let labelCount = []
+        let labelCountMap = {}
         let total = 0
         group.tasks.forEach(task => {
             total++
-            if (statusCountMap[task.status.txt]) {
-                statusCountMap[task.status.txt] += 1
+            if (labelCountMap[task[labelsName].txt]) {
+                labelCountMap[task[labelsName].txt] += 1
             }
             else {
-                statusCountMap[task.status.txt] = 1
+                labelCountMap[task[labelsName].txt] = 1
             }
-
-
         });
-        for (const statusName in statusCountMap) {
-            let currStatus = board.status.find(status => status.txt === statusName)
-            let status = { title: currStatus.txt, color: currStatus.color, percent: (statusCountMap[statusName] / total * 100) }
-            statusCount.push(status)
+        for (const labelName in labelCountMap) {
+            let currLabel = board[labelsName].find(label => label.txt === labelName)
+            let labels = { title: currLabel.txt, color: currLabel.color, percent: (labelCountMap[labelName] / total * 100) }
+            labelCount.push(labels)
         }
-        return statusCount
+        return labelCount
+    }
+
+    function getAllFiles() {
+        let files = []
+        group.tasks.forEach(task => {
+            if (task.file) files.push(task.file)
+        });
+        return files
     }
 
 
@@ -36,7 +41,7 @@ export function GroupBottomBar({ board, group }) {
                     case 'person':
                         return <div className="task-persons task-column flex"><span>Person</span></div>
                     case 'status':
-                        return <div className=" task-status task-column flex "> <div className="label-progress-bar flex"> {getStatuscount().map(status => {
+                        return <div className=" task-status task-column flex "> <div className="label-progress-bar flex"> {getStatuscount('status').map(status => {
                             return <div className="status-progress" style={{ minWidth: `${status.percent}%`, backgroundColor: `${status.color}` }}></div>
                         })}</div></div>
                     case 'date':
@@ -44,9 +49,15 @@ export function GroupBottomBar({ board, group }) {
                     case 'timeline':
                         return <div className="task-timeline task-column">Timeline</div>
                     case 'priority':
-                        return <div className="task-status task-column">Priority</div>
+                        return <div className=" task-status task-column flex "> <div className="label-progress-bar flex"> {getStatuscount('priority').map(priority => {
+                            return <div className="status-progress" style={{ minWidth: `${priority.percent}%`, backgroundColor: `${priority.color}` }}></div>
+                        })}</div></div>
                     case 'files':
-                        return <div className="task-files task-column">Files</div>
+                        return <div className="task-files task-column">
+                            <AvatarGroup size={Avatar.sizes.SMALL} max={4} vertical >
+                                {getAllFiles().map((file, i) => <Avatar key={i} type={Avatar.types.IMG} isSquare={true} size="small" src={file} />)}
+                            </AvatarGroup>
+                        </div>
                     case 'checkbox':
                         return <div className="checkbox task-column">Checkbox</div>
                     default:
