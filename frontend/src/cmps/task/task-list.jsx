@@ -101,7 +101,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                 {columes.includes('timeline') && <div className="task-timeline task-column first-row">Timeline</div>}
                 {columes.includes('priority') && <div className="task-status task-column first-row">Priority</div>}
                 {columes.includes('files') && <div className="task-files task-column first-row">Files</div>}
-                {columes.includes('checkbox') && <div className="checkbox task-column first-row">Checkbox</div>}
+                {columes.includes('checkbox') && <div className="checkbox task-column first-row">Check</div>}
                 <div className="add-colume task-column flex align-center justify-center first-row">
                     <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
                     <MenuButton>

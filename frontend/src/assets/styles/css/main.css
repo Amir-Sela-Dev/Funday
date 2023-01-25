@@ -1181,7 +1181,7 @@ button {
   display: block;
 }
 .task-preview .preview-checkbox {
-  width: 65px;
+  width: 80px;
 }
 .task-preview .preview-add-colume {
   flex: 1;
@@ -1366,7 +1366,7 @@ button {
   width: 139px;
 }
 .task-list .checkbox {
-  width: 65px;
+  width: 80px;
 }
 .task-list .add-colume {
   flex: 1;
