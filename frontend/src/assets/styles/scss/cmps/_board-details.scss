@@ -41,6 +41,7 @@
     width: 3ch;
 
     @include for-narrow-layout {
+
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
@@ -140,6 +141,7 @@
     width: 0;
     height: 0;
     overflow: hidden;
+
     .board-actions-mobile {
         width: 100%;
     }

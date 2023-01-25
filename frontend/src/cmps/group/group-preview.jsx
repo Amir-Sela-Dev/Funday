@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { showSuccessMsg } from "../../services/event-bus.service";
 import { saveGroup } from "../../store/board.action";
 import { TaskList } from "../task/task-list"
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-export function GroupPreview({ board, group, toggleModal, onRemoveGroup }) {
+export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
     // let { board } = useSelector((storeState) => storeState.boardModule)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
@@ -121,34 +121,47 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup }) {
                         <p className="menu-modal-option-text" >Delete</p>
                     </div>
                 </ul>} */}
-                <div className="flex">
 
-                    <div className="group-title-container flex align-center">
+                <Droppable droppableId="gruopList">
+                    {(provided) => (
+
+                        <div className="drag-groups-container"
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            <div className="flex">
+
+                                <div className="group-title-container flex align-center">
 
 
-                        <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                            onClick={() => { openOptionModal() }} />
-                    </div>
+                                    <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                                        onClick={() => { openOptionModal() }} />
+                                </div>
 
-                    <form className="sticky-grid" onSubmit={onRenameGroup} >
-                        <input
-                            className="group-title"
-                            style={{
-                                color: group.style?.color || "#FFF000",
-                                width: `${groupToSend.title.length * 1.125}ch`
-                            }}
-                            type="text"
-                            value={groupToSend.title}
-                            onChange={handleInputChange}
-                            onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
-                        />
-                    </form>
+                                <form className="sticky-grid" onSubmit={onRenameGroup} >
+                                    <input
+                                        className="group-title"
+                                        style={{
+                                            color: group.style?.color || "#FFF000",
+                                            width: `${groupToSend.title.length * 1.125}ch`
+                                        }}
+                                        type="text"
+                                        value={groupToSend.title}
+                                        onChange={handleInputChange}
+                                        onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
+                                    />
+                                </form>
 
-                    <span className='number-of-tasks'>{group.tasks.length} items</span>
-                </div>
-                <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} />
+                                <span className='number-of-tasks'>{group.tasks.length} items</span>
+                            </div>
+                            <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
                 <div className="add-task">
                 </div>
+
             </section>
         </DragDropContext>
     )

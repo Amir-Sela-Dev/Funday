@@ -8,6 +8,7 @@ import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
 import { Button, Flex, IconButton, Menu, MenuItem, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
 import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon } from "monday-ui-react-core/icons";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -74,105 +75,120 @@ export function GroupList({ board, toggleModal, setFilter }) {
         setIsSeachClicked(searchState)
     }
 
+
+    function handleOnGroupDragEnd(result) {
+        console.log('@@@@@@@', result);
+        // const items = Array.from(tasks)
+        // const [reorderedItem] = items.splice(result.source.index, 1)
+        // items.splice(result.destination.index, 0, reorderedItem)
+        // setTasks(items)
+        // saveGroupAfterDrag(items)
+    }
+
+
     const searchIcon = 'search-board.svg'
     const arrowDown = 'arrow-down.svg'
     const arrowDownWhite = 'arrow-down.png'
 
-    return <ul className="group-list">
-        <div className="group-sticky-header">
+    return (
+        <DragDropContext onDragEnd={handleOnGroupDragEnd}>
+            <ul className="group-list">
+                <div className="group-sticky-header">
 
-            <IconButton
-                className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
-                icon={Add}
-                color={IconButton.colors.ON_PRIMARY_COLOR}
-                size={IconButton.sizes.LARGE}
-                onClick={onToggleBoardActionsModal}
-            />
-            {boardActionsModal &&
-                <DialogContentContainer
-                    key="small"
-                    className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
-                    <Menu className="board-actions-mobile">
-                        <MenuItem title="New Task" onClick={() => { onAddItem(false) }} />
-                        <MenuDivider />
-                        <MenuItem title="New Group" onClick={() => { onAddItem(true) }} />
-                    </Menu>
-                </DialogContentContainer>
-            }
-            <hr className="group-list-main-hr" />
-            <div className="board-actions flex">
-                <Flex style={{ width: "100%" }}>
-                    <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
-                    <button className='new-group-btn arrow-down-new-group'
-                        onClick={toggleNewTaskModal}>
-                        <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
-                    </button>
+                    <IconButton
+                        className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
+                        icon={Add}
+                        color={IconButton.colors.ON_PRIMARY_COLOR}
+                        size={IconButton.sizes.LARGE}
+                        onClick={onToggleBoardActionsModal}
+                    />
+                    {boardActionsModal &&
+                        <DialogContentContainer
+                            key="small"
+                            className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
+                            <Menu className="board-actions-mobile">
+                                <MenuItem title="New Task" onClick={() => { onAddItem(false) }} />
+                                <MenuDivider />
+                                <MenuItem title="New Group" onClick={() => { onAddItem(true) }} />
+                            </Menu>
+                        </DialogContentContainer>
+                    }
+                    <hr className="group-list-main-hr" />
+                    <div className="board-actions flex">
+                        <Flex style={{ width: "100%" }}>
+                            <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
+                            <button className='new-group-btn arrow-down-new-group'
+                                onClick={toggleNewTaskModal}>
+                                <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
+                            </button>
 
-                    {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
+                            {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
 
-                        <div className="new-task-modal">
-                            <div className="menu-modal-option new-group-btn-option flex"
-                                onClick={() => { onAddItem(true) }}>
-                                <Icon icon={GroupIcon} />
-                                <p>New Group</p>
+                                <div className="new-task-modal">
+                                    <div className="menu-modal-option new-group-btn-option flex"
+                                        onClick={() => { onAddItem(true) }}>
+                                        <Icon icon={GroupIcon} />
+                                        <p>New Group</p>
+                                    </div>
+                                </div>
+
+                            </div>}
+
+                            {/* <Button leftIcon={Add}>Add</Button> */}
+                            <Button className={`bar-icon search-btn-board-details`}
+                                onClick={toggleSearchBar}
+                                style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
+                                kind={Button.kinds.TERTIARY}
+                                leftIcon={Search}>
+                                <span>Search</span>
+                            </Button>
+                            <span
+                                className={`cancel-btn ${isSeachClicked ? 'on' : ''}`}
+                                onClick={() => { toggleSearchBar(false) }}>Cancel</span>
+                            <div className={`group-search-filter flex`}
+                                style={{ display: isSeachClicked ? 'flex' : 'none' }}>
+                                <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
+                                <input type="text"
+                                    onChange={handleFilterChange}
+                                    value={filterByToEdit.title} placeholder='Search'
+                                    name='title' />
                             </div>
-                        </div>
-
-                    </div>}
-
-                    {/* <Button leftIcon={Add}>Add</Button> */}
-                    <Button className={`bar-icon search-btn-board-details`}
-                        onClick={toggleSearchBar}
-                        style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
-                        kind={Button.kinds.TERTIARY}
-                        leftIcon={Search}>
-                        <span>Search</span>
-                    </Button>
-                    <span
-                        className={`cancel-btn ${isSeachClicked ? 'on' : ''}`}
-                        onClick={() => { toggleSearchBar(false) }}>Cancel</span>
-                    <div className={`group-search-filter flex`}
-                        style={{ display: isSeachClicked ? 'flex' : 'none' }}>
-                        <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-                        <input type="text"
-                            onChange={handleFilterChange}
-                            value={filterByToEdit.title} placeholder='Search'
-                            name='title' />
-                    </div>
-                    {/* <Button className='bar-search'
+                            {/* <Button className='bar-search'
                     kind={Button.kinds.TERTIARY}
                     rightIcon={Search}>
 
                 </Button> */}
 
-                    <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
-                        Person
-                    </Button>
-                    <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
-                        leftIcon={Table}
-                        rightIcon={DropdownChevronDown}>
-                        Main Table
-                    </Button>
-                    <Button className={'bar-filter' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
-                        onClick={toggleFilterModal}
-                        leftIcon={Filter}>
-                        Filter
+                            <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                                Person
+                            </Button>
+                            <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
+                                leftIcon={Table}
+                                rightIcon={DropdownChevronDown}>
+                                Main Table
+                            </Button>
+                            <Button className={'bar-filter' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
+                                onClick={toggleFilterModal}
+                                leftIcon={Filter}>
+                                Filter
 
-                        {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
-                            onClick={(e) => { e.stopPropagation() }}>
-                            <LabelSelect handleLableChange={handleLableChange} lables={lables} />
-                        </div>}
+                                {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
+                                    onClick={(e) => { e.stopPropagation() }}>
+                                    <LabelSelect handleLableChange={handleLableChange} lables={lables} />
+                                </div>}
 
-                    </Button>
-                    <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
-                        Sort
-                    </Button>
-                </Flex>
-            </div>
-        </div>
-        {board.groups.map(group =>
-            <li className="group-preview-line" key={group.id}>
-                <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} />
-            </li>)}
-    </ul>
+                            </Button>
+                            <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                                Sort
+                            </Button>
+                        </Flex>
+                    </div>
+                </div>
+                {board.groups.map((group, index) =>
+                    <li className="group-preview-line" key={group.id}>
+                        <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
+                    </li>)}
+            </ul>
+        </DragDropContext>
+    )
 }
