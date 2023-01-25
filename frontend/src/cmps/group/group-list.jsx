@@ -6,7 +6,7 @@ import { utilService } from '../../services/util.service';
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
-import { Button, Flex, Icon } from "monday-ui-react-core";
+import { Button, Flex, IconButton, Menu, MenuItem, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
 import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon } from "monday-ui-react-core/icons";
 
 
@@ -17,7 +17,11 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false)
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isSeachClicked, setIsSeachClicked] = useState(false)
-
+    const [boardActionsModal, setBoardActionsModal] = useState(false)
+    
+    function onToggleBoardActionsModal() {
+        setBoardActionsModal(!boardActionsModal)
+    }
     useEffect(() => {
         setFilter(filterByToEdit)
         // setFilter.current(filterByToEdit)
@@ -76,6 +80,24 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const arrowDownWhite = 'arrow-down.png'
 
     return <ul className="group-list">
+        <IconButton
+            className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
+            icon={Add}
+            color={IconButton.colors.ON_PRIMARY_COLOR}
+            size={IconButton.sizes.LARGE}
+            onClick={onToggleBoardActionsModal}
+        />
+        {boardActionsModal &&
+            <DialogContentContainer
+                key="small"
+                className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
+                <Menu className="board-actions-mobile">
+                    <MenuItem title="New Task" onClick={() => { onAddItem(false) }} />
+                    <MenuDivider />
+                    <MenuItem title="New Group" onClick={() => { onAddItem(true) }} />
+                </Menu>
+            </DialogContentContainer>
+        }
         <hr className="group-list-main-hr" />
         <div className="board-actions flex">
             <Flex style={{ width: "100%" }}>

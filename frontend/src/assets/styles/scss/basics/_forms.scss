@@ -54,6 +54,10 @@ button {
 
     &.board-list-modal {
         transform: translate(199px, 25px);
+
+        hr {
+            margin: 1px;
+        }
     }
 
     &.group-modal {
@@ -64,7 +68,7 @@ button {
         p {
             color: #323338;
             font-size: 14px;
-            margin-bottom: 8px;
+            margin: 0;
             padding-left: 7px;
         }
 

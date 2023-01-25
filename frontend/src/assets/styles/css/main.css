@@ -266,6 +266,9 @@ button {
 .menu-modal.board-list-modal {
   transform: translate(199px, 25px);
 }
+.menu-modal.board-list-modal hr {
+  margin: 1px;
+}
 .menu-modal.group-modal {
   color: #323338;
   transform: translate(-34px, 38px);
@@ -274,7 +277,7 @@ button {
 .menu-modal.group-modal p {
   color: #323338;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin: 0;
   padding-left: 7px;
 }
 .menu-modal.group-modal .menu-modal-option {
@@ -1183,6 +1186,10 @@ button {
 .task-preview .preview-add-colume {
   flex: 1;
 }
+.task-preview .AvatarGroup-module_avatarGroupContainer__9H7Sk {
+  flex-wrap: nowrap;
+  padding: 0;
+}
 
 .person-img {
   width: 25px;
@@ -1505,7 +1512,7 @@ button {
 }
 .task-modal-open .comments-btn .tab .tab-inner {
   padding: 0;
-  padding-inline-end: 15px;
+  padding-inline: 8px;
 }
 .task-modal-open .comments-btn .tab .white-home {
   width: 15px;
@@ -1971,7 +1978,7 @@ button {
 }
 .board-title.mobile {
   display: none;
-  margin-block-end: 10px;
+  margin-block: 10px;
 }
 @media (max-width: 500px) {
   .board-title.mobile {
@@ -2042,10 +2049,29 @@ button {
   width: 25px;
   height: 25px;
 }
+.icon-btn-add.active {
+  transform: rotate(-135deg);
+}
 @media (max-width: 500px) {
   .icon-btn-add {
     display: flex;
   }
+}
+
+.board-actions-modal {
+  position: absolute;
+  bottom: 90px;
+  right: 25px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.board-actions-modal .board-actions-mobile {
+  width: 100%;
+}
+.board-actions-modal.active {
+  width: 60vw;
+  height: auto;
 }
 
 .upload-preview input {

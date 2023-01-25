@@ -48,7 +48,7 @@
 
     &.mobile {
         display: none;
-        margin-block-end: 10px;
+        margin-block: 10px;
 
         @include for-mobile-layout {
             display: inline-block;
@@ -122,7 +122,31 @@
         width: 25px;
         height: 25px;
     }
+
+    &.active {
+        transform: rotate(-135deg);
+    }
+
     @include for-mobile-layout {
         display: flex;
+    }
+}
+
+
+
+.board-actions-modal {
+    position: absolute;
+    bottom: 90px;
+    right: 25px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    .board-actions-mobile {
+        width: 100%;
+    }
+
+    &.active {
+        width: 60vw;
+        height: auto;
     }
 }
