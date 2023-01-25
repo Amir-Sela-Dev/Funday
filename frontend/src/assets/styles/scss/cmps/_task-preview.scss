@@ -155,7 +155,7 @@
     }
 
     .preview-add-colume {
-        width: 100px;
+        flex: 1;
     }
 }
 
@@ -246,11 +246,14 @@
 
 .task-title {
     width: 360px;
-    border: none;
     outline: none;
     font-family: Figtree;
     font-size: 14px;
     padding-inline-start: 4px;
+}
+
+.first-row {
+    border-top: 1px solid #d0d4e4;
 }
 
 .task-title-input {
