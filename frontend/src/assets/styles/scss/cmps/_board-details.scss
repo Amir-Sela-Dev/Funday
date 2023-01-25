@@ -143,12 +143,17 @@
     width: 0;
     height: 0;
     overflow: hidden;
+    z-index: 1;
     .board-actions-mobile {
         width: 100%;
     }
 
+    button{
+        justify-content: flex-end;
+        padding-inline: 10px;
+    }
     &.active {
-        width: 60vw;
+        width: 50vw;
         height: auto;
     }
 }

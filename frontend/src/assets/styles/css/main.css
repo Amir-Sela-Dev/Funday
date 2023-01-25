@@ -2053,12 +2053,17 @@ button {
   width: 0;
   height: 0;
   overflow: hidden;
+  z-index: 1;
 }
 .board-actions-modal .board-actions-mobile {
   width: 100%;
 }
+.board-actions-modal button {
+  justify-content: flex-end;
+  padding-inline: 10px;
+}
 .board-actions-modal.active {
-  width: 60vw;
+  width: 50vw;
   height: auto;
 }
 
