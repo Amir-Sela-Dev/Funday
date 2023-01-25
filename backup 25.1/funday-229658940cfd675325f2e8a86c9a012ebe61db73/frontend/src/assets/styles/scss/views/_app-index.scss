@@ -1,0 +1,30 @@
+.app-index {
+    display: grid;
+    transition: all .3s;
+    width: 100%;
+
+    &.closeMenu {
+        grid-template-columns: 66px 30px 1fr;
+    }
+
+
+    @include for-narrow-layout {
+        grid-template-columns: 66px 254px 1fr;
+        grid-template-areas: "side-nav  work-space  board-details";
+    }
+
+    @include for-mobile-layout {
+        grid-template-rows: 90% 10%;
+        grid-template-areas:
+            "board-details"
+            "side-nav";
+
+        .work-space {
+            display: none;
+        }
+
+        .side-nav {
+            display: none;
+        }
+    }
+}

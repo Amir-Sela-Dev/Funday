@@ -1,0 +1,118 @@
+.task-list {
+    color: #323338;
+    text-align: center;
+    font-size: 14px;
+    color: $clr1;
+
+    .task-title-row {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .menu-modal {
+        p {
+            margin: 0;
+        }
+    }
+
+    .task-timeline {
+        width: 187px;
+    }
+
+    .task-files {
+        width: 139px;
+    }
+
+    .checkbox {
+        width: 65px;
+    }
+
+    .add-colume {
+        width: 100px;
+    }
+}
+
+.task-column {
+    outline: 0.5px solid rgba(0, 0, 0, 0.192);
+    border-collapse: collapse;
+    height: 36px;
+    line-height: 36px;
+}
+
+.checkbox-column {
+    display: flex;
+    border-left: none;
+    cursor: pointer;
+
+    &.disabled {
+        cursor: default;
+    }
+
+    width: 39px;
+}
+
+.task-checkbox {
+    transform: scale(1.3);
+    margin: auto;
+    cursor: pointer;
+    // margin-inline: 10px;
+    &.disabled {
+        cursor: default;
+    }
+}
+
+.task-date {
+    width: 139px;
+    padding-inline: 10px;
+
+    .ant-picker {
+        input {
+            text-align: center;
+            padding-inline-start: 2px;
+            font-size: 13px;
+            color: $primary-text-color;
+        }
+    }
+}
+
+.add-task-wrap {
+    .task-checkbox {
+        opacity: 0.5;
+    }
+}
+
+.task-input-row {
+    border: 0.5px solid rgba(0, 0, 0, 0.192);
+    border-collapse: collapse;
+    height: 36px;
+    width: 100%;
+    border-block-start: none;
+}
+
+.add-task-input {
+    // margin-left: 10px;
+    margin: 8px 0 8px 10px;
+    border: none;
+    padding-left: 16px;
+    padding-top: 2px;
+    float: left;
+}
+
+.colored-tag {
+    display: inline-block;
+    height: 36px;
+    width: 6px;
+    margin-inline-start: 8px;
+}
+
+.first-tag {
+    border-radius: 2rem 0 0 0;
+    margin-left: 0;
+}
+
+.last-tag {
+    border-radius: 0 0 0 1rem;
+    opacity: 0.5;
+    height: 36.4px;
+    margin-left: 0;
+}

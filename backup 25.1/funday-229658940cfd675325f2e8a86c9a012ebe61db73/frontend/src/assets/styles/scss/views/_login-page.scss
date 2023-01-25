@@ -1,0 +1,91 @@
+.login-container {
+    .login-form {
+        width: 600px;
+        height: 572px;
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: Figtree;
+    }
+
+    .password-wrap {
+        margin-right: 22px;
+    }
+
+    .email-wrap {
+        margin-left: 7px;
+    }
+
+    .login-form-title {
+        margin-bottom: 2px;
+    }
+
+    p {
+        font-weight: 100;
+        color: #777777c4;
+        font-size: 18px;
+    }
+
+    h2 {
+        display: inline-block;
+        color: black;
+        font-size: 40px;
+        font: Figtree;
+        margin-bottom: 0;
+    }
+
+    .log-title {
+        font-weight: 600;
+        margin-right: 4px;
+    }
+
+    .in-title {
+        margin-left: 4px;
+        font-weight: 200;
+    }
+
+    .new-password {
+        color: #1f76c2;
+        font-size: 16px;
+        margin: 0;
+        align-self: flex-start;
+        margin-left: 120px;
+        margin-top: 15px;
+    }
+
+    label {
+        font-size: 16px;
+        color: #777777;
+        padding-right: 15px;
+    }
+
+    input {
+        height: 40px;
+        width: 360px;
+        margin: 10px 0;
+        margin-right: 60px;
+        color: #7777775c;
+        border: 1px solid;
+        border-radius: 4px;
+
+        &:focus-visible {
+            outline: #0073ea57 auto 1px;
+        }
+    }
+
+    button {
+        width: 360px;
+        height: 48px;
+        background-color: #0073ea;
+        color: white;
+        font-size: 18px;
+        font-family: Figtree;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: #023c7a;
+        }
+    }
+}

@@ -1,0 +1,95 @@
+.boards-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $clr1;
+
+    .board-optins {
+        border: $clr1 solid 1px;
+        position: absolute;
+        margin-inline-start: 230px;
+        margin-bottom: 100px;
+        width: 200px;
+        height: 200px;
+        background-color: #323338;
+    }
+}
+
+.board-icon {
+    height: 20px;
+    width: 20px;
+    border-radius: 0.3rem;
+}
+
+.board-icon:hover {
+    background-color: #dcdfec;
+}
+
+.option-icon {
+    width: 25px;
+    height: 25px;
+    fill: #323338;
+    margin-right: 1px;
+    margin-bottom: -4px;
+    position: relative;
+}
+
+.board-preview {
+    justify-content: space-between;
+    align-items: center;
+    margin-inline-start: 4px;
+    margin-bottom: 5px;
+
+    a {
+        color: #323338;
+        font-size: 14px;
+        padding: 10px 0;
+    }
+
+    &:hover {
+        background-color: $primary-background-hover-color;
+        border-radius: 0.2rem;
+        cursor: pointer;
+    }
+}
+
+.board-preview-link {
+    font-size: em(14px, 1em);
+    // line-height: em(21px, 1em);
+    letter-spacing: -0.2px;
+    color: $primary-text-color;
+}
+
+.board-item {
+    padding-inline: 6px;
+    padding-block: 0;
+    justify-content: space-between;
+
+    &:hover {
+        .board-menu-icon {
+            display: block;
+        }
+    }
+}
+
+.board-wrap {
+    align-items: center;
+    display: flex;
+    flex-basis: 81.415%;
+
+    .list-item-icon {
+        transform: translate(0);
+    }
+
+    a {
+        padding-left: 10px;
+    }
+
+}
+
+.board-menu-icon {
+    width: 25px;
+    height: 25px;
+    margin-top: 3px;
+    display: none;
+}

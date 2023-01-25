@@ -1,0 +1,66 @@
+.main-header {
+    background-color: #f7f7f7;
+    padding: 10px;
+    height: 65px;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .main-logo {
+        margin-right: -6px;
+        width: 49px;
+        height: 49px;
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        font-family: Poppins-Bold;
+        font-size: 40px;
+        color: black;
+        letter-spacing: -2.5px;
+    }
+
+    .user-info {
+        padding-left: 100px;
+        color: $clr1;
+
+        .score {
+            background-color: $clr2;
+            color: $clr6;
+            padding: 8px;
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    .user-info .btn-link {
+        color: black;
+    }
+
+    nav {
+        font-size: 0.8em;
+        background-color: $clr5;
+        padding: 5px;
+    }
+
+    nav a:first-child {
+        margin-right: 30px;
+    }
+
+    nav a:not(:first-child) {
+        border-top: 1px solid $clr1;
+        padding: 0 5px;
+        margin: 10px;
+    }
+
+    nav .active {
+        color: $clr1;
+    }
+}
