@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { Header } from '../cmps/header'
 
 export function HomePage() {
 
@@ -7,6 +8,7 @@ export function HomePage() {
 
     return (
         <section className='home-page'>
+              <Header />
             <div className="home-page-main flex">
                 <h1> A platform built for a new way of working</h1>
                 <p>What would you like to manage with Funnday?</p>
