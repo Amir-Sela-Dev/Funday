@@ -90,8 +90,8 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
 
                     >
                         <div className="task-list">
-                
-            <div className="task-title-row flex">
+
+                            <div className="task-title-row flex">
                                 <div className="sticky-grid flex">
                                     <div class="white-background"></div>
                                     <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
@@ -234,11 +234,15 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
                                     </form>
                                 </div>
                             </div>
-                            <GroupBottomBar board={board} group={group} />
+                            <div className="sticky-grid flex">
+                                <div class="white-background"></div>
+                                <GroupBottomBar board={board} group={group} />
+                            </div>
                         </div>
 
                     </div>
                 )}
+
             </Draggable>
         </div>
     )

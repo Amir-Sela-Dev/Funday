@@ -27,5 +27,10 @@
         width: 403px;
         border: none;
         // border-right: #d0d4e4 solid 1px;
+
+        @include for-mobile-layout {
+            width: 287px;
+        }
+
     }
 }
