@@ -24,14 +24,15 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const [isSeachClicked, setIsSeachClicked] = useState(false)
     const [boardActionsModal, setBoardActionsModal] = useState(false)
 
-    function onToggleBoardActionsModal() {
-        setBoardActionsModal(!boardActionsModal)
-    }
     useEffect(() => {
         setFilter(filterByToEdit)
         // setFilter.current(filterByToEdit)
     }, [filterByToEdit])
-
+    
+    
+        function onToggleBoardActionsModal() {
+            setBoardActionsModal(!boardActionsModal)
+        }
 
     async function onAddItem(isGroup) {
         try {
@@ -48,10 +49,6 @@ export function GroupList({ board, toggleModal, setFilter }) {
         } catch (err) {
             showErrorMsg('Cannot save board')
         }
-    }
-
-    async function onUpdateGroup(board, groupId) {
-        saveGroup()
     }
 
     async function onRemoveGroup(groupId) {
