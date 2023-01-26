@@ -3,6 +3,11 @@
     margin: 0;
     color: $clr1;
 
+    .sticky-group-bar {
+        position: sticky;
+        top: 101px;
+    }
+
     .group-search-filter {
         border-radius: 4px;
         font-family: Poppins-Regular;
@@ -66,7 +71,6 @@
             margin-right: 10px;
             height: 30px;
             background: $primary-background-hover-color;
-
         }
     }
 
@@ -212,18 +216,16 @@
         display: none;
         width: 0;
 
-
         &.on {
             display: flex;
             width: 100%;
         }
-
     }
 
     @include for-mobile-layout {
         max-width: calculate-width(100vw, $inner-padding-mobile);
 
-        &>div {
+        & > div {
             position: fixed;
             top: 49px;
             right: 0;

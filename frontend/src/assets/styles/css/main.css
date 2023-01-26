@@ -1893,6 +1893,10 @@ button {
   margin: 0;
   color: #323338;
 }
+.group-list .sticky-group-bar {
+  position: sticky;
+  top: 101px;
+}
 .group-list .group-search-filter {
   border-radius: 4px;
   font-family: Poppins-Regular;

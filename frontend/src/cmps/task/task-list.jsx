@@ -234,10 +234,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
                                     </form>
                                 </div>
                             </div>
-                            <div className="sticky-grid flex">
-                                <div class="white-background"></div>
                                 <GroupBottomBar board={board} group={group} />
-                            </div>
                         </div>
 
                     </div>
