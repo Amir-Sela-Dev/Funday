@@ -880,6 +880,9 @@ button {
 .work-space .workspace-header {
   justify-content: space-between;
   align-items: center;
+  margin-top: 6px;
+  margin-inline-start: 3px;
+  margin-bottom: 6px;
 }
 .work-space .workspace-header > span {
   font-size: 14px;
@@ -892,8 +895,8 @@ button {
 }
 .work-space .toggle-menu-btn {
   position: absolute;
-  top: 10px;
-  left: 228px;
+  top: 11px;
+  left: 231px;
   height: 24px;
   width: 24px;
   background-color: white;
@@ -934,6 +937,7 @@ button {
   align-items: center;
   padding: 2px;
   margin-bottom: 17px;
+  margin-inline-start: 3px;
 }
 .work-space .main-workspace-dropdown .main-icon {
   position: relative;
@@ -968,6 +972,8 @@ button {
   width: 224px;
   height: 32px;
   margin-inline-start: 3px;
+  margin-top: -6px;
+  margin-right: 4px;
 }
 .work-space .option-wrap :hover {
   background-color: #dcdfec;
@@ -2194,15 +2200,21 @@ button {
   padding-inline: 6px;
   padding-block: 0;
   justify-content: space-between;
+  cursor: pointer;
 }
 .board-item:hover .board-menu-icon {
   display: block;
+}
+.board-item.isClicked {
+  background-color: var(--primary-selected-color);
 }
 
 .board-wrap {
   align-items: center;
   display: flex;
   flex-basis: 81.415%;
+  margin-inline-start: 2px;
+  opacity: 0.9;
 }
 .board-wrap .list-item-icon {
   transform: translate(0);
