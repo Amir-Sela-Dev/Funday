@@ -5,7 +5,7 @@
     color: $clr1;
 
     .drag-tasks-container {
-        > * {
+        >* {
             min-width: min-content;
         }
     }
@@ -23,8 +23,9 @@
         text-align: center;
         font-size: 14px;
         min-width: min-content;
-        @include for-mobile-layout{
-            &:nth-child(1){
+
+        @include for-mobile-layout {
+            &:nth-child(1) {
                 margin-left: 23px;
             }
         }
@@ -81,6 +82,7 @@
     transform: scale(1.3);
     margin: auto;
     cursor: pointer;
+
     // margin-inline: 10px;
     &.disabled {
         cursor: default;
@@ -145,4 +147,9 @@
     height: 36px;
     margin-left: 0;
     min-width: 6px;
+
+    @include for-mobile-layout {
+        margin-left: -0.5px;
+    }
+
 }

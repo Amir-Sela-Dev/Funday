@@ -1576,6 +1576,11 @@ button {
   margin-left: 0;
   min-width: 6px;
 }
+@media (max-width: 500px) {
+  .last-tag {
+    margin-left: -0.5px;
+  }
+}
 
 .task-details-modal {
   position: absolute;
@@ -1605,22 +1610,24 @@ button {
     margin-inline-start: 15px;
     margin-block-start: 15px;
   }
+  .task-details-modal .tab--wrapper {
+    width: 100%;
+  }
+  .task-details-modal .tabs--wrapper {
+    width: 100%;
+  }
 }
-.task-details-modal .tab--wrapper {
-  width: 100%;
-}
-.task-details-modal .tabs--wrapper {
-  width: 100%;
-}
-@media (max-width: 500px) {
+@media (max-width: 500px) and (max-width: 500px) {
   .task-details-modal .tabs--wrapper {
     padding: 0;
   }
 }
-.task-details-modal .return-btn {
-  position: fixed;
-  left: 0;
-  top: 0;
+@media (max-width: 500px) {
+  .task-details-modal .return-btn {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 }
 
 .board-details .dark-screen:hover {
@@ -1636,16 +1643,19 @@ button {
 .task-modal-open h3 {
   margin-inline: auto;
   margin-block: 20px;
+  margin-left: 20px;
 }
 @media (max-width: 500px) {
   .task-modal-open h3 {
     text-align: center;
+    margin-top: 50px;
   }
 }
 .task-modal-open .close-btn {
   width: 30px;
   height: 30px;
   margin-bottom: 15px;
+  margin-left: 9px;
 }
 @media (max-width: 500px) {
   .task-modal-open .close-btn {
@@ -1668,6 +1678,7 @@ button {
 .task-modal-open .comments-btn {
   display: flex;
   align-items: end;
+  margin-left: 20px;
 }
 .task-modal-open .comments-btn .tab {
   background-color: #fff;
@@ -1693,7 +1704,7 @@ button {
 @media (max-width: 500px) {
   .task-modal-open .txt-editor-container {
     position: fixed;
-    bottom: 40px;
+    bottom: 90px;
     left: 0;
     width: 100%;
     padding-inline: 20px;
@@ -1702,6 +1713,11 @@ button {
 .task-modal-open .txt-editor {
   height: 150px;
   border-radius: 8px;
+}
+@media (max-width: 500px) {
+  .task-modal-open .txt-editor {
+    height: 90px;
+  }
 }
 .task-modal-open h1 {
   font-size: 26px;
@@ -1718,6 +1734,11 @@ button {
 .task-modal-open .comment > * {
   margin-inline-start: 16px;
   font-size: 16px;
+}
+@media (max-width: 500px) {
+  .task-modal-open .comment {
+    height: 120px;
+  }
 }
 .task-modal-open .close-modal {
   align-self: flex-start;
@@ -2173,6 +2194,7 @@ button {
   grid-area: board-details;
   color: #323338;
   overflow: auto;
+  max-height: 100vh;
 }
 .board-details a.tab-inner {
   padding-inline: 8px;
@@ -2331,6 +2353,11 @@ button {
 .task-activity-log .activity-btns {
   margin-bottom: 25px;
 }
+@media (max-width: 500px) {
+  .task-activity-log .activity-btns {
+    margin-block: 12px;
+  }
+}
 .task-activity-log .wrapper {
   padding-inline: 15px;
   align-items: center;
@@ -2383,6 +2410,11 @@ button {
 .group-bottom-bar .bar-place-holder {
   width: 403px;
   border: none;
+}
+@media (max-width: 500px) {
+  .group-bottom-bar .bar-place-holder {
+    width: 287px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -2,6 +2,7 @@
     grid-area: board-details;
     color: $clr1;
     overflow: auto;
+    max-height: 100vh;
 
     // position: relative;
     a.tab-inner {

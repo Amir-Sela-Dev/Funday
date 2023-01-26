@@ -4,6 +4,10 @@
 
     .activity-btns {
         margin-bottom: 25px;
+
+        @include for-mobile-layout {
+            margin-block: 12px;
+        }
     }
 
     .wrapper {
