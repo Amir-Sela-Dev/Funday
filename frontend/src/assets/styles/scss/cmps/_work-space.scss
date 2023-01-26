@@ -40,8 +40,11 @@
     .workspace-header {
         justify-content: space-between;
         align-items: center;
+        margin-top: 6px;
+        margin-inline-start: 3px;
+        margin-bottom: 6px;
 
-        & > span {
+        &>span {
             font-size: em(14px, 1em);
             font-weight: 400;
             color: $placeholder-on-secondary-color;
@@ -55,8 +58,8 @@
 
     .toggle-menu-btn {
         position: absolute;
-        top: 10px;
-        left: 228px;
+        top: 11px;
+        left: 231px;
         height: 24px;
         width: 24px;
         background-color: white;
@@ -107,6 +110,7 @@
         align-items: center;
         padding: 2px;
         margin-bottom: 17px;
+        margin-inline-start: 3px;
 
         .main-icon {
             position: relative;
@@ -146,6 +150,8 @@
         width: 224px;
         height: 32px;
         margin-inline-start: 3px;
+        margin-top: -6px;
+        margin-right: 4px;
 
         :hover {
             background-color: #dcdfec;

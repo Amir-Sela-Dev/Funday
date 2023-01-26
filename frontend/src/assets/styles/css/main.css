@@ -880,6 +880,9 @@ button {
 .work-space .workspace-header {
   justify-content: space-between;
   align-items: center;
+  margin-top: 6px;
+  margin-inline-start: 3px;
+  margin-bottom: 6px;
 }
 .work-space .workspace-header > span {
   font-size: 14px;
@@ -892,8 +895,8 @@ button {
 }
 .work-space .toggle-menu-btn {
   position: absolute;
-  top: 10px;
-  left: 228px;
+  top: 11px;
+  left: 231px;
   height: 24px;
   width: 24px;
   background-color: white;
@@ -934,6 +937,7 @@ button {
   align-items: center;
   padding: 2px;
   margin-bottom: 17px;
+  margin-inline-start: 3px;
 }
 .work-space .main-workspace-dropdown .main-icon {
   position: relative;
@@ -968,6 +972,8 @@ button {
   width: 224px;
   height: 32px;
   margin-inline-start: 3px;
+  margin-top: -6px;
+  margin-right: 4px;
 }
 .work-space .option-wrap :hover {
   background-color: #dcdfec;
@@ -1638,6 +1644,15 @@ button {
 .board-details .dark-screen:hover {
   opacity: 0.1;
 }
+.board-details .return-btn {
+  margin-inline-start: 13px;
+}
+.board-details hr {
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 0.6px;
+  align-self: center;
+}
 
 .task-modal-open {
   transform: translateX(0);
@@ -1649,6 +1664,7 @@ button {
   margin-inline: auto;
   margin-block: 20px;
   margin-left: 20px;
+  margin-inline-start: 25px;
 }
 @media (max-width: 500px) {
   .task-modal-open h3 {
@@ -1661,6 +1677,7 @@ button {
   height: 30px;
   margin-bottom: 15px;
   margin-left: 9px;
+  margin-inline-start: 13px;
 }
 @media (max-width: 500px) {
   .task-modal-open .close-btn {
@@ -1727,9 +1744,26 @@ button {
 .task-modal-open h1 {
   font-size: 26px;
 }
+.task-modal-open .opend-input {
+  width: 551px;
+  height: 40px;
+  border-radius: 0.5em;
+}
+.task-modal-open .opend-input input {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+  outline: none;
+  border: var(--primary-color) 1px solid;
+  font-size: 16px;
+  color: var(--secondary-text-color);
+}
+.task-modal-open .opend-input input:hover {
+  background-color: var(--primary-background-hover-color);
+}
 .task-modal-open .comment {
   width: 100%;
-  height: 204px;
+  height: 161px;
   border: #323338 solid 1px;
   line-height: 20px;
   border-radius: 8px;
@@ -1829,6 +1863,7 @@ button {
   width: 15px;
   height: 15px;
   margin-inline-end: 2px;
+  margin-top: 1px;
 }
 .task-modal-open .date {
   margin-inline-end: 20px;
@@ -1900,7 +1935,6 @@ button {
   color: #323338;
 }
 .group-list .sticky-group-bar {
-  position: sticky;
   top: 101px;
 }
 .group-list .group-search-filter {
@@ -2175,15 +2209,21 @@ button {
   padding-inline: 6px;
   padding-block: 0;
   justify-content: space-between;
+  cursor: pointer;
 }
 .board-item:hover .board-menu-icon {
   display: block;
+}
+.board-item.isClicked {
+  background-color: var(--primary-selected-color);
 }
 
 .board-wrap {
   align-items: center;
   display: flex;
   flex-basis: 81.415%;
+  margin-inline-start: 2px;
+  opacity: 0.9;
 }
 .board-wrap .list-item-icon {
   transform: translate(0);
@@ -2361,6 +2401,7 @@ button {
 }
 .task-activity-log .activity-btns {
   margin-bottom: 25px;
+  margin-left: 20px;
 }
 @media (max-width: 500px) {
   .task-activity-log .activity-btns {
@@ -2370,6 +2411,7 @@ button {
 .task-activity-log .wrapper {
   padding-inline: 15px;
   align-items: center;
+  margin-inline-start: 11px;
 }
 .task-activity-log .activity {
   display: flex;
@@ -2389,8 +2431,13 @@ button {
   width: 191px;
 }
 .task-activity-log .activity .type {
-  width: 157px;
+  flex-basis: 157px;
   align-items: center;
+}
+.task-activity-log .activity .txt {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 150px;
 }
 .task-activity-log .activity hr {
   color: rgba(50, 51, 56, 0.2941176471);
@@ -2398,6 +2445,10 @@ button {
   width: 100%;
   justify-self: flex-end;
   margin-block-end: 13px;
+}
+.task-activity-log .date {
+  width: 56px;
+  margin: 0;
 }
 
 .group-bottom-bar .bar-person {

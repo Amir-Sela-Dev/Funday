@@ -83,25 +83,6 @@ export function WorkSpace({ toggleWorkspace }) {
 
     return <section className={`work-space ${isNavModalClose ? 'close-workspace' : ''}`}>
 
-        {isOptionsModalOpen && <ul className="menu-modal main-option" >
-            <div className="menu-modal-option first flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${openNewIcon}`)} />
-                <p className="menu-modal-option-text">Open Board in New Tab</p>
-            </div>
-            <hr />
-            <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${renameIcon}`)} />
-                <p className="menu-modal-option-text">Rename</p>
-            </div>
-            <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)} />
-                <p className="menu-modal-option-text">Duplicate</p>
-            </div>
-            <div className="menu-modal-option flex">
-                <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)} />
-                <p className="menu-modal-option-text">Delete</p>
-            </div>
-        </ul>}
 
         <div className="toggle-nemu-btn-wrap">
             <div className="toggle-menu-btn" onClick={setToggleWorkspace}>
@@ -111,8 +92,6 @@ export function WorkSpace({ toggleWorkspace }) {
 
         <div className="workspace-header flex">
             <span className='workspace-txt'>Workspace</span>
-            <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                onClick={toggleMenuModal} />
         </div>
         <div className="main-workspace-dropdown flex">
             {/* <div className="main-workspace-dropdown">

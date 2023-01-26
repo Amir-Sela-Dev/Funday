@@ -6,15 +6,35 @@ import { boardService } from "../../services/board.service"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
-import { Send } from "monday-ui-react-core/icons";
+import { Send, Time } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
 
 export function TaskUpdates({ board, group, task = '', formatTime }) {
     let { user } = useSelector((storeState) => storeState.userModule)
     const [value, setValue] = useState('');
     const [comment, setComment] = useState(boardService.getDefaultComment());
+    const [isInputClicked, setIsInputClicked] = useState(false);
     const emtyModalImg = 'task-modal-empty-state.svg'
     const clock = 'clock.svg'
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (event.target.closest('.txt-editor-container') === null) {
+                setIsInputClicked(false)
+            }
+        }
+
+        if (isInputClicked) {
+            document.addEventListener('mousedown', handleClickOutside)
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        };
+    }, [isInputClicked]);
+
 
     async function onAddTaskComment() {
         if (!value) return
@@ -32,7 +52,10 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
 
     if (!task) return
     return <section className='task-updates flex'>
-        <div className="txt-editor-container">
+        {!isInputClicked && <div className="opend-input" onClick={() => { setIsInputClicked(!isInputClicked) }}>
+            <input type="text" placeholder="Write an update..." />
+        </div>}
+        {isInputClicked && <div className="txt-editor-container">
             <div>
                 <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
             </div>
@@ -40,7 +63,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
                 Send
                 <Icon iconType={Icon.type.SVG} icon={Send} iconLabel="my bolt svg icon" iconSize={16} />
             </button>
-        </div>
+        </div>}
         {/* <div style={{marginBlockStart: '25px'}}/> */}
         <div className="main-details-container">
             {task.comments.map((comment, idx) => {
@@ -56,7 +79,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
                             <div className="is-active"></div>
                         </div>
                         <div className="date flex align-center">
-                            <img className="clock-img" src={require(`/src/assets/img/${clock}`)} />
+                            <Icon icon={Time} iconLabel="my bolt svg icon" style={{ width: '15px', height: '15px' }} iconSize={15} ignoreFocusStyle className='clock-img' />
                             <div className="comment-date"> {formatTime(comment.createdAt)} </div>
                         </div>
                     </div>

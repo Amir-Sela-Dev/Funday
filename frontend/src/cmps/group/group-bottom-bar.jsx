@@ -80,9 +80,9 @@ export function GroupBottomBar({ board, group }) {
                                 return <div className="status-progress" style={{ minWidth: `${status.percent}%`, backgroundColor: `${status.color}` }}></div>
                             })}</div></div>
                         case 'date':
-                            return <div className="task-date task-column">Date</div>
+                            return <div className="task-date task-column">Jan 23 - Jan 27</div>
                         case 'timeline':
-                            return <div className="task-timeline task-column">Timeline</div>
+                            return <div className="task-timeline task-column"></div>
                         case 'priority':
                             return <div className=" task-status task-column flex "> <div className="label-progress-bar flex"> {getStatuscount('priority').map(priority => {
                                 return <div className="status-progress" style={{ minWidth: `${priority.percent}%`, backgroundColor: `${priority.color}` }}></div>
