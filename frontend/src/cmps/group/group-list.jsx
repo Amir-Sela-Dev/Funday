@@ -151,29 +151,30 @@ export function GroupList({ board, toggleModal, setFilter }) {
 
                         </div>}
 
-                    {/* <Button leftIcon={Add}>Add</Button> */}
-                    <Button className={`bar-icon search-btn-board-details`}
-                        onClick={toggleSearchBar}
-                        style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
-                        kind={Button.kinds.TERTIARY}
-                        leftIcon={Search}>
-                        <span>Search</span>
-                    </Button>
-                    <div
-                        className={"search-bar-mobile flex" + (isSeachClicked ? ' on' : '')}>
-                        <span
-                            className={`cancel-btn ${isSeachClicked ? 'on' : 'off'}`}
-                            onClick={() => { toggleSearchBar(false) }}>Cancel</span>
-                        <div className={`group-search-filter flex`}
-                            style={{ display: isSeachClicked ? 'flex' : 'none' }}>
-                            <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-                            <input type="text"
-                                onChange={handleFilterChange}
-                                value={filterByToEdit.title} placeholder='Search'
-                                name='title' />
+                        {/* <Button leftIcon={Add}>Add</Button> */}
+                        <Button className={`bar-icon search-btn-board-details`}
+                            onClick={toggleSearchBar}
+                            style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
+                            kind={Button.kinds.TERTIARY}
+                            leftIcon={Search}>
+                            <span>Search</span>
+                        </Button>
+
+                        <div
+                            className={"search-bar-mobile flex" + (isSeachClicked ? ' on' : '')}>
+                            <span
+                                className={`cancel-btn ${isSeachClicked ? 'on' : 'off'}`}
+                                onClick={() => { toggleSearchBar(false) }}>Cancel</span>
+                            <div className={`group-search-filter flex`}
+                                style={{ display: isSeachClicked ? 'flex' : 'none' }}>
+                                <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
+                                <input type="text"
+                                    onChange={handleFilterChange}
+                                    value={filterByToEdit.title} placeholder='Search'
+                                    name='title' />
+                            </div>
                         </div>
-                    </div>
-                    {/* <Button className='bar-search'
+                        {/* <Button className='bar-search'
                     kind={Button.kinds.TERTIARY}
                     rightIcon={Search}>
 
