@@ -1493,6 +1493,11 @@ button {
   width: 100px;
   flex: 1;
 }
+.task-list .place-holder {
+  width: 100vw;
+  border-right: 1px solid #d0d4e4;
+  border-bottom: 1px solid #d0d4e4;
+}
 
 .task-column {
   border-right: 1px solid #d0d4e4;
@@ -1541,7 +1546,6 @@ button {
 }
 
 .task-input-row {
-  border-right: #d0d4e4 1px solid;
   border-bottom: #d0d4e4 1px solid;
   border-collapse: collapse;
   height: 36px;

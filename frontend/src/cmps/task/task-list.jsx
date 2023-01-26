@@ -216,10 +216,13 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
                             </Droppable>
                             <div className="add-task-wrap flex">
                                 <div className="sticky-grid flex">
+                                    <div class="white-background"></div>
                                     <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                                     <div className="checkbox-column task-column disabled">
                                         <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                                     </div>
+
+
 
                                     <form className='task-input-row' onSubmit={onSaveTask}>
                                         <input
@@ -232,7 +235,14 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
                                             onBlur={ev => onSaveTask(ev)}
                                         />
                                     </form>
+
+
+
                                 </div>
+                                <div className="place-holder">
+
+                                </div>
+
                             </div>
                             <div className="sticky-grid flex">
                                 <div class="white-background"></div>

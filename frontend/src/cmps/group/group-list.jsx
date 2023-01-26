@@ -28,11 +28,11 @@ export function GroupList({ board, toggleModal, setFilter }) {
         setFilter(filterByToEdit)
         // setFilter.current(filterByToEdit)
     }, [filterByToEdit])
-    
-    
-        function onToggleBoardActionsModal() {
-            setBoardActionsModal(!boardActionsModal)
-        }
+
+
+    function onToggleBoardActionsModal() {
+        setBoardActionsModal(!boardActionsModal)
+    }
 
     async function onAddItem(isGroup) {
         try {
