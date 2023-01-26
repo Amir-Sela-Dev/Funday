@@ -197,17 +197,6 @@ export function TaskPreview({
 
     }
 
-
-
-
-
-
-    // function showTimeLine() {
-    //     return <DialogContentContainer className={styles.datepickerDialogContentContainer}>
-    //         <DatePicker date={date.startDate} endDate={date.endDate} range data-testid="date-picker" onPickDate={d => setDate(d)} />
-    //     </DialogContentContainer>;
-    // }
-
     const openTaskIcon = 'open-item.svg'
     const bubble = 'bubble.svg'
     const plusBubble = 'plus-bubble.svg'
@@ -235,24 +224,6 @@ export function TaskPreview({
 
                     >
 
-                        {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
-                        <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
-                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
-                            />
-                            <p className="menu-modal-option-text">Duplicate</p>
-                        </div>
-                        <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
-                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
-                            />
-                            <p className="menu-modal-option-text" >Delete</p>
-                        </div>
-                    </ul>} */}
-
-                        {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                onClick={() => { openOptionModal() }} />} */}
-
-                        {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                        onClick={() => { openOptionModal() }} /> */}
                     <div className="flex">
                             <div className="wrap-modal">
                                 {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
@@ -338,11 +309,6 @@ export function TaskPreview({
                                     case 'date':
                                         return <div className="task-date task-column">
 
-                                        {/* {isDatePickerOpen && <DialogContentContainer className={'styles.datepickerDialogContentContainer'}>
-                                            <DatePicker data-testid="date-picker" date={date} onPickDate={d => setDate(d)} />
-                                        </DialogContentContainer>} */}
-
-                                            {/* {(task.date - Date.now() > 0)  && 'x'} */}
                                         <Space direction="vertical" >
                                                 <DatePicker
                                                     defaultValue={task.date ? (dayjs(task.date, 'MMM D')) : ''}
