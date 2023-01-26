@@ -215,19 +215,8 @@ export function TaskPreview({
 
 
     return (
-        <div >
-            {/* <Draggable draggableId={task.id} index={index}>
-                {(provided) => (
-                    <div
-
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                        className="task-preview flex"
-
-                    >
- */}
-            <div className="orens-div flex">
+        <div className="orens-div">
+            <div className="flex">
                 <div className="wrap-modal">
                     {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                         <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
@@ -303,7 +292,7 @@ export function TaskPreview({
                         case 'status':
                             return <div className="preview-task-status  task-column"
                                 onClick={() => { setIsOpen(!isOpen) }}
-                                style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
+                                style={{ background: `${(task.status.txt === 'Default') ? 'rgb(185, 185, 185)' : task.status.color}` }}>
 
                                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
@@ -360,9 +349,6 @@ export function TaskPreview({
 
                 <div className="preview-add-colume task-column "> </div>
             </div>
-            {/* </div>
-                )}
-            </Draggable> */}
         </div>
     )
 }

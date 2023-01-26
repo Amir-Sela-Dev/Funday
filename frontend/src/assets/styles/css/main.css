@@ -3,6 +3,10 @@
 /* Media  Mixins */
 /* HELPERS */
 @font-face {
+  font-family: Figtree;
+  src: url(../../fonts/Figtree-Regular.ttf);
+}
+@font-face {
   font-family: Poppins-Thin;
   src: url(../../fonts/Poppins-Thin.ttf);
 }
@@ -13,10 +17,6 @@
 @font-face {
   font-family: Poppins-Bold;
   src: url(../../fonts/Poppins-Bold.ttf);
-}
-@font-face {
-  font-family: Figtree;
-  src: url(../../fonts/Figtree-Regular.ttf);
 }
 .fs12 {
   font-size: 0.75rem;
@@ -218,7 +218,6 @@
 }
 
 html {
-  font-family: Poppins-Regular;
   line-height: 1.6;
   color: #0073ea;
 }
@@ -419,7 +418,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 .home-page .see-demo {
   background-image: linear-gradient(90deg, #5034ff 25.69%, #b4b4ff 100%);
@@ -582,7 +580,7 @@ button {
 .login-container .login-form {
   width: 600px;
   height: 572px;
-  margin: 40px auto;
+  margin: 60px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -661,7 +659,9 @@ button {
   padding: 10px;
   height: 65px;
   align-items: center;
-  margin-bottom: 20px;
+}
+.main-header a {
+  text-decoration: none;
 }
 .main-header .main-logo {
   margin-right: -6px;
@@ -868,7 +868,7 @@ button {
   border-right: 1px solid rgba(0, 0, 0, 0.102);
   transition: transform 1s;
   color: #323338;
-  z-index: 20;
+  z-index: 35;
   position: fixed;
 }
 .work-space.close-workspace {
