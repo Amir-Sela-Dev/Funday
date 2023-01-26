@@ -4,7 +4,7 @@
     color: $clr1;
 
     .sticky-group-bar {
-        position: sticky;
+        // position: sticky;
         top: 101px;
     }
 
@@ -225,7 +225,7 @@
     @include for-mobile-layout {
         max-width: calculate-width(100vw, $inner-padding-mobile);
 
-        & > div {
+        &>div {
             position: fixed;
             top: 49px;
             right: 0;

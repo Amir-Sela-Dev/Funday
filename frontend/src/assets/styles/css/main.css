@@ -1648,6 +1648,7 @@ button {
   margin-inline: auto;
   margin-block: 20px;
   margin-left: 20px;
+  margin-inline-start: 25px;
 }
 @media (max-width: 500px) {
   .task-modal-open h3 {
@@ -1660,6 +1661,7 @@ button {
   height: 30px;
   margin-bottom: 15px;
   margin-left: 9px;
+  margin-inline-start: 13px;
 }
 @media (max-width: 500px) {
   .task-modal-open .close-btn {
@@ -1898,7 +1900,6 @@ button {
   color: #323338;
 }
 .group-list .sticky-group-bar {
-  position: sticky;
   top: 101px;
 }
 .group-list .group-search-filter {
@@ -2352,6 +2353,7 @@ button {
 }
 .task-activity-log .activity-btns {
   margin-bottom: 25px;
+  margin-left: 20px;
 }
 @media (max-width: 500px) {
   .task-activity-log .activity-btns {
@@ -2361,6 +2363,7 @@ button {
 .task-activity-log .wrapper {
   padding-inline: 15px;
   align-items: center;
+  margin-inline-start: 11px;
 }
 .task-activity-log .activity {
   display: flex;

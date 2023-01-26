@@ -4,6 +4,7 @@
 
     .activity-btns {
         margin-bottom: 25px;
+        margin-left: 20px;
 
         @include for-mobile-layout {
             margin-block: 12px;
@@ -13,6 +14,7 @@
     .wrapper {
         padding-inline: 15px;
         align-items: center;
+        margin-inline-start: 11px;
     }
 
     .activity {

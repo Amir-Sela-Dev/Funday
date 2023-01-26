@@ -70,6 +70,7 @@
         margin-inline: auto;
         margin-block: 20px;
         margin-left: 20px;
+        margin-inline-start: 25px;
 
         @include for-mobile-layout {
             text-align: center;
@@ -82,6 +83,7 @@
         height: 30px;
         margin-bottom: 15px;
         margin-left: 9px;
+        margin-inline-start: 13px;
 
         @include for-mobile-layout {
             margin-bottom: 0;
