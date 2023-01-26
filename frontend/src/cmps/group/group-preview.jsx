@@ -121,8 +121,7 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
                     </div>
                 </ul>} */}
 
-            <div className="flex">
-
+            <div className="sticky-group-title-down flex">
                 <div className="group-title-container flex align-center">
 
 
