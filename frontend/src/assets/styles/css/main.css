@@ -1541,13 +1541,14 @@ button {
   color: #323338;
 }
 
+.add-task-wrap {
+  border-bottom: #d0d4e4 1px solid;
+}
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
 }
 
 .task-input-row {
-  border-bottom: #d0d4e4 1px solid;
-  border-collapse: collapse;
   height: 36px;
   width: 100%;
   border-block-start: none;
@@ -1879,6 +1880,7 @@ button {
   margin-inline-start: 2px;
   font-family: Figtree;
   margin-bottom: 57px;
+  min-width: fit-content;
 }
 .group-preview .option-icon {
   margin-inline-start: -33px;

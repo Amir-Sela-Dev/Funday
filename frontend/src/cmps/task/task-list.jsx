@@ -239,12 +239,10 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
 
 
                                 </div>
-                                <div className="place-holder">
 
-                                </div>
 
                             </div>
-                                <GroupBottomBar board={board} group={group} />
+                            <GroupBottomBar board={board} group={group} />
                         </div>
 
                     </div>
