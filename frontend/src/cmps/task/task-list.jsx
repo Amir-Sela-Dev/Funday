@@ -90,96 +90,97 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, index }) {
 
                     >
                         <div className="task-list">
+                            <div className="sticky-group-title">
+                                <div className="task-title-row flex">
+                                    <div className="sticky-grid flex">
+                                        <div class="white-background"></div>
+                                        <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                                        <div className="checkbox-column task-column upper-task"
+                                            onClick={() => { setIsAllSelected(!isAllSelected) }}>
+                                            {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
+                                            <input className='task-checkbox'
+                                                type="checkbox"
+                                                checked={isAllSelected}
+                                                onChange={ev => {
+                                                    ev.stopPropagation()
+                                                    setIsAllSelected(!isAllSelected)
+                                                }} />
+                                        </div>
 
-                            <div className="task-title-row flex">
-                                <div className="sticky-grid flex">
-                                    <div class="white-background"></div>
-                                    <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
-                                    <div className="checkbox-column task-column upper-task"
-                                        onClick={() => { setIsAllSelected(!isAllSelected) }}>
-                                        {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
-                                        <input className='task-checkbox'
-                                            type="checkbox"
-                                            checked={isAllSelected}
-                                            onChange={ev => {
-                                                ev.stopPropagation()
-                                                setIsAllSelected(!isAllSelected)
-                                            }} />
+                                        <div className="task-title task-column upper-task">Item</div>
+
                                     </div>
+                                    {board.cmpsOrder.map(cmp => {
+                                        switch (cmp) {
+                                            case 'person':
+                                                return <div className="task-persons task-column upper-task"><span>Person</span></div>
+                                            case 'status':
+                                                return <div className="task-status task-column upper-task">Status</div>
+                                            case 'date':
+                                                return <div className="task-date task-column upper-task">Date</div>
+                                            case 'timeline':
+                                                return <div className="task-timeline task-column upper-task">Timeline</div>
+                                            case 'priority':
+                                                return <div className="task-status task-column upper-task">Priority</div>
+                                            case 'files':
+                                                return <div className="task-files task-column upper-task">Files</div>
+                                            case 'checkbox':
+                                                return <div className="checkbox task-column upper-task">Check</div>
+                                            default:
+                                                return <div className="task-persons task-column"><span>Person</span></div>
+                                        }
+                                    })}
+                                    <div className="add-colume task-column flex align-center justify-center upper-task">
+                                        <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
+                                        <MenuButton>
+                                            <ul className={"menu-modal board-list-modal"}>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('person') }}>
+                                                    <p className="menu-modal-option-text" >Person</p>
+                                                </div>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('status') }}>
+                                                    <p className="menu-modal-option-text" >Status</p>
+                                                </div>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('date') }}>
+                                                    <p className="menu-modal-option-text" >Date</p>
+                                                </div>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('timeline') }}>
+                                                    <p className="menu-modal-option-text" >Timeline</p>
+                                                </div>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('priority') }}>
+                                                    <p className="menu-modal-option-text">priority</p>
+                                                </div>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('files') }}>
+                                                    <p className="menu-modal-option-text" >files</p>
+                                                </div>
+                                                <div className="menu-modal-option flex" onClick={() => { onAddColume('checkbox') }}>
+                                                    <p className="menu-modal-option-text" >checkbox</p>
+                                                </div>
+                                            </ul>
 
-                                    <div className="task-title task-column upper-task">Item</div>
-
-                                </div>
-                                {board.cmpsOrder.map(cmp => {
-                                    switch (cmp) {
-                                        case 'person':
-                                            return <div className="task-persons task-column upper-task"><span>Person</span></div>
-                                        case 'status':
-                                            return <div className="task-status task-column upper-task">Status</div>
-                                        case 'date':
-                                            return <div className="task-date task-column upper-task">Date</div>
-                                        case 'timeline':
-                                            return <div className="task-timeline task-column upper-task">Timeline</div>
-                                        case 'priority':
-                                            return <div className="task-status task-column upper-task">Priority</div>
-                                        case 'files':
-                                            return <div className="task-files task-column upper-task">Files</div>
-                                        case 'checkbox':
-                                            return <div className="checkbox task-column upper-task">Check</div>
-                                        default:
-                                            return <div className="task-persons task-column"><span>Person</span></div>
-                                    }
-                                })}
-                                <div className="add-colume task-column flex align-center justify-center upper-task">
-                                    <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
-                                    <MenuButton>
-                                        <ul className={"menu-modal board-list-modal"}>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('person') }}>
-                                                <p className="menu-modal-option-text" >Person</p>
-                                            </div>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('status') }}>
-                                                <p className="menu-modal-option-text" >Status</p>
-                                            </div>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('date') }}>
-                                                <p className="menu-modal-option-text" >Date</p>
-                                            </div>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('timeline') }}>
-                                                <p className="menu-modal-option-text" >Timeline</p>
-                                            </div>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('priority') }}>
-                                                <p className="menu-modal-option-text">priority</p>
-                                            </div>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('files') }}>
-                                                <p className="menu-modal-option-text" >files</p>
-                                            </div>
-                                            <div className="menu-modal-option flex" onClick={() => { onAddColume('checkbox') }}>
-                                                <p className="menu-modal-option-text" >checkbox</p>
-                                            </div>
-                                        </ul>
-
-                                    </MenuButton>
-                                    <MenuButton>
-                                        <Menu
-                                            id="menu"
-                                            size="medium"
-                                        >
-                                            <MenuTitle
-                                                caption="Remove item"
-                                                captionPosition="top"
-                                            />
-
-                                            {board.cmpsOrder.map((colume, idx) => {
-                                                return <MenuItem
-                                                    key={idx}
-                                                    icon={function noRefCheck() { }}
-                                                    iconType="SVG"
-                                                    onClick={() => { onRemoveColume(colume) }}
-                                                    title={`${colume}`}
+                                        </MenuButton>
+                                        <MenuButton>
+                                            <Menu
+                                                id="menu"
+                                                size="medium"
+                                            >
+                                                <MenuTitle
+                                                    caption="Remove item"
+                                                    captionPosition="top"
                                                 />
-                                            })}
 
-                                        </Menu>
-                                    </MenuButton>
+                                                {board.cmpsOrder.map((colume, idx) => {
+                                                    return <MenuItem
+                                                        key={idx}
+                                                        icon={function noRefCheck() { }}
+                                                        iconType="SVG"
+                                                        onClick={() => { onRemoveColume(colume) }}
+                                                        title={`${colume}`}
+                                                    />
+                                                })}
+
+                                            </Menu>
+                                        </MenuButton>
+                                    </div>
                                 </div>
                             </div>
 
