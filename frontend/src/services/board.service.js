@@ -114,6 +114,7 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        timeline: '',
                         isMark: false
                     },
                     {
@@ -124,6 +125,7 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        timeline: '',
                         isMark: false
 
                     }
@@ -143,6 +145,7 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        timeline: '',
                         isMark: false
 
                     },
@@ -154,6 +157,7 @@ function getEmptyBoard() {
                         comments: [],
                         persons: [],
                         date: '',
+                        timeline: '',
                         isMark: false
 
                     }
@@ -210,7 +214,8 @@ function creatBoards() {
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
-                                date: "2023-01-19",
+                                date: "",
+                                timeline: '',
                                 comments: [],
                                 isMark: false
 
@@ -224,7 +229,8 @@ function creatBoards() {
                                 ],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
-                                date: "2023-01-12",
+                                date: "",
+                                timeline: '',
                                 comments: [],
                                 isMark: false
 
@@ -246,6 +252,7 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                timeline: '',
                                 isMark: false
 
 
@@ -258,6 +265,7 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                timeline: '',
                                 isMark: false
 
                             }
@@ -277,6 +285,7 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                timeline: '',
                                 isMark: false
 
 
@@ -289,6 +298,7 @@ function creatBoards() {
                                 comments: [],
                                 persons: [],
                                 date: '',
+                                timeline: '',
                                 isMark: false
 
                             }

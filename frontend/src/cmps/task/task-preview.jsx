@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { addActivity, saveTask } from "../../store/board.action"
+import { addActivity, saveGroup, saveTask } from "../../store/board.action"
 import { DatePicker, Space, } from 'antd'
 import dayjs from "dayjs"
 import { TaskTitle } from "./task-title"
@@ -10,7 +10,7 @@ import { PersonDetails } from "./person-details"
 import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
 import { File, Check, AddUpdate, Update, Menu } from "monday-ui-react-core/icons";
-import { AvatarGroup, Icon, Avatar, StoryDescription, Flex } from "monday-ui-react-core";
+import { AvatarGroup, Icon, Avatar, StoryDescription, Flex, DialogContentContainer } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
 import { ListItemIcon } from "monday-ui-react-core"
 import { DropdownChevronRight } from "monday-ui-react-core/icons";
@@ -39,6 +39,10 @@ export function TaskPreview({
     const [size, setSize] = useState('small');
     const [isOpen, setIsOpen] = useState(false);
     const [isMark, setIsMark] = useState(false);
+    const [tasks, setTasks] = useState(group.tasks)
+    const [date, setDate] = useState(null);
+    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+
     const handleSizeChange = (e) => {
         setSize(e.target.value);
     };
@@ -73,6 +77,8 @@ export function TaskPreview({
     async function onAddTaskDate(date) {
         try {
             let taskToSave = structuredClone(task)
+            date = dayjs(date).format('MMM D')
+            console.log(date);
             await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
             showSuccessMsg('Task update')
         } catch (err) {
@@ -81,7 +87,16 @@ export function TaskPreview({
     }
 
     async function onAddTaskTimeline(timeline) {
-        console.log(dayjs('2019-01-25'));
+        try {
+            let taskToSave = structuredClone(task)
+            timeline[0] = dayjs(timeline).format('MMM D')
+            timeline[1] = dayjs(timeline).format('MMM D')
+            console.log(timeline);
+            await saveTask(board, group.id, { ...taskToSave, timeline }, 'Date', 'Change date')
+            showSuccessMsg('Task update')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
     }
 
     async function onAddTaskPerson(person) {
@@ -153,6 +168,34 @@ export function TaskPreview({
         }
     }
 
+    function handleOnDragEnd(result) {
+        const items = Array.from(tasks)
+        const [reorderedItem] = items.splice(result.source.index, 1)
+        items.splice(result.destination.index, 0, reorderedItem)
+        setTasks(items)
+        saveGroupAfterDrag(items)
+    }
+
+    async function saveGroupAfterDrag(tasks) {
+        try {
+            await saveGroup(board, group.id, { ...group, tasks: tasks })
+            showSuccessMsg('Group updated')
+        } catch (err) {
+            console.log('error adding task', err)
+        }
+    }
+
+    async function onSetMark() {
+        try {
+            setIsMark(!isMark)
+            let taskToSave = structuredClone(task)
+            taskToSave.isMark = !taskToSave.isMark
+            await saveTask(board, group.id, taskToSave, 'Check', `change value to ${isMark}`)
+        } catch (err) {
+            showErrorMsg('Cannot upload file')
+        }
+
+    }
 
 
 
@@ -180,15 +223,19 @@ export function TaskPreview({
 
 
     return (
-        <Draggable draggableId={task.id} index={index}>
-            {(provided) => (
-                <div
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    ref={provided.innerRef}
-                    className="task-preview flex"
-                >
-                    {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
+        <div onClick={(e) => e.stopPropagation()}>
+            <Draggable draggableId={task.id} index={index} onDragEnd={handleOnDragEnd}>
+                {(provided, ev) => (
+                    <div
+
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                        className="task-preview flex"
+
+                    >
+
+                        {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                         <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
                             <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
                             />
@@ -201,35 +248,35 @@ export function TaskPreview({
                         </div>
                     </ul>} */}
 
-                    {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                        {/* {showOptions && <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                 onClick={() => { openOptionModal() }} />} */}
 
-                    {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                        {/* <img className="task-option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                         onClick={() => { openOptionModal() }} /> */}
                     <div className="flex">
-                        <div className="wrap-modal">
-                            {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
-                                <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
-                                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
-                                    />
-                                    <p className="menu-modal-option-text">Duplicate</p>
-                                </div>
-                                <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
-                                    <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
-                                    />
-                                    <p className="menu-modal-option-text" >Delete</p>
-                                </div>
-                            </ul>}
-                        </div>
-                        <div className="sticky-grid flex">
-                            <div className="white-background"></div>
-                            <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
+                            <div className="wrap-modal">
+                                {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
+                                    <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
+                                        <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                                        />
+                                        <p className="menu-modal-option-text">Duplicate</p>
+                                    </div>
+                                    <div className="menu-modal-option flex" onClick={() => { onRemoveTask(task.id) }}>
+                                        <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                                        />
+                                        <p className="menu-modal-option-text" >Delete</p>
+                                    </div>
+                                </ul>}
+                            </div>
+                            <div className="sticky-grid flex">
+                                <div className="white-background"></div>
+                                <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
 
-                            <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
-                            <div className="checkbox-wrap">
-                                <div
-                                    className="checkbox-column task-column"
-                                    onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
+                                <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                                <div className="checkbox-wrap">
+                                    <div
+                                        className="checkbox-column task-column"
+                                        onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
 
                                     <input className='task-checkbox' type="checkbox"
                                         checked={isAllSelected || isTaskSelected || false}
@@ -268,7 +315,7 @@ export function TaskPreview({
                                     return <div className="task-persons task-column flex align-center justify-center"
                                         onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
 
-                                        {task.persons && !isPersonsOpen &&
+                                        {task.persons &&
 
                                             <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
                                                 {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
@@ -284,61 +331,69 @@ export function TaskPreview({
                                         onClick={() => { setIsOpen(!isOpen) }}
                                         style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
-                                        <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
+                                            <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
-                                        {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
-                                    </div>
-                                case 'date':
-                                    return <div className="task-date task-column">
-                                        {/* {(task.date - Date.now() > 0)  && 'x'} */}
-                                        <DatePicker
-                                            defaultValue={task.date ? dayjs(task.date, 'MM/DD') : ''}
-                                            bordered={false}
-                                            onChange={onAddTaskDate}
-                                            placeholder=""
-                                            format={'MMM D'}
+                                            {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
+                                        </div>
+                                    case 'date':
+                                        return <div className="task-date task-column">
 
-                                        />
-                                    </div>
-                                case 'timeline':
-                                    return <div className="preview-timeline task-column">
+                                        {/* {isDatePickerOpen && <DialogContentContainer className={'styles.datepickerDialogContentContainer'}>
+                                            <DatePicker data-testid="date-picker" date={date} onPickDate={d => setDate(d)} />
+                                        </DialogContentContainer>} */}
+
+                                            {/* {(task.date - Date.now() > 0)  && 'x'} */}
                                         <Space direction="vertical" >
-                                            <RangePicker bordered={false}
-                                                size={size}
-                                                defaultValue={dayjs('2015/01', monthFormat)}
-                                                onChange={onAddTaskTimeline}
-                                                format={'MMM D'}
-                                            // style={{ width: '70%' }} 
-                                            />
+                                                <DatePicker
+                                                    defaultValue={task.date ? (dayjs(task.date, 'MMM D')) : ''}
+                                                    bordered={false}
+                                                    onChange={onAddTaskDate}
+                                                    placeholder=''
+                                                    format={'MMM D'}
+
+                                                />
                                         </Space>
-                                    </div>
-                                case 'priority':
-                                    return <div className="preview-task-status  task-column"
-                                        onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
-                                        style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
+                                        </div>
+                                    case 'timeline':
+                                        return <div className="preview-timeline task-column">
+                                            <Space direction="vertical" >
+                                                <RangePicker bordered={false}
+                                                    size={size}
+                                                    defaultValue={task.timeline ? [dayjs(task.timeline, 'MMM D'), dayjs(task.timeline, 'MMM D')] : []}
+                                                    // onChange={onAddTaskTimeline}
+                                                    format={'MMM D'}
+                                                // style={{ width: '70%' }} 
+                                                />
+                                            </Space>
+                                        </div>
+                                    case 'priority':
+                                        return <div className="preview-task-status  task-column"
+                                            onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
+                                            style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
 
                                         <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
                                         {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
 
-                                    </div>
-                                case 'files':
-                                    return <div className="preview-files  task-column flex align-center justify-center">
-                                        {!task.file && <ImgUploader onUploaded={onUploaded} />}
-                                        {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
-                                    </div>
-                                case 'checkbox':
-                                    return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { setIsMark(!isMark) }}>
-                                        {isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
-                                    </div>
-                                default:
-                                    return <div className="task-persons task-column"><span>Person</span></div>
-                            }
-                        })}
+                                        </div>
+                                    case 'files':
+                                        return <div className="preview-files  task-column flex align-center justify-center">
+                                            {!task.file && <ImgUploader onUploaded={onUploaded} />}
+                                            {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
+                                        </div>
+                                    case 'checkbox':
+                                        return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { onSetMark() }}>
+                                            {task.isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
+                                        </div>
+                                    default:
+                                        return <div className="task-persons task-column"><span>Person</span></div>
+                                }
+                            })}
 
-                        <div className="preview-add-colume task-column "> </div>
+                            <div className="preview-add-colume task-column "> </div>
                     </div>
-                </div>
-            )}
-        </Draggable>
+                    </div>
+                )}
+            </Draggable>
+        </div>
     )
 }

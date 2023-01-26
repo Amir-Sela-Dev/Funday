@@ -438,6 +438,11 @@ button {
   text-align: center;
   min-height: 40vh;
 }
+@media (max-width: 500px) {
+  .home-page .home-page-main {
+    flex-basis: 50%;
+  }
+}
 .home-page .cover-img {
   min-height: 40vh;
 }
@@ -445,6 +450,12 @@ button {
   .home-page .cover-img {
     min-height: 35vh;
     width: 175%;
+    flex-basis: 50%;
+  }
+}
+@media (max-width: 500px) {
+  .home-page {
+    height: 102vh;
   }
 }
 
@@ -1605,6 +1616,11 @@ button {
   .task-details-modal .tabs--wrapper {
     padding: 0;
   }
+}
+.task-details-modal .return-btn {
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .board-details .dark-screen:hover {

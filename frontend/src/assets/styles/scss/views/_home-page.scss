@@ -38,6 +38,9 @@
         text-align: center;
         // padding-top: 6%;
         min-height: 40vh;
+        @include for-mobile-layout{
+            flex-basis: 50%;
+        }
     }
 
     .cover-img {
@@ -45,6 +48,11 @@
         @include for-mobile-layout{
             min-height: 35vh;
             width: 175%;
+            flex-basis: 50%;
         }
+    }
+
+    @include for-mobile-layout{
+        height: 102vh;
     }
 }

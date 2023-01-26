@@ -41,8 +41,8 @@ export function BoardDetails() {
 
     async function onLoadBoard(filterBy) {
         try {
-            await loadBoard(boardId, filterBy)
             setBoardTitle(board?.title)
+            await loadBoard(boardId, filterBy)
             console.log('Loaded board successfully', board);
         } catch (err) {
             console.log('Couldn\'t load board..', err);
@@ -82,13 +82,13 @@ export function BoardDetails() {
                     className="board-title mobile"
                     style={{
                         width: `${(board?.title?.length - 1.5 || 10)}ch`
-                    }}>{boardTitle || board.title}
+                    }}>{boardTitle || board?.title}
                 </span>
                 <form onSubmit={onRenameBoard} >
                     <input
                         className="board-title"
                         style={{
-                            width: `${(board?.title?.length - 1.5 || 10)}ch`
+                            width: `${(board.title.length - 1.5 || 10)}ch`
                         }}
                         type="text"
                         value={boardTitle || board.title}

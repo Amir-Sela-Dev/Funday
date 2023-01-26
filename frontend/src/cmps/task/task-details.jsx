@@ -52,7 +52,15 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         <section>
             {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
             <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
-                <h3>{task.title}</h3>
+                <div>
+                    <h3>{task.title}</h3>
+                    <IconButton
+                        ariaLabel="Add"
+                        icon={Close}
+                        onClick={onCloseModal}
+                        className="return-btn"
+                    />
+                </div>
                 <div className="comments-btn">
                     <TabList>
                         <Tab className='tab' active style={{ backgroundolor: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(false) }}>

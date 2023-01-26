@@ -41,6 +41,11 @@
         }
     }
 
+    & .return-btn {
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
 }
 
 .board-details {

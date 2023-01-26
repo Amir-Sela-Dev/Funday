@@ -12,6 +12,7 @@ import {
     Table, DropdownChevronDown, Group as GroupIcon,
     Item as ItemIcon
 } from "monday-ui-react-core/icons";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -78,66 +79,77 @@ export function GroupList({ board, toggleModal, setFilter }) {
         setIsSeachClicked(searchState)
     }
 
+
+    function handleOnGroupDragEnd(result) {
+        console.log('@@@@@@@', result);
+        // const items = Array.from(tasks)
+        // const [reorderedItem] = items.splice(result.source.index, 1)
+        // items.splice(result.destination.index, 0, reorderedItem)
+        // setTasks(items)
+        // saveGroupAfterDrag(items)
+    }
+
+
     const searchIcon = 'search-board.svg'
     const arrowDown = 'arrow-down.svg'
     const arrowDownWhite = 'arrow-down.png'
 
-    return <ul className="group-list">
-        <IconButton
-            className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
-            icon={Add}
-            color={IconButton.colors.ON_PRIMARY_COLOR}
-            size={IconButton.sizes.LARGE}
-            onClick={onToggleBoardActionsModal}
-        />
+    return (
+        <DragDropContext onDragEnd={handleOnGroupDragEnd}>
+            <ul className="group-list">
+                <IconButton
+                    className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
+                    icon={Add}
+                    color={IconButton.colors.ON_PRIMARY_COLOR}
+                    size={IconButton.sizes.LARGE}
+                    onClick={onToggleBoardActionsModal}
+                />
 
-        {boardActionsModal &&
-            <DialogContentContainer
-                key="small"
-                className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
-                {/* <Menu className="board-actions-mobile">
-                
+                {boardActionsModal &&
+                    <DialogContentContainer
+                        key="small"
+                        className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
+                        {/* <Menu className="board-actions-mobile">
+                        
             </Menu> */}
-                <MenuButton
-                    className="board-actions-mobile"
-                    text="New item"
-                    onClick={() => { onAddItem(false) }}
-                    component={ItemIcon}
-                    componentPosition={MenuButton.componentPositions.END} />
-                <MenuDivider />
-                <MenuButton
-                    className="board-actions-mobile"
-                    text="New Group"
-                    onClick={() => { onAddItem(true) }}
-                    component={ItemIcon}
-                    componentPosition={MenuButton.componentPositions.END} />
-                {/* <MenuButton className="board-actions-mobile" text="Open" component={DropdownChevronDown} componentPosition={MenuButton.componentPositions.END} onClick={() => {
+                        <MenuButton
+                            className="board-actions-mobile"
+                            text="New item"
+                            onClick={() => { onAddItem(false) }}
+                            component={ItemIcon}
+                            componentPosition={MenuButton.componentPositions.END} />
+                        <MenuDivider />
+                        <MenuButton
+                            className="board-actions-mobile"
+                            text="New Group"
+                            onClick={() => { onAddItem(true) }}
+                            component={ItemIcon}
+                            componentPosition={MenuButton.componentPositions.END} />
+                        {/* <MenuButton className="board-actions-mobile" text="Open" component={DropdownChevronDown} componentPosition={MenuButton.componentPositions.END} onClick={() => {
                 console.log('hi')
             }} /> */}
-            </DialogContentContainer>
-        }
-        <div className="group-sticky-header">
+                    </DialogContentContainer>
+                }
+                <hr className="group-list-main-hr" />
+                <div className="board-actions flex">
+                    <Flex style={{ width: "100%" }}>
+                        <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
+                        <button className='new-group-btn arrow-down-new-group'
+                            onClick={toggleNewTaskModal}>
+                            <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
+                        </button>
 
-            <hr className="group-list-main-hr" />
-            <div className="board-actions flex">
-                <Flex style={{ width: "100%" }}>
-                    <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
-                    <button className='new-group-btn arrow-down-new-group'
-                        onClick={toggleNewTaskModal}>
-                        <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
-                    </button>
+                        {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
 
-                    {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
-
-                        <div className="new-task-modal">
-                            <div className="menu-modal-option new-group-btn-option flex"
-                                onClick={() => { onAddItem(true) }}>
-                                <Icon icon={GroupIcon} />
-                                <p>New Group</p>
+                            <div className="new-task-modal">
+                                <div className="menu-modal-option new-group-btn-option flex"
+                                    onClick={() => { onAddItem(true) }}>
+                                    <Icon icon={GroupIcon} />
+                                    <p>New Group</p>
+                                </div>
                             </div>
-                        </div>
 
-                    </div>}
+                        </div>}
 
                     {/* <Button leftIcon={Add}>Add</Button> */}
                     <Button className={`bar-icon search-btn-board-details`}
@@ -167,34 +179,35 @@ export function GroupList({ board, toggleModal, setFilter }) {
 
                 </Button> */}
 
-                    <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
-                        Person
-                    </Button>
-                    <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
-                        leftIcon={Table}
-                        rightIcon={DropdownChevronDown}>
-                        Main Table
-                    </Button>
-                    <Button className={'bar-filter' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
-                        onClick={toggleFilterModal}
-                        leftIcon={Filter}>
-                        Filter
+                        <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
+                            Person
+                        </Button>
+                        <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
+                            leftIcon={Table}
+                            rightIcon={DropdownChevronDown}>
+                            Main Table
+                        </Button>
+                        <Button className={'bar-filter' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
+                            onClick={toggleFilterModal}
+                            leftIcon={Filter}>
+                            Filter
 
-                        {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
-                            onClick={(e) => { e.stopPropagation() }}>
-                            <LabelSelect handleLableChange={handleLableChange} lables={lables} />
-                        </div>}
+                            {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
+                                onClick={(e) => { e.stopPropagation() }}>
+                                <LabelSelect handleLableChange={handleLableChange} lables={lables} />
+                            </div>}
 
-                    </Button>
-                    <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
-                        Sort
-                    </Button>
-                </Flex>
-            </div>
-        </div>
-        {board.groups.map(group =>
-            <li className="group-preview-line" key={group.id}>
-                <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} />
-            </li>)}
-    </ul>
+                        </Button>
+                        <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
+                            Sort
+                        </Button>
+                    </Flex>
+                </div>
+                {board.groups.map((group, index) =>
+                    <li className="group-preview-line" key={group.id}>
+                        <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
+                    </li>)}
+            </ul>
+        </DragDropContext>
+    )
 }
