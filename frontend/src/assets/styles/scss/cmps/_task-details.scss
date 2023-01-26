@@ -57,6 +57,18 @@
         opacity: 0.1;
     }
 
+    .return-btn {
+        margin-inline-start: 13px;
+    }
+
+    hr {
+        margin: 0;
+        margin-bottom: 20px;
+        margin-top: 0.6px;
+        align-self: center;
+
+    }
+
 
 }
 
@@ -105,6 +117,8 @@
             padding-block-start: 18px;
         }
     }
+
+
 
     .comments-btn {
         display: flex;
@@ -164,9 +178,31 @@
         font-size: 26px;
     }
 
+    .opend-input {
+        width: 551px;
+        height: 40px;
+        border-radius: 0.5em;
+
+
+        input {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5em;
+            outline: none;
+            border: var(--primary-color) 1px solid;
+            font-size: 16px;
+            color: var(--secondary-text-color);
+
+            &:hover {
+                background-color: var(--primary-background-hover-color);
+            }
+
+        }
+    }
+
     .comment {
         width: 100%;
-        height: 204px;
+        height: 161px;
         border: $clr1 solid 1px;
         line-height: 20px;
         border-radius: 8px;
@@ -276,6 +312,7 @@
         width: 15px;
         height: 15px;
         margin-inline-end: 2px;
+        margin-top: 1px;
     }
 
     .date {

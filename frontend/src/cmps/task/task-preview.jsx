@@ -137,7 +137,7 @@ export function TaskPreview({
             let taskToSave = structuredClone(task)
             taskToSave.title = taskToUpdate.title
 
-            await saveTask(board, group.id, taskToSave, 'Text', 'Rename task')
+            await saveTask(board, group.id, taskToSave, 'Text', `Rename task to ${taskToUpdate.title}`)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -153,7 +153,7 @@ export function TaskPreview({
             let copyTask = structuredClone(task)
             copyTask.id = ''
             copyTask.title = 'Copy ' + copyTask.title
-            await saveTask(board, group.id, copyTask)
+            await saveTask(board, group.id, copyTask,)
         } catch (err) {
             showErrorMsg('Cannot duplicate task')
         }
@@ -224,7 +224,7 @@ export function TaskPreview({
 
                     >
 
-                    <div className="flex">
+                        <div className="flex">
                             <div className="wrap-modal">
                                 {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                                     <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
@@ -249,58 +249,58 @@ export function TaskPreview({
                                         className="checkbox-column task-column"
                                         onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
 
-                                    <input className='task-checkbox' type="checkbox"
-                                        checked={isAllSelected || isTaskSelected || false}
-                                        onChange={ev => {
-                                            ev.stopPropagation()
-                                            if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
-                                            setIsTaskSelected(!isTaskSelected)
-                                        }} />
-                                </div>
-                            </div>
-
-                            <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                                <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
-                                <form onSubmit={onRenameTask} >
-                                    <input
-                                        className="task-title-input"
-                                        type="text"
-                                        value={taskToUpdate.title}
-                                        onChange={handleNameInputChange}
-                                        onBlur={ev => { onRenameTask(ev) }}
-                                        onClick={ev => { ev.stopPropagation() }}
-                                    />
-                                </form>
-                                <div className="comments-bubble task-column flex">
-                                    {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
-                                    {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
-                                    {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
-                                    {task.comments?.length > 0 && <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>}
-                                </div>
-                            </div>
-                        </div>
-
-                        {board.cmpsOrder.map(cmp => {
-                            switch (cmp) {
-                                case 'person':
-                                    return <div className="task-persons task-column flex align-center justify-center"
-                                        onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
-
-                                        {task.persons &&
-
-                                            <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
-                                                {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
-                                            </AvatarGroup>
-                                        }
-                                        {isPersonsOpen &&
-                                            <div className="user-preview open">
-                                                <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
-                                            </div>}
+                                        <input className='task-checkbox' type="checkbox"
+                                            checked={isAllSelected || isTaskSelected || false}
+                                            onChange={ev => {
+                                                ev.stopPropagation()
+                                                if (!isTaskSelected) updateSelectedTasks(taskToUpdate)
+                                                setIsTaskSelected(!isTaskSelected)
+                                            }} />
                                     </div>
-                                case 'status':
-                                    return <div className="preview-task-status  task-column"
-                                        onClick={() => { setIsOpen(!isOpen) }}
-                                        style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
+                                </div>
+
+                                <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
+                                    <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
+                                    <form onSubmit={onRenameTask} >
+                                        <input
+                                            className="task-title-input"
+                                            type="text"
+                                            value={taskToUpdate.title}
+                                            onChange={handleNameInputChange}
+                                            onBlur={ev => { onRenameTask(ev) }}
+                                            onClick={ev => { ev.stopPropagation() }}
+                                        />
+                                    </form>
+                                    <div className="comments-bubble task-column flex">
+                                        {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
+                                        {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
+                                        {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
+                                        {task.comments?.length > 0 && <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {board.cmpsOrder.map(cmp => {
+                                switch (cmp) {
+                                    case 'person':
+                                        return <div className="task-persons task-column flex align-center justify-center"
+                                            onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
+
+                                            {task.persons &&
+
+                                                <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
+                                                    {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
+                                                </AvatarGroup>
+                                            }
+                                            {isPersonsOpen &&
+                                                <div className="user-preview open">
+                                                    <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
+                                                </div>}
+                                        </div>
+                                    case 'status':
+                                        return <div className="preview-task-status  task-column"
+                                            onClick={() => { setIsOpen(!isOpen) }}
+                                            style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
 
                                             <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
@@ -309,7 +309,7 @@ export function TaskPreview({
                                     case 'date':
                                         return <div className="task-date task-column">
 
-                                        <Space direction="vertical" >
+                                            <Space direction="vertical" >
                                                 <DatePicker
                                                     defaultValue={task.date ? (dayjs(task.date, 'MMM D')) : ''}
                                                     bordered={false}
@@ -318,7 +318,7 @@ export function TaskPreview({
                                                     format={'MMM D'}
 
                                                 />
-                                        </Space>
+                                            </Space>
                                         </div>
                                     case 'timeline':
                                         return <div className="preview-timeline task-column">
@@ -337,8 +337,8 @@ export function TaskPreview({
                                             onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
                                             style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
 
-                                        <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
-                                        {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
+                                            <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
+                                            {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
 
                                         </div>
                                     case 'files':
@@ -356,7 +356,7 @@ export function TaskPreview({
                             })}
 
                             <div className="preview-add-colume task-column "> </div>
-                    </div>
+                        </div>
                     </div>
                 )}
             </Draggable>

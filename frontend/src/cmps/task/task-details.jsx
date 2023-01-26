@@ -37,13 +37,23 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     }
 
     function formatTime(timestamp) {
-        const time = timestamp;
-        const difference = time - timestamp;
-        let days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        if (days === 0) {
-            return "now";
+        const currentTime = Date.now();
+        const elapsedTime = currentTime - timestamp;
+
+        const minutes = Math.floor(elapsedTime / (1000 * 60));
+        const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+        const days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+
+        if (minutes < 1) {
+            return "now"
         }
-        return `${days}d`;
+        else if (days > 0) {
+            return `${days}d`;
+        } else if (hours > 0) {
+            return `${hours}h`;
+        } else {
+            return `${minutes}m`;
+        }
     }
 
 
@@ -52,13 +62,16 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         <section>
             {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
             <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
-                <IconButton
-                    icon={Close}
-                    onClick={onCloseModal}
-                    className="return-btn"
-                />
-                <h3>{task.title}</h3>
-
+                <div>
+                    <IconButton
+                        icon={Close}
+                        onClick={onCloseModal}
+                        className="return-btn"
+                    />
+                </div>
+                <div>
+                    <h3>{task.title}</h3>
+                </div>
                 <div className="comments-btn">
                     <TabList>
                         <Tab className='tab' active style={{ backgroundolor: "  #0070e5" }} icon={Home} onClick={() => { setIsActivityOpen(false) }}>
@@ -70,6 +83,7 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
                         </Tab>
                     </TabList>
                 </div>
+                <hr />
                 {!isActivityOpen && <TaskUpdates board={board} group={group} task={task} formatTime={formatTime} />}
 
                 {isActivityOpen && <TaskActivityLog board={board} group={group} task={task} formatTime={formatTime} />}

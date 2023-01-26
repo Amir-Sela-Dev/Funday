@@ -406,7 +406,7 @@ function getEmptyActivity() {
         'type': '',
         'createdAt': '',
         'byMember': {},
-        'task': ''
+        'task': '',
     }
 }
 

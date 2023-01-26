@@ -153,9 +153,10 @@ export async function removeTask(board, groupId, taskId) {
 export async function addActivity(board, type, txt, task) {
     try {
         let boardToSave = structuredClone(board)
+        if (!type && !txt) return boardToSave
         let activityToAdd = boardService.getEmptyActivity()
         activityToAdd = { ...activityToAdd, txt, task, type, createdAt: Date.now(), byMember: userService.getLoggedinUser() }
-        boardToSave.activities.push(activityToAdd)
+        boardToSave.activities.unshift(activityToAdd)
         saveBoard(boardToSave)
         return boardToSave
     } catch (err) {

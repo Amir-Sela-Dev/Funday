@@ -38,8 +38,15 @@
         }
 
         .type {
-            width: 157px;
+            flex-basis: 157px;
             align-items: center;
+        }
+
+        .txt {
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 150px;
+
         }
 
         hr {
@@ -51,5 +58,10 @@
 
         }
 
+    }
+
+    .date {
+        width: 56px;
+        margin: 0;
     }
 }

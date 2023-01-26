@@ -1637,6 +1637,15 @@ button {
 .board-details .dark-screen:hover {
   opacity: 0.1;
 }
+.board-details .return-btn {
+  margin-inline-start: 13px;
+}
+.board-details hr {
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 0.6px;
+  align-self: center;
+}
 
 .task-modal-open {
   transform: translateX(0);
@@ -1728,9 +1737,26 @@ button {
 .task-modal-open h1 {
   font-size: 26px;
 }
+.task-modal-open .opend-input {
+  width: 551px;
+  height: 40px;
+  border-radius: 0.5em;
+}
+.task-modal-open .opend-input input {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+  outline: none;
+  border: var(--primary-color) 1px solid;
+  font-size: 16px;
+  color: var(--secondary-text-color);
+}
+.task-modal-open .opend-input input:hover {
+  background-color: var(--primary-background-hover-color);
+}
 .task-modal-open .comment {
   width: 100%;
-  height: 204px;
+  height: 161px;
   border: #323338 solid 1px;
   line-height: 20px;
   border-radius: 8px;
@@ -1830,6 +1856,7 @@ button {
   width: 15px;
   height: 15px;
   margin-inline-end: 2px;
+  margin-top: 1px;
 }
 .task-modal-open .date {
   margin-inline-end: 20px;
@@ -2383,8 +2410,13 @@ button {
   width: 191px;
 }
 .task-activity-log .activity .type {
-  width: 157px;
+  flex-basis: 157px;
   align-items: center;
+}
+.task-activity-log .activity .txt {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 150px;
 }
 .task-activity-log .activity hr {
   color: rgba(50, 51, 56, 0.2941176471);
@@ -2392,6 +2424,10 @@ button {
   width: 100%;
   justify-self: flex-end;
   margin-block-end: 13px;
+}
+.task-activity-log .date {
+  width: 56px;
+  margin: 0;
 }
 
 .group-bottom-bar .bar-person {
