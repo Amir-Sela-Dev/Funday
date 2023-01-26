@@ -1980,6 +1980,13 @@ button {
     display: none;
   }
 }
+.board-actions .new-group-btn.arrow-down-new-group {
+  border-radius: 0 4px 4px 0;
+  margin-right: 21px;
+  width: 28px;
+  padding: 0;
+  order: 1;
+}
 .board-actions .new-group-btn.arrow-down-new-group:hover {
   background-color: #0070e5;
 }
