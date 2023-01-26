@@ -12,7 +12,7 @@ import {
     Table, DropdownChevronDown, Group as GroupIcon,
     Item as ItemIcon
 } from "monday-ui-react-core/icons";
-import { DragDropContext } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -92,50 +92,66 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const arrowDownWhite = 'arrow-down.png'
 
     return (
-        <DragDropContext onDragEnd={handleOnGroupDragEnd}>
-            <ul className="group-list">
-                <IconButton
-                    className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
-                    icon={Add}
-                    color={IconButton.colors.ON_PRIMARY_COLOR}
-                    size={IconButton.sizes.LARGE}
-                    onClick={onToggleBoardActionsModal}
-                />
+        // <DragDropContext onDragEnd={handleOnGroupDragEnd}>
+        <ul className="group-list">
+            <IconButton
+                className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
+                icon={Add}
+                color={IconButton.colors.ON_PRIMARY_COLOR}
+                size={IconButton.sizes.LARGE}
+                onClick={onToggleBoardActionsModal}
+            />
 
-                {boardActionsModal &&
-                    <DialogContentContainer
-                        key="small"
-                        className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
-                        {/* <Menu className="board-actions-mobile">
+            {boardActionsModal &&
+                <DialogContentContainer
+                    key="small"
+                    className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
+                    {/* <Menu className="board-actions-mobile">
                         
             </Menu> */}
-                        <MenuButton
-                            className="board-actions-mobile"
-                            text="New item"
-                            onClick={() => { onAddItem(false) }}
-                            component={ItemIcon}
-                            componentPosition={MenuButton.componentPositions.END} />
-                        <MenuDivider />
-                        <MenuButton
-                            className="board-actions-mobile"
-                            text="New Group"
-                            onClick={() => { onAddItem(true) }}
-                            component={ItemIcon}
-                            componentPosition={MenuButton.componentPositions.END} />
-                        {/* <MenuButton className="board-actions-mobile" text="Open" component={DropdownChevronDown} componentPosition={MenuButton.componentPositions.END} onClick={() => {
+                    <MenuButton
+                        className="board-actions-mobile"
+                        text="New item"
+                        onClick={() => { onAddItem(false) }}
+                        component={ItemIcon}
+                        componentPosition={MenuButton.componentPositions.END} />
+                    <MenuDivider />
+                    <MenuButton
+                        className="board-actions-mobile"
+                        text="New Group"
+                        onClick={() => { onAddItem(true) }}
+                        component={ItemIcon}
+                        componentPosition={MenuButton.componentPositions.END} />
+                    {/* <MenuButton className="board-actions-mobile" text="Open" component={DropdownChevronDown} componentPosition={MenuButton.componentPositions.END} onClick={() => {
                 console.log('hi')
             }} /> */}
-                    </DialogContentContainer>
-                }
+                </DialogContentContainer>
+            }
+            {board.groups.map((group, index) =>
+
+                <Draggable key={group.id} draggableId={`group ${group.id}`} index={index} type="group" >
+                    {(provided) => (
+                        <div
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+
+                        >
+
+                            <li className="group-preview-line" key={group.id}>
+                                <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
+
+                            </li>
+                        </div>
+                    )}
+
+                </Draggable>
+
+            )}
 
 
-
-                {board.groups.map((group, index) =>
-                    <li className="group-preview-line" key={group.id}>
-                        <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
-                    </li>)}
-            </ul>
-        </DragDropContext>
+        </ul>
+        // </DragDropContext>
     )
 }
 
