@@ -53,7 +53,6 @@ export function GroupBottomBar({ board, group }) {
             }
             markStateMap.numOfTask++
         });
-        console.log(markStateMap);
         return markStateMap
     }
 
