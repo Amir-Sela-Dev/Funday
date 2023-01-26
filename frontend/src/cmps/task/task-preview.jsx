@@ -227,7 +227,7 @@ export function TaskPreview({
 
                     >
  */}
-            <div className="flex">
+            <div className="orens-div flex">
                 <div className="wrap-modal">
                     {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                         <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
