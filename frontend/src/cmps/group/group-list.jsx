@@ -6,8 +6,12 @@ import { utilService } from '../../services/util.service';
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { LabelSelect } from '../lable-select';
 import { GroupPreview } from "./group-preview";
-import { Button, Flex, IconButton, Menu, MenuItem, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon } from "monday-ui-react-core/icons";
+import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
+import {
+    Add, Search, Person, Filter, Sort, Group,
+    Table, DropdownChevronDown, Group as GroupIcon,
+    Item as ItemIcon
+} from "monday-ui-react-core/icons";
 
 
 export function GroupList({ board, toggleModal, setFilter }) {
@@ -79,26 +83,41 @@ export function GroupList({ board, toggleModal, setFilter }) {
     const arrowDownWhite = 'arrow-down.png'
 
     return <ul className="group-list">
+        <IconButton
+            className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
+            icon={Add}
+            color={IconButton.colors.ON_PRIMARY_COLOR}
+            size={IconButton.sizes.LARGE}
+            onClick={onToggleBoardActionsModal}
+        />
+
+        {boardActionsModal &&
+            <DialogContentContainer
+                key="small"
+                className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
+                {/* <Menu className="board-actions-mobile">
+                
+            </Menu> */}
+                <MenuButton
+                    className="board-actions-mobile"
+                    text="New item"
+                    onClick={() => { onAddItem(false) }}
+                    component={ItemIcon}
+                    componentPosition={MenuButton.componentPositions.END} />
+                <MenuDivider />
+                <MenuButton
+                    className="board-actions-mobile"
+                    text="New Group"
+                    onClick={() => { onAddItem(true) }}
+                    component={ItemIcon}
+                    componentPosition={MenuButton.componentPositions.END} />
+                {/* <MenuButton className="board-actions-mobile" text="Open" component={DropdownChevronDown} componentPosition={MenuButton.componentPositions.END} onClick={() => {
+                console.log('hi')
+            }} /> */}
+            </DialogContentContainer>
+        }
         <div className="group-sticky-header">
 
-            <IconButton
-                className={`icon-btn-add ${boardActionsModal ? 'active' : ''}`}
-                icon={Add}
-                color={IconButton.colors.ON_PRIMARY_COLOR}
-                size={IconButton.sizes.LARGE}
-                onClick={onToggleBoardActionsModal}
-            />
-            {boardActionsModal &&
-                <DialogContentContainer
-                    key="small"
-                    className={`board-actions-modal ${boardActionsModal ? 'active' : ''}`}>
-                    <Menu className="board-actions-mobile">
-                        <MenuItem title="New Task" onClick={() => { onAddItem(false) }} />
-                        <MenuDivider />
-                        <MenuItem title="New Group" onClick={() => { onAddItem(true) }} />
-                    </Menu>
-                </DialogContentContainer>
-            }
             <hr className="group-list-main-hr" />
             <div className="board-actions flex">
                 <Flex style={{ width: "100%" }}>
@@ -128,16 +147,19 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         leftIcon={Search}>
                         <span>Search</span>
                     </Button>
-                    <span
-                        className={`cancel-btn ${isSeachClicked ? 'on' : ''}`}
-                        onClick={() => { toggleSearchBar(false) }}>Cancel</span>
-                    <div className={`group-search-filter flex`}
-                        style={{ display: isSeachClicked ? 'flex' : 'none' }}>
-                        <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-                        <input type="text"
-                            onChange={handleFilterChange}
-                            value={filterByToEdit.title} placeholder='Search'
-                            name='title' />
+                    <div
+                        className={"search-bar-mobile flex" + (isSeachClicked ? ' on' : '')}>
+                        <span
+                            className={`cancel-btn ${isSeachClicked ? 'on' : 'off'}`}
+                            onClick={() => { toggleSearchBar(false) }}>Cancel</span>
+                        <div className={`group-search-filter flex`}
+                            style={{ display: isSeachClicked ? 'flex' : 'none' }}>
+                            <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
+                            <input type="text"
+                                onChange={handleFilterChange}
+                                value={filterByToEdit.title} placeholder='Search'
+                                name='title' />
+                        </div>
                     </div>
                     {/* <Button className='bar-search'
                     kind={Button.kinds.TERTIARY}

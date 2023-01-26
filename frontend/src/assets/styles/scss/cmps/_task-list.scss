@@ -23,6 +23,11 @@
         text-align: center;
         font-size: 14px;
         min-width: min-content;
+        @include for-mobile-layout{
+            &:nth-child(1){
+                margin-left: 23px;
+            }
+        }
     }
 
     .menu-modal {

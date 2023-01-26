@@ -66,6 +66,7 @@
             margin-right: 10px;
             height: 30px;
             background: $primary-background-hover-color;
+
         }
     }
 
@@ -160,6 +161,7 @@
 
     .cancel-btn {
         margin-right: 10px;
+        margin-block: auto;
         font-size: em(16px, 1em);
         display: none;
 
@@ -202,8 +204,35 @@
         }
     }
 
+    .search-bar-mobile {
+        margin-block: 5px;
+        margin-inline-start: auto;
+        transition: all 1s;
+        background: white;
+        display: none;
+        width: 0;
+
+
+        &.on {
+            display: flex;
+            width: 100%;
+        }
+
+    }
+
     @include for-mobile-layout {
         max-width: calculate-width(100vw, $inner-padding-mobile);
+
+        &>div {
+            position: fixed;
+            top: 49px;
+            right: 0;
+            padding-inline: 15px;
+            z-index: 6;
+            background: white;
+            padding-block-end: 10px;
+            box-shadow: 0px 6px 8px -9px #c3c6d4;
+        }
     }
 
     .bar-tables {

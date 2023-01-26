@@ -51,15 +51,7 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     return (
         <section>
             {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
-
             <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
-                <IconButton
-                    ariaLabel="Close"
-                    icon={Close}
-                    onClick={onCloseModal}
-                    size="xxs"
-                    className="close-btn"
-                />
                 <h3>{task.title}</h3>
                 <div className="comments-btn">
                     <TabList>
@@ -72,7 +64,6 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
                         </Tab>
                     </TabList>
                 </div>
-                <hr />
                 {!isActivityOpen && <TaskUpdates board={board} group={group} task={task} formatTime={formatTime} />}
 
                 {isActivityOpen && <TaskActivityLog board={board} group={group} task={task} formatTime={formatTime} />}

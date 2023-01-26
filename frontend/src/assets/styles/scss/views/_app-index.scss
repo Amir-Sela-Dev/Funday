@@ -2,30 +2,32 @@
     display: grid;
     transition: all 0.3s;
     width: 100%;
-    // SHEILAN'S TESTING GROUND
-    overflow-y: hidden;
-    height: 100vh;
+    grid-template-columns: 66px 254px 1fr;
+    grid-template-rows: 1fr 66px;
+    grid-template-areas:
+        "side-nav  work-space  board-details"
+        "side-nav  work-space  board-details";
+
     &.closeMenu {
         grid-template-columns: 66px 30px 1fr;
     }
 
-    @include for-narrow-layout {
-        grid-template-columns: 66px 254px 1fr;
-        grid-template-areas: "side-nav  work-space  board-details";
-    }
+    @include for-narrow-layout {}
+
+    overflow-y: hidden;
+    height: 100vh;
 
     @include for-mobile-layout {
-        grid-template-rows: 90% 10%;
         grid-template-areas:
-            "board-details"
-            "side-nav";
+            "board-details board-details  board-details"
+            "side-nav  side-nav  side-nav";
 
-        .work-space {
-            display: none;
-        }
-
-        .side-nav {
-            display: none;
-        }
+            .work-space {
+                display: none;
+            }
+    
+            .side-nav {
+                display: none;
+            }
     }
 }

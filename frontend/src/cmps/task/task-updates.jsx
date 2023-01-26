@@ -2,9 +2,12 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux";
 import { boardService } from "../../services/board.service"
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
+import { Send } from "monday-ui-react-core/icons";
+import { Icon } from "monday-ui-react-core";
 
 export function TaskUpdates({ board, group, task = '', formatTime }) {
     let { user } = useSelector((storeState) => storeState.userModule)
@@ -30,10 +33,15 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
     if (!task) return
     return <section className='task-updates flex'>
         <div className="txt-editor-container">
-            <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
+            <div>
+                <ReactQuill className="txt-editor" theme="snow" value={value} onChange={setValue} />
+            </div>
+            <button className="update-btn" onClick={onAddTaskComment}>
+                Send
+                <Icon iconType={Icon.type.SVG} icon={Send} iconLabel="my bolt svg icon" iconSize={16} />
+            </button>
         </div>
-        <button className="update-btn" onClick={onAddTaskComment}>Update</button>
-
+        {/* <div style={{marginBlockStart: '25px'}}/> */}
         <div className="main-details-container">
             {task.comments.map((comment, idx) => {
                 return <div className="comment flex"

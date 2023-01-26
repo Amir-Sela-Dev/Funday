@@ -35,11 +35,16 @@
         background-color: #0f1048;
         width: 100%;
         color: white;
+        text-align: center;
         // padding-top: 6%;
         min-height: 40vh;
     }
 
     .cover-img {
         min-height: 40vh;
+        @include for-mobile-layout{
+            min-height: 35vh;
+            width: 175%;
+        }
     }
 }

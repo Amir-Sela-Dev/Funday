@@ -81,6 +81,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
     return (
 
         <div className="task-list">
+
             <div className="task-title-row flex">
                 <div className="sticky-grid flex">
                     <div class="white-background"></div>
@@ -205,13 +206,8 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
                 )}
             </Droppable>
-
-
-
-
             <div className="add-task-wrap flex">
                 <div className="sticky-grid flex">
-
                     <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                     <div className="checkbox-column task-column disabled">
                         <input className='task-checkbox disabled' type="checkbox" disabled={true} />

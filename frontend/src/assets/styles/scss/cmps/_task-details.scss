@@ -7,7 +7,7 @@
     overflow: hidden;
     background-color: rgb(255, 255, 255);
     box-shadow: -3px 0px 2px 9px rgb(33 33 33 / 77%);
-    padding: 20px;
+    padding: 0;
     transform: translateX(100%);
     transition: all 0.4s;
     display: none;
@@ -18,7 +18,28 @@
     overflow-y: scroll;
     height: 100vh;
 
-    // border-left: #333333 solid 8px;
+    @include for-mobile-layout {
+        width: 100vw;
+        overflow-y: hidden;
+
+        &>span {
+            padding: 0;
+            margin-inline-start: 15px;
+            margin-block-start: 15px;
+        }
+    }
+
+    & .tab--wrapper {
+        width: 100%;
+    }
+
+    & .tabs--wrapper {
+        width: 100%;
+
+        @include for-mobile-layout {
+            padding: 0;
+        }
+    }
 
 }
 
@@ -26,6 +47,8 @@
     .dark-screen:hover {
         opacity: 0.1;
     }
+
+
 }
 
 .task-modal-open {
@@ -34,17 +57,23 @@
     flex-direction: column;
     color: $clr1;
 
-
-
     h3 {
-        margin-inline-start: 4px;
-        margin-bottom: 10px;
+        margin-inline: auto;
+        margin-block: 20px;
+
+        @include for-mobile-layout {
+            text-align: center;
+        }
     }
 
     .close-btn {
         width: 30px;
         height: 30px;
         margin-bottom: 15px;
+
+        @include for-mobile-layout {
+            margin-bottom: 0;
+        }
     }
 
     hr {
@@ -56,12 +85,16 @@
     .task-updates {
         flex-direction: column;
         justify-content: center;
+        padding-inline: 20px;
+
+        &>.img-container {
+            padding-block-start: 18px;
+        }
     }
 
     .comments-btn {
         display: flex;
         align-items: end;
-        margin-inline-start: 4px;
 
         .tab {
             background-color: #fff;
@@ -87,6 +120,18 @@
     .txt-editor-container {
         height: 200px;
         border-radius: 8px;
+        background: white;
+        margin-block-end: 20px;
+
+        @include for-mobile-layout {
+            // display: flex;
+            // order: 2;
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            padding-inline: 20px;
+        }
     }
 
     .txt-editor {
@@ -134,19 +179,46 @@
     }
 
     .update-btn {
-        align-self: flex-end;
-        justify-self: center;
         display: flex;
         align-items: center;
-        background-color: #0070e5;
-        color: white;
-        border-radius: 4px;
-        font-family: Poppins-Regular;
+        justify-content: center;
         padding: 4px 8px;
         margin: 0;
         width: 62.4063px;
         height: 31.9844px;
-        margin-block: 15px;
+        margin-block-start: 15px;
+
+        position: relative;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        background: #fefcfc;
+        color: $primary-text-color;
+        border: 1px solid #ccc;
+
+        @include for-mobile-layout {
+            bottom: -40px;
+        }
+
+        &:hover {
+            background: #eaecec;
+        }
+    }
+
+    .main-details-container {
+        padding-block-start: 18px;
+
+        @include for-mobile-layout {
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            max-height: 62vh;
+        }
     }
 
     .user {
@@ -188,5 +260,18 @@
 
     ul {
         padding: 0;
+    }
+
+    .ql-container {
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+        background: #fefcfc;
+    }
+
+    .ql-snow.ql-toolbar {
+        display: block;
+        background: #eaecec;
+        border-top-left-radius: 0.5em;
+        border-top-right-radius: 0.5em;
     }
 }
