@@ -82,6 +82,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
         <div>
             {/* onDragEnd={handleType1} */}
 
+
             <div className="task-list">
 
                 <div className="task-title-row flex">
@@ -175,90 +176,89 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                         </MenuButton>
                     </div>
                 </div>
+            </div>
 
-                <Droppable droppableId={group.id} type="task">
-                    {(provided) => (
+            <Droppable droppableId={group.id} type="task">
+                {(provided) => (
 
-                        <div className="drag-tasks-container"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            {
-                                tasks.map((currTask, index) => {
-                                    return (
-                                        <div onClick={(ev) => { ev.stopPropagation() }}>
-                                            <Draggable draggableId={currTask.id} index={index} type="task">
-                                                {(provided) => (
-                                                    <div
+                    <div className="drag-tasks-container"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        {
+                            tasks.map((currTask, index) => {
+                                return (
+                                    <div onClick={(ev) => { ev.stopPropagation() }}>
+                                        <Draggable draggableId={currTask.id} index={index} type="task">
+                                            {(provided) => (
+                                                <div
 
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        ref={provided.innerRef}
-                                                        className="task-preview flex"
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    ref={provided.innerRef}
+                                                    className="task-preview flex"
 
-                                                    >
+                                                >
 
-                                                        <TaskPreview
-                                                            index={index}
-                                                            key={currTask.id}
-                                                            task={currTask}
-                                                            onRemoveTask={onRemoveTask}
-                                                            setNewTask={setNewTask}
-                                                            onTitleInputChange={handleInputChange}
-                                                            group={group}
-                                                            board={board}
-                                                            toggleModal={toggleModal}
-                                                            isAllSelected={isAllSelected}
-                                                            updateSelectedTasks={updateSelectedTasks}
-                                                            columes={columes}
-                                                            tasks={tasks}
-                                                        />
+                                                    <TaskPreview
+                                                        index={index}
+                                                        key={currTask.id}
+                                                        task={currTask}
+                                                        onRemoveTask={onRemoveTask}
+                                                        setNewTask={setNewTask}
+                                                        onTitleInputChange={handleInputChange}
+                                                        group={group}
+                                                        board={board}
+                                                        toggleModal={toggleModal}
+                                                        isAllSelected={isAllSelected}
+                                                        updateSelectedTasks={updateSelectedTasks}
+                                                        columes={columes}
+                                                        tasks={tasks}
+                                                    />
 
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        </div>
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    </div>
 
-                                    )
-                                })
-                            }
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-
-                <div className="add-task-wrap flex">
-                    <div className="sticky-grid flex">
-                        <div class="white-background"></div>
-                        <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
-                        <div className="checkbox-column task-column disabled">
-                            <input className='task-checkbox disabled' type="checkbox" disabled={true} />
-                        </div>
-
-
-
-                        <form className='task-input-row' onSubmit={onSaveTask}>
-                            <input
-                                className="add-task-input"
-                                placeholder='+ Add item'
-                                type="text"
-                                name="title"
-                                value={newTask.title}
-                                onChange={handleInputChange}
-                                onBlur={ev => onSaveTask(ev)}
-                            />
-                        </form>
-
-
-
+                                )
+                            })
+                        }
+                        {provided.placeholder}
                     </div>
-                    <div className="place-holder">
+                )}
+            </Droppable>
 
+            <div className="add-task-wrap flex">
+                <div className="sticky-grid flex">
+                    <div class="white-background"></div>
+                    <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+                    <div className="checkbox-column task-column disabled">
+                        <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                     </div>
+
+
+
+                    <form className='task-input-row' onSubmit={onSaveTask}>
+                        <input
+                            className="add-task-input"
+                            placeholder='+ Add item'
+                            type="text"
+                            name="title"
+                            value={newTask.title}
+                            onChange={handleInputChange}
+                            onBlur={ev => onSaveTask(ev)}
+                        />
+                    </form>
+
+
 
                 </div>
-                <GroupBottomBar board={board} group={group} />
+
+
             </div>
+            <GroupBottomBar board={board} group={group} />
         </div>
+
     )
 }

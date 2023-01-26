@@ -26,6 +26,11 @@
     }
 }
 
+.board-second-title-wrap {
+    padding-left: 40px;
+    margin-top: -1px;
+}
+
 .board-title {
     display: inline-block;
     font-weight: 500;
@@ -43,7 +48,6 @@
     width: 3ch;
 
     @include for-narrow-layout {
-
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);

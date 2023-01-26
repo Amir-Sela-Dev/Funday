@@ -99,14 +99,14 @@
             display: none;
         }
 
-        // &.arrow-down-new-group {
-        //     border-radius: 0 4px 4px 0;
-        //     margin-right: 21px;
-        //     width: 28px;
-        //     padding: 0;
-        //     // margin: 0;
-        //     order: 1;
-        // }
+        &.arrow-down-new-group {
+            border-radius: 0 4px 4px 0;
+            margin-right: 21px;
+            width: 28px;
+            padding: 0;
+            // margin: 0;
+            order: 1;
+        }
 
         &.arrow-down-new-group:hover {
             background-color: $primery-btn-color;

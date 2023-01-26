@@ -171,7 +171,6 @@
 
 .sticky-grid {
   position: sticky;
-  top: 20px;
   left: 40px;
   z-index: 5;
   background-color: white;
@@ -181,7 +180,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 21;
   background-color: white;
 }
 
@@ -193,6 +192,20 @@
     z-index: 10;
     background: white;
   }
+}
+
+.sticky-group-title {
+  position: sticky;
+  top: 202px;
+  background-color: white;
+  z-index: 20;
+}
+
+.sticky-group-title-down {
+  position: sticky;
+  top: 155px;
+  z-index: 20;
+  background-color: white;
 }
 
 * {
@@ -1547,13 +1560,14 @@ button {
   color: #323338;
 }
 
+.add-task-wrap {
+  border-bottom: #d0d4e4 1px solid;
+}
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
 }
 
 .task-input-row {
-  border-bottom: #d0d4e4 1px solid;
-  border-collapse: collapse;
   height: 36px;
   width: 100%;
   border-block-start: none;
@@ -1914,6 +1928,7 @@ button {
   margin-inline-start: 2px;
   font-family: Figtree;
   margin-bottom: 57px;
+  min-width: fit-content;
 }
 .group-preview .option-icon {
   margin-inline-start: -33px;
@@ -2017,6 +2032,13 @@ button {
   .board-actions .new-group-btn {
     display: none;
   }
+}
+.board-actions .new-group-btn.arrow-down-new-group {
+  border-radius: 0 4px 4px 0;
+  margin-right: 21px;
+  width: 28px;
+  padding: 0;
+  order: 1;
 }
 .board-actions .new-group-btn.arrow-down-new-group:hover {
   background-color: #0070e5;
@@ -2253,6 +2275,11 @@ button {
   .board-title-wrap {
     padding: 0;
   }
+}
+
+.board-second-title-wrap {
+  padding-left: 40px;
+  margin-top: -1px;
 }
 
 .board-title {

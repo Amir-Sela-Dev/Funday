@@ -5,7 +5,7 @@
     color: $clr1;
 
     .drag-tasks-container {
-        >* {
+        > * {
             min-width: min-content;
         }
     }
@@ -59,7 +59,6 @@
         border-right: 1px solid #d0d4e4;
         border-bottom: 1px solid #d0d4e4;
     }
-
 }
 
 
@@ -114,6 +113,8 @@
 }
 
 .add-task-wrap {
+    border-bottom: #d0d4e4 1px solid;
+    
     .task-checkbox {
         opacity: 0.5;
     }
@@ -122,8 +123,7 @@
 .task-input-row {
     // border: 0.5px solid rgba(0, 0, 0, 0.192);
     // border-right: #d0d4e4 1px solid;
-    border-bottom: #d0d4e4 1px solid;
-    border-collapse: collapse;
+
     height: 36px;
     width: 100%;
     border-block-start: none;
@@ -160,7 +160,4 @@
     @include for-mobile-layout {
         margin-left: -0.5px;
     }
-
-
-
 }
