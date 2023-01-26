@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 20px 1fr 20px;
 
-    > * {
+    >* {
         grid-column: 2;
 
         &.full {
@@ -57,14 +57,14 @@
 
 .sticky-group-title {
     position: sticky;
-    top: 202px;
+    top: 201px;
     background-color: white;
     z-index: 20;
 }
 
 .sticky-group-title-down {
     position: sticky;
-    top: 155px;
+    top: 154px;
     z-index: 20;
     background-color: white;
 }
