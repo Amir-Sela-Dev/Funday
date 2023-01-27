@@ -3,7 +3,9 @@
     padding: 10px;
     height: 65px;
     align-items: center;
-    margin-bottom: 20px;
+    a {
+        text-decoration: none;
+    }
 
     .main-logo {
         margin-right: -6px;

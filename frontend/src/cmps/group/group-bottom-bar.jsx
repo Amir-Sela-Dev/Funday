@@ -62,10 +62,10 @@ export function GroupBottomBar({ board, group }) {
         <section className="group-bottom-bar flex">
             <div className="flex">
                 <div className="sticky-grid flex">
-                    <div className="white-background"></div>
+                    <div class="white-background"></div>
                     <div className="task-txt bar-place-holder task-column"></div>
                 </div>
-                {board.cmpsOrder.map((cmp, idx) => {
+                {board.cmpsOrder.map(cmp => {
                     switch (cmp) {
                         case 'person':
                             return <div className="bar-person task-persons task-column">

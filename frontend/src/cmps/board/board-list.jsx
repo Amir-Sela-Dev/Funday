@@ -11,8 +11,10 @@ export function BoardList({ boards }) {
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [board, setBoard] = useState(null)
     const [modalTransform, setModalTransform] = useState('')
+    const [isClicked, setIsClicked] = useState('')
 
     async function onLoadBoard(boardId) {
+        setIsClicked(boardId)
         await loadBoard(boardId)
         closeModal()
         navigate(`/board/${boardId}`)
@@ -90,8 +92,8 @@ export function BoardList({ boards }) {
             </ul>}
             {
                 boards.map((board, i) =>
-                    <ListItem className="board-item" key={board._id}>
-                        <div className="board-wrap">
+                    <ListItem className={`board-item ${(isClicked === board._id) ? 'isClicked' : ''}`} key={board._id}>
+                        <div className='board-wrap' onClick={() => { onLoadBoard(board._id) }} >
                             <ListItemIcon icon={Board} />
                             <span className="board-preview-link" onClick={() => { onLoadBoard(board._id) }}>{board.title}</span>
                         </div>

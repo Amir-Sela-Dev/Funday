@@ -8,6 +8,7 @@
     a.tab-inner {
         padding-inline: 8px;
     }
+
 }
 
 .board-title-wrap {
@@ -23,29 +24,11 @@
     @include for-mobile-layout {
         padding: 0;
     }
-
-
 }
 
-.invite-modal {
-    & .dark-screen {
-        transition: all 1s;
-        background: rgba(0, 68, 156, 0.3);
-    }
-
-    & .invite-menu {
-        margin: auto;
-        // margin-right: 15px;
-        z-index: 70;
-        padding-inline: 32px;
-        padding-block: 24px;
-        width: 400px;
-        &>.modal-title{
-            font-weight: 400;
-            font-size: 24px;
-            color: var(--primary-text-color);
-        }
-    }
+.board-second-title-wrap {
+    padding-left: 40px;
+    margin-top: -1px;
 }
 
 .board-title {
@@ -65,7 +48,6 @@
     width: 3ch;
 
     @include for-narrow-layout {
-
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
