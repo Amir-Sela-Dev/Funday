@@ -165,6 +165,20 @@ export async function addActivity(board, type, txt, task) {
     }
 }
 
+// users //
+export async function addUser(board, userId) {
+    try {
+        let boardToSave = structuredClone(board)
+        boardToSave.users.unshift(userId)
+        saveBoard(boardToSave)
+        console.log('User added!')
+        return boardToSave
+    } catch (err) {
+        console.log('User could not be added', err)
+        throw err
+    }
+}
+
 // export async function removeActivity(activityId) {
 //     try {
 //         await activityService.remove(activityId)

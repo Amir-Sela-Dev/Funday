@@ -12,6 +12,7 @@ export const userService = {
     saveLocalUser,
     getUsers,
     getById,
+    getByUsername,
     remove,
     update,
     changeScore
@@ -29,6 +30,18 @@ async function getById(userId) {
     const user = await storageService.get('user', userId)
     // const user = await httpService.get(`user/${userId}`)
     return user
+}
+
+async function getByUsername(username) {
+    const users = storageService.query('user')
+    try{
+        const foundUser = await users.find(user => user.username === username)
+        console.log(foundUser)
+    }catch(err){
+        console.log('error finding user', err)
+    }
+    // const user = await httpService.get(`user/${userId}`)
+    return users
 }
 
 function remove(userId) {
@@ -106,4 +119,5 @@ function getLoggedinUser() {
 //     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Sela', username: 'amir@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462764/img3_zynodi.jpg' })
 //     await userService.signup({ _id: utilService.makeId(5), fullname: 'Sheilan Shamilov', username: 'sheilan@gmail.com', password: 'sheilan123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png' })
 //     await userService.signup({ _id: utilService.makeId(5), fullname: 'Amir Yakobuv', username: 'amiryakubov@gmail.com', password: 'amir123', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' })
+//     await userService.signup({ _id: utilService.makeId(5), fullname: 'Demo User', username: 'demouser@gmail.com', password: 'demo', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' })
 // })()

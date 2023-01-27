@@ -11,15 +11,18 @@
     }
 
     @include for-narrow-layout {
-        grid-template-columns: minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
     }
 
     @include for-normal-layout {
-        grid-template-columns: minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
     }
 
     @include for-wide-layout {
-        grid-template-columns: minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
     }
 }
 
@@ -31,7 +34,7 @@
 
 .sticky-grid {
     position: sticky;
-    // top: 20px;
+    top: 20px;
     left: 40px;
     z-index: 5;
     background-color: white;
@@ -41,7 +44,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 21;
+    z-index: 10;
     background-color: white;
 }
 
@@ -53,18 +56,4 @@
         z-index: 10;
         background: white;
     }
-}
-
-.sticky-group-title {
-    position: sticky;
-    top: 201px;
-    background-color: white;
-    z-index: 20;
-}
-
-.sticky-group-title-down {
-    position: sticky;
-    top: 154px;
-    z-index: 20;
-    background-color: white;
 }
