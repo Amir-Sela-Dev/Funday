@@ -11,6 +11,8 @@ export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 
 export const SOCKET_EVENT_BOARD_UPDATED = 'board-updated'
 export const SOCKET_EMIT_LOAD_BOARD = 'load-board'
+export const SOCKET_EVENT_TASK_UPDATED = 'task-updated'
+export const SOCKET_EMIT_CHANGE_TASK = 'change-task'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'

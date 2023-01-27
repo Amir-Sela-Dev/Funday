@@ -15,6 +15,7 @@ import { ImgUploader } from "../img-uploader"
 import { ListItemIcon } from "monday-ui-react-core"
 import { DropdownChevronRight } from "monday-ui-react-core/icons";
 import { Draggable } from "react-beautiful-dnd"
+import { socketService, SOCKET_EMIT_CHANGE_TASK, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service"
 
 
 export function TaskPreview({
@@ -53,6 +54,7 @@ export function TaskPreview({
 
     useEffect(() => {
         setTaskToUpdate(task)
+        socketService.on(SOCKET_EMIT_CHANGE_TASK, renameTaskTitleToAll)
     }, [])
 
     useEffect(() => {
@@ -140,13 +142,17 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task)
             taskToSave.title = taskToUpdate.title
-            setTaskToUpdate(taskToSave.title)
-
             await saveTask(board, group.id, taskToSave, 'Text', `Rename task to ${taskToUpdate.title}`)
+            socketService.emit(SOCKET_EVENT_TASK_UPDATED, taskToSave)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
         }
+    }
+
+    function renameTaskTitleToAll(task) {
+        if (task.id === taskToUpdate.id) setTaskToUpdate(task)
+        return
     }
 
     function openOptionModal() {
