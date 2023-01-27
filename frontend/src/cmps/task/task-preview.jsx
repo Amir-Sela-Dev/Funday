@@ -80,6 +80,7 @@ export function TaskPreview({
     async function onAddTaskDate(date) {
         try {
             let taskToSave = structuredClone(task)
+            taskToSave.date = date
             date = dayjs(date).format('MMM D')
             console.log(date);
             await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
@@ -139,6 +140,7 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task)
             taskToSave.title = taskToUpdate.title
+            setTaskToUpdate(taskToSave.title)
 
             await saveTask(board, group.id, taskToSave, 'Text', `Rename task to ${taskToUpdate.title}`)
             showSuccessMsg('Task update')
