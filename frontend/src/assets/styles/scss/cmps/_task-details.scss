@@ -53,7 +53,7 @@
 }
 
 .board-details {
-    .dark-screen:hover {
+    .dark-screen:not(.static):hover {
         opacity: 0.1;
     }
 
@@ -336,4 +336,5 @@
         border-top-left-radius: 0.5em;
         border-top-right-radius: 0.5em;
     }
+
 }

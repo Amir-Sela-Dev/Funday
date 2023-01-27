@@ -17,7 +17,7 @@ export const boardService = {
     getDefaultBoardFilter,
     getDefaultGroupFilter,
     getDefaultComment,
-    getDefaultUsers,
+    getSuggestedPersons,
     getDefaultPriorities,
     getEmptyActivity,
     getDefualtBoardColumes
@@ -64,14 +64,11 @@ async function save(board) {
     return savedBoard
 }
 
-function getDefaultUsers(boardUsers = []) {
-    let defaultUsers = [
-        { id: 'u001', fullname: 'Amir Yakubov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' },
-        { id: 'u002', fullname: 'Amir Sela', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462764/img3_zynodi.jpg' },
-        { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png' }
-    ]
-    if (boardUsers) return defaultUsers.filter(user => !boardUsers.some(boardUser => boardUser?.id === user.id));
-    return defaultUsers
+function getSuggestedPersons(board, taskUsers = []) {
+    console.log('suggestedBoard', board)
+    console.log('suggestedUsers', board.users.filter(userId => !taskUsers.includes(taskUser => taskUser?.id === userId)))
+    if (taskUsers) return board.users.filter(userId => !taskUsers.includes(taskUser => taskUser?.id === userId));
+    return board.users
 }
 
 function getEmptyBoard() {
@@ -81,6 +78,7 @@ function getEmptyBoard() {
         isStarred: false,
         archivedAt: Date.now(),
         activities: [],
+        users: [],
         cmpsOrder: ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox'],
         status: [
             { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
@@ -181,6 +179,7 @@ function creatBoards() {
                 archivedAt: Date.now(),
                 activities: [],
                 cmpsOrder: ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox'],
+                users: [],
                 status: [
                     { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
                     { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
@@ -208,10 +207,7 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'Mashu tov',
-                                persons: [
-                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' },
-                                    { id: 'u003', fullname: 'Sheilan Shamilov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png' },
-                                ],
+                                persons: [],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 date: "",
@@ -224,9 +220,7 @@ function creatBoards() {
                             {
                                 id: utilService.makeId(5),
                                 title: 'Dogma 1',
-                                persons: [
-                                    { id: 'u001', fullname: 'Amir Yakubov', imgUrl: 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg' },
-                                ],
+                                persons: [],
                                 status: getDefaultLabels()[utilService.getRandomIntInclusive(0, 2)],
                                 priority: { id: utilService.makeId(5), txt: 'Default', color: 'rgb(185, 185, 185)' },
                                 date: "",

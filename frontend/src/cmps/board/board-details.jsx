@@ -11,16 +11,19 @@ import { LabelSelect } from '../lable-select';
 import { Tab } from "monday-ui-react-core";
 import { Home } from "monday-ui-react-core/icons";
 import { showErrorMsg } from "../../services/event-bus.service";
-import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Item as ItemIcon } from "monday-ui-react-core/icons";
+import { Button, Flex, IconButton, Menu, MenuButton, MenuTitle, TextField, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
+import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Item as ItemIcon, Email } from "monday-ui-react-core/icons";
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
-import { Droppable } from 'react-beautiful-dnd';
+import { loadUserByUsername, loadUsers } from "../../store/user.actions"
+import { BoardInviteMenu } from "./board-invite-menu"
 
-export function BoardDetails({ setBoardToDrag, board }) {
-    // let { board } = useSelector((storeState) => storeState.boardModule)
+export function BoardDetails() {
+    let { board } = useSelector((storeState) => storeState.boardModule)
+    let { users } = useSelector((storeState) => storeState.userModule)
     const [boardTitle, setBoardTitle] = useState('')
     const [modalState, setModalState] = useState(false)
     const [boardActionsModal, setBoardActionsModal] = useState(false)
+    const [inviteModal, setInviteModal] = useState(false)
     const [task, setTask] = useState(null)
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
@@ -33,6 +36,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     useEffect(() => {
         onLoadBoard(filterByToEdit)
+        onLoadUsers()
         setBoardTitle('')
     }, [])
 
@@ -77,11 +81,29 @@ export function BoardDetails({ setBoardToDrag, board }) {
     async function onLoadBoard(filterBy) {
         try {
             setBoardTitle(board?.title)
-            let boardToLoad = await loadBoard(boardId, filterBy)
-            setBoardToDrag(boardToLoad)
+            await loadBoard(boardId, filterBy)
             console.log('Loaded board successfully', board);
         } catch (err) {
             console.log('Couldn\'t load board..', err);
+        }
+    }
+
+    async function onLoadUsers() {
+        try {
+            await loadUsers()
+            console.log('Loaded user successfully', users);
+        } catch (err) {
+            console.log('Couldn\'t load users..', err);
+        }
+    }
+
+    async function getUserByName(username) {
+        try {
+            const foundUser = await users.find(user => user.username === username)
+            console.log('Found user!', foundUser)
+        }
+        catch (err) {
+            console.log('User not found', err)
         }
     }
 
@@ -126,7 +148,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
         setIsSeachClicked(searchState)
     }
 
-
     const infoIcon = 'info.svg'
     const starIcon = 'star.svg'
     const searchIcon = 'search-board.svg'
@@ -136,6 +157,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     return (
         <section className="board-details">
             <div className="sticky-board-header">
+
 
                 <div className="board-title-wrap flex">
                     <span
@@ -158,105 +180,24 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     </form>
                     <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
                     <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
+                    {inviteModal && <BoardInviteMenu setModalState={setInviteModal} />
+                    }
+
+                    <div className="invite-users" onClick={() => {
+                        getUserByName('sheilan@gmail.com')
+                        setInviteModal(true)
+                    }}>
+                        X
+                    </div>
                 </div>
                 <div>
                     <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
                         Main Table
                     </Tab>
                 </div>
-                <div className="board-second-title-wrap">
-                    <hr className="group-list-main-hr" />
-                    <div className="board-actions flex">
-                        <Flex style={{ width: "100%" }}>
-                            <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
-                            <button className='new-group-btn arrow-down-new-group'
-                                onClick={toggleNewTaskModal}>
-                                <img className="arrow-down-img" src={require(`/src/assets/img/${arrowDownWhite}`)} />
-                            </button>
-
-                            {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
-
-                                <div className="new-task-modal">
-                                    <div className="menu-modal-option new-group-btn-option flex"
-                                        onClick={() => { onAddItem(true) }}>
-                                        <Icon icon={GroupIcon} />
-                                        <p>New Group</p>
-                                    </div>
-                                </div>
-
-                            </div>}
-
-                            {/* <Button leftIcon={Add}>Add</Button> */}
-                            <Button className={`bar-icon search-btn-board-details`}
-                                onClick={toggleSearchBar}
-                                style={{ display: isSeachClicked ? 'none' : 'inline-flex' }}
-                                kind={Button.kinds.TERTIARY}
-                                leftIcon={Search}>
-                                <span>Search</span>
-                            </Button>
-
-                            <div
-                                className={"search-bar-mobile flex" + (isSeachClicked ? ' on' : '')}>
-                                <span
-                                    className={`cancel-btn ${isSeachClicked ? 'on' : 'off'}`}
-                                    onClick={() => { toggleSearchBar(false) }}>Cancel</span>
-                                <div className={`group-search-filter flex`}
-                                    style={{ display: isSeachClicked ? 'flex' : 'none' }}>
-                                    <img className="search-board-icon board-icon" src={require(`/src/assets/img/${searchIcon}`)} />
-                                    <input type="text"
-                                        onChange={handleFilterChange}
-                                        value={filterByToEdit.title} placeholder='Search'
-                                        name='title' />
-                                </div>
-                            </div>
-                            {/* <Button className='bar-search'
-                                kind={Button.kinds.TERTIARY}
-                                rightIcon={Search}>
-
-                            </Button> */}
-
-                            <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
-                                Person
-                            </Button>
-                            <Button className={'bar-tables' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
-                                leftIcon={Table}
-                                rightIcon={DropdownChevronDown}>
-                                Main Table
-                            </Button>
-                            <Button className={'bar-filter' + (isSeachClicked ? ' search-clicked' : '')} kind={Button.kinds.TERTIARY}
-                                onClick={toggleFilterModal}
-                                leftIcon={Filter}>
-                                Filter
-
-                                {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
-                                    onClick={(e) => { e.stopPropagation() }}>
-                                    <LabelSelect handleLableChange={handleLableChange} lables={lables} />
-                                </div>}
-
-                            </Button>
-                            <Button className='bar-icon bar-sort' kind={Button.kinds.TERTIARY} leftIcon={Sort}>
-                                Sort
-                            </Button>
-                        </Flex>
-                    </div>
-                </div>
             </div>
-            <Droppable droppableId="gruopList" type="group">
-                {(provided) => (
 
-                    <div className="drag-groups-container"
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                    >
-
-                        <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
-
+            <GroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
             <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
-        </section >
-
-    )
+        </section >)
 }
