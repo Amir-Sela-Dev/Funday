@@ -50,6 +50,12 @@ export function BoardDetails({ setBoardToDrag, board }) {
         // setFilter.current(filterByToEdit)
     }, [filterByToEdit])
 
+    useEffect(() => {
+        if (!board) return
+        setBoardTitle(board.title)
+        // setFilter.current(filterByToEdit)
+    }, [board])
+
     async function onAddItem(isGroup) {
         try {
             let itemToSave;
@@ -98,7 +104,10 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     async function onRenameBoard(event) {
         event.preventDefault()
-        if (!board?.title.length) return
+        if (!boardTitle) {
+            setBoardTitle('New board')
+            return
+        }
         try {
             await saveBoard({ ...board, title: boardTitle })
             setBoardTitle('')
@@ -148,17 +157,17 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     <span
                         className="board-title mobile"
                         style={{
-                            width: `${(board?.title?.length - 1.5 || 10)}ch`
-                        }}>{boardTitle || board?.title}
+                            width: `${(board?.title?.length - 1.5)}ch`
+                        }}>{boardTitle || 'New board'}
                     </span>
                     <form onSubmit={onRenameBoard} >
                         <input
                             className="board-title"
                             style={{
-                                width: `${(board.title.length - 1.5 || 10)}ch`
+                                width: `${(boardTitle?.length + 2)}ch`
                             }}
                             type="text"
-                            value={boardTitle || board.title}
+                            value={boardTitle}
                             onChange={handleInputChange}
                             onBlur={ev => { onRenameBoard(ev) }}
                         />
