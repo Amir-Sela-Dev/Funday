@@ -1,0 +1,233 @@
+[
+    {
+        "title": "Robot dev proj",
+        "isStarred": false,
+        "activities": [],
+        "cmpsOrder": [
+            "person",
+            "status",
+            "date",
+            "timeline",
+            "priority",
+            "files",
+            "checkbox"
+        ],
+        "status": [
+            {
+                "id": "CIepW",
+                "txt": "Working on it",
+                "color": "#FDAB3D"
+            },
+            {
+                "id": "Sihyq",
+                "txt": "Done",
+                "color": "#00C875"
+            },
+            {
+                "id": "MFrtk",
+                "txt": "Stuck",
+                "color": "#E2445C"
+            },
+            {
+                "id": "hg3p9",
+                "txt": "Default",
+                "color": "rgb(185, 185, 185)"
+            }
+        ],
+        "priority": [
+            {
+                "id": "h2ShO",
+                "txt": "Critical",
+                "color": "rgb(51, 51, 51)"
+            },
+            {
+                "id": "NMo7J",
+                "txt": "High",
+                "color": "rgb(64, 22, 148)"
+            },
+            {
+                "id": "gkAcw",
+                "txt": "Medium",
+                "color": "rgb(85, 89, 223)"
+            },
+            {
+                "id": "ZvH6w",
+                "txt": "Low",
+                "color": "rgb(87, 155, 252)"
+            },
+            {
+                "id": "M634P",
+                "txt": "Default",
+                "color": "rgb(185, 185, 185)"
+            }
+        ],
+        "createdBy": {
+            "_id": "ujQQ4",
+            "fullname": "Abi Abambi",
+            "imgUrl": ""
+        },
+        "groups": [
+            {
+                "id": "ADMg5",
+                "title": "Group 1",
+                "archivedAt": 1674814695750,
+                "tasks": [
+                    {
+                        "id": "wh7Z4",
+                        "title": "Mashu tov",
+                        "persons": [
+                            {
+                                "id": "u001",
+                                "fullname": "Amir Yakubov",
+                                "imgUrl": "https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg"
+                            },
+                            {
+                                "id": "u003",
+                                "fullname": "Sheilan Shamilov",
+                                "imgUrl": "https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462891/image_1_w0fgmh.png"
+                            }
+                        ],
+                        "status": {
+                            "id": "bV9kW",
+                            "txt": "Stuck",
+                            "color": "#E2445C"
+                        },
+                        "priority": {
+                            "id": "XPU6u",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "date": "",
+                        "timeline": "",
+                        "comments": [],
+                        "isMark": false
+                    },
+                    {
+                        "id": "HSzw6",
+                        "title": "Dogma 1",
+                        "persons": [
+                            {
+                                "id": "u001",
+                                "fullname": "Amir Yakubov",
+                                "imgUrl": "https://res.cloudinary.com/dp3tok7wg/image/upload/v1674462524/profile_vyll5h.jpg"
+                            }
+                        ],
+                        "status": {
+                            "id": "TkET5",
+                            "txt": "Stuck",
+                            "color": "#E2445C"
+                        },
+                        "priority": {
+                            "id": "7YjIv",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "date": "",
+                        "timeline": "",
+                        "comments": [],
+                        "isMark": false
+                    }
+                ],
+                "style": {
+                    "color": "#579bfc"
+                }
+            },
+            {
+                "id": "Ztb9o",
+                "title": "Demo data",
+                "archivedAt": 1674814695750,
+                "tasks": [
+                    {
+                        "id": "VMTEs",
+                        "title": "item 1",
+                        "status": {
+                            "id": "f9vRJ",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "priority": {
+                            "id": "rYo0F",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "comments": [],
+                        "persons": [],
+                        "date": "",
+                        "timeline": "",
+                        "isMark": false
+                    },
+                    {
+                        "id": "hBrpe",
+                        "title": "item 2",
+                        "status": {
+                            "id": "PyRUT",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "priority": {
+                            "id": "CQmL4",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "comments": [],
+                        "persons": [],
+                        "date": "",
+                        "timeline": "",
+                        "isMark": false
+                    }
+                ],
+                "style": {
+                    "color": "#e2445c"
+                }
+            },
+            {
+                "id": "4sYSS",
+                "title": "Another style",
+                "archivedAt": 1674814695750,
+                "tasks": [
+                    {
+                        "id": "WrUC7",
+                        "title": "item 3",
+                        "status": {
+                            "id": "PfXmT",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "priority": {
+                            "id": "61eZH",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "comments": [],
+                        "persons": [],
+                        "date": "",
+                        "timeline": "",
+                        "isMark": false
+                    },
+                    {
+                        "id": "8MnWa",
+                        "title": "item 4",
+                        "status": {
+                            "id": "vxTFQ",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "priority": {
+                            "id": "bcU30",
+                            "txt": "Default",
+                            "color": "rgb(185, 185, 185)"
+                        },
+                        "comments": [],
+                        "persons": [],
+                        "date": "",
+                        "timeline": "",
+                        "isMark": false
+                    }
+                ],
+                "style": {
+                    "color": "#a559d8"
+                }
+            }
+        ]
+    }
+]
