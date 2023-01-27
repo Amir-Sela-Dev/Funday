@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { showSuccessMsg } from "../../services/event-bus.service";
 import { saveGroup } from "../../store/board.action";
 import { TaskList } from "../task/task-list"
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
@@ -92,24 +92,23 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
     }
 
     return (
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-
-            <section className="group-preview">
-                <div className="wrap-group-modal">
-                    {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
-                        <div className="menu-modal-option flex">
-                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
-                                onClick={() => { }} />
-                            <p className="menu-modal-option-text">Duplicate</p>
-                        </div>
-                        <div className="menu-modal-option flex">
-                            <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
-                                onClick={() => { onRemoveGroup(group.id) }} />
-                            <p className="menu-modal-option-text" >Delete</p>
-                        </div>
-                    </ul>}
-                </div>
-                {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
+        // <DragDropContext onDragEnd={handleOnDragEnd}>
+        <section className="group-preview">
+            <div className="wrap-group-modal">
+                {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
+                    <div className="menu-modal-option flex">
+                        <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
+                            onClick={() => { }} />
+                        <p className="menu-modal-option-text">Duplicate</p>
+                    </div>
+                    <div className="menu-modal-option flex">
+                        <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
+                            onClick={() => { onRemoveGroup(group.id) }} />
+                        <p className="menu-modal-option-text" >Delete</p>
+                    </div>
+                </ul>}
+            </div>
+            {/* {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
                     <div className="menu-modal-option flex">
                         <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
                             onClick={() => { }} />
@@ -122,47 +121,35 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
                     </div>
                 </ul>} */}
 
-                <Droppable droppableId="gruopList">
-                    {(provided) => (
-
-                        <div className="drag-groups-container"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            <div className="flex">
-
-                                <div className="group-title-container flex align-center">
+            <div className="sticky-group-title-down flex">
+                <div className="group-title-container flex align-center">
 
 
-                                    <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
-                                        onClick={() => { openOptionModal() }} />
-                                </div>
-
-                                <form className="sticky-grid" onSubmit={onRenameGroup} >
-                                    <input
-                                        className="group-title"
-                                        style={{
-                                            color: group.style?.color || "#FFF000",
-                                            width: `${groupToSend.title.length * 1.125}ch`
-                                        }}
-                                        type="text"
-                                        value={groupToSend.title}
-                                        onChange={handleInputChange}
-                                        onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
-                                    />
-                                </form>
-
-                                <span className='number-of-tasks'>{group.tasks.length} items</span>
-                            </div>
-                            <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                <div className="add-task">
+                    <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
+                        onClick={() => { openOptionModal() }} />
                 </div>
 
-            </section>
-        </DragDropContext>
+                <form className="sticky-grid" onSubmit={onRenameGroup} >
+                    <input
+                        className="group-title"
+                        style={{
+                            color: group.style?.color || "#FFF000",
+                            width: `${groupToSend.title.length * 1.125}ch`
+                        }}
+                        type="text"
+                        value={groupToSend.title}
+                        onChange={handleInputChange}
+                        onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
+                    />
+                </form>
+
+                <span className='number-of-tasks'>{group.tasks.length} items</span>
+            </div>
+            <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
+
+            <div className="add-task">
+            </div>
+
+        </section>
     )
 }

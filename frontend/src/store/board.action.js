@@ -123,8 +123,7 @@ export async function removeGroup(board, groupId) {
 
 // Tasks
 export async function saveTask(board, groupId, task, type, txt) {
-    let fullBoard = await boardService.get(board._id)
-    let boardToSave = structuredClone(fullBoard)
+    let boardToSave = structuredClone(board)
     let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
     let taskToSave = { ...task }
     if (!taskToSave.id) {
@@ -162,20 +161,6 @@ export async function addActivity(board, type, txt, task) {
         return boardToSave
     } catch (err) {
         console.log('ActivityActions: err in addActivity', err)
-        throw err
-    }
-}
-
-// users //
-export async function addUser(board, userId) {
-    try {
-        let boardToSave = structuredClone(board)
-        boardToSave.users.unshift(userId)
-        saveBoard(boardToSave)
-        console.log('User added!')
-        return boardToSave
-    } catch (err) {
-        console.log('User could not be added', err)
         throw err
     }
 }

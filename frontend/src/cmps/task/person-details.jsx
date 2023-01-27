@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
 import { boardService } from "../../services/board.service"
-import { userService } from "../../services/user.service"
 
 export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) {
-    let { board } = useSelector((storeState) => storeState.boardModule)
-    let { users } = useSelector((storeState) => storeState.userModule)
-    const [suggestedUsers, setSuggestedUsers] = useState([])
+    const [defaultUsers, setDefaultUsers] = useState(boardService.getDefaultUsers(persons))
     useEffect(() => {
-        onGetSuggestedUsers()
     }, persons)
 
     function minifyName(name) {
@@ -23,27 +18,6 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
     }
 
 
-    async function onGetSuggestedUsers() {
-        try {
-            const foundUsers = await users.filter(currUser => {
-                return (board.users.includes(currUser._id) && !persons.some(taskUser => taskUser._id === currUser._id))
-            })
-            console.log('found users!!', foundUsers)
-            setSuggestedUsers([...foundUsers])
-            return foundUsers
-        } catch (err) {
-
-        }
-    }
-    async function onGetUserById(userId) {
-        try {
-            const { username, password, ...foundUser } = await userService.getById(userId)
-            console.log('Found user!', foundUser)
-        }
-        catch (err) {
-            console.log('User not found', err)
-        }
-    }
     const xIcon = 'x-icon.svg'
     return (
         <div className="person-details flex column modal">
@@ -69,7 +43,7 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                     onClick={(ev) => { ev.stopPropagation() }}></input>
                 <h4>Suggested people</h4>
                 <ul className="person-list">
-                    {suggestedUsers.map(currPerson => {
+                    {defaultUsers.map(currPerson => {
                         return (
                             <div className="person-item flex align-center"
                                 key={currPerson.id}

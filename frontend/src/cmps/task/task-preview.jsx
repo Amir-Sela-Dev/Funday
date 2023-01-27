@@ -26,7 +26,10 @@ export function TaskPreview({
     isAllSelected,
     updateSelectedTasks,
     index,
-    columes }) {
+    columes,
+    tasks
+
+}) {
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -39,7 +42,7 @@ export function TaskPreview({
     const [size, setSize] = useState('small');
     const [isOpen, setIsOpen] = useState(false);
     const [isMark, setIsMark] = useState(false);
-    const [tasks, setTasks] = useState(group.tasks)
+    // const [tasks, setTasks] = useState(group.tasks)
     const [date, setDate] = useState(null);
     const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
@@ -172,7 +175,7 @@ export function TaskPreview({
         const items = Array.from(tasks)
         const [reorderedItem] = items.splice(result.source.index, 1)
         items.splice(result.destination.index, 0, reorderedItem)
-        setTasks(items)
+        // setTasks(items)
         saveGroupAfterDrag(items)
     }
 
@@ -212,19 +215,8 @@ export function TaskPreview({
 
 
     return (
-        <div >
-            {/* <Draggable draggableId={task.id} index={index}>
-                {(provided) => (
-                    <div
-
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                        className="task-preview flex"
-
-                    >
- */}
-            <div className="orens-div flex">
+        <div className="orens-div">
+            <div className="flex">
                 <div className="wrap-modal">
                     {(isBoardOptionsOpen && board) && <ul className={"menu-modal task-modal modal"} >
                         <div className="menu-modal-option flex " onClick={() => { onDuplicateTask(task) }}>
@@ -289,7 +281,7 @@ export function TaskPreview({
                                 {task.persons &&
 
                                     <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
-                                        {task.persons.map(person => <Avatar key={person.id} type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
+                                        {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
                                     </AvatarGroup>
                                 }
                                 {isPersonsOpen &&
@@ -300,7 +292,7 @@ export function TaskPreview({
                         case 'status':
                             return <div className="preview-task-status  task-column"
                                 onClick={() => { setIsOpen(!isOpen) }}
-                                style={{ background: `${(task.status.txt === 'Default') ? 'transparent' : task.status.color}` }}>
+                                style={{ background: `${(task.status.txt === 'Default') ? 'rgb(185, 185, 185)' : task.status.color}` }}>
 
                                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
 
@@ -357,9 +349,6 @@ export function TaskPreview({
 
                 <div className="preview-add-colume task-column "> </div>
             </div>
-            {/* </div>
-                )}
-            </Draggable> */}
         </div>
     )
 }
