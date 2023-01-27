@@ -15,6 +15,7 @@ import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentC
 import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Item as ItemIcon } from "monday-ui-react-core/icons";
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { Droppable } from 'react-beautiful-dnd';
+import { socketService, SOCKET_EMIT_LOAD_BOARD, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_ADD_MSG, SOCKET_EVENT_BOARD_UPDATED } from "../../services/socket.service"
 
 export function BoardDetails({ setBoardToDrag, board }) {
     // let { board } = useSelector((storeState) => storeState.boardModule)
@@ -32,8 +33,14 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const [isSeachClicked, setIsSeachClicked] = useState(false)
 
     useEffect(() => {
-        onLoadBoard(filterByToEdit)
+        onLoadBoard(boardId, filterByToEdit)
         setBoardTitle('')
+        socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
+        socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
+        return () => {
+
+        }
+
     }, [])
 
 
@@ -74,7 +81,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
         setModalState(!modalState)
     }
 
-    async function onLoadBoard(filterBy) {
+    async function onLoadBoard(boardId, filterBy) {
         try {
             setBoardTitle(board?.title)
             let boardToLoad = await loadBoard(boardId, filterBy)

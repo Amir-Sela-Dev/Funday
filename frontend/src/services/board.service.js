@@ -1,8 +1,10 @@
 import { storageService } from './async-storage.service'
+import { httpService } from './http.service'
 import { utilService } from './util.service'
 
-const STORAGE_KEY = 'boardDB'
+const STORAGE_KEY = 'boardDB111'
 const USER_KEY = 'userDB'
+const BASE_URL = 'board/'
 
 export const boardService = {
     query,
@@ -25,41 +27,43 @@ export const boardService = {
 }
 
 window.cs = boardService
-creatBoards()
+// creatBoards()
 
 async function query(filterBy = { title: '' }) {
-    // return httpService.get(STORAGE_KEY, filterBy)
-    try {
-        let boards = await storageService.query(STORAGE_KEY)
-        if (filterBy.title) {
-            const regex = new RegExp(filterBy.title, 'i')
-            boards = boards.filter(board => regex.test(board.title))
-        }
-        return boards
-    } catch (err) {
-        console.log('cannot load boards', err)
-    }
+    const queryParams = `?title=${filterBy.title}`
+    console.log(queryParams);
+    return httpService.get(BASE_URL, queryParams)
+    // try {
+    //     let boards = await storageService.query(STORAGE_KEY)
+    //     if (filterBy.title) {
+    //         const regex = new RegExp(filterBy.title, 'i')
+    //         boards = boards.filter(board => regex.test(board.title))
+    //     }
+    //     return boards
+    // } catch (err) {
+    //     console.log('cannot load boards', err)
+    // }
 }
 
 function get(boardId) {
-    return storageService.get(STORAGE_KEY, boardId)
-    // return httpService.get(`board/${boardId}`)
+    // return storageService.get(STORAGE_KEY, boardId)
+    return httpService.get(BASE_URL + boardId)
 }
 
 async function remove(boardId) {
-    await storageService.remove(STORAGE_KEY, boardId)
-    // return httpService.delete(`board/${boardId}`)
+    // await storageService.remove(STORAGE_KEY, boardId)
+    return httpService.delete(BASE_URL + boardId)
 }
 
 async function save(board) {
     let savedBoard
     if (board._id) {
-        savedBoard = await storageService.put(STORAGE_KEY, board)
-        // savedBoard = await httpService.put(`board/${board._id}`, board)
+        // savedBoard = await storageService.put(STORAGE_KEY, board)
+        savedBoard = await httpService.put(BASE_URL + board._id, board)
     } else {
         // board.owner = userService.getLoggedinUser()
-        savedBoard = await storageService.post(STORAGE_KEY, board)
-        // savedBoard = await httpService.post('board', board)
+        // savedBoard = await storageService.post(STORAGE_KEY, board)
+        savedBoard = await httpService.post(BASE_URL, board)
     }
     return savedBoard
 }
@@ -76,7 +80,6 @@ function getDefaultUsers(boardUsers = []) {
 
 function getEmptyBoard() {
     return {
-        _id: '',
         title: 'New board',
         isStarred: false,
         archivedAt: Date.now(),

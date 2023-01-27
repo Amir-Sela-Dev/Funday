@@ -4,6 +4,7 @@ import { REMOVE_BOARD, SET_BOARDS, ADD_BOARD, UPDATE_BOARD, UNDO_REMOVE_BOARD, S
 import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import { utilService } from '../services/util.service.js'
 import { userService } from '../services/user.service.js'
+import { socketService, SOCKET_EVENT_BOARD_UPDATED } from '../services/socket.service.js'
 
 export async function loadBoards(filterBy) {
     store.dispatch({ type: LOADING_START })
@@ -49,6 +50,7 @@ export async function saveBoard(board) {
         const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
         console.log('lalala', board)
         const boardToSave = await boardService.save(board)
+        socketService.emit(SOCKET_EVENT_BOARD_UPDATED, boardToSave._id)
         console.log('boardToSave', boardToSave)
         store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type, board: boardToSave })
