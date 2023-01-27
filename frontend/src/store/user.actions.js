@@ -27,7 +27,6 @@ export async function removeUser(userId) {
 }
 
 export async function login(credentials) {
-    const {username, password} = credentials
     try {
         const user = await userService.login(credentials)
         store.dispatch({
@@ -36,7 +35,8 @@ export async function login(credentials) {
         })
         return user
     } catch (err) {
-        throw new Error('Incorrect email or password')
+        console.log('Cannot login', err)
+        throw err
     }
 }
 
@@ -75,26 +75,4 @@ export async function loadUser(userId) {
         showErrorMsg('Cannot load user')
         console.log('Cannot load user', err)
     }
-}
-export async function getUserByUsername(username) {
-    try {
-        const user = await userService.getByUsername(username);
-        return user
-    } catch (err) {
-        showErrorMsg('Cannot load user')
-        console.log('Cannot load user', err)
-    }
-
-    return
-}
-export async function getUserById(userId) {
-    try {
-        const user = await userService.getById(userId);
-        return user
-    } catch (err) {
-        showErrorMsg('Cannot load user')
-        console.log('Cannot load user', err)
-    }
-
-    return
 }

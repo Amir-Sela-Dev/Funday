@@ -20,6 +20,10 @@
         }
     }
 
+    // .task-row-drag {
+    //     border-bottom: #d0d4e4 1px solid;
+    // }
+
     .white-background {
         position: absolute;
         background-color: #fff;
@@ -27,6 +31,10 @@
         width: 40px;
         left: -40px;
         // z-index: 5;
+    }
+
+    .orens-div {
+        flex: 1 1 auto;
     }
 
     .task-option-icon {

@@ -3,6 +3,10 @@
 /* Media  Mixins */
 /* HELPERS */
 @font-face {
+  font-family: Figtree;
+  src: url(../../fonts/Figtree-Regular.ttf);
+}
+@font-face {
   font-family: Poppins-Thin;
   src: url(../../fonts/Poppins-Thin.ttf);
 }
@@ -13,10 +17,6 @@
 @font-face {
   font-family: Poppins-Bold;
   src: url(../../fonts/Poppins-Bold.ttf);
-}
-@font-face {
-  font-family: Figtree;
-  src: url(../../fonts/Figtree-Regular.ttf);
 }
 .fs12 {
   font-size: 0.75rem;
@@ -171,7 +171,6 @@
 
 .sticky-grid {
   position: sticky;
-  top: 20px;
   left: 40px;
   z-index: 5;
   background-color: white;
@@ -181,7 +180,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 21;
   background-color: white;
 }
 
@@ -195,6 +194,20 @@
   }
 }
 
+.sticky-group-title {
+  position: sticky;
+  top: 201px;
+  background-color: white;
+  z-index: 20;
+}
+
+.sticky-group-title-down {
+  position: sticky;
+  top: 154px;
+  z-index: 20;
+  background-color: white;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -205,7 +218,6 @@
 }
 
 html {
-  font-family: Poppins-Regular;
   line-height: 1.6;
   color: #0073ea;
 }
@@ -406,7 +418,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 .home-page .see-demo {
   background-image: linear-gradient(90deg, #5034ff 25.69%, #b4b4ff 100%);
@@ -569,7 +580,7 @@ button {
 .login-container .login-form {
   width: 600px;
   height: 572px;
-  margin: 40px auto;
+  margin: 60px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -580,15 +591,7 @@ button {
   margin-right: 22px;
 }
 .login-container .email-wrap {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   margin-left: 7px;
-}
-@media (max-width: 500px) {
-  .login-container .email-wrap {
-    flex-direction: column;
-  }
 }
 .login-container .login-form-title {
   margin-bottom: 2px;
@@ -630,15 +633,13 @@ button {
   height: 40px;
   width: 360px;
   margin: 10px 0;
+  margin-right: 60px;
   color: rgba(119, 119, 119, 0.3607843137);
   border: 1px solid;
   border-radius: 4px;
 }
-.login-container input:focus {
-  outline: rgba(0, 115, 234, 0.3411764706) auto 0.5px;
-}
-.login-container input.error {
-  outline: red auto 1px;
+.login-container input:focus-visible {
+  outline: rgba(0, 115, 234, 0.3411764706) auto 1px;
 }
 .login-container button {
   width: 360px;
@@ -652,22 +653,15 @@ button {
 .login-container button:hover {
   background-color: #023c7a;
 }
-.login-container .login-err-msg {
-  font-size: 12px;
-  font-weight: 300;
-  font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
-  color: red;
-}
-.login-container .full-input {
-  padding-top: 20px;
-}
 
 .main-header {
   background-color: #f7f7f7;
   padding: 10px;
   height: 65px;
   align-items: center;
-  margin-bottom: 20px;
+}
+.main-header a {
+  text-decoration: none;
 }
 .main-header .main-logo {
   margin-right: -6px;
@@ -874,7 +868,7 @@ button {
   border-right: 1px solid rgba(0, 0, 0, 0.102);
   transition: transform 1s;
   color: #323338;
-  z-index: 20;
+  z-index: 35;
   position: fixed;
 }
 .work-space.close-workspace {
@@ -899,6 +893,9 @@ button {
 .work-space .workspace-header {
   justify-content: space-between;
   align-items: center;
+  margin-top: 6px;
+  margin-inline-start: 3px;
+  margin-bottom: 6px;
 }
 .work-space .workspace-header > span {
   font-size: 14px;
@@ -911,8 +908,8 @@ button {
 }
 .work-space .toggle-menu-btn {
   position: absolute;
-  top: 10px;
-  left: 228px;
+  top: 11px;
+  left: 231px;
   height: 24px;
   width: 24px;
   background-color: white;
@@ -953,6 +950,7 @@ button {
   align-items: center;
   padding: 2px;
   margin-bottom: 17px;
+  margin-inline-start: 3px;
 }
 .work-space .main-workspace-dropdown .main-icon {
   position: relative;
@@ -987,6 +985,8 @@ button {
   width: 224px;
   height: 32px;
   margin-inline-start: 3px;
+  margin-top: -6px;
+  margin-right: 4px;
 }
 .work-space .option-wrap :hover {
   background-color: #dcdfec;
@@ -1146,6 +1146,9 @@ button {
   height: 37px;
   width: 40px;
   left: -40px;
+}
+.task-preview .orens-div {
+  flex: 1 1 auto;
 }
 .task-preview .task-option-icon {
   margin-inline-start: -31px;
@@ -1560,13 +1563,14 @@ button {
   color: #323338;
 }
 
+.add-task-wrap {
+  border-bottom: #d0d4e4 1px solid;
+}
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
 }
 
 .task-input-row {
-  border-bottom: #d0d4e4 1px solid;
-  border-collapse: collapse;
   height: 36px;
   width: 100%;
   border-block-start: none;
@@ -1653,7 +1657,7 @@ button {
   }
 }
 
-.board-details .dark-screen:not(.static):hover {
+.board-details .dark-screen:hover {
   opacity: 0.1;
 }
 .board-details .return-btn {
@@ -1927,6 +1931,7 @@ button {
   margin-inline-start: 2px;
   font-family: Figtree;
   margin-bottom: 57px;
+  min-width: fit-content;
 }
 .group-preview .option-icon {
   margin-inline-start: -33px;
@@ -2030,6 +2035,13 @@ button {
   .board-actions .new-group-btn {
     display: none;
   }
+}
+.board-actions .new-group-btn.arrow-down-new-group {
+  border-radius: 0 4px 4px 0;
+  margin-right: 21px;
+  width: 28px;
+  padding: 0;
+  order: 1;
 }
 .board-actions .new-group-btn.arrow-down-new-group:hover {
   background-color: #0070e5;
@@ -2213,15 +2225,21 @@ button {
   padding-inline: 6px;
   padding-block: 0;
   justify-content: space-between;
+  cursor: pointer;
 }
 .board-item:hover .board-menu-icon {
   display: block;
+}
+.board-item.isClicked {
+  background-color: var(--primary-selected-color);
 }
 
 .board-wrap {
   align-items: center;
   display: flex;
   flex-basis: 81.415%;
+  margin-inline-start: 2px;
+  opacity: 0.9;
 }
 .board-wrap .list-item-icon {
   transform: translate(0);
@@ -2262,21 +2280,9 @@ button {
   }
 }
 
-.invite-modal .dark-screen {
-  transition: all 1s;
-  background: rgba(0, 68, 156, 0.3);
-}
-.invite-modal .invite-menu {
-  margin: auto;
-  z-index: 70;
-  padding-inline: 32px;
-  padding-block: 24px;
-  width: 400px;
-}
-.invite-modal .invite-menu > .modal-title {
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--primary-text-color);
+.board-second-title-wrap {
+  padding-left: 40px;
+  margin-top: -1px;
 }
 
 .board-title {
@@ -2401,18 +2407,6 @@ button {
   z-index: 6;
   width: 60vw;
   height: auto;
-}
-
-.invite-users {
-  margin-left: auto;
-}
-.invite-users .user-invite-btn {
-  background: white;
-  border: 1px solid #c3c6d4;
-  margin-inline-end: 18px;
-}
-.invite-users .user-invite-btn:hover {
-  background-color: #dcdfec;
 }
 
 .upload-preview input {

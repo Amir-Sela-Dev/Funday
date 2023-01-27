@@ -36,9 +36,7 @@ export function BoardInviteMenu({ setModalState }) {
                     {
                         position: 'fixed',
                         top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)'
-
+                        left: '50%'
                     }
                 }>
                 <span className="modal-title">Board Members</span>
@@ -46,7 +44,7 @@ export function BoardInviteMenu({ setModalState }) {
                     ev.stopPropagation()
                     console.log('hi')
                 }}>
-                    <TextField onChange={val => { onSearchQueryChange(val) }} placeholder="Enter name or email" />
+                    <TextField onChange={val => { onSearchQueryChange(val) }} placeholder="Enter one or more email" />
                 </form>
                 <List className="suggested-invites"
                     style={{}}>
@@ -59,6 +57,15 @@ export function BoardInviteMenu({ setModalState }) {
                             }}>
                             {user.fullname}
                         </ListItem>)}
+                    {/* <ListItem >
+                        Board Power up
+                    </ListItem>
+                    <ListItem >
+                        Team Power up
+                    </ListItem>
+                    <ListItem >
+                        Essentials
+                    </ListItem> */}
                 </List>
             </DialogContentContainer>
         </div>
