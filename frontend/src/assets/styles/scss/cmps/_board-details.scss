@@ -181,3 +181,16 @@
         height: auto;
     }
 }
+
+.invite-users {
+    margin-left: auto;
+
+    & .user-invite-btn {
+        background: white;
+        border: 1px solid $ui-border-color;
+        margin-inline-end: 18px;
+        &:hover{
+            background-color: $primary-background-hover-color;
+        }
+    }
+}

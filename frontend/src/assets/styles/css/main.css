@@ -580,7 +580,15 @@ button {
   margin-right: 22px;
 }
 .login-container .email-wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   margin-left: 7px;
+}
+@media (max-width: 500px) {
+  .login-container .email-wrap {
+    flex-direction: column;
+  }
 }
 .login-container .login-form-title {
   margin-bottom: 2px;
@@ -622,13 +630,15 @@ button {
   height: 40px;
   width: 360px;
   margin: 10px 0;
-  margin-right: 60px;
   color: rgba(119, 119, 119, 0.3607843137);
   border: 1px solid;
   border-radius: 4px;
 }
-.login-container input:focus-visible {
-  outline: rgba(0, 115, 234, 0.3411764706) auto 1px;
+.login-container input:focus {
+  outline: rgba(0, 115, 234, 0.3411764706) auto 0.5px;
+}
+.login-container input.error {
+  outline: red auto 1px;
 }
 .login-container button {
   width: 360px;
@@ -641,6 +651,15 @@ button {
 }
 .login-container button:hover {
   background-color: #023c7a;
+}
+.login-container .login-err-msg {
+  font-size: 12px;
+  font-weight: 300;
+  font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+  color: red;
+}
+.login-container .full-input {
+  padding-top: 20px;
 }
 
 .main-header {
@@ -2382,6 +2401,18 @@ button {
   z-index: 6;
   width: 60vw;
   height: auto;
+}
+
+.invite-users {
+  margin-left: auto;
+}
+.invite-users .user-invite-btn {
+  background: white;
+  border: 1px solid #c3c6d4;
+  margin-inline-end: 18px;
+}
+.invite-users .user-invite-btn:hover {
+  background-color: #dcdfec;
 }
 
 .upload-preview input {

@@ -68,6 +68,7 @@ async function login(userCred) {
         // socketService.login(user._id)
         return saveLocalUser(user)
     }
+    else throw new Error('some err')
 }
 async function signup(userCred) {
     userCred.score = 10000

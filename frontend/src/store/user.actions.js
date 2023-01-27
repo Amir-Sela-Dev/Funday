@@ -27,6 +27,7 @@ export async function removeUser(userId) {
 }
 
 export async function login(credentials) {
+    const {username, password} = credentials
     try {
         const user = await userService.login(credentials)
         store.dispatch({
@@ -35,8 +36,7 @@ export async function login(credentials) {
         })
         return user
     } catch (err) {
-        console.log('Cannot login', err)
-        throw err
+        throw new Error('Incorrect email or password')
     }
 }
 

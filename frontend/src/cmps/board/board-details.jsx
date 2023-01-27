@@ -12,7 +12,7 @@ import { Tab } from "monday-ui-react-core";
 import { Home } from "monday-ui-react-core/icons";
 import { showErrorMsg } from "../../services/event-bus.service";
 import { Button, Flex, IconButton, Menu, MenuButton, MenuTitle, TextField, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Item as ItemIcon, Email } from "monday-ui-react-core/icons";
+import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Item as ItemIcon, Email, Invite} from "monday-ui-react-core/icons";
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { loadUserByUsername, loadUsers } from "../../store/user.actions"
 import { BoardInviteMenu } from "./board-invite-menu"
@@ -187,7 +187,9 @@ export function BoardDetails() {
                         getUserByName('sheilan@gmail.com')
                         setInviteModal(true)
                     }}>
-                        X
+                        <Button className="user-invite-btn" leftIcon={Invite}>
+                            {'Invite' + (board.users ? ` / ${board.users.length}` : '')}
+                        </Button>
                     </div>
                 </div>
                 <div>

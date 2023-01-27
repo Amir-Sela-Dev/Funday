@@ -15,6 +15,12 @@
     }
 
     .email-wrap {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        @include for-mobile-layout{
+            flex-direction: column;
+        }
         margin-left: 7px;
     }
 
@@ -65,13 +71,17 @@
         height: 40px;
         width: 360px;
         margin: 10px 0;
-        margin-right: 60px;
+        // margin-right: 60px;
         color: #7777775c;
         border: 1px solid;
         border-radius: 4px;
 
-        &:focus-visible {
-            outline: #0073ea57 auto 1px;
+        &:focus {
+            outline: #0073ea57 auto 0.5px;
+        }
+
+        &.error {
+            outline: red auto 1px;
         }
     }
 
@@ -87,5 +97,16 @@
         &:hover {
             background-color: #023c7a;
         }
+    }
+
+    .login-err-msg {
+        font-size: em(12px, 1em);
+        font-weight: 300;
+        font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+        color: red;
+    }
+
+    .full-input {
+        padding-top: 20px;
     }
 }
