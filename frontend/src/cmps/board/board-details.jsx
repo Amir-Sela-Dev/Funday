@@ -11,7 +11,7 @@ import { LabelSelect } from '../lable-select';
 import { Tab, TabList } from "monday-ui-react-core";
 import { Home } from "monday-ui-react-core/icons";
 import { showErrorMsg } from "../../services/event-bus.service";
-import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
+import { Button, TextField, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
 import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Invite } from "monday-ui-react-core/icons";
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { Droppable } from 'react-beautiful-dnd';
@@ -150,7 +150,12 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     function handleFilterChange({ target }) {
         let { value, name: field } = target
+        console.log('target', target);
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    }
+
+    function handleFilterChangeMonday(value) {
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, 'title': value }))
     }
 
     function handleLableChange(lables) {
@@ -252,7 +257,16 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 leftIcon={Search}>
                                 <span>Search</span>
                             </Button>
-
+                            {isSeachClicked &&
+                                <div className="search-input-desktop flex">
+                                    <TextField
+                                        iconName={Search}
+                                        placeholder="Search"
+                                        wrapperClassName="monday-storybook-text-field_size"
+                                        onChange={handleFilterChangeMonday}
+                                        onBlur={() => { setIsSeachClicked(false) }}
+                                    />
+                                </div>}
                             <div
                                 className={"search-bar-mobile flex" + (isSeachClicked ? ' on' : '')}>
                                 <span
@@ -298,7 +312,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         </Flex>
                     </div>
                 </div>
-            </div>
+            </div >
             {!isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
@@ -314,19 +328,20 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
 
-            {isKanban && <Droppable droppableId="kanbanGruopList" type="kanbaGgroup">
-                {(provided) => (
+            {
+                isKanban && <Droppable droppableId="kanbanGruopList" type="kanbaGgroup">
+                    {(provided) => (
 
-                    <div className="drag-groups-container"
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                    >
+                        <div className="drag-groups-container"
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
 
-                        <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
+                            <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
             }
 
 
