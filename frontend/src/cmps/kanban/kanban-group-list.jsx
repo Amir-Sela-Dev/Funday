@@ -105,23 +105,25 @@ export function KanbansGroupList({ board, toggleModal, setFilter }) {
 
             {board.groups.map((group, index) =>
 
-                <Draggable key={group.id} draggableId={`group ${group.id}`} index={index} type="group" >
-                    {(provided) => (
-                        <div
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
 
-                        >
+                <li className="kanban-group-preview-line" key={group.id}>
+                    <Draggable key={group.id} draggableId={`group ${group.id}`} index={index} type="group" >
+                        {(provided) => (
+                            <div
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                ref={provided.innerRef}
+                                className='flex'
 
-                            <li className="kanban-group-preview-line" key={group.id}>
+                            >
+
                                 <KanbanGroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
+                            </div>
+                        )}
 
-                            </li>
-                        </div>
-                    )}
+                    </Draggable>
 
-                </Draggable>
+                </li>
 
             )}
 

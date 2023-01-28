@@ -21,7 +21,7 @@ export function DynamicModal({ lables, task, group, board, lableName }) {
     return <ul className="status-picker modal open" >
         <div className="arrow-up"></div>
         {lables.map(lable => (<li key={lable.id}
-            className='label'
+            className='label '
             style={{ background: lable.color }} onClick={() => { onAddTaskLable(lable) }}>{lable.txt}</li>)
         )}</ul>
 

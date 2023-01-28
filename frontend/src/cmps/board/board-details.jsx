@@ -279,7 +279,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
 
-            {isKanban && <Droppable droppableId="kanbanGruopList" type="kanbaGgroup">
+            {isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
                     <div className="drag-groups-container"
@@ -293,7 +293,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 )}
             </Droppable>
             }
-
 
 
 
