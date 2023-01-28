@@ -1,17 +1,21 @@
 import { Tooltip } from "antd";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { showSuccessMsg } from "../../services/event-bus.service";
-import { saveGroup } from "../../store/board.action";
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
+import { saveGroup, saveTask } from "../../store/board.action";
 import { TaskList } from "../task/task-list"
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { KanbanTaskList } from "./kanban-task-list";
+import { boardService } from "../../services/board.service";
 
 export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, index }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
     // let { board } = useSelector((storeState) => storeState.boardModule)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [tasks, setTasks] = useState(group.tasks)
+    const [newTask, setNewTask] = useState(boardService.getEmptyTask())
+    const [isAddItem, setIsAddItem] = useState(false)
+
 
     useEffect(() => {
         setTasks(group.tasks)
@@ -42,9 +46,32 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
         }
     }
 
-    function handleInputChange(event) {
-        setGroupToSend({ ...groupToSend, title: event.target.value })
+    // function handleInputChange(event) {
+    //     setGroupToSend({ ...groupToSend, title: event.target.value })
+    // }
+
+    async function onSaveTask(event) {
+        event.preventDefault()
+        if (!newTask.title) return
+        try {
+            await saveTask(board, group.id, newTask)
+            setNewTask(boardService.getEmptyTask())
+            setIsAddItem(false)
+            showSuccessMsg('Task added')
+        } catch (err) {
+            showErrorMsg('Cannot add task')
+        }
     }
+
+
+    function handleInputChange({ target }) {
+        let { value, name: field } = target
+        setNewTask((prevTask) => {
+            return { ...prevTask, [field]: value }
+        })
+    }
+
+
 
     function openOptionModal() {
         setIsBoardOptionsOpen(!isBoardOptionsOpen)
@@ -84,14 +111,32 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
             </div>
 
             <div className="kanban-card-container">
-                aaaaa
+                <KanbanTaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
+
             </div>
 
             {/* <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} /> */}
-            <KanbanTaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
 
             <div className="add-task">
-                + Add item
+                {!isAddItem && <h4 onClick={() => { setIsAddItem(true) }}>+ Add item</h4>}
+
+                {isAddItem && <form className='task-input-row' onSubmit={onSaveTask} >
+                    <input
+                        className="add-task-input"
+                        placeholder=''
+                        type="text"
+                        name="title"
+                        value={newTask.title}
+                        onChange={handleInputChange}
+                        onBlur={ev => onSaveTask(ev)}
+                    />
+                    <button> +Add </button>
+                </form>
+
+                }
+
+
+
             </div>
 
             <div className="kanban-color"></div>

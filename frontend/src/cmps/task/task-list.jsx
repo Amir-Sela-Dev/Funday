@@ -189,7 +189,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                                 tasks.map((currTask, index) => {
                                     return (
                                         <div onClick={(ev) => { ev.stopPropagation() }}>
-                                            <Draggable draggableId={currTask.id} index={index} type="task">
+                                            <Draggable draggableId={currTask?.id} index={index} type="task">
                                                 {(provided) => (
                                                     <div
 

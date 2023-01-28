@@ -1,0 +1,50 @@
+.kanban-task-modal {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "task-info task-details";
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 0 12px 1px grey;
+    height: 80%;
+    transform: translate(50%, -50%);
+    left: -25%;
+    top: 50%;
+    transition: all 0.3s ease 0s;
+    width: 80%;
+    z-index: 71;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    color: #323338;
+    border-radius: 8px;
+
+    .kanban-task-details {
+        grid-area: task-details;
+        max-height: 100%;
+        max-width: 100%;
+
+        box-shadow: none;
+
+        .opend-input {
+            width: 100%;
+            height: 40px;
+            border-radius: 0.5em;
+        }
+
+        .tabs--wrapper {
+            padding-bottom: 0;
+        }
+
+    }
+
+    .task-info {
+        grid-area: task-info;
+        height: 100%;
+
+    }
+
+    hr {
+        border: $clr1 solid 1px;
+
+    }
+}

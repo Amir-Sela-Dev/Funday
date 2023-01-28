@@ -320,22 +320,20 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
 
-            {
-                isKanban && <Droppable droppableId="kanbanGruopList" type="kanbaGgroup">
-                    {(provided) => (
+            {isKanban && <Droppable droppableId="gruopList" type="group">
+                {(provided) => (
 
-                        <div className="drag-groups-container"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
+                    <div className="drag-groups-container"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
 
-                            <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
+                        <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
             }
-
 
 
 

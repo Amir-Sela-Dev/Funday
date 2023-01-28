@@ -8,6 +8,7 @@ import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-cor
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { GroupBottomBar } from "../group/group-bottom-bar";
 import { TaskPreview } from "../task/task-preview";
+import { KanbanTaskPreview } from "./kanban-task-preview";
 
 export function KanbanTaskList({ group, tasks, toggleModal }) {
 
@@ -35,49 +36,56 @@ export function KanbanTaskList({ group, tasks, toggleModal }) {
 
 
     return (
-        <div>
-            {/* onDragEnd={handleType1} */}
+        <div className="kanban-task-list">
+
+            <Droppable droppableId={group.id} type="task">
+                {(provided) => (
+
+                    <div className="drag-tasks-container"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        {
+                            tasks.map((currTask, index) => {
+                                return (
+                                    <div onClick={(ev) => { ev.stopPropagation() }}>
+                                        <Draggable draggableId={currTask?.id} index={index} type="task">
+                                            {(provided) => (
+                                                <div
+
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    ref={provided.innerRef}
+                                                    className="kanban-task-preview flex"
+
+                                                >
+                                                    <KanbanTaskPreview
+                                                        index={index}
+                                                        key={currTask.id}
+                                                        task={currTask}
+                                                        onRemoveTask={onRemoveTask}
+                                                        setNewTask={setNewTask}
+                                                        onTitleInputChange={handleInputChange}
+                                                        group={group}
+                                                        board={board}
+                                                        tasks={tasks}
+                                                        toggleModal={toggleModal}
+                                                    />
 
 
-            <div className="task-list">
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    </div>
 
-                <Droppable droppableId={group.id} type="task">
-                    {(provided) => (
+                                )
+                            })
+                        }
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
 
-                        <div className="drag-tasks-container"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            {
-                                tasks.map((currTask, index) => {
-                                    return (
-                                        <div onClick={(ev) => { ev.stopPropagation() }}>
-                                            <Draggable draggableId={currTask.id} index={index} type="task">
-                                                {(provided) => (
-                                                    <div
-
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        ref={provided.innerRef}
-                                                        className="task-preview flex"
-
-                                                    >
-
-
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        </div>
-
-                                    )
-                                })
-                            }
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-
-            </div>
         </div>
 
     )

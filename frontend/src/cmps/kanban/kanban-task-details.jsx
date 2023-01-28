@@ -8,22 +8,16 @@ import { utilService } from "../../services/util.service";
 import dayjs from "dayjs"
 import { Tab, TabList, IconButton } from "monday-ui-react-core";
 import { Home, Close } from "monday-ui-react-core/icons";
-import { TaskUpdates } from "./task-updates";
-import { TaskActivityLog } from "./task-activity-log";
+import { TaskUpdates } from "../task/task-updates";
+import { TaskActivityLog } from "../task/task-activity-log";
 var weekday = require('dayjs/plugin/weekday')
 
-export function TaskDetails({ board, group, task = '', closeModal, modalState }) {
+export function KanbanTaskDetails({ board, group, task = '' }) {
     const [value, setValue] = useState('');
     const [comment, setComment] = useState(boardService.getDefaultComment());
     const [isActivityOpen, setIsActivityOpen] = useState(false);
 
-    const emtyModalImg = 'task-modal-empty-state.svg'
-    const whiteHome = 'white-home.svg'
-    const clock = 'clock.svg'
 
-    function onCloseModal() {
-        closeModal()
-    }
 
     async function onAddTaskComment() {
         if (!value) return
@@ -60,12 +54,10 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     if (!task) return
     return (
         <section>
-            {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
-            <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
+            <div className='kanban-task-details task-details-modal task-modal-open'>
                 <div>
                     <IconButton
                         icon={Close}
-                        onClick={onCloseModal}
                         className="return-btn"
                     />
                 </div>
