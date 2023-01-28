@@ -61,7 +61,7 @@ export function GroupBottomBar({ board, group }) {
     return (
         <section className="group-bottom-bar flex">
             <div className="flex">
-                <div className="sticky-grid flex">
+                <div className="sticky-grid after-add-tast flex">
                     <div class="white-background"></div>
                     <div className="task-txt bar-place-holder task-column"></div>
                 </div>

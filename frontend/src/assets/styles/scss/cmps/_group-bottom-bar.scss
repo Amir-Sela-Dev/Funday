@@ -1,16 +1,17 @@
 .group-bottom-bar {
-    .bar-person {
+    @include for-mobile-layout {
+        margin-left: 23px;
+    }
 
+    .bar-person {
         border-radius: 0 0 0 8px;
         border-left: #d0d4e4 solid 1px;
-
     }
 
     .label-progress-bar {
         margin-block: 6px;
         margin-inline: 8px;
         width: 100%;
-
     }
 
     .status-progress {
@@ -19,7 +20,6 @@
         &:hover {
             margin-block: -3px;
             border-radius: 2px;
-
         }
     }
 
@@ -31,6 +31,5 @@
         @include for-mobile-layout {
             width: 287px;
         }
-
     }
 }

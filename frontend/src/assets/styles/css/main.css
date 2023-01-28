@@ -149,7 +149,7 @@
 }
 @media (min-width: 500px) {
   .main-container {
-    grid-template-columns: minmax(20px, 1fr) minmax(auto, 460px) minmax(20px, 1fr);
+    grid-template-columns: 10px minmax(auto, 460px) 10px;
   }
 }
 @media (min-width: 760px) {
@@ -174,6 +174,14 @@
   left: 40px;
   z-index: 5;
   background-color: white;
+}
+@media (max-width: 500px) {
+  .sticky-grid {
+    left: 5px;
+  }
+  .sticky-grid.after-add-tast {
+    display: none;
+  }
 }
 
 .sticky-board-header {
@@ -200,12 +208,22 @@
   background-color: white;
   z-index: 20;
 }
+@media (max-width: 500px) {
+  .sticky-group-title {
+    top: 128px;
+  }
+}
 
 .sticky-group-title-down {
   position: sticky;
   top: 154px;
   z-index: 20;
   background-color: white;
+}
+@media (max-width: 500px) {
+  .sticky-group-title-down {
+    top: 83px;
+  }
 }
 
 * {
@@ -567,7 +585,8 @@ button {
 }
 @media (max-width: 500px) {
   .app-index {
-    grid-template-areas: "board-details board-details  board-details" "side-nav  side-nav  side-nav";
+    grid-template-columns: 1fr;
+    grid-template-areas: "board-details" "side-nav";
   }
   .app-index .work-space {
     display: none;
@@ -1437,7 +1456,7 @@ button {
 }
 @media (max-width: 500px) {
   .task-txt {
-    width: 220px;
+    width: 170px;
   }
 }
 
@@ -1462,6 +1481,16 @@ button {
 .task-persons {
   width: 98px;
 }
+@media (max-width: 500px) {
+  .task-persons {
+    margin-left: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .task-persons.upper-task {
+    margin-left: 29px;
+  }
+}
 
 .task-icon {
   height: 22px;
@@ -1482,6 +1511,19 @@ button {
 .task-list .drag-tasks-container > * {
   min-width: min-content;
 }
+.task-list .mobile-only {
+  display: none;
+}
+@media (max-width: 500px) {
+  .task-list .mobile-only {
+    display: flex;
+  }
+}
+@media (max-width: 500px) {
+  .task-list .only-desktop {
+    display: none;
+  }
+}
 .task-list .white-background {
   position: absolute;
   background-color: #fff;
@@ -1495,8 +1537,8 @@ button {
   min-width: min-content;
 }
 @media (max-width: 500px) {
-  .task-list .task-title-row:nth-child(1) {
-    margin-left: 23px;
+  .task-list .task-title-row {
+    margin-left: 4px;
   }
 }
 .task-list .menu-modal p {
@@ -1531,6 +1573,11 @@ button {
 .upper-task {
   border-top: #d0d4e4 1px solid;
 }
+@media (max-width: 500px) {
+  .upper-task.task-title {
+    width: 170px;
+  }
+}
 
 .checkbox-column {
   display: flex;
@@ -1538,8 +1585,14 @@ button {
   cursor: pointer;
   width: 39px;
 }
+@media (max-width: 500px) {
+  .checkbox-column {
+    display: none;
+  }
+}
 .checkbox-column.disabled {
   cursor: default;
+  border-bottom: none;
 }
 
 .task-checkbox {
@@ -1563,8 +1616,26 @@ button {
   color: #323338;
 }
 
+.add-task-wrap-mobile {
+  display: none;
+}
+@media (max-width: 500px) {
+  .add-task-wrap-mobile {
+    display: flex;
+  }
+}
+
 .add-task-wrap {
-  border-bottom: #d0d4e4 1px solid;
+  border-right: 1px solid #d0d4e4;
+  border-bottom: 1px solid #d0d4e4;
+}
+@media (max-width: 500px) {
+  .add-task-wrap {
+    border: none;
+  }
+  .add-task-wrap .mobile-version {
+    position: unset;
+  }
 }
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
@@ -1575,6 +1646,13 @@ button {
   width: 100%;
   border-block-start: none;
 }
+@media (max-width: 500px) {
+  .task-input-row {
+    width: 170px;
+    border-right: 1px solid #d0d4e4;
+    border-bottom: 1px solid #d0d4e4;
+  }
+}
 
 .add-task-input {
   margin: 8px 0 8px 10px;
@@ -1582,6 +1660,13 @@ button {
   padding-left: 16px;
   padding-top: 2px;
   float: left;
+}
+@media (max-width: 500px) {
+  .add-task-input {
+    width: 153px;
+    padding-left: 0;
+    margin: 8px 8px 8px 8px;
+  }
 }
 
 .colored-tag {
@@ -1904,6 +1989,11 @@ button {
   margin: 32px 0;
   color: #323338;
 }
+@media (max-width: 500px) {
+  .group-preview-line {
+    margin: 0;
+  }
+}
 .group-preview-line .number-of-tasks {
   font-size: 14px;
   color: #323338;
@@ -1932,6 +2022,13 @@ button {
   font-family: Figtree;
   margin-bottom: 57px;
   min-width: fit-content;
+}
+@media (max-width: 500px) {
+  .group-preview {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: -30px;
+  }
 }
 .group-preview .option-icon {
   margin-inline-start: -33px;
@@ -1976,7 +2073,7 @@ button {
 }
 @media (max-width: 500px) {
   .group-list {
-    padding-inline-start: 15px;
+    padding-inline-start: 0;
   }
 }
 
@@ -2015,7 +2112,7 @@ button {
   .board-actions button {
     margin-right: 10px;
     height: 30px;
-    background: #dcdfec;
+    background-color: rgba(220, 223, 236, 0.45);
   }
 }
 .board-actions .new-group-btn {
@@ -2147,7 +2244,6 @@ button {
     z-index: 6;
     background: white;
     padding-block-end: 10px;
-    box-shadow: 0px 6px 8px -9px #c3c6d4;
   }
 }
 .board-actions .bar-tables {
@@ -2372,8 +2468,8 @@ button {
   background-color: #0073ea;
   border-radius: 50%;
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 6px;
+  right: 6px;
 }
 .icon-btn-add svg {
   width: 25px;
@@ -2404,7 +2500,7 @@ button {
   padding-inline: 10px;
 }
 .board-actions-modal.active {
-  z-index: 6;
+  z-index: 32;
   width: 60vw;
   height: auto;
 }
@@ -2472,6 +2568,11 @@ button {
   margin: 0;
 }
 
+@media (max-width: 500px) {
+  .group-bottom-bar {
+    margin-left: 23px;
+  }
+}
 .group-bottom-bar .bar-person {
   border-radius: 0 0 0 8px;
   border-left: #d0d4e4 solid 1px;

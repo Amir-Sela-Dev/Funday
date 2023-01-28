@@ -357,7 +357,7 @@
     }
 
     @include for-mobile-layout {
-        width: 220px;
+        width: 170px;
     }
 }
 
@@ -382,6 +382,16 @@
 
 .task-persons {
     width: 98px;
+
+    @include for-mobile-layout {
+        margin-left: 10px;
+    }
+
+    &.upper-task {
+        @include for-mobile-layout {
+            margin-left: 29px;
+        }
+    }
 }
 
 .task-icon {

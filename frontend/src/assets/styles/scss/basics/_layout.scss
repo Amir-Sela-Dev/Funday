@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 20px 1fr 20px;
 
-    >* {
+    > * {
         grid-column: 2;
 
         &.full {
@@ -11,7 +11,7 @@
     }
 
     @include for-narrow-layout {
-        grid-template-columns: minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
+        grid-template-columns: 10px minmax(auto, $mobile-breakpoint) 10px;
     }
 
     @include for-normal-layout {
@@ -35,6 +35,14 @@
     left: 40px;
     z-index: 5;
     background-color: white;
+
+    @include for-mobile-layout {
+        left: 5px;
+
+        &.after-add-tast {
+            display: none;
+        }
+    }
 }
 
 .sticky-board-header {
@@ -60,6 +68,10 @@
     top: 201px;
     background-color: white;
     z-index: 20;
+
+    @include for-mobile-layout {
+        top: 128px;
+    }
 }
 
 .sticky-group-title-down {
@@ -67,4 +79,8 @@
     top: 154px;
     z-index: 20;
     background-color: white;
+
+    @include for-mobile-layout {
+        top: 83px;
+    }
 }
