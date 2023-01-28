@@ -64,6 +64,8 @@ async function save(board) {
     } else {
         // board.owner = userService.getLoggedinUser()
         // savedBoard = await storageService.post(STORAGE_KEY, board)
+        console.log('BASE URL', BASE_URL)
+        console.log('board posted', board);
         savedBoard = await httpService.post(BASE_URL, board)
     }
     return savedBoard
@@ -86,6 +88,7 @@ function getEmptyBoard() {
         archivedAt: Date.now(),
         activities: [],
         cmpsOrder: ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox'],
+        users: [],
         status: [
             { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
             { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },

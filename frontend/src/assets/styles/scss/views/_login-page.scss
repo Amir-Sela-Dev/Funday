@@ -91,3 +91,18 @@
         }
     }
 }
+
+.signup-section {
+    margin-top: 120px;
+
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &>input {
+            margin-right: 0;
+        }
+    }
+}

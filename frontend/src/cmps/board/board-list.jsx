@@ -33,7 +33,7 @@ export function BoardList({ boards }) {
     async function onDuplicateBoard(boardId) {
         try {
             let duplicateBoard = await boardService.get(boardId)
-            duplicateBoard._id = ''
+            delete duplicateBoard._id
             duplicateBoard.title = 'Copy ' + duplicateBoard.title
             await saveBoard(duplicateBoard)
             closeModal()
