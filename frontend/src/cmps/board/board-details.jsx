@@ -114,16 +114,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
             console.log('Couldn\'t load users..', err);
         }
     }
-    async function getUserByName(username) {
-        try {
-            const foundUser = await users.find(user => user.username === username)
-            console.log('Found user!', foundUser)
-        }
-        catch (err) {
-            console.log('User not found', err)
-        }
-    }
-
 
     function setFilter(filterBy) {
         onLoadBoard(filterBy)
@@ -209,7 +199,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     }
 
                     <div className="invite-users" onClick={() => {
-                        getUserByName('sheilan@gmail.com')
                         setInviteModal(true)
                     }}>
                         <Button className="user-invite-btn" leftIcon={Invite}>
@@ -228,7 +217,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 </TabList>
 
                 <div className="board-second-title-wrap">
-                    <hr className="group-list-main-hr" />
+                    {/* <hr className="group-list-main-hr" /> */}
                     <div className="board-actions flex">
                         <Flex style={{ width: "100%" }}>
                             <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>

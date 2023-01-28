@@ -9,7 +9,7 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
     const [suggestedUsers, setSuggestedUsers] = useState([])
     useEffect(() => {
         onGetSuggestedUsers()
-    }, persons)
+    }, [persons])
 
     function minifyName(name) {
         const nameArr = name.split(' ');
@@ -24,25 +24,9 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
 
 
     async function onGetSuggestedUsers() {
-        try {
-            const foundUsers = await users.filter(currUser => {
-                return (board.users.includes(currUser._id) && !persons.some(taskUser => taskUser._id === currUser._id))
-            })
-            console.log('found users!!', foundUsers)
-            setSuggestedUsers([...foundUsers])
-            return foundUsers
-        } catch (err) {
-
-        }
-    }
-    async function onGetUserById(userId) {
-        try {
-            const { username, password, ...foundUser } = await userService.getById(userId)
-            console.log('Found user!', foundUser)
-        }
-        catch (err) {
-            console.log('User not found', err)
-        }
+        let suggested = users.filter(user => board.users.includes(user._id))
+        if (persons.length) suggested = users.filter(user => board.users.includes(user._id) && !persons.find(person => person._id === user._id))
+        setSuggestedUsers(suggested)
     }
     const xIcon = 'x-icon.svg'
     return (
@@ -73,7 +57,10 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                         return (
                             <div className="person-item flex align-center"
                                 key={currPerson.id}
-                                onClick={() => { onAddTaskPerson(currPerson) }}>
+                                onClick={() => {
+                                    onAddTaskPerson(currPerson)
+
+                                }}>
                                 <img src={currPerson.imgUrl} />
                                 <span>{currPerson.fullname}</span>
                             </div>

@@ -202,11 +202,44 @@
         padding-inline: 32px;
         padding-block: 24px;
         width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         &>.modal-title {
             font-weight: 400;
             font-size: 24px;
             color: var(--primary-text-color);
         }
+
+        &>* {
+            width: 100%;
+        }
+    }
+
+    & .user-round-icon {
+        height: 30px;
+        width: 30px;
+        margin-right: 12px;
+        border: 1px solid var(--ui-border-color);
+        border-radius: 50%;
+    }
+}
+
+.board-users-li {
+    font-size: 15px;
+    margin-bottom: 16px;
+    min-height: 36px;
+}
+
+.monday-storybook-text-field_size {
+    margin-block-end: 20px
+}
+
+.suggested-invites {
+    &>div {
+        // padding-inline: 0;
+        margin-block: 8px;
     }
 }

@@ -126,18 +126,15 @@ export function TaskPreview({
 
     async function onRemoveTaskPerson(person) {
         try {
-            let taskToSave = structuredClone(task)
-            // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons.filter(currPerson => currPerson.id !== person.id)] })
-            // await addActivity(board, 'Person', 'Remove person', taskToSave)
-            await saveTask(
-                board,
-                group.id,
-                { ...taskToSave, persons: [...taskToSave.persons.filter(currPerson => currPerson.id !== person.id)] }, 'Person', 'Remove person')
-            showSuccessMsg('Task update')
+            let taskToSave = structuredClone(task);
+            taskToSave.persons = taskToSave.persons.filter(currPerson => currPerson._id !== person._id);
+            await saveTask(board, group.id, taskToSave, 'Person', 'Remove person');
+            showSuccessMsg('Task update');
         } catch (err) {
-            showErrorMsg('Cannot update task')
+            showErrorMsg('Cannot update task');
         }
     }
+    
     function handleNameInputChange(event) {
 
         setTaskToUpdate({ ...taskToUpdate, title: event.target.value })
