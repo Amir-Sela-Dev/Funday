@@ -2270,6 +2270,11 @@ button {
 .board-actions .bar-filter {
   order: 4;
 }
+@media (min-width: 500px) {
+  .board-actions .bar-filter {
+    color: #74767d;
+  }
+}
 @media (max-width: 500px) {
   .board-actions .bar-filter {
     order: 2;
@@ -2524,6 +2529,18 @@ button {
     text-align: center;
   }
 }
+.board-title-wrap .icon-info {
+  margin-top: 2px;
+  margin-right: 6px;
+  width: 24px;
+  height: 20px;
+  color: #676879;
+}
+.board-title-wrap .icon-star {
+  width: 18px;
+  height: 18px;
+  color: #676879;
+}
 
 .tab--wrapper .board-details-tab {
   margin-bottom: 20px;
@@ -2592,12 +2609,28 @@ button {
   margin-left: auto;
 }
 .invite-users .user-invite-btn {
+  display: none;
   background: white;
   border: 1px solid #c3c6d4;
   margin-inline-end: 18px;
 }
 .invite-users .user-invite-btn:hover {
   background-color: #dcdfec;
+}
+@media (min-width: 500px) {
+  .invite-users .user-invite-btn {
+    display: inline-flex;
+  }
+}
+.invite-users .user-invite-btn.mobile {
+  display: none;
+  padding-inline: 8px;
+  margin-top: 8px;
+}
+@media (max-width: 500px) {
+  .invite-users .user-invite-btn.mobile {
+    display: inline-flex;
+  }
 }
 
 .invite-modal .dark-screen {
@@ -2610,11 +2643,38 @@ button {
   padding-inline: 32px;
   padding-block: 24px;
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .invite-modal .invite-menu > .modal-title {
   font-weight: 400;
   font-size: 24px;
   color: var(--primary-text-color);
+}
+.invite-modal .invite-menu > * {
+  width: 100%;
+}
+.invite-modal .invite-menu .monday-storybook-text-field_size {
+  margin-block-end: 20px;
+}
+.invite-modal .user-round-icon {
+  height: 30px;
+  width: 30px;
+  margin-right: 12px;
+  border: 1px solid var(--ui-border-color);
+  border-radius: 50%;
+}
+
+.board-users-li {
+  font-size: 15px;
+  margin-bottom: 16px;
+  min-height: 36px;
+}
+
+.suggested-invites > div {
+  margin-block: 8px;
 }
 
 .upload-preview input {

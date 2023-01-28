@@ -191,6 +191,10 @@
         // margin-left: 17px;
         order: 4;
 
+        @include for-narrow-layout {
+            color: #74767d;
+        }
+
         @include for-mobile-layout {
             order: 2;
 
@@ -209,13 +213,16 @@
             display: none;
         }
     }
-    .search-input-desktop{
+
+    .search-input-desktop {
         order: 1;
         display: flex;
-        @include for-mobile-layout{
+
+        @include for-mobile-layout {
             display: none;
         }
     }
+
     .search-bar-mobile {
         margin-block: 5px;
         margin-inline-start: auto;

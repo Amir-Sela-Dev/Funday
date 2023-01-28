@@ -104,6 +104,20 @@
         max-width: 100vw;
         text-align: center;
     }
+
+    & .icon-info {
+        margin-top: 2px;
+        margin-right: 6px;
+        width: 24px;
+        height: 20px;
+        color: $icon-color;
+    }
+
+    & .icon-star {
+        width: 18px;
+        height: 18px;
+        color: $icon-color;
+    }
 }
 
 .tab--wrapper .board-details-tab {
@@ -176,12 +190,26 @@
     margin-left: auto;
 
     & .user-invite-btn {
+        display: none;
         background: white;
         border: 1px solid $ui-border-color;
         margin-inline-end: 18px;
 
         &:hover {
             background-color: $primary-background-hover-color;
+        }
+
+        @include for-narrow-layout {
+            display: inline-flex;
+        }
+
+        &.mobile {
+            display: none;
+            padding-inline: 8px;
+            margin-top: 8px;
+            @include for-mobile-layout {
+                display: inline-flex;
+            }
         }
     }
 }
@@ -199,11 +227,46 @@
         padding-inline: 32px;
         padding-block: 24px;
         width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         & > .modal-title {
             font-weight: 400;
             font-size: 24px;
             color: var(--primary-text-color);
         }
+
+        &>* {
+            width: 100%;
+        }
+
+        & .monday-storybook-text-field_size {
+            margin-block-end: 20px
+        }
+    }
+
+    & .user-round-icon {
+        height: 30px;
+        width: 30px;
+        margin-right: 12px;
+        border: 1px solid var(--ui-border-color);
+        border-radius: 50%;
+    }
+}
+
+.board-users-li {
+    font-size: 15px;
+    margin-bottom: 16px;
+    min-height: 36px;
+}
+
+
+
+.suggested-invites {
+    &>div {
+        // padding-inline: 0;
+        margin-block: 8px;
     }
 }
