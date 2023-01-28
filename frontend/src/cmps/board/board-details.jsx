@@ -8,7 +8,7 @@ import { boardService } from "../../services/board.service"
 import { saveBoard } from "../../store/board.action";
 import { showSuccessMsg } from "../../services/event-bus.service"
 import { LabelSelect } from '../lable-select';
-import { Tab } from "monday-ui-react-core";
+import { Tab, TabList } from "monday-ui-react-core";
 import { Home } from "monday-ui-react-core/icons";
 import { showErrorMsg } from "../../services/event-bus.service";
 import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
@@ -19,6 +19,7 @@ import { socketService, SOCKET_EMIT_LOAD_BOARD, SOCKET_EMIT_SET_TOPIC, SOCKET_EV
 import { BoardInviteMenu } from "./board-invite-menu"
 import { loadUsers } from "../../store/user.actions"
 
+import { KanbansGroupList } from "../kanban/kanban-group-list"
 
 export function BoardDetails({ setBoardToDrag, board }) {
     // let { board } = useSelector((storeState) => storeState.boardModule)
@@ -30,6 +31,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const [task, setTask] = useState(null)
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
+    const [isKanban, setIsKanban] = useState(false)
     const { boardId } = useParams()
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -210,11 +212,16 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         </Button>
                     </div>
                 </div>
-                <div>
-                    <Tab className='board-details-tab' style={{ color: "  #0070e5" }} icon={Home} active>
+                <TabList className='tab-lists'>
+                    <Tab className='board-details-tab' style={{ color: "  #0070e5", border: 'black solid 1px' }} icon={Home} active onClick={() => { setIsKanban(false) }}>
                         Main Table
                     </Tab>
-                </div>
+
+                    <Tab className='tab' style={{ color: "  #0070e5" }} onClick={() => { setIsKanban(true) }}>
+                        Kanban
+                    </Tab>
+                </TabList>
+
                 <div className="board-second-title-wrap">
                     <hr className="group-list-main-hr" />
                     <div className="board-actions flex">
@@ -292,7 +299,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     </div>
                 </div>
             </div>
-            <Droppable droppableId="gruopList" type="group">
+            {!isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
                     <div className="drag-groups-container"
@@ -305,6 +312,25 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     </div>
                 )}
             </Droppable>
+            }
+
+            {isKanban && <Droppable droppableId="kanbanGruopList" type="kanbaGgroup">
+                {(provided) => (
+
+                    <div className="drag-groups-container"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+
+                        <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
+            }
+
+
+
 
             <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
         </section >
