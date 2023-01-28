@@ -9,6 +9,15 @@
         padding-inline: 8px;
     }
 
+    .tab-lists {
+        padding: 0;
+
+        ul {
+            padding: 0;
+
+        }
+    }
+
 }
 
 .board-title-wrap {
@@ -48,6 +57,8 @@
     width: 3ch;
 
     @include for-narrow-layout {
+
+
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
@@ -161,5 +172,41 @@
         z-index: 32;
         width: 60vw;
         height: auto;
+    }
+}
+
+.invite-users {
+    margin-left: auto;
+
+    & .user-invite-btn {
+        background: white;
+        border: 1px solid $ui-border-color;
+        margin-inline-end: 18px;
+
+        &:hover {
+            background-color: $primary-background-hover-color;
+        }
+    }
+}
+
+.invite-modal {
+    & .dark-screen {
+        transition: all 1s;
+        background: rgba(0, 68, 156, 0.3);
+    }
+
+    & .invite-menu {
+        margin: auto;
+        // margin-right: 15px;
+        z-index: 70;
+        padding-inline: 32px;
+        padding-block: 24px;
+        width: 400px;
+
+        &>.modal-title {
+            font-weight: 400;
+            font-size: 24px;
+            color: var(--primary-text-color);
+        }
     }
 }

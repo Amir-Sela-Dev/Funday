@@ -1,0 +1,52 @@
+.kanban-group-preview-line {
+    min-height: 100vh;
+    margin-right: 30px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+    .kanban-group-preview {
+        min-width: 260px;
+        max-height: 100%;
+        border: $clr1 solid 1px;
+        flex-direction: column;
+        border-radius: 8px 8px 8px 4px;
+        background-color: #f6f7fb;
+        line-height: 22.5px;
+        position: relative;
+
+    }
+
+    .kanban-tittle-wrapper {
+        height: 44px;
+        background-color: purple;
+        color: white;
+        border-radius: 8px 8px 0px 0px;
+    }
+
+    .kanban-card-container {
+        min-height: 126px;
+        padding: 0px 4px 0 10px;
+        margin: 8px 4px 0 0;
+    }
+
+    .add-task {
+        min-height: 37px;
+        color: #676879;
+        padding: 4px 8px 4px 10px;
+    }
+
+    .kanban-color {
+        height: calc(100% - 42px);
+        width: 4px;
+        position: absolute;
+        top: 42px;
+        left: 0;
+        border-bottom-left-radius: 4px;
+        background-color: purple;
+    }
+
+}

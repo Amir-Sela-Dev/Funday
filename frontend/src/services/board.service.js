@@ -32,7 +32,7 @@ window.cs = boardService
 async function query(filterBy = { title: '' }) {
     const queryParams = `?title=${filterBy.title}`
     console.log(queryParams);
-    return httpService.get(BASE_URL, queryParams)
+    return httpService.get(BASE_URL + queryParams)
     // try {
     //     let boards = await storageService.query(STORAGE_KEY)
     //     if (filterBy.title) {

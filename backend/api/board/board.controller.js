@@ -5,7 +5,9 @@ const logger = require('../../services/logger.service')
 async function getBoards(req, res) {
     try {
         logger.debug('Getting Boards')
-        const filterBy = req.query.title
+        const filterBy = {
+            title: req.query.title || ''
+        }
         console.log(req.query);
         const boards = await boardService.query(filterBy)
 

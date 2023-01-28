@@ -1031,7 +1031,7 @@ button {
   position: relative;
   background-color: #fff;
   box-shadow: 0 0 12px 1px grey;
-  height: 245px;
+  height: 228px;
   transform: translate(50%, -50%);
   left: 50%;
   top: 0%;
@@ -1045,34 +1045,43 @@ button {
   color: #323338;
   border-radius: 8px;
 }
-.work-space .main-modal .close-modal {
+.work-space .main-modal input:focus-visible {
+  outline: var(--primary-color) 1px solid;
+}
+.work-space .close-modal {
   align-self: flex-end;
   padding-inline-end: 1em;
 }
-.work-space .main-modal form {
+.work-space form {
   flex-direction: column;
   width: 351px;
 }
-.work-space .main-modal .modal-btns {
+.work-space .modal-btns {
   align-self: end;
   margin: 0;
   padding: 0;
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 32px;
 }
-.work-space .main-modal button {
+.work-space .modal-btns button {
   margin: 0;
   margin-inline-start: 20px;
   border-radius: 4px;
   background-color: #0073ea;
 }
-.work-space .main-modal .cancel-modal {
+.work-space .modal-btns button:nth-child(2):hover {
+  background-color: #0055ae;
+}
+.work-space .modal-btns .cancel-modal {
   background-color: #fff;
   color: #323338;
 }
-.work-space .main-modal input {
+.work-space .modal-btns .cancel-modal:hover {
+  background-color: var(--primary-background-hover-color);
+}
+.work-space input {
   width: 100%;
   height: 32px;
   border-radius: 4px;
@@ -1080,28 +1089,29 @@ button {
   border: #323338 solid 0.5px;
   font-family: Figtree;
 }
-.work-space .main-modal h1 {
+.work-space h1 {
   width: 100%;
   font-size: 32px;
 }
-.work-space .main-modal label {
+.work-space label {
   margin-bottom: 0;
 }
-.work-space .board-search {
+
+.board-search {
   display: flex;
   flex: 1;
 }
-.work-space .board-search::after {
+.board-search::after {
   outline: #0073ea 1px solid;
 }
-.work-space .board-search:focus {
+.board-search:focus {
   background-color: red;
 }
-.work-space .board-search .search-board-icon {
+.board-search .search-board-icon {
   position: absolute;
   padding-top: 2px;
 }
-.work-space .board-search input {
+.board-search input {
   font-family: inherit;
   font-size: 14px;
   margin: 0;
@@ -1112,16 +1122,17 @@ button {
   height: 30px;
   padding-top: 3px;
 }
-.work-space .board-search input:focus {
+.board-search input:focus {
   outline: none;
   border-radius: 0.2rem;
 }
-.work-space .board-filter,
-.work-space .board-add {
+
+.board-filter,
+.board-add {
   width: 100%;
 }
-.work-space .board-filter:hover,
-.work-space .board-add:hover {
+.board-filter:hover,
+.board-add:hover {
   background-color: #dcdfec;
   border-radius: 0.2rem;
   cursor: pointer;
@@ -1307,6 +1318,17 @@ button {
 }
 .task-preview .preview-timeline {
   width: 187px;
+}
+.task-preview .preview-timeline .dates-color {
+  justify-content: center;
+  align-items: center;
+  background-color: purple;
+  color: white;
+  text-align: center;
+  width: 80%;
+  height: 70%;
+  font-size: 13px;
+  border-radius: 20px;
 }
 .task-preview .preview-files {
   width: 139px;
@@ -2360,6 +2382,12 @@ button {
 .board-details a.tab-inner {
   padding-inline: 8px;
 }
+.board-details .tab-lists {
+  padding: 0;
+}
+.board-details .tab-lists ul {
+  padding: 0;
+}
 
 .board-title-wrap {
   padding-top: 15px;
@@ -2505,6 +2533,35 @@ button {
   height: auto;
 }
 
+.invite-users {
+  margin-left: auto;
+}
+.invite-users .user-invite-btn {
+  background: white;
+  border: 1px solid #c3c6d4;
+  margin-inline-end: 18px;
+}
+.invite-users .user-invite-btn:hover {
+  background-color: #dcdfec;
+}
+
+.invite-modal .dark-screen {
+  transition: all 1s;
+  background: rgba(0, 68, 156, 0.3);
+}
+.invite-modal .invite-menu {
+  margin: auto;
+  z-index: 70;
+  padding-inline: 32px;
+  padding-block: 24px;
+  width: 400px;
+}
+.invite-modal .invite-menu > .modal-title {
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--primary-text-color);
+}
+
 .upload-preview input {
   display: none;
 }
@@ -2597,6 +2654,71 @@ button {
   .group-bottom-bar .bar-place-holder {
     width: 287px;
   }
+}
+.group-bottom-bar .task-date {
+  justify-content: center;
+  align-items: center;
+}
+.group-bottom-bar .dates-color {
+  justify-content: center;
+  align-items: center;
+  background-color: purple;
+  color: white;
+  text-align: center;
+  width: 95%;
+  height: 70%;
+  font-size: 13px;
+  border-radius: 20px;
+}
+
+.kanban-group-list {
+  list-style: none;
+  margin: 0;
+  color: #323338;
+}
+
+.kanban-group-preview-line {
+  min-height: 100vh;
+  margin-right: 30px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.kanban-group-preview-line .kanban-group-preview {
+  min-width: 260px;
+  max-height: 100%;
+  border: #323338 solid 1px;
+  flex-direction: column;
+  border-radius: 8px 8px 8px 4px;
+  background-color: #f6f7fb;
+  line-height: 22.5px;
+  position: relative;
+}
+.kanban-group-preview-line .kanban-tittle-wrapper {
+  height: 44px;
+  background-color: purple;
+  color: white;
+  border-radius: 8px 8px 0px 0px;
+}
+.kanban-group-preview-line .kanban-card-container {
+  min-height: 126px;
+  padding: 0px 4px 0 10px;
+  margin: 8px 4px 0 0;
+}
+.kanban-group-preview-line .add-task {
+  min-height: 37px;
+  color: #676879;
+  padding: 4px 8px 4px 10px;
+}
+.kanban-group-preview-line .kanban-color {
+  height: calc(100% - 42px);
+  width: 4px;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  border-bottom-left-radius: 4px;
+  background-color: purple;
 }
 
 /*# sourceMappingURL=main.css.map */
