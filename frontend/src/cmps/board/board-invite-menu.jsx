@@ -19,15 +19,17 @@ export function BoardInviteMenu({ setModalState }) {
     }
 
     async function onLoadBoardUsers() {
-        board.users.map(async userId => {
-            try {
-                const foundUser = await getUserById(userId)
-                setBoardUsers(prevUsers => [...prevUsers, foundUser])
-                console.log('addedUserToBoard', foundUser)
-            } catch (err) {
-                console.log('User not found', err)
-            }
-        })
+        if (board.users.length){            
+            board.users.map(async userId => {
+                try {
+                    const foundUser = await getUserById(userId)
+                    setBoardUsers(prevUsers => [...prevUsers, foundUser])
+                    console.log('addedUserToBoard', foundUser)
+                } catch (err) {
+                    console.log('User not found', err)
+                }
+            })
+        }
     }
     async function onAddBoardUser(userId) {
         if (board.users.includes(userId)){

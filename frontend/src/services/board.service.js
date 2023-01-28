@@ -85,6 +85,7 @@ function getEmptyBoard() {
         archivedAt: Date.now(),
         activities: [],
         cmpsOrder: ['person', 'status', 'date', 'timeline', 'priority', 'files', 'checkbox'],
+        users: [],
         status: [
             { id: utilService.makeId(5), txt: 'Working on it', color: '#FDAB3D' },
             { id: utilService.makeId(5), txt: 'Done', color: '#00C875' },
