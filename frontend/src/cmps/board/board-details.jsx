@@ -206,6 +206,9 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         <Button className="user-invite-btn" leftIcon={Invite}>
                             {'Invite' + (board.users ? ` / ${board.users.length}` : '')}
                         </Button>
+                        <Button className="user-invite-btn mobile" leftIcon={Invite} size={Button.sizes.XS} noSidePadding={true}>
+                            {(board.users ? `/ ${board.users.length}` : '')}
+                        </Button>
                     </div>
                 </div>
                 <TabList className='tab-lists'>

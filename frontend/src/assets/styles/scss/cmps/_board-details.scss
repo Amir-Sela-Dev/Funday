@@ -108,15 +108,18 @@
         text-align: center;
     }
 
-    & .icon-info{
+    & .icon-info {
         margin-top: 2px;
         margin-right: 6px;
         width: 24px;
         height: 20px;
+        color: $icon-color;
     }
-    & .icon-favorite{
-        width: 16px;
-        height: 16px;
+
+    & .icon-star {
+        width: 18px;
+        height: 18px;
+        color: $icon-color;
     }
 }
 
@@ -190,12 +193,26 @@
     margin-left: auto;
 
     & .user-invite-btn {
+        display: none;
         background: white;
         border: 1px solid $ui-border-color;
         margin-inline-end: 18px;
 
         &:hover {
             background-color: $primary-background-hover-color;
+        }
+
+        @include for-narrow-layout {
+            display: inline-flex;
+        }
+
+        &.mobile {
+            display: none;
+            padding-inline: 8px;
+            margin-top: 8px;
+            @include for-mobile-layout {
+                display: inline-flex;
+            }
         }
     }
 }

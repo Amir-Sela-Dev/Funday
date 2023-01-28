@@ -2394,10 +2394,12 @@ button {
   margin-right: 6px;
   width: 24px;
   height: 20px;
+  color: #676879;
 }
-.board-title-wrap .icon-favorite {
-  width: 16px;
-  height: 16px;
+.board-title-wrap .icon-star {
+  width: 18px;
+  height: 18px;
+  color: #676879;
 }
 
 .tab--wrapper .board-details-tab {
@@ -2467,12 +2469,28 @@ button {
   margin-left: auto;
 }
 .invite-users .user-invite-btn {
+  display: none;
   background: white;
   border: 1px solid #c3c6d4;
   margin-inline-end: 18px;
 }
 .invite-users .user-invite-btn:hover {
   background-color: #dcdfec;
+}
+@media (min-width: 500px) {
+  .invite-users .user-invite-btn {
+    display: inline-flex;
+  }
+}
+.invite-users .user-invite-btn.mobile {
+  display: none;
+  padding-inline: 8px;
+  margin-top: 8px;
+}
+@media (max-width: 500px) {
+  .invite-users .user-invite-btn.mobile {
+    display: inline-flex;
+  }
 }
 
 .invite-modal .dark-screen {
