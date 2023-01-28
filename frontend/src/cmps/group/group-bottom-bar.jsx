@@ -42,7 +42,7 @@ export function GroupBottomBar({ board, group }) {
                 });
             }
         });
-        // console.log(persons);
+        console.log(persons);
         return persons
     }
 
