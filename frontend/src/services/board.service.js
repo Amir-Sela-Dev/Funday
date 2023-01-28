@@ -63,6 +63,8 @@ async function save(board) {
     } else {
         // board.owner = userService.getLoggedinUser()
         // savedBoard = await storageService.post(STORAGE_KEY, board)
+        console.log('BASE URL', BASE_URL)
+        console.log('board posted', board);
         savedBoard = await httpService.post(BASE_URL, board)
     }
     return savedBoard

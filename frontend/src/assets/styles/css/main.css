@@ -691,6 +691,19 @@ button {
   background-color: #023c7a;
 }
 
+.signup-section {
+  margin-top: 120px;
+}
+.signup-section form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-section form > input {
+  margin-right: 0;
+}
+
 .main-header {
   background-color: #f7f7f7;
   padding: 10px;

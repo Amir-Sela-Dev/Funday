@@ -141,6 +141,10 @@ export function LoginSignup(props) {
             </form>}
             <div className="signup-section">
                 {isSignup && <form className="signup-form" onSubmit={onSignupSubmit}>
+                    <div className="login-form-title">
+                        <h2 className='log-title'>Sign</h2><h2 className='in-title'>up</h2>
+                    </div>
+                    <p>Join us!</p>
                     <input
                         type="text"
                         name="fullname"

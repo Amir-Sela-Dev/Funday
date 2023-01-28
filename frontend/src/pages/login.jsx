@@ -7,12 +7,13 @@ import { Header } from '../cmps/header'
 
 export function Login() {
     const user = useSelector(storeState => storeState.userModule.user)
+    const boards = useSelector(storeState => storeState.boardModule.boards)
     const navigate = useNavigate()
 
     async function onLogin(credentials) {
         try {
             const user = await login(credentials)
-            navigate(`/board/uPD5q`)
+            navigate(`/board/${boards?.length ? boards[0]._id : ''}`)
             showSuccessMsg(`Welcome: ${user.fullname}`)
         } catch (err) {
             showErrorMsg('Cannot login')
@@ -21,7 +22,7 @@ export function Login() {
     async function onSignup(credentials) {
         try {
             const user = await signup(credentials)
-            navigate(`/board/uPD5q`)
+            navigate(`/board/${boards?.length ? boards[0]._id : ''}`)
             showSuccessMsg(`Welcome new user: ${user.fullname}`)
         } catch (err) {
             showErrorMsg('Cannot signup')
