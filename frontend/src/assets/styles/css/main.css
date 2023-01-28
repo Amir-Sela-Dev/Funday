@@ -1203,7 +1203,6 @@ button {
   bottom: auto;
   transition: opacity 0.15s;
 }
-
 .task-preview {
   align-items: center;
   color: #323338;
@@ -2649,7 +2648,10 @@ button {
 
 .invite-modal .dark-screen {
   transition: all 1s;
-  background: rgba(0, 68, 156, 0.3);
+  background: rgba(41, 47, 76, 0.7019607843);
+}
+.invite-modal .dark-screen:hover {
+  opacity: 1;
 }
 .invite-modal .invite-menu {
   margin: auto;

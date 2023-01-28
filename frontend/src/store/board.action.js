@@ -82,7 +82,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
 
         if (filterBy.lables.length) {
             boardGroups = boardToSave.groups
-            console.log('boardGroups', boardGroups)
             boardGroups = boardGroups.filter(group => {
                 let tasks = group.tasks.filter(task => filterBy.lables.includes(task.status.txt))
                 if (!tasks.length) return false
@@ -102,7 +101,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
 export async function addGroup(group, board) {
     let fullBoard = await boardService.get(board._id)
     let boardToSave = structuredClone(fullBoard)
-    console.log('got here')
     boardToSave.groups.unshift(group)
     saveBoard(boardToSave)
 }
@@ -173,11 +171,8 @@ export async function addActivity(board, type, txt, task) {
 export async function addUser(board, userId) {
     try {
         let boardToSave = structuredClone(board)
-        console.log('board before save', board);
         boardToSave.users.unshift(userId)
         await saveBoard(boardToSave)
-        console.log('board to save', boardToSave);
-        console.log('User added!')
         return boardToSave
     } catch (err) {
         console.log('User could not be added', err)
