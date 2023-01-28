@@ -262,8 +262,8 @@ export function TaskPreview({
                         </div>
                     </div>
 
-                    <div className="task-txt task-column flex" >
-                        <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} />
+                    <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
+                        {/* <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} /> */}
                         <form onSubmit={onRenameTask} >
                             <input
                                 className="task-title-input"

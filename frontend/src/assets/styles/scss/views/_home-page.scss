@@ -2,6 +2,21 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+ 
+
+    .cover-title-wrap {
+        width: 700px;
+    }
+
+    h1 {
+        font-size: 64px;
+        font-family: "Poppins-Thin";
+    }
+
+    p {
+        font-size: 18px;
+        font-family: "Poppins";
+    }
 
     .see-demo {
         background-image: linear-gradient(90deg, #5034ff 25.69%, #b4b4ff 100%);
@@ -16,7 +31,7 @@
         line-height: 17px;
         overflow: hidden;
 
-        transition: padding .3s ease;
+        transition: padding 0.3s ease;
 
         &:hover {
             filter: brightness(85%);
@@ -24,7 +39,6 @@
             padding-right: 32px;
             text-decoration: none;
         }
-
     }
 
     .home-page-main {
@@ -37,21 +51,21 @@
         text-align: center;
         // padding-top: 6%;
         min-height: 40vh;
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             flex-basis: 50%;
         }
     }
 
     .cover-img {
         min-height: 40vh;
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             min-height: 35vh;
             width: 175%;
             flex-basis: 50%;
         }
     }
 
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         height: 102vh;
     }
 }

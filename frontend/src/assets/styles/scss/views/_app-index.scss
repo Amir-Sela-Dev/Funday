@@ -18,9 +18,12 @@
     height: 100vh;
 
     @include for-mobile-layout {
+
+        grid-template-columns: 1fr;
+
         grid-template-areas:
-            "board-details board-details  board-details"
-            "side-nav  side-nav  side-nav";
+            "board-details"
+            "side-nav";
 
             .work-space {
                 display: none;

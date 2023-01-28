@@ -233,11 +233,10 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                     <div className="sticky-grid flex">
                         <div class="white-background"></div>
                         <div className='colored-tag task-column last-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
+
                         <div className="checkbox-column task-column disabled">
                             <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                         </div>
-
-
 
                         <form className='task-input-row' onSubmit={onSaveTask}>
                             <input
@@ -251,13 +250,15 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                             />
                         </form>
 
-
-
                     </div>
-
-
+                  
+                    <div className="mobile-only">
+                        <GroupBottomBar board={board} group={group} />
+                    </div>
                 </div>
-                <GroupBottomBar board={board} group={group} />
+                <div className="only-desktop">
+                    <GroupBottomBar board={board} group={group} />
+                </div>
             </div>
         </div>
 

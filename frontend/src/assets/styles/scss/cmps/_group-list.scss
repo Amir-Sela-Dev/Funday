@@ -2,6 +2,7 @@
     list-style: none;
     margin: 0;
     color: $clr1;
+    padding-left: 38px;
 
     .sticky-group-bar {
         // position: sticky;
@@ -32,7 +33,7 @@
     }
 
     @include for-mobile-layout {
-        padding-inline-start: $inner-padding-mobile;
+        padding-inline-start: 0;
     }
 }
 
@@ -70,7 +71,8 @@
         @include for-mobile-layout {
             margin-right: 10px;
             height: 30px;
-            background: $primary-background-hover-color;
+            // background: $primary-background-hover-color;
+            background-color: rgb(220 223 236 / 45%);
         }
     }
 
@@ -239,7 +241,7 @@
     @include for-mobile-layout {
         max-width: calculate-width(100vw, $inner-padding-mobile);
 
-        &>div {
+        & > div {
             position: fixed;
             top: 49px;
             right: 0;
@@ -247,7 +249,7 @@
             z-index: 6;
             background: white;
             padding-block-end: 10px;
-            box-shadow: 0px 6px 8px -9px #c3c6d4;
+            // box-shadow: 0px 6px 8px -9px #c3c6d4;
         }
     }
 

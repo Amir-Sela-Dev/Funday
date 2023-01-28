@@ -2,6 +2,10 @@
     margin: 32px 0;
     color: $clr1;
 
+    @include for-mobile-layout {
+        margin: 0;
+    }
+
     .number-of-tasks {
         font-size: 14px;
         color: $clr1;
@@ -34,6 +38,12 @@
     font-family: Figtree;
     margin-bottom: 57px;
     min-width: fit-content;
+
+    @include for-mobile-layout {
+        margin-bottom: 15px;
+        margin-top: 15px;
+        margin-left: -30px;
+    }
 
     .option-icon {
         margin-inline-start: -33px;
