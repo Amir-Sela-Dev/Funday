@@ -116,7 +116,6 @@ export function TaskPreview({
             // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
             let taskToSave = structuredClone(task)
 
-            // await addActivity(board, 'Person', 'Add person', taskToSave)
             await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person')
             showSuccessMsg('Task update')
         } catch (err) {
@@ -134,7 +133,7 @@ export function TaskPreview({
             showErrorMsg('Cannot update task');
         }
     }
-    
+
     function handleNameInputChange(event) {
 
         setTaskToUpdate({ ...taskToUpdate, title: event.target.value })

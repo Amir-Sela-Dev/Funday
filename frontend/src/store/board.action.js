@@ -48,10 +48,9 @@ export async function removeBoard(boardId) {
 export async function saveBoard(board) {
     try {
         const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
-        // console.log('lalala', board)
         const boardToSave = await boardService.save(board)
+        console.log('go and back!!!!!');
         socketService.emit(SOCKET_EVENT_BOARD_UPDATED, boardToSave._id)
-        // console.log('boardToSave', boardToSave)
         store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type, board: boardToSave })
         return boardToSave

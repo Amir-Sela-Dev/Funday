@@ -251,14 +251,16 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                         </form>
 
                     </div>
-                  
-                    <div className="mobile-only">
+
+                    {/* <div className="mobile-only">
                         <GroupBottomBar board={board} group={group} />
-                    </div>
+                    </div> */}
+
                 </div>
                 <div className="only-desktop">
                     <GroupBottomBar board={board} group={group} />
                 </div>
+
             </div>
         </div>
 

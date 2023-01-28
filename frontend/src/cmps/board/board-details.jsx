@@ -43,13 +43,13 @@ export function BoardDetails({ setBoardToDrag, board }) {
         onLoadBoard(boardId, filterByToEdit)
         onLoadUsers()
         setBoardTitle('')
-        socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
-        socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
+        // socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
+        // socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
         return () => {
 
         }
 
-    }, [])
+    }, [filterByToEdit])
 
     useEffect(() => {
         setFilter(filterByToEdit)
@@ -320,7 +320,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
 
-            {isKanban && <Droppable droppableId="gruopList" type="group">
+            {/* {isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
                     <div className="drag-groups-container"
@@ -333,7 +333,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     </div>
                 )}
             </Droppable>
-            }
+            } */}
 
 
 
