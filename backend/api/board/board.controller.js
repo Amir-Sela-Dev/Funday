@@ -48,6 +48,7 @@ async function updateBoard(req, res) {
     console.log('update!!1');
     try {
         const board = req.body
+        console.log('backend board to save', board)
         const updatedBoard = await boardService.update(board)
         res.json(updatedBoard)
     } catch (err) {

@@ -4,13 +4,17 @@ import { addActivity, saveTask } from "../store/board.action";
 
 
 export function DynamicModal({ lables, task, group, board, lableName }) {
-
+    const [currLabel, setCurrLabel] = useState({})
     async function onAddTaskLable(lable) {
         try {
             let taskToSave = structuredClone(task)
+            const prevLabel = structuredClone(taskToSave[lableName])
             taskToSave[lableName] = lable
             // await addActivity(board, lableName, `Add label  ${lable.txt}`, taskToSave)
-            await saveTask(board, group.id, taskToSave, lableName, `Change label to ${lable.txt}`)
+            /**
+             * TODO: prev > new in Task Details modal
+             */
+            await saveTask(board, group.id, taskToSave, lableName, `Change label from ${prevLabel.txt} to ${lable.txt}`)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')

@@ -189,6 +189,10 @@
         // margin-left: 17px;
         order: 4;
 
+        @include for-narrow-layout {
+            color: #74767d;
+        }
+
         @include for-mobile-layout {
             order: 2;
 
@@ -208,6 +212,15 @@
         }
     }
 
+    .search-input-desktop {
+        order: 1;
+        display: flex;
+
+        @include for-mobile-layout {
+            display: none;
+        }
+    }
+
     .search-bar-mobile {
         margin-block: 5px;
         margin-inline-start: auto;
@@ -216,9 +229,10 @@
         display: none;
         width: 0;
 
-        &.on {
-            display: flex;
-            // width: 100%;
+        @include for-mobile-layout {
+            &.on {
+                display: flex;
+            }
         }
     }
 

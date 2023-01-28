@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { boardService } from "../../services/board.service"
+import { userService } from "../../services/user.service"
 
 export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) {
-    const [defaultUsers, setDefaultUsers] = useState(boardService.getDefaultUsers(persons))
+    let { board } = useSelector((storeState) => storeState.boardModule)
+    let { users } = useSelector((storeState) => storeState.userModule)
+    const [suggestedUsers, setSuggestedUsers] = useState([])
     useEffect(() => {
-    }, persons)
+        onGetSuggestedUsers()
+    }, [persons])
 
     function minifyName(name) {
         const nameArr = name.split(' ');
@@ -18,6 +23,11 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
     }
 
 
+    async function onGetSuggestedUsers() {
+        let suggested = users.filter(user => board.users.includes(user._id))
+        if (persons.length) suggested = users.filter(user => board.users.includes(user._id) && !persons.find(person => person._id === user._id))
+        setSuggestedUsers(suggested)
+    }
     const xIcon = 'x-icon.svg'
     return (
         <div className="person-details flex column modal">
@@ -43,11 +53,14 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
                     onClick={(ev) => { ev.stopPropagation() }}></input>
                 <h4>Suggested people</h4>
                 <ul className="person-list">
-                    {defaultUsers.map(currPerson => {
+                    {suggestedUsers.map(currPerson => {
                         return (
                             <div className="person-item flex align-center"
                                 key={currPerson.id}
-                                onClick={() => { onAddTaskPerson(currPerson) }}>
+                                onClick={() => {
+                                    onAddTaskPerson(currPerson)
+
+                                }}>
                                 <img src={currPerson.imgUrl} />
                                 <span>{currPerson.fullname}</span>
                             </div>

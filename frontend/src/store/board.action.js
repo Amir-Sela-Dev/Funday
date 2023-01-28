@@ -48,10 +48,10 @@ export async function removeBoard(boardId) {
 export async function saveBoard(board) {
     try {
         const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
-        console.log('lalala', board)
+        // console.log('lalala', board)
         const boardToSave = await boardService.save(board)
         socketService.emit(SOCKET_EVENT_BOARD_UPDATED, boardToSave._id)
-        console.log('boardToSave', boardToSave)
+        // console.log('boardToSave', boardToSave)
         store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type, board: boardToSave })
         return boardToSave
@@ -168,6 +168,21 @@ export async function addActivity(board, type, txt, task) {
     }
 }
 
+// users //
+export async function addUser(board, userId) {
+    try {
+        let boardToSave = structuredClone(board)
+        console.log('board before save', board);
+        boardToSave.users.unshift(userId)
+        await saveBoard(boardToSave)
+        console.log('board to save', boardToSave);
+        console.log('User added!')
+        return boardToSave
+    } catch (err) {
+        console.log('User could not be added', err)
+        throw err
+    }
+}
 // export async function removeActivity(activityId) {
 //     try {
 //         await activityService.remove(activityId)

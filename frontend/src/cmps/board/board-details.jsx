@@ -11,18 +11,23 @@ import { LabelSelect } from '../lable-select';
 import { Tab, TabList } from "monday-ui-react-core";
 import { Home } from "monday-ui-react-core/icons";
 import { showErrorMsg } from "../../services/event-bus.service";
-import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Item as ItemIcon } from "monday-ui-react-core/icons";
+import { Button, TextField, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
+import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Invite, Info, Favorite } from "monday-ui-react-core/icons";
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { Droppable } from 'react-beautiful-dnd';
 import { socketService, SOCKET_EMIT_LOAD_BOARD, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_ADD_MSG, SOCKET_EVENT_BOARD_UPDATED } from "../../services/socket.service"
+import { BoardInviteMenu } from "./board-invite-menu"
+import { loadUsers } from "../../store/user.actions"
+
 import { KanbansGroupList } from "../kanban/kanban-group-list"
 
 export function BoardDetails({ setBoardToDrag, board }) {
     // let { board } = useSelector((storeState) => storeState.boardModule)
+    let { users } = useSelector((storeState) => storeState.userModule)
     const [boardTitle, setBoardTitle] = useState('')
     const [modalState, setModalState] = useState(false)
     const [boardActionsModal, setBoardActionsModal] = useState(false)
+    const [inviteModal, setInviteModal] = useState(false)
     const [task, setTask] = useState(null)
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
@@ -36,6 +41,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     useEffect(() => {
         onLoadBoard(boardId, filterByToEdit)
+        onLoadUsers()
         setBoardTitle('')
         socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
         socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
@@ -100,6 +106,15 @@ export function BoardDetails({ setBoardToDrag, board }) {
         }
     }
 
+    async function onLoadUsers() {
+        try {
+            await loadUsers()
+            console.log('Loaded user successfully', users);
+        } catch (err) {
+            console.log('Couldn\'t load users..', err);
+        }
+    }
+
     function setFilter(filterBy) {
         onLoadBoard(filterBy)
     }
@@ -125,7 +140,12 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     function handleFilterChange({ target }) {
         let { value, name: field } = target
+        console.log('target', target);
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    }
+
+    function handleFilterChangeMonday(value) {
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, 'title': value }))
     }
 
     function handleLableChange(lables) {
@@ -154,7 +174,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
     return (
         <section className="board-details">
             <div className="sticky-board-header">
-
                 <div className="board-title-wrap flex">
                     <span
                         className="board-title mobile"
@@ -174,8 +193,23 @@ export function BoardDetails({ setBoardToDrag, board }) {
                             onBlur={ev => { onRenameBoard(ev) }}
                         />
                     </form>
-                    <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
-                    <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
+                    {/* <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} /> */}
+                    <Icon className="icon-info" icon={Info} iconSize={20} />
+                    <Icon className="icon-star" icon={Favorite} iconSize={20} />
+                    {/* <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} /> */}
+                    {inviteModal && <BoardInviteMenu setModalState={setInviteModal} />
+                    }
+
+                    <div className="invite-users" onClick={() => {
+                        setInviteModal(true)
+                    }}>
+                        <Button className="user-invite-btn" leftIcon={Invite}>
+                            {'Invite' + (board.users ? ` / ${board.users.length}` : '')}
+                        </Button>
+                        <Button className="user-invite-btn mobile" leftIcon={Invite} size={Button.sizes.XS} noSidePadding={true}>
+                            {(board.users ? `/ ${board.users.length}` : '')}
+                        </Button>
+                    </div>
                 </div>
                 <TabList className='tab-lists'>
                     <Tab className='board-details-tab' style={{ color: "  #0070e5", border: 'black solid 1px' }} icon={Home} active onClick={() => { setIsKanban(false) }}>
@@ -188,7 +222,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 </TabList>
 
                 <div className="board-second-title-wrap">
-                    <hr className="group-list-main-hr" />
+                    {/* <hr className="group-list-main-hr" /> */}
                     <div className="board-actions flex">
                         <Flex style={{ width: "100%" }}>
                             <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
@@ -217,7 +251,16 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 leftIcon={Search}>
                                 <span>Search</span>
                             </Button>
-
+                            {isSeachClicked &&
+                                <div className="search-input-desktop flex">
+                                    <TextField
+                                        iconName={Search}
+                                        placeholder="Search"
+                                        wrapperClassName="monday-storybook-text-field_size"
+                                        onChange={handleFilterChangeMonday}
+                                        onBlur={() => { setIsSeachClicked(false) }}
+                                    />
+                                </div>}
                             <div
                                 className={"search-bar-mobile flex" + (isSeachClicked ? ' on' : '')}>
                                 <span
@@ -250,7 +293,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 onClick={toggleFilterModal}
                                 leftIcon={Filter}>
                                 Filter
-
                                 {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
                                     onClick={(e) => { e.stopPropagation() }}>
                                     <LabelSelect handleLableChange={handleLableChange} lables={lables} />
@@ -263,7 +305,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         </Flex>
                     </div>
                 </div>
-            </div>
+            </div >
             {!isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
