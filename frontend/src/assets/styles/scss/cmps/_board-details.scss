@@ -14,16 +14,15 @@
 
         ul {
             padding: 0;
-
         }
     }
-
 }
 
 .board-title-wrap {
     padding-top: 15px;
     padding-left: 40px;
     align-items: center;
+    width: 97%;
 
     button {
         background-color: transparent;
@@ -57,8 +56,6 @@
     width: 3ch;
 
     @include for-narrow-layout {
-
-
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
@@ -203,7 +200,7 @@
         padding-block: 24px;
         width: 400px;
 
-        &>.modal-title {
+        & > .modal-title {
             font-weight: 400;
             font-size: 24px;
             color: var(--primary-text-color);

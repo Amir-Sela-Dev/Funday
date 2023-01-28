@@ -51,6 +51,9 @@
     left: 0;
     z-index: 21;
     background-color: white;
+    @include for-mobile-layout {
+        height: 85px;
+    }
 }
 
 .group-sticky-header {

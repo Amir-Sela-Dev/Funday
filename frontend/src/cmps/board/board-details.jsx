@@ -51,8 +51,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     }, [])
 
-
-
     useEffect(() => {
         setFilter(filterByToEdit)
         // setFilter.current(filterByToEdit)
@@ -155,6 +153,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     }
 
     function handleFilterChangeMonday(value) {
+        console.log('filterage', value)
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, 'title': value }))
     }
 
