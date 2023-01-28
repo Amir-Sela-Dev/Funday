@@ -2286,6 +2286,12 @@ button {
 .board-details a.tab-inner {
   padding-inline: 8px;
 }
+.board-details .tab-lists {
+  padding: 0;
+}
+.board-details .tab-lists ul {
+  padding: 0;
+}
 
 .board-title-wrap {
   padding-top: 15px;
@@ -2533,6 +2539,56 @@ button {
   height: 70%;
   font-size: 13px;
   border-radius: 20px;
+}
+
+.kanban-group-list {
+  list-style: none;
+  margin: 0;
+  color: #323338;
+}
+
+.kanban-group-preview-line {
+  min-height: 100vh;
+  margin-right: 30px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.kanban-group-preview-line .kanban-group-preview {
+  min-width: 260px;
+  max-height: 100%;
+  border: #323338 solid 1px;
+  flex-direction: column;
+  border-radius: 8px 8px 8px 4px;
+  background-color: #f6f7fb;
+  line-height: 22.5px;
+  position: relative;
+}
+.kanban-group-preview-line .kanban-tittle-wrapper {
+  height: 44px;
+  background-color: purple;
+  color: white;
+  border-radius: 8px 8px 0px 0px;
+}
+.kanban-group-preview-line .kanban-card-container {
+  min-height: 126px;
+  padding: 0px 4px 0 10px;
+  margin: 8px 4px 0 0;
+}
+.kanban-group-preview-line .add-task {
+  min-height: 37px;
+  color: #676879;
+  padding: 4px 8px 4px 10px;
+}
+.kanban-group-preview-line .kanban-color {
+  height: calc(100% - 42px);
+  width: 4px;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  border-bottom-left-radius: 4px;
+  background-color: purple;
 }
 
 /*# sourceMappingURL=main.css.map */

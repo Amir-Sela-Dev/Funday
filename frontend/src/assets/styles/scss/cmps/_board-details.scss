@@ -9,6 +9,15 @@
         padding-inline: 8px;
     }
 
+    .tab-lists {
+        padding: 0;
+
+        ul {
+            padding: 0;
+
+        }
+    }
+
 }
 
 .board-title-wrap {
@@ -48,6 +57,7 @@
     width: 3ch;
 
     @include for-narrow-layout {
+
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
