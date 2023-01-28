@@ -2431,6 +2431,35 @@ button {
   height: auto;
 }
 
+.invite-users {
+  margin-left: auto;
+}
+.invite-users .user-invite-btn {
+  background: white;
+  border: 1px solid #c3c6d4;
+  margin-inline-end: 18px;
+}
+.invite-users .user-invite-btn:hover {
+  background-color: #dcdfec;
+}
+
+.invite-modal .dark-screen {
+  transition: all 1s;
+  background: rgba(0, 68, 156, 0.3);
+}
+.invite-modal .invite-menu {
+  margin: auto;
+  z-index: 70;
+  padding-inline: 32px;
+  padding-block: 24px;
+  width: 400px;
+}
+.invite-modal .invite-menu > .modal-title {
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--primary-text-color);
+}
+
 .upload-preview input {
   display: none;
 }
