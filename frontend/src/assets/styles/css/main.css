@@ -1506,6 +1506,10 @@ button {
 @media (max-width: 500px) {
   .task-persons {
     margin-left: 10px;
+    padding: var(--spacing-xs) var(--spacing-small) var(--spacing-xs) var(--spacing-medium);
+  }
+  .task-persons .AvatarGroup-module_avatarGroupContainer__9H7Sk {
+    padding: 0;
   }
 }
 @media (max-width: 500px) {
