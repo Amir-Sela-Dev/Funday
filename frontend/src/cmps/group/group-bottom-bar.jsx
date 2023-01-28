@@ -81,10 +81,32 @@ export function GroupBottomBar({ board, group }) {
         });
         datesRange = { earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') }
         return datesRange
-        // setIsSeachClicked({ earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') })
     }
 
-    console.log(getAlldates()?.earliestDate);
+    getAllTimelines()
+    function getAllTimelines() {
+        let allTimelines = []
+        group.tasks.forEach(task => {
+            if (!task.timeline) return
+            allTimelines.push(task.timeline)
+        })
+        if (!allTimelines.length) return
+        let earliestDate = new Date(allTimelines[0].start);
+        let latestDate = new Date(allTimelines[0].end);
+        allTimelines.forEach((timeline) => {
+            let startDate = moment(timeline.start, "MMM DD").toDate();
+            let endDate = moment(timeline.end, "MMM DD").toDate();
+            if (startDate < earliestDate) {
+                earliestDate = startDate;
+            }
+            if (endDate > latestDate) {
+                latestDate = endDate;
+            }
+        });
+        console.log({ earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') });
+        // return { earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') };
+    }
+
 
 
     return (

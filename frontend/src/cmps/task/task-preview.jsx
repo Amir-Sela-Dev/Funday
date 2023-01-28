@@ -92,12 +92,18 @@ export function TaskPreview({
         }
     }
 
-    async function onAddTaskTimeline(timeline) {
+    async function onAddTaskTimeline(arrTimeline) {
         try {
             let taskToSave = structuredClone(task)
-            timeline[0] = dayjs(timeline).format('MMM D')
-            timeline[1] = dayjs(timeline).format('MMM D')
-            console.log(timeline);
+
+            // console.log(timeline[0]);
+            let startDate = arrTimeline[0]
+            let endDate = arrTimeline[1]
+
+            let startDates = dayjs(startDate).format('MMM D')
+            let endDates = dayjs(endDate).format('MMM D')
+            let timeline = { start: startDates, end: endDates }
+            console.log(startDates, endDates);
             await saveTask(board, group.id, { ...taskToSave, timeline }, 'Date', 'Change date')
             showSuccessMsg('Task update')
         } catch (err) {
@@ -324,9 +330,10 @@ export function TaskPreview({
                             return <div className="preview-timeline task-column">
                                 <Space direction="vertical" >
                                     <RangePicker bordered={false}
+                                        style={{ color: '#fff' }}
                                         size={size}
-                                        defaultValue={task.timeline ? [dayjs(task.timeline, 'MMM D'), dayjs(task.timeline, 'MMM D')] : []}
-                                        // onChange={onAddTaskTimeline}
+                                        defaultValue={task.timeline ? [dayjs(task.timeline.start, 'MMM D'), dayjs(task.timeline.end, 'MMM D')] : []}
+                                        onChange={onAddTaskTimeline}
                                         format={'MMM D'}
                                     // style={{ width: '70%' }} 
                                     />

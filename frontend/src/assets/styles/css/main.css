@@ -1300,6 +1300,17 @@ button {
 .task-preview .preview-timeline {
   width: 187px;
 }
+.task-preview .preview-timeline .dates-color {
+  justify-content: center;
+  align-items: center;
+  background-color: purple;
+  color: white;
+  text-align: center;
+  width: 80%;
+  height: 70%;
+  font-size: 13px;
+  border-radius: 20px;
+}
 .task-preview .preview-files {
   width: 139px;
 }
@@ -2512,7 +2523,8 @@ button {
   justify-content: center;
   align-items: center;
 }
-.group-bottom-bar .task-date .dates-color {
+
+.dates-color {
   justify-content: center;
   align-items: center;
   background-color: purple;

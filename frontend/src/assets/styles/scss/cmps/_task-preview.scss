@@ -102,6 +102,7 @@
                 bottom: 30px;
             }
         }
+
     }
 
     .user-preview {
@@ -129,7 +130,7 @@
         }
     }
 
-    & > .task-column {
+    &>.task-column {
         transition: background-color 0.15s ease-in-out;
         background-color: white;
     }
@@ -182,6 +183,19 @@
 
     .preview-timeline {
         width: 187px;
+
+        .dates-color {
+            justify-content: center;
+            align-items: center;
+            background-color: purple;
+            color: white;
+            text-align: center;
+            width: 80%;
+            height: 70%;
+            font-size: 13px;
+            border-radius: 20px;
+        }
+
     }
 
     .preview-files {
@@ -213,7 +227,7 @@
     }
 
     @include for-mobile-layout {
-        & > div {
+        &>div {
             &:nth-child(1) {
                 margin-left: 23px;
             }
@@ -230,7 +244,7 @@
     margin-block-end: 1em;
     flex-wrap: wrap;
 
-    & > .person-item {
+    &>.person-item {
         margin-inline-end: 10px;
         margin-block-start: 10px;
         display: flex;
@@ -239,13 +253,13 @@
         background: #e5f4ff;
         border-radius: 999px;
 
-        & > img {
+        &>img {
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        & > span {
+        &>span {
             font-size: 12px;
             line-height: 16px;
             padding-inline-end: 10px;
@@ -263,11 +277,11 @@
     margin-block-end: 10px;
     min-width: 99%;
 
-    & > input {
+    &>input {
         width: 100%;
     }
 
-    & > ul {
+    &>ul {
         padding: 0;
         list-style-type: none;
         display: flex;
@@ -275,7 +289,7 @@
         justify-content: flex-start;
     }
 
-    & > h4 {
+    &>h4 {
         text-align: start;
         margin-block: 1em;
     }
@@ -293,14 +307,14 @@
             background: rgb(220, 223, 236);
         }
 
-        & > img {
+        &>img {
             border-radius: 50%;
             margin-inline: 5px;
             width: 25px;
             height: 25px;
         }
 
-        & > span {
+        &>span {
             font-size: 14px;
         }
     }
@@ -352,7 +366,7 @@
         font-size: 14px;
     }
 
-    & > form {
+    &>form {
         width: 100%;
     }
 
