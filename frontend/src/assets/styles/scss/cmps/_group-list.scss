@@ -207,7 +207,13 @@
             display: none;
         }
     }
-
+    .search-input-desktop{
+        order: 1;
+        display: flex;
+        @include for-mobile-layout{
+            display: none;
+        }
+    }
     .search-bar-mobile {
         margin-block: 5px;
         margin-inline-start: auto;
@@ -216,9 +222,10 @@
         display: none;
         width: 0;
 
-        &.on {
-            display: flex;
-            // width: 100%;
+        @include for-mobile-layout {
+            &.on {
+                display: flex;
+            }
         }
     }
 

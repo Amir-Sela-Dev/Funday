@@ -2146,6 +2146,15 @@ button {
     display: none;
   }
 }
+.board-actions .search-input-desktop {
+  order: 1;
+  display: flex;
+}
+@media (max-width: 500px) {
+  .board-actions .search-input-desktop {
+    display: none;
+  }
+}
 .board-actions .search-bar-mobile {
   margin-block: 5px;
   margin-inline-start: auto;
@@ -2154,8 +2163,10 @@ button {
   display: none;
   width: 0;
 }
-.board-actions .search-bar-mobile.on {
-  display: flex;
+@media (max-width: 500px) {
+  .board-actions .search-bar-mobile.on {
+    display: flex;
+  }
 }
 @media (max-width: 500px) {
   .board-actions {

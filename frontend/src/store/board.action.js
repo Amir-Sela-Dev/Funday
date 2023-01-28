@@ -174,8 +174,8 @@ export async function addUser(board, userId) {
         let boardToSave = structuredClone(board)
         console.log('board before save', board);
         boardToSave.users.unshift(userId)
+        await saveBoard(boardToSave)
         console.log('board to save', boardToSave);
-        saveBoard(boardToSave)
         console.log('User added!')
         return boardToSave
     } catch (err) {
