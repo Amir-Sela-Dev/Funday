@@ -12,7 +12,7 @@ import { Tab, TabList } from "monday-ui-react-core";
 import { Home } from "monday-ui-react-core/icons";
 import { showErrorMsg } from "../../services/event-bus.service";
 import { Button, TextField, Flex, IconButton, Menu, MenuButton, MenuDivider, DialogContentContainer, Icon } from "monday-ui-react-core";
-import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Invite } from "monday-ui-react-core/icons";
+import { Add, Search, Person, Filter, Sort, Group, Table, DropdownChevronDown, Group as GroupIcon, Invite, Info, Favorite } from "monday-ui-react-core/icons";
 import { addGroup, removeGroup, saveGroup, saveTask } from "../../store/board.action";
 import { Droppable } from 'react-beautiful-dnd';
 import { socketService, SOCKET_EMIT_LOAD_BOARD, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_ADD_MSG, SOCKET_EVENT_BOARD_UPDATED } from "../../services/socket.service"
@@ -193,8 +193,10 @@ export function BoardDetails({ setBoardToDrag, board }) {
                             onBlur={ev => { onRenameBoard(ev) }}
                         />
                     </form>
-                    <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} />
-                    <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} />
+                    {/* <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} /> */}
+                    <Icon className="icon-info" icon={Info} iconSize={20} />
+                    <Icon className="icon-star" icon={Favorite} iconSize={20} />
+                    {/* <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} /> */}
                     {inviteModal && <BoardInviteMenu setModalState={setInviteModal} />
                     }
 
@@ -288,7 +290,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 onClick={toggleFilterModal}
                                 leftIcon={Filter}>
                                 Filter
-
                                 {isFilterModalOpen && <div className="menu-modal modal-wrap filter-modal"
                                     onClick={(e) => { e.stopPropagation() }}>
                                     <LabelSelect handleLableChange={handleLableChange} lables={lables} />

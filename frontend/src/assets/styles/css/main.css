@@ -2130,6 +2130,11 @@ button {
 .board-actions .bar-filter {
   order: 4;
 }
+@media (min-width: 500px) {
+  .board-actions .bar-filter {
+    color: #74767d;
+  }
+}
 @media (max-width: 500px) {
   .board-actions .bar-filter {
     order: 2;
@@ -2384,6 +2389,16 @@ button {
     text-align: center;
   }
 }
+.board-title-wrap .icon-info {
+  margin-top: 2px;
+  margin-right: 6px;
+  width: 24px;
+  height: 20px;
+}
+.board-title-wrap .icon-favorite {
+  width: 16px;
+  height: 16px;
+}
 
 .tab--wrapper .board-details-tab {
   margin-bottom: 20px;
@@ -2483,6 +2498,9 @@ button {
 .invite-modal .invite-menu > * {
   width: 100%;
 }
+.invite-modal .invite-menu .monday-storybook-text-field_size {
+  margin-block-end: 20px;
+}
 .invite-modal .user-round-icon {
   height: 30px;
   width: 30px;
@@ -2495,10 +2513,6 @@ button {
   font-size: 15px;
   margin-bottom: 16px;
   min-height: 36px;
-}
-
-.monday-storybook-text-field_size {
-  margin-block-end: 20px;
 }
 
 .suggested-invites > div {

@@ -107,6 +107,17 @@
         max-width: 100vw;
         text-align: center;
     }
+
+    & .icon-info{
+        margin-top: 2px;
+        margin-right: 6px;
+        width: 24px;
+        height: 20px;
+    }
+    & .icon-favorite{
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .tab--wrapper .board-details-tab {
@@ -216,6 +227,10 @@
         &>* {
             width: 100%;
         }
+
+        & .monday-storybook-text-field_size {
+            margin-block-end: 20px
+        }
     }
 
     & .user-round-icon {
@@ -233,9 +248,7 @@
     min-height: 36px;
 }
 
-.monday-storybook-text-field_size {
-    margin-block-end: 20px
-}
+
 
 .suggested-invites {
     &>div {
