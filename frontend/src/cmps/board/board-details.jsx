@@ -43,10 +43,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
         onLoadBoard(boardId, filterByToEdit)
         onLoadUsers()
         setBoardTitle('')
-        // socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
-        // socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
+        socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
+        socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
         return () => {
-
+            socketService.off(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
+            socketService.off(SOCKET_EMIT_SET_TOPIC, boardId)
         }
 
     }, [filterByToEdit])
@@ -320,7 +321,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
 
-            {/* {isKanban && <Droppable droppableId="gruopList" type="group">
+            {isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
                     <div className="drag-groups-container"
@@ -333,11 +334,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     </div>
                 )}
             </Droppable>
-            } */}
+            }
 
 
 
-            <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
+            <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} currBoardId={boardId} />
         </section >
 
     )

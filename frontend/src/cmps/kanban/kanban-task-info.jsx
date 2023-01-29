@@ -2,16 +2,14 @@ import { useEffect, useState, React } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { addActivity, saveGroup, saveTask } from "../../store/board.action"
-// import { DatePicker, Space, } from 'antd'
+import { DatePicker, Space, } from 'antd'
 import dayjs from "dayjs"
 // import { TaskTitle } from "./task-title"
 // import { utilService } from "../../services/util.service"
 // import { DynamicModal } from "../dynamicModal"
-// import { File, Check, AddUpdate, Update, Menu } from "monday-ui-react-core/icons";
-import { AvatarGroup, Icon, Avatar, StoryDescription, Flex, DialogContentContainer } from "monday-ui-react-core";
+import { File, Check, AddUpdate, Update, Menu, PersonRound, Status, Calendar } from "monday-ui-react-core/icons";
+import { AvatarGroup, Icon, Avatar, StoryDescription, Flex, DialogContentContainer, } from "monday-ui-react-core";
 // import { ImgUploader } from "../img-uploader"
-// import { ListItemIcon } from "monday-ui-react-core"
-// import { DropdownChevronRight } from "monday-ui-react-core/icons";
 // import { Draggable } from "react-beautiful-dnd"
 import { socketService, SOCKET_EMIT_CHANGE_TASK, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service"
 import { PersonDetails } from "../task/person-details"
@@ -26,8 +24,8 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     // const [showOptions, setShowOptions] = useState(false);
-    // const { RangePicker } = DatePicker;
-    // const [size, setSize] = useState('small');
+    const { RangePicker } = DatePicker;
+    const [size, setSize] = useState('small');
     const [isOpen, setIsOpen] = useState(false);
     const [isMark, setIsMark] = useState(false);
     // const [tasks, setTasks] = useState(group.tasks)
@@ -200,7 +198,8 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
 
             <div className="colume-row flex">
 
-                <div className="colum-title">@ Person</div>
+                <div className="colum-title flex align-center"> <Icon icon={PersonRound} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" />
+                    Person</div>
                 <div className="task-persons kanban-task-column flex align-center justify-center"
                     onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
 
@@ -218,7 +217,7 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
             </div>
             <div className="colume-row flex">
 
-                <div className="colum-title">@ Person</div>
+                <div className="colum-title flex align-center"><Icon icon={Status} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" /> Status</div>
                 <div className="preview-task-status  task-column kanban-task-column"
                     onClick={() => { setIsOpen(!isOpen) }}
                     style={{ background: `${(task.status.txt === 'Default') ? 'rgb(185, 185, 185)' : task.status.color}` }}>
@@ -228,6 +227,37 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
                     {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
                 </div>
             </div>
+            <div className="colume-row flex">
+
+                <div className="colum-title flex align-center"><Icon icon={Calendar} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" /> Date</div>
+                <div className="task-date task-column kanban-task-column">
+
+                    <Space direction="vertical" >
+                        <DatePicker
+                            defaultValue={task.date ? (dayjs(task.date, 'MMM D')) : ''}
+                            bordered={false}
+                            onChange={onAddTaskDate}
+                            placeholder=''
+                            format={'MMM D'}
+                        />
+                    </Space>
+                </div>
+            </div>
+            <div className="colume-row flex">
+
+                <div className="colum-title flex align-center"><Icon icon={Calendar} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" /> Timeline</div>
+                <div className="preview-timeline task-column kanban-task-column">
+                    <Space direction="vertical" >
+                        <RangePicker bordered={false}
+                            style={{ color: '#fff' }}
+                            size={size}
+                            defaultValue={task.timeline ? [dayjs(task.timeline.start, 'MMM D'), dayjs(task.timeline.end, 'MMM D')] : []}
+                            onChange={onAddTaskTimeline}
+                            format={'MMM D'}
+                        // style={{ width: '70%' }} 
+                        />
+                    </Space>
+                </div>            </div>
         </div>
 
     </section>

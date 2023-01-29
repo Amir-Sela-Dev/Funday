@@ -126,7 +126,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                         })}
                         <div className="add-colume task-column flex align-center justify-center upper-task">
                             <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
-                            <MenuButton>
+                            {/* <MenuButton>
                                 <ul className={"menu-modal board-list-modal"}>
                                     <div className="menu-modal-option flex" onClick={() => { onAddColume('person') }}>
                                         <p className="menu-modal-option-text" >Person</p>
@@ -173,7 +173,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                                     })}
 
                                 </Menu>
-                            </MenuButton>
+                            </MenuButton> */}
                         </div>
                     </div>
                 </div>
@@ -252,9 +252,9 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
 
                     </div>
 
-                    {/* <div className="mobile-only">
+                    <div className="mobile-only">
                         <GroupBottomBar board={board} group={group} />
-                    </div> */}
+                    </div>
 
                 </div>
                 <div className="only-desktop">

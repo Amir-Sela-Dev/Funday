@@ -1238,6 +1238,7 @@ button {
   margin-right: 1px;
   position: relative;
   opacity: 0;
+  margin-top: 6px;
 }
 .task-preview .wrap-modal {
   position: relative;
@@ -1778,7 +1779,7 @@ button {
   width: 608px;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
-  box-shadow: -3px 0px 2px 9px rgba(33, 33, 33, 0.77);
+  box-shadow: -3px 0px 2px 3px rgba(33, 33, 33, 0.77);
   padding: 0;
   transform: translateX(100%);
   transition: all 0.4s;
@@ -1840,7 +1841,7 @@ button {
 }
 .task-modal-open h3 {
   margin-inline: auto;
-  margin-block: 20px;
+  margin-block: 10px;
   margin-left: 20px;
   margin-inline-start: 25px;
 }
@@ -1891,9 +1892,15 @@ button {
   padding: 0;
   padding-inline: 8px;
 }
+.task-modal-open .comments-btn .tab .tabs--wrapper {
+  padding-bottom: 0px;
+}
 .task-modal-open .comments-btn .tab .white-home {
   width: 15px;
   height: 15px;
+}
+.task-modal-open .comments-btn .tabs--wrapper {
+  padding-bottom: 0;
 }
 .task-modal-open .txt-editor-container {
   height: 200px;
@@ -1942,7 +1949,7 @@ button {
 .task-modal-open .comment {
   width: 100%;
   height: 161px;
-  border: #323338 solid 1px;
+  border: var(--layout-border-color) solid 1px;
   line-height: 20px;
   border-radius: 8px;
   margin-bottom: 18px;
@@ -2097,7 +2104,7 @@ button {
 .group-preview {
   margin-inline-start: 2px;
   font-family: Figtree;
-  margin-bottom: 57px;
+  margin-bottom: 30px;
   min-width: fit-content;
 }
 @media (max-width: 500px) {
@@ -2790,6 +2797,15 @@ button {
   justify-content: center;
   align-items: center;
 }
+.group-bottom-bar .task-timeline {
+  width: 187px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.group-bottom-bar .task-timeline .dates-color {
+  background-color: #323338;
+}
 .group-bottom-bar .dates-color {
   justify-content: center;
   align-items: center;
@@ -2859,6 +2875,9 @@ button {
   width: 100%;
   padding: 0;
   margin: 0;
+}
+.kanban-group-preview-line .add-task form input:focus-visible {
+  outline: var(--primary-color) 1px solid;
 }
 .kanban-group-preview-line .add-task button {
   position: absolute;
@@ -3090,6 +3109,12 @@ button {
   left: 0;
   right: auto;
   bottom: auto;
+}
+.kanban-task-info .task-date .ant-space {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=main.css.map */

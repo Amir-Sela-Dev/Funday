@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loadBoard, removeBoard, saveBoard } from "../../store/board.action"
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
@@ -6,24 +6,36 @@ import { boardService } from "../../services/board.service"
 import { ListItem, ListItemIcon } from "monday-ui-react-core"
 import { Board, Menu } from "monday-ui-react-core/icons";
 
-export function BoardList({ boards }) {
+export function BoardList({ boards, currBoardId, setIsClicked, isClicked }) {
     const navigate = useNavigate()
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [board, setBoard] = useState(null)
     const [modalTransform, setModalTransform] = useState('')
-    const [isClicked, setIsClicked] = useState('')
+    // const [isClicked, setIsClicked] = useState('')
+
+    useEffect(() => {
+        if (!board) return
+        setIsClicked(board?._id)
+        // setFilter.current(filterByToEdit)
+    }, [board])
+
+
 
     async function onLoadBoard(boardId) {
-        setIsClicked(boardId)
         await loadBoard(boardId)
         closeModal()
         navigate(`/board/${boardId}`)
+        setIsClicked(boardId)
+        console.log(isClicked);
     }
+
+    console.log(isClicked);
 
     async function onRemoveBoard(boardId) {
         try {
             await removeBoard(boardId)
             closeModal()
+            setIsClicked(boards[0]._id)
             showSuccessMsg('Board removed')
         } catch (err) {
             showErrorMsg('Cannot remove toy')

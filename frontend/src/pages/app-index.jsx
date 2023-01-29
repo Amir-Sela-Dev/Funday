@@ -11,9 +11,11 @@ export function AppIndex() {
     let { board } = useSelector((storeState) => storeState.boardModule)
     const [isMenuClose, setIsMenuClose] = useState(false)
     const [boardToDrag, setBoardToDrag] = useState(board)
+    const [isClicked, setIsClicked] = useState('')
 
     useEffect(() => {
         setBoardToDrag(board)
+        setIsClicked('63d5b54e7d97b7406caecd80')
     }, [board])
 
 
@@ -91,7 +93,7 @@ export function AppIndex() {
 
             <section className={`app-index ${isMenuClose ? 'closeMenu' : ''}`}>
                 <SideNav />
-                <WorkSpace toggleWorkspace={toggleWorkspace} />
+                <WorkSpace toggleWorkspace={toggleWorkspace} isClicked={isClicked} setIsClicked={setIsClicked} />
                 <BoardDetails board={boardToDrag} setBoardToDrag={setBoardToDrag} />
             </section>
         </DragDropContext>
