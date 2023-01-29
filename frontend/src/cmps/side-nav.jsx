@@ -35,8 +35,9 @@ export function SideNav() {
 
         <nav className="side-nav">
             <div className="high-nav">
-
-                <img className="main-logo" src={require(`../assets/img/${logoUrl}`)} />
+                <Link to='/'>
+                    <img className="main-logo" src={require(`../assets/img/${logoUrl}`)} />
+                </Link>
                 <div className="logo-hr"></div>
                 <img className="work-managment-icon" src={require(`../assets/img/${workManagmentUrl}`)} />
             </div>
