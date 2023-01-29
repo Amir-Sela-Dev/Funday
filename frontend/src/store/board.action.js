@@ -1,9 +1,11 @@
 import { boardService } from '../services/board.service.js'
-import { store } from './store.js'
-import { REMOVE_BOARD, SET_BOARDS, ADD_BOARD, UPDATE_BOARD, UNDO_REMOVE_BOARD, SET_BOARD } from '../store/board.reducer.js'
-import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import { utilService } from '../services/util.service.js'
 import { userService } from '../services/user.service.js'
+import { store } from './store.js'
+
+import { REMOVE_BOARD, SET_BOARDS, ADD_BOARD, UPDATE_BOARD, UNDO_REMOVE_BOARD, SET_BOARD } from '../store/board.reducer.js'
+import { LOADING_DONE, LOADING_START } from './system.reducer.js'
+
 import { socketService, SOCKET_EVENT_BOARD_UPDATED } from '../services/socket.service.js'
 
 // Load

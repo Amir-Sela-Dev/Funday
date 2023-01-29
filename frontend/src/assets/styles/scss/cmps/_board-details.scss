@@ -4,7 +4,6 @@
     overflow: auto;
     max-height: 100vh;
 
-    // position: relative;
     a.tab-inner {
         padding-inline: 8px;
     }
@@ -258,7 +257,7 @@
         }
 
         & .monday-storybook-text-field_size {
-            margin-block-end: 20px
+            margin-block-end: 20px;
         }
     }
 
@@ -276,8 +275,6 @@
     margin-bottom: 16px;
     min-height: 36px;
 }
-
-
 
 .suggested-invites {
     &>div {

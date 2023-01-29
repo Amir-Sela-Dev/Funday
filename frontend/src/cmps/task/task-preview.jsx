@@ -1,20 +1,14 @@
 import { useEffect, useState, React } from "react"
 import { boardService } from "../../services/board.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { addActivity, saveGroup, saveTask } from "../../store/board.action"
+import { saveGroup, saveTask } from "../../store/board.action"
 import { DatePicker, Space, } from 'antd'
 import dayjs from "dayjs"
-import { TaskTitle } from "./task-title"
-import { TaskPerson } from "./task-person"
 import { PersonDetails } from "./person-details"
-import { utilService } from "../../services/util.service"
 import { DynamicModal } from "../dynamicModal"
-import { File, Check, AddUpdate, Update, Menu } from "monday-ui-react-core/icons";
-import { AvatarGroup, Icon, Avatar, StoryDescription, Flex, DialogContentContainer } from "monday-ui-react-core";
+import { Check, AddUpdate, Update, Menu } from "monday-ui-react-core/icons";
+import { AvatarGroup, Icon, Avatar } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
-import { ListItemIcon } from "monday-ui-react-core"
-import { DropdownChevronRight } from "monday-ui-react-core/icons";
-import { Draggable } from "react-beautiful-dnd"
 import { socketService, SOCKET_EMIT_CHANGE_TASK, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service"
 
 
@@ -37,20 +31,19 @@ export function TaskPreview({
     const [prioreties, setPriorety] = useState(boardService.getDefaultPriorities())
     const [isPriorityOpen, setIsPriorityOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
+    const [showOptions, setShowOptions] = useState(false)
+    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
-    const [showOptions, setShowOptions] = useState(false);
-    const { RangePicker } = DatePicker;
-    const [size, setSize] = useState('small');
-    const [isOpen, setIsOpen] = useState(false);
-    const [isMark, setIsMark] = useState(false);
-    // const [tasks, setTasks] = useState(group.tasks)
-    const [date, setDate] = useState(null);
-    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+    const { RangePicker } = DatePicker
+    const [size, setSize] = useState('small')
+    const [isOpen, setIsOpen] = useState(false)
+    const [isMark, setIsMark] = useState(false)
+    const [date, setDate] = useState(null)
 
     const handleSizeChange = (e) => {
-        setSize(e.target.value);
-    };
-    const monthFormat = 'MM/DD';
+        setSize(e.target.value)
+    }
+    const monthFormat = 'MM/DD'
 
     useEffect(() => {
         setTaskToUpdate(task)

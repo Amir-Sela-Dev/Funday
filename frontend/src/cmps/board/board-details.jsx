@@ -170,8 +170,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const starIcon = 'star.svg'
     const searchIcon = 'search-board.svg'
     const arrowDownWhite = 'arrow-down.png'
+    const loader1 = 'Loader1.svg'
+    const loader2 = 'Loader2.svg'
+    const loader3 = 'Loader3.svg'
 
-    if (!board) return <div>Loading...</div>
+    if (!board) return <img className="loader" src={require(`/src/assets/img/${loader2}`)} />
     return (
         <section className="board-details">
             <div className="sticky-board-header">
@@ -225,7 +228,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 </TabList>
 
                 <div className="board-second-title-wrap">
-                    {/* <hr className="group-list-main-hr" /> */}
+                    <hr className="group-list-main-hr" />
                     <div className="board-actions flex">
                         <Flex style={{ width: "100%" }}>
                             <button className="new-group-btn" onClick={() => { onAddItem(false) }}><span>New item</span></button>
