@@ -2119,6 +2119,10 @@ button {
 .group-preview .group-title-container:hover .number-of-tasks {
   opacity: 1;
 }
+.group-preview .color-picker--wrapper {
+  position: fixed;
+  z-index: 80;
+}
 
 .group-list {
   list-style: none;
@@ -2794,7 +2798,6 @@ button {
 .group-bottom-bar .dates-color {
   justify-content: center;
   align-items: center;
-  background-color: purple;
   color: white;
   text-align: center;
   width: 95%;

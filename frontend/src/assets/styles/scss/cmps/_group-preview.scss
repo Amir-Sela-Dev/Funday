@@ -60,4 +60,9 @@
             opacity: 1;
         }
     }
+
+    & .color-picker--wrapper {
+        position: fixed;
+        z-index: 80;
+    }
 }
