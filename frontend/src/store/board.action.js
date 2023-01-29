@@ -1,9 +1,11 @@
 import { boardService } from '../services/board.service.js'
-import { store } from './store.js'
-import { REMOVE_BOARD, SET_BOARDS, ADD_BOARD, UPDATE_BOARD, UNDO_REMOVE_BOARD, SET_BOARD } from '../store/board.reducer.js'
-import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import { utilService } from '../services/util.service.js'
 import { userService } from '../services/user.service.js'
+import { store } from './store.js'
+
+import { REMOVE_BOARD, SET_BOARDS, ADD_BOARD, UPDATE_BOARD, UNDO_REMOVE_BOARD, SET_BOARD } from '../store/board.reducer.js'
+import { LOADING_DONE, LOADING_START } from './system.reducer.js'
+
 import { socketService, SOCKET_EVENT_BOARD_UPDATED } from '../services/socket.service.js'
 
 export async function loadBoards(filterBy) {
@@ -33,17 +35,6 @@ export async function removeBoard(boardId) {
         throw err
     }
 }
-
-// export function removeBoardNormal(boardId) {
-//     return boardService.remove(boardId)
-//         .then(() => {
-//             store.dispatch({ type: REMOVE_BOARD, boardId })
-//         })
-//         .catch(err => {
-//             console.log('Had issues Removing board', err)
-//             throw err
-//         })
-// }
 
 export async function saveBoard(board) {
     try {
@@ -180,12 +171,3 @@ export async function addUser(board, userId) {
         throw err
     }
 }
-// export async function removeActivity(activityId) {
-//     try {
-//         await activityService.remove(activityId)
-//         store.dispatch(getActionRemoveActivity(activityId))
-//     } catch (err) {
-//         console.log('ActivityActions: err in removeActivity', err)
-//         throw err
-//     }
-// }

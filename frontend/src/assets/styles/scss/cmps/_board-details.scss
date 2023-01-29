@@ -4,7 +4,6 @@
     overflow: auto;
     max-height: 100vh;
 
-    // position: relative;
     a.tab-inner {
         padding-inline: 8px;
     }
@@ -218,7 +217,7 @@
     & .dark-screen {
         transition: all 1s;
         background: #292f4cb3;
-        &:hover{
+        &:hover {
             opacity: 1;
         }
     }
@@ -241,12 +240,12 @@
             color: var(--primary-text-color);
         }
 
-        &>* {
+        & > * {
             width: 100%;
         }
 
         & .monday-storybook-text-field_size {
-            margin-block-end: 20px
+            margin-block-end: 20px;
         }
     }
 
@@ -265,10 +264,8 @@
     min-height: 36px;
 }
 
-
-
 .suggested-invites {
-    &>div {
+    & > div {
         // padding-inline: 0;
         margin-block: 8px;
     }
