@@ -10,6 +10,7 @@ export function SideNav() {
     const [isUserModalOpen, setIsUderModalOpen] = useState(false)
 
     function toggleModal() {
+        console.log('logged in user', user)
         setIsUderModalOpen(!isUserModalOpen)
     }
 

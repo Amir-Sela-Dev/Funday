@@ -10,7 +10,6 @@ export function HomePage() {
     return (
         <section className='home-page'>
             <Header />
-
             <video className="cover-video" src={require(`/src/assets/img/${videoBG}`)} autoPlay loop muted />
             <div className="content">
                 <h1> A platform built for a new way of working</h1>
