@@ -105,7 +105,7 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
 
     return (
         // <DragDropContext onDragEnd={handleOnDragEnd}>
-        <section className="kanban-group-preview flex">
+        <section className="kanban-group-preview flex" >
             {/* <div className="wrap-group-modal">
                 {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
                     <div className="menu-modal-option flex">
@@ -121,7 +121,7 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
                 </ul>}
             </div> */}
 
-            <div className="kanban-tittle-wrapper flex justify-center">
+            <div className="kanban-tittle-wrapper flex justify-center" style={{ background: group.style?.color || '#FFF000', border: 'none' }} >
                 <div className="kanban-group-title flex align-center">
                     {group.title}
                 </div>
@@ -156,7 +156,7 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
 
             </div>
 
-            <div className="kanban-color"></div>
+            <div className="kanban-color" style={{ background: group.style?.color || '#FFF000', border: 'none' }}></div>
 
         </section>
     )

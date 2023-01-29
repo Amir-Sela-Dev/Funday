@@ -181,7 +181,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         className="board-title mobile"
                         style={{
                             width: `${(board?.title?.length)}ch`
-                        }}>{boardTitle || 'New board'}
+                        }}>{boardTitle || board?.title}
                     </span>
                     <form onSubmit={onRenameBoard} >
                         <input
@@ -190,7 +190,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 width: `${(boardTitle?.length + 2)}ch`
                             }}
                             type="text"
-                            value={boardTitle || 'New board'}
+                            value={boardTitle || board?.title}
                             onChange={handleInputChange}
                             onBlur={ev => { onRenameBoard(ev) }}
                         />
