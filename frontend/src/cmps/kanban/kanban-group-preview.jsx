@@ -8,7 +8,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { KanbanTaskList } from "./kanban-task-list";
 import { boardService } from "../../services/board.service";
 
-export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, index }) {
+export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, index, setIsDarkScreen }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
     // let { board } = useSelector((storeState) => storeState.boardModule)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
@@ -106,20 +106,7 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
     return (
         // <DragDropContext onDragEnd={handleOnDragEnd}>
         <section className="kanban-group-preview flex" >
-            {/* <div className="wrap-group-modal">
-                {(isBoardOptionsOpen && board) && <ul className={"menu-modal group-modal "}>
-                    <div className="menu-modal-option flex">
-                        <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
-                            onClick={() => { }} />
-                        <p className="menu-modal-option-text">Duplicate</p>
-                    </div>
-                    <div className="menu-modal-option flex">
-                        <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
-                            onClick={() => { onRemoveGroup(group.id) }} />
-                        <p className="menu-modal-option-text" >Delete</p>
-                    </div>
-                </ul>}
-            </div> */}
+
 
             <div className="kanban-tittle-wrapper flex justify-center" style={{ background: group.style?.color || '#FFF000', border: 'none' }} >
                 <div className="kanban-group-title flex align-center">
@@ -128,7 +115,7 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
             </div>
 
             <div className="kanban-card-container">
-                <KanbanTaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
+                <KanbanTaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} setIsDarkScreen={setIsDarkScreen} />
 
             </div>
 

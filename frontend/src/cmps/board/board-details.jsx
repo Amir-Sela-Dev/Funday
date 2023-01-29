@@ -32,7 +32,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const [isKanban, setIsKanban] = useState(false)
-    const [isDarkScreen, setIsDarkScreen] = useState(false)
+    const [isKanbanInfo, setIsDarkScreen] = useState(false)
     const { boardId } = useParams()
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -217,6 +217,8 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         Main Table
                     </Tab>
 
+                    <hr />
+
                     <Tab className='tab' style={{ color: "  #0070e5" }} onClick={() => { setIsKanban(true) }}>
                         Kanban
                     </Tab>
@@ -321,6 +323,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 )}
             </Droppable>
             }
+            {isKanbanInfo && <div onClick={() => { setIsDarkScreen(false) }} className="dark-screen"></div>}
 
             {isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
@@ -330,7 +333,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         {...provided.droppableProps}
                     >
 
-                        <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} />
+                        <KanbansGroupList board={board} toggleModal={toggleModal} setFilter={setFilter} setIsDarkScreen={setIsDarkScreen} />
                         {provided.placeholder}
                     </div>
                 )}

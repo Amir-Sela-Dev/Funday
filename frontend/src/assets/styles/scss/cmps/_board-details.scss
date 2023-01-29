@@ -15,6 +15,15 @@
         ul {
             padding: 0;
         }
+
+        hr {
+            color: rgba(50, 51, 56, 0.2941176471);
+            height: 1px;
+            // width: 95%;
+            height: 50%;
+            margin-top: 18px;
+            transform: rotateX('90');
+        }
     }
 }
 
@@ -56,6 +65,7 @@
     width: 3ch;
 
     @include for-narrow-layout {
+
         &:hover,
         &:focus {
             outline: 1px solid rgb(223, 223, 223);
@@ -207,6 +217,7 @@
             display: none;
             padding-inline: 8px;
             margin-top: 8px;
+
             @include for-mobile-layout {
                 display: inline-flex;
             }
@@ -218,7 +229,8 @@
     & .dark-screen {
         transition: all 1s;
         background: #292f4cb3;
-        &:hover{
+
+        &:hover {
             opacity: 1;
         }
     }
@@ -235,7 +247,7 @@
         justify-content: center;
         align-items: center;
 
-        & > .modal-title {
+        &>.modal-title {
             font-weight: 400;
             font-size: 24px;
             color: var(--primary-text-color);

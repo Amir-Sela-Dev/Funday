@@ -118,7 +118,7 @@ export function GroupBottomBar({ board, group }) {
                     switch (cmp) {
                         case 'person':
                             return <div className="bar-person task-persons task-column" key={cmp}>
-                                <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical className="flex align-center justify-center" >
+                                <AvatarGroup size={Avatar.sizes.SMALL} max={2} vertical className="flex align-center justify-center" >
                                     {getAllPeople().map((person, i) => <Avatar key={i} type={Avatar.types.IMG} size="small" src={person.imgUrl} />)}
                                 </AvatarGroup>
 
@@ -130,7 +130,7 @@ export function GroupBottomBar({ board, group }) {
                         case 'date':
                             return (
                                 <div className="task-date task-column flex" key={cmp}>
-                                    <div className="dates-color flex" style={{backgroundColor: group.style.color}}>
+                                    <div className="dates-color flex" style={{ backgroundColor: group.style.color }}>
                                         {(getAlldates()?.earliestDate) ? getAlldates().earliestDate : ''} -  {(getAlldates()?.latestDate) ? getAlldates()?.latestDate : ''}
                                     </div>
                                 </div>)

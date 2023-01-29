@@ -10,7 +10,7 @@ import { GroupBottomBar } from "../group/group-bottom-bar";
 import { TaskPreview } from "../task/task-preview";
 import { KanbanTaskPreview } from "./kanban-task-preview";
 
-export function KanbanTaskList({ group, tasks, toggleModal }) {
+export function KanbanTaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
 
     let { board } = useSelector((storeState) => storeState.boardModule)
 
@@ -70,6 +70,7 @@ export function KanbanTaskList({ group, tasks, toggleModal }) {
                                                         board={board}
                                                         tasks={tasks}
                                                         toggleModal={toggleModal}
+                                                        setIsDarkScreen={setIsDarkScreen}
                                                     />
 
 

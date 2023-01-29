@@ -27,7 +27,8 @@ export function KanbanTaskPreview({
     toggleModal,
     isAllSelected,
     updateSelectedTasks,
-    tasks
+    tasks,
+    setIsDarkScreen
 
 }) {
     const [taskToUpdate, setTaskToUpdate] = useState(task)
@@ -214,6 +215,12 @@ export function KanbanTaskPreview({
 
     }
 
+    function onKanbanModal() {
+        setIsKanbanModalOpen(true)
+        setIsDarkScreen(true)
+    }
+
+
     const duplicateIcon = 'duplicate.svg'
     const deleteIcon = 'delete.svg'
 
@@ -239,17 +246,19 @@ export function KanbanTaskPreview({
             </div>
 
 
-            <div className="kanban-task-txt task-column flex" onClick={() => { setIsKanbanModalOpen(true) }} >
-                <form onSubmit={onRenameTask} >
-                    <input
-                        className="task-title-input"
-                        type="text"
-                        value={taskToUpdate.title}
-                        onChange={handleNameInputChange}
-                        onBlur={ev => { onRenameTask(ev) }}
-                        onClick={ev => { ev.stopPropagation() }}
-                    />
-                </form>
+            <div className="kanban-task-txt task-column flex"  >
+                <div onClick={onKanbanModal}>
+                    <form onSubmit={onRenameTask} >
+                        <input
+                            className="task-title-input"
+                            type="text"
+                            value={taskToUpdate.title}
+                            onChange={handleNameInputChange}
+                            onBlur={ev => { onRenameTask(ev) }}
+                            onClick={ev => { ev.stopPropagation() }}
+                        />
+                    </form>
+                </div>
                 <div className="comments-bubble task-column flex" >
                     <div className="buuble-icon flex justify-center" onClick={() => toggleModal(board, group, task)}>
                         {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
@@ -262,7 +271,7 @@ export function KanbanTaskPreview({
 
             </div>
 
-            {isKanbanModalOpen && <KanbanTaskModal board={board} group={group} task={task} setIsKanbanModalOpen={setIsKanbanModalOpen} isKanbanModalOpen={isKanbanModalOpen} />
+            {isKanbanModalOpen && <KanbanTaskModal board={board} group={group} task={task} setIsKanbanModalOpen={setIsKanbanModalOpen} isKanbanModalOpen={isKanbanModalOpen} setIsDarkScreen={setIsDarkScreen} />
             }
 
         </div>

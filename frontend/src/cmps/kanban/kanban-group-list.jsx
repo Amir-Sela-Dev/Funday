@@ -16,7 +16,7 @@ import { GroupPreview } from '../group/group-preview';
 import { KanbanGroupPreview } from './kanban-group-preview';
 
 
-export function KanbansGroupList({ board, toggleModal, setFilter }) {
+export function KanbansGroupList({ board, toggleModal, setFilter, setIsDarkScreen }) {
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
@@ -103,6 +103,7 @@ export function KanbansGroupList({ board, toggleModal, setFilter }) {
                 onClick={onToggleBoardActionsModal}
             />
 
+
             {board.groups.map((group, index) =>
 
 
@@ -117,7 +118,7 @@ export function KanbansGroupList({ board, toggleModal, setFilter }) {
 
                             >
 
-                                <KanbanGroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
+                                <KanbanGroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} setIsDarkScreen={setIsDarkScreen} />
                             </div>
                         )}
 

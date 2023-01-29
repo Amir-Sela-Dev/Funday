@@ -1,13 +1,13 @@
 .kanban-task-modal {
     display: grid;
     grid-template-columns: 49.5% 1px 49.5%;
-    grid-template-areas: "task-info  hr task-details";
+    grid-template-areas: "task-info hr task-details";
     position: fixed;
     background-color: #fff;
     box-shadow: 0 0 12px 1px grey;
-    height: 70%;
-    transform: translate(50%, -50%);
-    left: -25%;
+    height: 85%;
+    transform: translate(-50%, -50%);
+    left: 50%;
     top: 50%;
     transition: all 0.3s ease 0s;
     width: 80%;

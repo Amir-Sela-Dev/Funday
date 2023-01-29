@@ -6,11 +6,14 @@ import { IconButton } from "monday-ui-react-core";
 
 
 
-export function KanbanTaskModal({ board, group, task = '', setIsKanbanModalOpen, isKanbanModalOpen }) {
+export function KanbanTaskModal({ board, group, task = '', setIsKanbanModalOpen, isKanbanModalOpen, setIsDarkScreen }) {
 
 
 
-
+    function onCloseKanbanInfo() {
+        setIsKanbanModalOpen(false)
+        setIsDarkScreen(false)
+    }
 
 
     return <section className="kanban-task-modal flex">
@@ -18,7 +21,7 @@ export function KanbanTaskModal({ board, group, task = '', setIsKanbanModalOpen,
         <div >
             <IconButton
                 icon={Close}
-                onClick={() => { setIsKanbanModalOpen(false) }}
+                onClick={onCloseKanbanInfo}
                 className="return-btn"
             />
         </div>
