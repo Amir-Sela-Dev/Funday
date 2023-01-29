@@ -17,18 +17,73 @@
         color: white;
     }
 
+    .triangle-wrapper {
+        position: relative;
+    }
+
+    .triangle {
+        background-image: linear-gradient(to bottom left, transparent 50%, white 0);
+        height: 150px;
+        width: 100%;
+        position: absolute;
+        bottom: 8px;
+    }
+
     .about-us {
         margin-top: 20px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        color: black;
     }
 
     .about-avatar {
-        width: 200px;
+        width: 280px;
         margin: 15px;
+        margin-right: 30px;
+        margin-left: 30px;
+
         img {
             border-radius: 50%;
+            box-shadow: 0 0 10px 3px #00000029;
+
+            &:hover {
+                outline: 1px solid rgb(255, 255, 255);
+            }
+        }
+
+        p {
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+
+    .clients-img {
+        width: 75%;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+
+        .img-wrap {
+            height: 30px;
+            margin: 20px;
+
+        }
+    }
+
+    .home-page-hr {
+        width: 75%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .our-clients {
+        margin-top: 60px;
+        text-align: center;
+        color: black;
+
+        p {
+            font-weight: 600;
         }
     }
 
@@ -46,6 +101,10 @@
         text-align: center;
         font-size: 72px;
         font-family: "Poppins-Thin";
+    }
+
+    h2 {
+        font-size: 50px;
     }
 
     p {
