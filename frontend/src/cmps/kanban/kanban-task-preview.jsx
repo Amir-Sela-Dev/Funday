@@ -262,7 +262,7 @@ export function KanbanTaskPreview({
 
             </div>
 
-            {isKanbanModalOpen && <KanbanTaskModal board={board} group={group} task={task} />
+            {isKanbanModalOpen && <KanbanTaskModal board={board} group={group} task={task} setIsKanbanModalOpen={setIsKanbanModalOpen} isKanbanModalOpen={isKanbanModalOpen} />
             }
 
         </div>

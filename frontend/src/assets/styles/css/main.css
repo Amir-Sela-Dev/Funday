@@ -1868,6 +1868,9 @@ button {
   color: rgba(50, 51, 56, 0.2941176471);
   height: 1px;
   width: 98%;
+  margin-bottom: 20px;
+  margin-top: 0.6px;
+  align-self: center;
 }
 .task-modal-open .task-updates {
   flex-direction: column;
@@ -2922,8 +2925,11 @@ button {
   margin-inline-start: 20px;
 }
 .kanban-task-preview .comments-bubble .buuble-icon {
-  margin-right: 2px;
   margin-inline-start: 15px;
+  width: 34px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
 }
 .kanban-task-preview .comments-bubble .comments-num {
   left: 36px;
@@ -2943,12 +2949,12 @@ button {
 
 .kanban-task-modal {
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "task-info task-details";
+  grid-template-columns: 49.5% 1px 49.5%;
+  grid-template-areas: "task-info  hr task-details";
   position: fixed;
   background-color: #fff;
   box-shadow: 0 0 12px 1px grey;
-  height: 80%;
+  height: 70%;
   transform: translate(50%, -50%);
   left: -25%;
   top: 50%;
@@ -2967,6 +2973,14 @@ button {
   max-width: 100%;
   box-shadow: none;
 }
+.kanban-task-modal .kanban-task-details hr {
+  color: rgba(50, 51, 56, 0.2941176471);
+  height: 1px;
+  width: 98%;
+  margin-bottom: 20px;
+  margin-top: 0.6px;
+  align-self: center;
+}
 .kanban-task-modal .kanban-task-details .opend-input {
   width: 100%;
   height: 40px;
@@ -2975,12 +2989,42 @@ button {
 .kanban-task-modal .kanban-task-details .tabs--wrapper {
   padding-bottom: 0;
 }
+.kanban-task-modal .kanban-task-details .details-modal-btn {
+  display: none;
+}
+.kanban-task-modal .kanban-task-details .detais-title {
+  padding-block: 16px;
+  padding-top: 36px;
+}
 .kanban-task-modal .task-info {
   grid-area: task-info;
   height: 100%;
 }
 .kanban-task-modal hr {
-  border: #323338 solid 1px;
+  grid-area: hr;
+  color: rgba(50, 51, 56, 0.2941176471);
+  height: 1px;
+  height: 95%;
+  margin-top: 17px;
+  margin-bottom: 23px;
+  transform: rotateX("90");
+}
+.kanban-task-modal .dark-screen {
+  z-index: 60;
+  background-color: rgba(0, 0, 0, 0.425);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  transition: opacity 0.15s;
+}
+.kanban-task-modal .return-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .kanban-task-info {
@@ -2993,6 +3037,8 @@ button {
   padding-block: 26px;
   color: #323338;
   font-size: 24px;
+  padding-bottom: 26px;
+  padding-top: 46px;
 }
 .kanban-task-info .kanban-task-actions {
   width: 100%;
@@ -3009,8 +3055,10 @@ button {
   height: 100%;
 }
 .kanban-task-info .colum-title {
-  width: 25%;
-  border-right: #323338 solid 1px;
+  width: 140px;
+}
+.kanban-task-info .colum-title .icon {
+  margin-right: 7px;
 }
 .kanban-task-info .kanban-task-column {
   width: 60%;
@@ -3116,6 +3164,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.kanban-task-info .preview-task-status {
+  color: white;
 }
 
 /*# sourceMappingURL=main.css.map */

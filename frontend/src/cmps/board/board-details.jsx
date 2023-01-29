@@ -32,6 +32,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const [isKanban, setIsKanban] = useState(false)
+    const [isDarkScreen, setIsDarkScreen] = useState(false)
     const { boardId } = useParams()
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -173,12 +174,13 @@ export function BoardDetails({ setBoardToDrag, board }) {
     if (!board) return <div>Loading...</div>
     return (
         <section className="board-details">
+            {/* {isDarkScreen && <div className="dark-screen" onClick={onCloseAllModal}></div>} */}
             <div className="sticky-board-header">
                 <div className="board-title-wrap flex">
                     <span
                         className="board-title mobile"
                         style={{
-                            width: `${(board?.title?.length )}ch`
+                            width: `${(board?.title?.length)}ch`
                         }}>{boardTitle || 'New board'}
                     </span>
                     <form onSubmit={onRenameBoard} >

@@ -62,7 +62,7 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
         <section>
             {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
             <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
-                <div>
+                <div >
                     <IconButton
                         icon={Close}
                         onClick={onCloseModal}

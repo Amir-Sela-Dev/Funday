@@ -55,14 +55,14 @@ export function KanbanTaskDetails({ board, group, task = '' }) {
     return (
         <section>
             <div className='kanban-task-details task-details-modal task-modal-open'>
-                <div>
+                <div className="details-modal-btn">
                     <IconButton
                         icon={Close}
                         className="return-btn"
                     />
                 </div>
                 <div>
-                    <h3>{task.title}</h3>
+                    <h3 className="detais-title">{task.title}</h3>
                 </div>
                 <div className="comments-btn">
                     <TabList>

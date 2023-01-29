@@ -5,15 +5,14 @@ import { addActivity, saveGroup, saveTask } from "../../store/board.action"
 import { DatePicker, Space, } from 'antd'
 import dayjs from "dayjs"
 // import { TaskTitle } from "./task-title"
-// import { utilService } from "../../services/util.service"
-// import { DynamicModal } from "../dynamicModal"
+import { utilService } from "../../services/util.service"
+import { DynamicModal } from "../dynamicModal"
 import { File, Check, AddUpdate, Update, Menu, PersonRound, Status, Calendar } from "monday-ui-react-core/icons";
 import { AvatarGroup, Icon, Avatar, StoryDescription, Flex, DialogContentContainer, } from "monday-ui-react-core";
-// import { ImgUploader } from "../img-uploader"
-// import { Draggable } from "react-beautiful-dnd"
+import { ImgUploader } from "../img-uploader"
+import { Draggable } from "react-beautiful-dnd"
 import { socketService, SOCKET_EMIT_CHANGE_TASK, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service"
 import { PersonDetails } from "../task/person-details"
-import { DynamicModal } from "../dynamicModal"
 
 export function KanbanTaskInfo({ board, group, task = '' }) {
     const [taskToUpdate, setTaskToUpdate] = useState(task)
@@ -198,7 +197,7 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
 
             <div className="colume-row flex">
 
-                <div className="colum-title flex align-center"> <Icon icon={PersonRound} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" />
+                <div className="colum-title flex align-center"> <Icon icon={PersonRound} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" />
                     Person</div>
                 <div className="task-persons kanban-task-column flex align-center justify-center"
                     onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
@@ -217,7 +216,7 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
             </div>
             <div className="colume-row flex">
 
-                <div className="colum-title flex align-center"><Icon icon={Status} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" /> Status</div>
+                <div className="colum-title flex align-center"><Icon icon={Status} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" /> Status</div>
                 <div className="preview-task-status  task-column kanban-task-column"
                     onClick={() => { setIsOpen(!isOpen) }}
                     style={{ background: `${(task.status.txt === 'Default') ? 'rgb(185, 185, 185)' : task.status.color}` }}>
@@ -229,7 +228,7 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
             </div>
             <div className="colume-row flex">
 
-                <div className="colum-title flex align-center"><Icon icon={Calendar} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" /> Date</div>
+                <div className="colum-title flex align-center"><Icon icon={Calendar} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" /> Date</div>
                 <div className="task-date task-column kanban-task-column">
 
                     <Space direction="vertical" >
@@ -245,7 +244,7 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
             </div>
             <div className="colume-row flex">
 
-                <div className="colum-title flex align-center"><Icon icon={Calendar} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" /> Timeline</div>
+                <div className="colum-title flex align-center"><Icon icon={Calendar} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" /> Timeline</div>
                 <div className="preview-timeline task-column kanban-task-column">
                     <Space direction="vertical" >
                         <RangePicker bordered={false}
@@ -257,7 +256,35 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
                         // style={{ width: '70%' }} 
                         />
                     </Space>
-                </div>            </div>
+                </div>
+            </div>
+            <div className="colume-row flex">
+
+                <div className="colum-title flex align-center"><Icon icon={Status} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" /> Prioriry</div>
+                <div className="preview-task-status  task-column kanban-task-column"
+                    onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
+                    style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
+
+                    <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
+                    {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
+
+                </div>
+            </div>
+            <div className="colume-row flex">
+
+                <div className="colum-title flex align-center"><Icon icon={File} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" /> File</div>
+                <div className="preview-files  task-column kanban-task-column flex align-center justify-center">
+                    {!task.file && <ImgUploader onUploaded={onUploaded} />}
+                    {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
+                </div>
+            </div>
+            <div className="colume-row flex">
+
+                <div className="colum-title flex align-center"><Icon icon={File} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="icon board-icon" /> Check</div>
+                <div className="preview-checkbox  task-column kanban-task-column flex align-center justify-center" onClick={() => { onSetMark() }}>
+                    {task.isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
+                </div>
+            </div>
         </div>
 
     </section>
