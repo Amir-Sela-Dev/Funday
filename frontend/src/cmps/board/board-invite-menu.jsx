@@ -13,13 +13,14 @@ export function BoardInviteMenu({ setModalState }) {
 
     useEffect(() => {
         onLoadBoardUsers()
+        onLoadSuggestedUsers()
     }, [])
     function onCloseInviteModal() {
         setModalState(false)
     }
 
     async function onLoadBoardUsers() {
-        if (board.users.length){            
+        if (board.users.length) {
             board.users.map(async userId => {
                 try {
                     const foundUser = await getUserById(userId)
@@ -31,8 +32,16 @@ export function BoardInviteMenu({ setModalState }) {
             })
         }
     }
+
+    async function onLoadSuggestedUsers() {
+        let foundUsers = structuredClone(users)
+        if (board.users.length) {
+            foundUsers = foundUsers.filter(currUser => !board.users.includes(currUser._id));
+        }
+        setSuggestedUsers([...foundUsers])
+    }
     async function onAddBoardUser(userId) {
-        if (board.users.includes(userId)){
+        if (board.users.includes(userId)) {
             console.log('already on board', getUserById(userId))
             return
         }
@@ -44,13 +53,12 @@ export function BoardInviteMenu({ setModalState }) {
     }
 
     async function onSearchQueryChange(val) {
-        console.log('loaded users', users)
         const regex = new RegExp(val, 'i')
-        let usersToShow = users.filter(user => {
+        let usersToShow = suggestedUsers.filter(user => {
             return (regex.test(user.username) || regex.test(user.fullname))
         })
         setSuggestedUsers([...usersToShow])
-        if (!val) setSuggestedUsers([])
+        if (!val) onLoadSuggestedUsers()
     }
 
     async function getUserById(userId) {
@@ -83,7 +91,7 @@ export function BoardInviteMenu({ setModalState }) {
                 }}>
                     <TextField onChange={val => { onSearchQueryChange(val) }} placeholder="Enter name or email" />
                 </form>
-                <hr style={{ display: suggestedUsers.length ? 'block' : 'none' }}/>
+                <hr style={{ display: suggestedUsers.length ? 'block' : 'none' }} />
                 <span style={{ display: suggestedUsers.length ? 'block' : 'none' }}>Invite..</span>
                 <List className="suggested-invites"
                     style={{ display: suggestedUsers.length ? 'block' : 'none' }}>
@@ -110,8 +118,8 @@ export function BoardInviteMenu({ setModalState }) {
                                 onAddBoardUser(user._id)
                                 onCloseInviteModal()
                             }}>
-                                <img className="monday-style-avatar--small user-round-icon" src={user.imgUrl} alt='custom icon' width='24px' height='24px' />
-                                {user.fullname}
+                            <img className="monday-style-avatar--small user-round-icon" src={user.imgUrl} alt='custom icon' width='24px' height='24px' />
+                            {user.fullname}
                         </ListItem>
                     }
                     )}
