@@ -1203,6 +1203,7 @@ button {
   bottom: auto;
   transition: opacity 0.15s;
 }
+
 .task-preview {
   align-items: center;
   color: #323338;
