@@ -2956,7 +2956,6 @@ button {
 .kanban-group-preview-line .kanban-group-preview {
   min-width: 260px;
   max-height: 100%;
-  border: #323338 solid 1px;
   flex-direction: column;
   border-radius: 8px 8px 8px 4px;
   background-color: #f6f7fb;
