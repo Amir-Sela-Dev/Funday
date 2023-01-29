@@ -58,6 +58,7 @@ async function remove(boardId) {
 async function save(board) {
     let savedBoard
     if (board._id) {
+        console.log('from service', board);
         // savedBoard = await storageService.put(STORAGE_KEY, board)
         savedBoard = await httpService.put(BASE_URL + board._id, board)
     } else {

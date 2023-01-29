@@ -102,7 +102,7 @@ export function GroupBottomBar({ board, group }) {
                 latestDate = endDate;
             }
         });
-        console.log({ earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') });
+        // console.log({ earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') });
         // return { earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') };
     }
 

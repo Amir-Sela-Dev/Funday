@@ -51,8 +51,8 @@ export async function saveBoard(board) {
         // console.log('lalala', board)
         console.log('duplicated board', board)
         const boardToSave = await boardService.save(board)
+        console.log('go and back!!!!!');
         socketService.emit(SOCKET_EVENT_BOARD_UPDATED, boardToSave._id)
-        // console.log('boardToSave', boardToSave)
         store.dispatch({ type: SET_BOARD, boardToSave })
         store.dispatch({ type, board: boardToSave })
         return boardToSave

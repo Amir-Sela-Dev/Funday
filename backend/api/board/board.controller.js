@@ -2,6 +2,7 @@ const boardService = require('./board.service.js')
 
 const logger = require('../../services/logger.service')
 
+
 async function getBoards(req, res) {
     try {
         logger.debug('Getting Boards')
@@ -47,6 +48,7 @@ async function addBoard(req, res) {
 async function updateBoard(req, res) {
     console.log('update!!1');
     try {
+        console.log('im here controller!!');
         const board = req.body
         console.log('backend board to save', board)
         const updatedBoard = await boardService.update(board)
