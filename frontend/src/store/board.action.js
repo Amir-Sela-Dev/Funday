@@ -124,6 +124,18 @@ export async function removeTask(board, groupId, taskId) {
     saveBoard(boardToSave)
 }
 
+export async function removeUser(board, userId) {
+    try {
+        let boardToSave = structuredClone(board)
+        let userIdx = board.users.findIndex(user => user._id === userId)
+        boardToSave.users.splice(userIdx, 1)
+        await saveBoard(boardToSave)
+    } catch (err) {
+        console.log('User could not be added', err)
+        throw err
+    }
+}
+
 // Save
 export async function saveBoard(board) {
     try {
