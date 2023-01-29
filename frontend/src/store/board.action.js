@@ -6,6 +6,7 @@ import { utilService } from '../services/util.service.js'
 import { userService } from '../services/user.service.js'
 import { socketService, SOCKET_EVENT_BOARD_UPDATED } from '../services/socket.service.js'
 
+// Load
 export async function loadBoards(filterBy) {
     store.dispatch({ type: LOADING_START })
     try {
@@ -19,48 +20,6 @@ export async function loadBoards(filterBy) {
     }
 }
 
-// Example for Optimistic mutation:
-export async function removeBoard(boardId) {
-    try {
-        await boardService.remove(boardId)
-        let boards = await boardService.query()
-        let boardToSave = boards[0]
-        store.dispatch({ type: SET_BOARD, boardToSave })
-        store.dispatch({ type: REMOVE_BOARD, boardId })
-    } catch (err) {
-        store.dispatch({ type: UNDO_REMOVE_BOARD })
-        console.log('Had issues Removing board', err)
-        throw err
-    }
-}
-
-// export function removeBoardNormal(boardId) {
-//     return boardService.remove(boardId)
-//         .then(() => {
-//             store.dispatch({ type: REMOVE_BOARD, boardId })
-//         })
-//         .catch(err => {
-//             console.log('Had issues Removing board', err)
-//             throw err
-//         })
-// }
-
-export async function saveBoard(board) {
-    try {
-        const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
-        // console.log('lalala', board)
-        console.log('duplicated board', board)
-        const boardToSave = await boardService.save(board)
-        console.log('go and back!!!!!');
-        socketService.emit(SOCKET_EVENT_BOARD_UPDATED, boardToSave._id)
-        store.dispatch({ type: SET_BOARD, boardToSave })
-        store.dispatch({ type, board: boardToSave })
-        return boardToSave
-    } catch (err) {
-        console.error('Cannot save board:', err)
-        throw err
-    }
-}
 
 export async function loadBoard(boardId, filterBy = boardService.getDefaultGroupFilter()) {
     try {
@@ -97,61 +56,13 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
     }
 }
 
-// Groups
+// Add
 export async function addGroup(group, board) {
     let fullBoard = await boardService.get(board._id)
     let boardToSave = structuredClone(fullBoard)
     boardToSave.groups.unshift(group)
     saveBoard(boardToSave)
 }
-
-export async function saveGroup(board, groupId, groupToUpdate) {
-    let fullBoard = await boardService.get(board._id)
-    let boardToSave = structuredClone(fullBoard)
-    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
-    if (groupIndex === -1) console.log('Could not find group to update')
-    boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
-    console.log('boardToSave', boardToSave)
-    saveBoard(boardToSave)
-}
-
-export async function removeGroup(board, groupId) {
-    let fullBoard = await boardService.get(board._id)
-    let boardToSave = fullBoard
-    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
-    if (groupIndex === -1) console.log('Could not find group to remove')
-    boardToSave.groups.splice(groupIndex, 1)
-    saveBoard(boardToSave)
-}
-
-// Tasks
-export async function saveTask(board, groupId, task, type, txt) {
-    let boardToSave = structuredClone(board)
-    let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
-    let taskToSave = { ...task }
-    if (!taskToSave.id) {
-        taskToSave.id = utilService.makeId(5)
-        await groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
-    }
-    else {
-        const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === taskToSave.id)
-        await groupToSave.tasks.splice(taskIdx, 1, taskToSave)
-    }
-    boardToSave = await addActivity(boardToSave, type, txt, task)
-    saveBoard(boardToSave)
-}
-
-export async function removeTask(board, groupId, taskId) {
-    let fullBoard = await boardService.get(board._id)
-    let boardToSave = structuredClone(fullBoard)
-    let currGroup = boardToSave.groups.find(group => group.id === groupId)
-    let taksIdx = currGroup.tasks.findIndex(task => task.id === taskId)
-    currGroup.tasks.splice(taksIdx, 1)
-    saveBoard(boardToSave)
-}
-
-
-// activities//
 
 export async function addActivity(board, type, txt, task) {
     try {
@@ -168,7 +79,6 @@ export async function addActivity(board, type, txt, task) {
     }
 }
 
-// users //
 export async function addUser(board, userId) {
     try {
         let boardToSave = structuredClone(board)
@@ -180,12 +90,78 @@ export async function addUser(board, userId) {
         throw err
     }
 }
-// export async function removeActivity(activityId) {
-//     try {
-//         await activityService.remove(activityId)
-//         store.dispatch(getActionRemoveActivity(activityId))
-//     } catch (err) {
-//         console.log('ActivityActions: err in removeActivity', err)
-//         throw err
-//     }
-// }
+
+// Remove
+export async function removeBoard(boardId) {
+    try {
+        await boardService.remove(boardId)
+        let boards = await boardService.query()
+        let boardToSave = boards[0]
+        store.dispatch({ type: SET_BOARD, boardToSave })
+        store.dispatch({ type: REMOVE_BOARD, boardId })
+    } catch (err) {
+        store.dispatch({ type: UNDO_REMOVE_BOARD })
+        console.log('Had issues Removing board', err)
+        throw err
+    }
+}
+
+export async function removeGroup(board, groupId) {
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = fullBoard
+    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
+    if (groupIndex === -1) console.log('Could not find group to remove')
+    boardToSave.groups.splice(groupIndex, 1)
+    saveBoard(boardToSave)
+}
+
+export async function removeTask(board, groupId, taskId) {
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(fullBoard)
+    let currGroup = boardToSave.groups.find(group => group.id === groupId)
+    let taksIdx = currGroup.tasks.findIndex(task => task.id === taskId)
+    currGroup.tasks.splice(taksIdx, 1)
+    saveBoard(boardToSave)
+}
+
+// Save
+export async function saveBoard(board) {
+    try {
+        const type = (board._id) ? UPDATE_BOARD : ADD_BOARD
+        const boardToSave = await boardService.save(board)
+        socketService.emit(SOCKET_EVENT_BOARD_UPDATED, boardToSave._id)
+        store.dispatch({ type: SET_BOARD, boardToSave })
+        // Save to current board
+        store.dispatch({ type, board: boardToSave })
+        return boardToSave
+    } catch (err) {
+        console.error('Cannot save board:', err)
+        throw err
+    }
+}
+
+export async function saveGroup(board, groupId, groupToUpdate) {
+    let fullBoard = await boardService.get(board._id)
+    let boardToSave = structuredClone(fullBoard)
+    const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
+    if (groupIndex === -1) console.log('Could not find group to update')
+    boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
+    console.log('boardToSave', boardToSave)
+    saveBoard(boardToSave)
+}
+
+export async function saveTask(board, groupId, task, type, txt) {
+    let boardToSave = structuredClone(board)
+    let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
+    let taskToSave = { ...task }
+    if (!taskToSave.id) {
+        taskToSave.id = utilService.makeId(5)
+        await groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
+    }
+    else {
+        const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === taskToSave.id)
+        await groupToSave.tasks.splice(taskIdx, 1, taskToSave)
+    }
+    boardToSave = await addActivity(boardToSave, type, txt, task)
+    saveBoard(boardToSave)
+}
