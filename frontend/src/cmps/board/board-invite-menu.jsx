@@ -1,9 +1,9 @@
-import { TextField, DialogContentContainer, List, ListItem, ListItemIcon, IconButton } from "monday-ui-react-core";
-import { Add as AddIcon } from "monday-ui-react-core/icons";
+import { TextField, DialogContentContainer, List, ListItem, ListItemIcon, IconButton, } from "monday-ui-react-core";
+import { Add as AddIcon, DisabledUser } from "monday-ui-react-core/icons";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { addUser } from "../../store/board.action";
+import { addUser, removeUser } from "../../store/board.action";
 
 export function BoardInviteMenu({ setModalState }) {
     let { board } = useSelector((storeState) => storeState.boardModule)
@@ -52,6 +52,17 @@ export function BoardInviteMenu({ setModalState }) {
         }
     }
 
+    async function onRemoveBoardUser(userId) {
+        try {
+            const boardUsersNew = board.users.filter(user => user._id !== userId)
+            await removeUser(board, userId)
+            console.log('removed user!', userId)
+            setBoardUsers([...boardUsersNew])
+            return
+        } catch (err) {
+            console.log('cant remove user', err)
+        }
+    }
     async function onSearchQueryChange(val) {
         let foundUsers = structuredClone(users)
         if (board.users.length) {
@@ -108,8 +119,10 @@ export function BoardInviteMenu({ setModalState }) {
                                 onAddBoardUser(user._id)
                                 onCloseInviteModal()
                             }}>
-                            <img className="monday-style-avatar--small user-round-icon" src={user.imgUrl} alt='custom icon' width='24px' height='24px' />
-                            {user.fullname}
+                            <div className="flex">
+                                <img className="monday-style-avatar--small user-round-icon" src={user.imgUrl} alt='custom icon' width='24px' height='24px' />
+                                <span>{user.fullname}</span>
+                            </div>
                         </ListItem>)}
                 </List>
                 <hr />
@@ -123,8 +136,19 @@ export function BoardInviteMenu({ setModalState }) {
                                 onAddBoardUser(user._id)
                                 onCloseInviteModal()
                             }}>
-                            <img className="monday-style-avatar--small user-round-icon" src={user.imgUrl} alt='custom icon' width='24px' height='24px' />
-                            {user.fullname}
+                            <div className="board-user-line flex space-between" style={{ width: '100%' }}>
+                                <div className="flex align-center">
+                                    <img className="monday-style-avatar--small user-round-icon" src={user.imgUrl} alt='custom icon' width='24px' height='24px' />
+                                    <span>{user.fullname}</span>
+                                </div>
+                                <IconButton
+                                    className="remove-board-user"
+                                    ariaLabel="Add"
+                                    icon={DisabledUser}
+                                    onClick={() => { onRemoveBoardUser(user._id) }}
+                                    size="xs"
+                                />
+                            </div>
                         </ListItem>
                     }
                     )}

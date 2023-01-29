@@ -1747,6 +1747,7 @@ button {
   border-bottom: 1px solid #d0d4e4;
   height: 36px;
   line-height: 36px;
+  background: white;
 }
 
 .upper-task {
@@ -2820,6 +2821,14 @@ button {
 
 .suggested-invites > div {
   margin-block: 8px;
+}
+.suggested-invites .board-user-line > span {
+  margin-left: auto;
+}
+.suggested-invites .board-user-line > span button:hover {
+  background-color: #000000;
+  outline: 1px solid #828593;
+  border-radius: 50%;
 }
 
 .upload-preview input {

@@ -177,7 +177,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
     if (!board) return <img className="loader" src={require(`/src/assets/img/${loader2}`)} />
     return (
         <section className="board-details">
-            {/* {isDarkScreen && <div className="dark-screen" onClick={onCloseAllModal}></div>} */}
             <div className="sticky-board-header">
                 <div className="board-title-wrap flex">
                     <span

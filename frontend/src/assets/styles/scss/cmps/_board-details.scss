@@ -269,4 +269,15 @@
         // padding-inline: 0;
         margin-block: 8px;
     }
+    & .board-user-line>span{
+        margin-left: auto;
+
+        & button:hover{
+            // color: red;
+            background-color: #000000;
+            outline: 1px solid #828593;
+            border-radius: 50%;
+        }
+    }
+
 }

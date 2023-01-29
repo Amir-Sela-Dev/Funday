@@ -75,7 +75,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
                         <div className="flex align-center">
                             <img src={(user?.imgUrl) ? user.imgUrl : 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'} alt="" className="user" />
                             {/* <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' alt="" className="user" /> */}
-                            <a> Guest </a>
+                            <a> {user?.fullname} </a>
                             <div className="is-active"></div>
                         </div>
                         <div className="date flex align-center">
