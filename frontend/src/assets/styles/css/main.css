@@ -1788,7 +1788,6 @@ button {
 
 .add-task-wrap {
   border-right: 1px solid #d0d4e4;
-  border-bottom: 1px solid #d0d4e4;
 }
 @media (max-width: 500px) {
   .add-task-wrap {
@@ -1800,6 +1799,21 @@ button {
 }
 .add-task-wrap .task-checkbox {
   opacity: 0.5;
+}
+.add-task-wrap .checkbox-column {
+  border-bottom: 1px solid #d0d4e4;
+}
+.add-task-wrap .task-input-row {
+  border-bottom: 1px solid #d0d4e4;
+}
+.add-task-wrap .filler-div {
+  flex: 1;
+  border-bottom: 1px solid #d0d4e4;
+}
+@media (max-width: 500px) {
+  .add-task-wrap .filler-div {
+    display: none;
+  }
 }
 
 .task-input-row {
@@ -2202,6 +2216,10 @@ button {
 .group-preview .group-title-container:hover .number-of-tasks {
   opacity: 1;
 }
+.group-preview .color-picker--wrapper {
+  position: fixed;
+  z-index: 80;
+}
 
 .group-list {
   list-style: none;
@@ -2568,8 +2586,8 @@ button {
 
 .board-title {
   display: inline-block;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 32px;
   font-family: Poppins-Regular;
   color: #323338;
   margin: 0;
@@ -2877,7 +2895,6 @@ button {
 .group-bottom-bar .dates-color {
   justify-content: center;
   align-items: center;
-  background-color: purple;
   color: white;
   text-align: center;
   width: 95%;

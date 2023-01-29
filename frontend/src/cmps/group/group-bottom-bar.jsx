@@ -129,7 +129,12 @@ export function GroupBottomBar({ board, group }) {
                                 return <div className="status-progress" style={{ minWidth: `${status.percent}%`, backgroundColor: `${status.color}` }}></div>
                             })}</div></div>
                         case 'date':
-                            return <div className="task-date task-column flex" key={cmp}><div className="dates-color flex">{(getAlldates()?.earliestDate) ? getAlldates().earliestDate : ''} -  {(getAlldates()?.latestDate) ? getAlldates()?.latestDate : ''} </div> </div>
+                            return (
+                                <div className="task-date task-column flex" key={cmp}>
+                                    <div className="dates-color flex" style={{backgroundColor: group.style.color}}>
+                                        {(getAlldates()?.earliestDate) ? getAlldates().earliestDate : ''} -  {(getAlldates()?.latestDate) ? getAlldates()?.latestDate : ''}
+                                    </div>
+                                </div>)
                         case 'timeline':
                             return <div className="task-timeline task-column" key={cmp}></div>
                         case 'priority':

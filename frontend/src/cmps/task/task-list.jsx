@@ -249,12 +249,11 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                                 onBlur={ev => onSaveTask(ev)}
                             />
                         </form>
-
                     </div>
-
-                    {/* <div className="mobile-only">
+                    <div className="filler-div"></div>
+                    <div className="mobile-only">
                         <GroupBottomBar board={board} group={group} />
-                    </div> */}
+                    </div>
 
                 </div>
                 <div className="only-desktop">
