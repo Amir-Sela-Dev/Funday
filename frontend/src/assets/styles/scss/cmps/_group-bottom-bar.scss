@@ -39,6 +39,17 @@
         align-items: center;
     }
 
+    .task-timeline {
+        width: 187px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .dates-color {
+            background-color: $clr1;
+        }
+    }
+
     .dates-color {
         justify-content: center;
         align-items: center;

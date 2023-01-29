@@ -12,7 +12,7 @@ import { DynDropdownSelect } from '../dynamic/dynDropdownSelect.jsx';
 import { ListItem, ListItemIcon, Menu, MenuItem } from "monday-ui-react-core"
 import { Add as AddIcon, Filter as FilterIcon, Search as SearchIcon } from "monday-ui-react-core/icons";
 
-export function WorkSpace({ toggleWorkspace }) {
+export function WorkSpace({ toggleWorkspace, setIsClicked, isClicked }) {
     const { boards } = useSelector((storeState) => storeState.boardModule)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [isNavModalClose, setIsNavModalClose] = useState(false)
@@ -141,7 +141,7 @@ export function WorkSpace({ toggleWorkspace }) {
                 name='title' />
         </div> */}
         <hr></hr>
-        <BoardList boards={boards} />
+        <BoardList boards={boards} isClicked={isClicked} setIsClicked={setIsClicked} />
 
         {isAddModalOpen && <div className="add-modal">
             <div onClick={onCloseModal} className="dark-screen"></div>

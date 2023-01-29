@@ -27,8 +27,12 @@
         margin-inline-start: 20px;
 
         .buuble-icon {
-            margin-right: 2px;
+            // margin-right: 2px;
             margin-inline-start: 15px;
+            width: 34px;
+            height: 34px;
+            justify-content: center;
+            align-items: center;
         }
 
         .comments-num {

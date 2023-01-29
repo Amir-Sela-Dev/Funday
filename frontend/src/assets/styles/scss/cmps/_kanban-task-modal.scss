@@ -1,11 +1,11 @@
 .kanban-task-modal {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-areas: "task-info task-details";
+    grid-template-columns: 49.5% 1px 49.5%;
+    grid-template-areas: "task-info  hr task-details";
     position: fixed;
     background-color: #fff;
     box-shadow: 0 0 12px 1px grey;
-    height: 80%;
+    height: 70%;
     transform: translate(50%, -50%);
     left: -25%;
     top: 50%;
@@ -25,6 +25,15 @@
 
         box-shadow: none;
 
+        hr {
+            color: rgba(50, 51, 56, 0.2941176471);
+            height: 1px;
+            width: 98%;
+            margin-bottom: 20px;
+            margin-top: 0.6px;
+            align-self: center;
+        }
+
         .opend-input {
             width: 100%;
             height: 40px;
@@ -33,6 +42,15 @@
 
         .tabs--wrapper {
             padding-bottom: 0;
+        }
+
+        .details-modal-btn {
+            display: none;
+        }
+
+        .detais-title {
+            padding-block: 16px;
+            padding-top: 36px;
         }
 
     }
@@ -44,7 +62,32 @@
     }
 
     hr {
-        border: $clr1 solid 1px;
+        grid-area: hr;
+        color: rgba(50, 51, 56, 0.2941176471);
+        height: 1px;
+        // width: 95%;
+        height: 95%;
+        margin-top: 17px;
+        margin-bottom: 23px;
+        transform: rotateX('90');
+    }
 
+    .dark-screen {
+        z-index: 60;
+        background-color: rgba(0, 0, 0, 0.425);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: auto;
+        transition: opacity 0.15s;
+    }
+
+    .return-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 }

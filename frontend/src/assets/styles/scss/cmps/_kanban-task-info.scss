@@ -8,6 +8,8 @@
         padding-block: 26px;
         color: #323338;
         font-size: 24px;
+        padding-bottom: 26px;
+        padding-top: 46px;
     }
 
     .kanban-task-actions {
@@ -30,8 +32,13 @@
     }
 
     .colum-title {
-        width: 25%;
-        border-right: #323338 solid 1px;
+        width: 140px;
+        // border-right: #323338 solid 1px;
+
+        .icon {
+            margin-right: 7px;
+
+        }
     }
 
     .kanban-task-column {
@@ -130,6 +137,21 @@
         right: auto;
         bottom: auto;
     }
+
+    .task-date {
+        .ant-space {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+    }
+
+    .preview-task-status {
+        color: white;
+    }
+
 
 
 }

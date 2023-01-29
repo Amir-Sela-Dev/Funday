@@ -15,6 +15,23 @@ export function KanbanGroupPreview({ board, group, toggleModal, onRemoveGroup, i
     const [tasks, setTasks] = useState(group.tasks)
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
     const [isAddItem, setIsAddItem] = useState(false)
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (event.target.closest('.task-input-row') === null) {
+                setIsAddItem(false)
+            }
+        }
+
+        if (isAddItem) {
+            document.addEventListener('mousedown', handleClickOutside)
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        };
+    }, [isAddItem]);
 
 
     useEffect(() => {

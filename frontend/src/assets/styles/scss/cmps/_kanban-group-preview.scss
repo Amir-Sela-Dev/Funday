@@ -57,6 +57,10 @@
                 width: 100%;
                 padding: 0;
                 margin: 0;
+
+                &:focus-visible {
+                    outline: var(--primary-color) 1px solid;
+                }
             }
         }
 

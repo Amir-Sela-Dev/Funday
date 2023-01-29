@@ -32,6 +32,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const [isKanban, setIsKanban] = useState(false)
+    const [isDarkScreen, setIsDarkScreen] = useState(false)
     const { boardId } = useParams()
 
     const [lables, setLables] = useState(boardService.getDefaultLabels())
@@ -43,10 +44,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
         onLoadBoard(boardId, filterByToEdit)
         onLoadUsers()
         setBoardTitle('')
-        // socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
-        // socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
+        socketService.on(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
+        socketService.emit(SOCKET_EMIT_SET_TOPIC, boardId)
         return () => {
-
+            socketService.off(SOCKET_EMIT_LOAD_BOARD, onLoadBoard)
+            socketService.off(SOCKET_EMIT_SET_TOPIC, boardId)
         }
 
     }, [filterByToEdit])
@@ -172,12 +174,13 @@ export function BoardDetails({ setBoardToDrag, board }) {
     if (!board) return <div>Loading...</div>
     return (
         <section className="board-details">
+            {/* {isDarkScreen && <div className="dark-screen" onClick={onCloseAllModal}></div>} */}
             <div className="sticky-board-header">
                 <div className="board-title-wrap flex">
                     <span
                         className="board-title mobile"
                         style={{
-                            width: `${(board?.title?.length )}ch`
+                            width: `${(board?.title?.length)}ch`
                         }}>{boardTitle || 'New board'}
                     </span>
                     <form onSubmit={onRenameBoard} >
@@ -320,7 +323,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
 
-            {/* {isKanban && <Droppable droppableId="gruopList" type="group">
+            {isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
                     <div className="drag-groups-container"
@@ -333,11 +336,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     </div>
                 )}
             </Droppable>
-            } */}
+            }
 
 
 
-            <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} />
+            <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} currBoardId={boardId} />
         </section >
 
     )

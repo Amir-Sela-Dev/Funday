@@ -82,7 +82,6 @@ export function GroupBottomBar({ board, group }) {
         return datesRange
     }
 
-    getAllTimelines()
     function getAllTimelines() {
         let allTimelines = []
         group.tasks.forEach(task => {
@@ -103,7 +102,7 @@ export function GroupBottomBar({ board, group }) {
             }
         });
         // console.log({ earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') });
-        // return { earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') };
+        return { earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') };
     }
 
 
@@ -136,7 +135,7 @@ export function GroupBottomBar({ board, group }) {
                                     </div>
                                 </div>)
                         case 'timeline':
-                            return <div className="task-timeline task-column" key={cmp}></div>
+                            return <div className="task-timeline task-column" key={cmp}><div className="dates-color flex">{(getAllTimelines()?.earliestDate) ? getAllTimelines().earliestDate : ''} -  {(getAllTimelines()?.latestDate) ? getAllTimelines()?.latestDate : ''} </div>  </div>
                         case 'priority':
                             return <div className=" task-status task-column flex " key={cmp}> <div className="label-progress-bar flex"> {getStatuscount('priority').map(priority => {
                                 return <div className="status-progress" style={{ minWidth: `${priority.percent}%`, backgroundColor: `${priority.color}` }}></div>
