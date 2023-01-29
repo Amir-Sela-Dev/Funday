@@ -5,11 +5,13 @@ import { showSuccessMsg } from "../../services/event-bus.service";
 import { saveGroup } from "../../store/board.action";
 import { TaskList } from "../task/task-list"
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { ColorPicker } from 'monday-ui-react-core'
 
 export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
     // let { board } = useSelector((storeState) => storeState.boardModule)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
+    const [isColorModalOpen, setIsColorModalOpen] = useState(false)
     const [tasks, setTasks] = useState(group.tasks)
 
     useEffect(() => {
@@ -41,6 +43,16 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
         }
     }
 
+    async function onChangeGroupColor(color) {
+        try {
+            group.style.color = `var(--color-${color})`
+            console.log('changed color to', group.style.color)
+            await saveGroup(board, group.id, group)
+            showSuccessMsg('Group updated')
+        } catch (err) {
+            console.log('error adding task', err)
+        }
+    }
     function handleInputChange(event) {
         setGroupToSend({ ...groupToSend, title: event.target.value })
     }
@@ -123,8 +135,6 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
 
             <div className="sticky-group-title-down flex">
                 <div className="group-title-container flex align-center">
-
-
                     <img className="option-icon board-icon" src={require(`/src/assets/img/${optionIcon}`)}
                         onClick={() => { openOptionModal() }} />
                 </div>
@@ -145,6 +155,12 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
 
                 <span className='number-of-tasks'>{group.tasks.length} items</span>
             </div>
+            <ColorPicker
+                ColorIndicatorIcon={function noRefCheck() { }}
+                colorList={["#FF0000", "#00FF00", "#0000FF"]}
+                onSave={val => { onChangeGroupColor(val[0]) }}
+                colorSize={ColorPicker.sizes.SMALL}
+            />
             <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
 
             <div className="add-task">
