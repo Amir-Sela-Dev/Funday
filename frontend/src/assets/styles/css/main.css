@@ -1076,13 +1076,13 @@ button {
   transform: translateX(100%);
 }
 .work-space .main-modal {
-  position: relative;
+  position: fixed;
   background-color: #fff;
   box-shadow: 0 0 12px 1px grey;
   height: 228px;
-  transform: translate(50%, -50%);
+  transform: translate(-50%, -50%);
   left: 50%;
-  top: 0%;
+  top: 50%;
   transition: all 0.3s ease 0s;
   width: 437px;
   z-index: 71;

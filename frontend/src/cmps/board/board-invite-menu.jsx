@@ -53,12 +53,17 @@ export function BoardInviteMenu({ setModalState }) {
     }
 
     async function onSearchQueryChange(val) {
-        const regex = new RegExp(val, 'i')
-        let usersToShow = suggestedUsers.filter(user => {
-            return (regex.test(user.username) || regex.test(user.fullname))
-        })
-        setSuggestedUsers([...usersToShow])
-        if (!val) onLoadSuggestedUsers()
+        let foundUsers = structuredClone(users)
+        if (board.users.length) {
+            foundUsers = foundUsers.filter(currUser => !board.users.includes(currUser._id));
+        }
+        if (val) {
+            const regex = new RegExp(val, 'i')
+            foundUsers = foundUsers.filter(user => {
+                return (regex.test(user.username) || regex.test(user.fullname))
+            })
+        }
+        setSuggestedUsers([...foundUsers])
     }
 
     async function getUserById(userId) {
