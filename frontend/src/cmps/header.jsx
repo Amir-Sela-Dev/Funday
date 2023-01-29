@@ -1,15 +1,34 @@
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 const logoUrl = 'logo.png'
 
 export function Header() {
-    return <div className="main-header flex">
-        <Link to='/'>
-            <div className="flex align-center">
+    const { user } = useSelector((storeState) => storeState.userModule)
 
+    return <div className="main-header flex">
+        {/* <div className="flex align-center"> */}
+        <div className="left-side flex">
+            <Link to='/'>
                 <img className="main-logo" src={require(`../assets/img/${logoUrl}`)} />
                 <h1>Funday</h1>
-            </div>
-        </Link>
+            </Link>
+        </div>
+
+        <div className="right-side flex" style={{ alignItems: 'center' }}>
+            {!user &&
+                <Link className='login-link' to="/auth/login">Login</Link>
+            }
+            {user &&
+                <span style={{ marginRight: '20px' }}>Welcome back
+                    <span style={{
+                        fontWeight: '600',
+                        marginLeft: '6px'
+                    }}>{user.fullname.split(' ')[0]}</span>
+                    !
+                </span>}
+            <Link className='see-demo' to={`/board/63d5b54e7d97b7406caecd80`}>get started ⇨</Link>
+        </div>
+        {/* </div> */}
     </div>
 
 }

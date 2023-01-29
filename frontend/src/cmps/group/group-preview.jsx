@@ -149,18 +149,27 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
                         type="text"
                         value={groupToSend.title}
                         onChange={handleInputChange}
-                        onBlur={ev => { onRenameGroup(ev, ev.target.value) }}
+                        onBlur={ev => { 
+                            onRenameGroup(ev, ev.target.value) 
+                            setIsColorModalOpen(false)
+                        }}
+                        onClick={() => setIsColorModalOpen(true)}
                     />
                 </form>
 
                 <span className='number-of-tasks'>{group.tasks.length} items</span>
             </div>
-            <ColorPicker
-                ColorIndicatorIcon={function noRefCheck() { }}
-                colorList={["#FF0000", "#00FF00", "#0000FF"]}
-                onSave={val => { onChangeGroupColor(val[0]) }}
-                colorSize={ColorPicker.sizes.SMALL}
-            />
+            {isColorModalOpen &&
+                <div style={{ position: 'relative' }}>
+                    <ColorPicker
+                        className="color-picker"
+                        colorList={["red", "blue", "green"]}
+                        onSave={val => { onChangeGroupColor(val[0]) }}
+                        colorSize={ColorPicker.sizes.SMALL}
+                        numberOfColorsInLine={8}
+                    />
+                </div>
+            }
             <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
 
             <div className="add-task">
