@@ -3,8 +3,21 @@
     padding: 10px;
     height: 65px;
     align-items: center;
+    justify-content: space-between;
+
+    .left-side {
+        flex-direction: row;
+    }
+
     a {
+        display: flex;
         text-decoration: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-link {
+        padding: 10px;
     }
 
     .main-logo {
