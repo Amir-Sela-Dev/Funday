@@ -111,6 +111,7 @@ export async function saveGroup(board, groupId, groupToUpdate) {
     const groupIndex = boardToSave.groups.findIndex(group => group.id === groupId)
     if (groupIndex === -1) console.log('Could not find group to update')
     boardToSave.groups.splice(groupIndex, 1, groupToUpdate)
+    console.log('boardToSave', boardToSave)
     saveBoard(boardToSave)
 }
 

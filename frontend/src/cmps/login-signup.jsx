@@ -171,6 +171,7 @@ export function LoginSignup(props) {
                     />
                     <ImgUploader onUploaded={onUploaded} />
                     <button >Signup!</button>
+                    <span onClick={toggleSignup} style={{cursor: 'pointer'}}>Back to login</span>
                 </form>}
             </div>
         </div>

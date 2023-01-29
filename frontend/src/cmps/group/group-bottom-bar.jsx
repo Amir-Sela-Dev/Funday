@@ -37,12 +37,11 @@ export function GroupBottomBar({ board, group }) {
         group.tasks.forEach(task => {
             if (task.persons.length) {
                 task.persons.forEach(person => {
-                    let foundPerson = persons.find(p => p.id === person.id)
+                    let foundPerson = persons.find(p => p._id === person._id)
                     if (!foundPerson) persons.push(person)
                 });
             }
         });
-        // console.log(persons);
         return persons
     }
 

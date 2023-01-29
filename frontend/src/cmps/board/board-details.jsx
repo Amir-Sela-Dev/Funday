@@ -178,7 +178,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                     <span
                         className="board-title mobile"
                         style={{
-                            width: `${(board?.title?.length - 1.5)}ch`
+                            width: `${(board?.title?.length )}ch`
                         }}>{boardTitle || 'New board'}
                     </span>
                     <form onSubmit={onRenameBoard} >
