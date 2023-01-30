@@ -13,28 +13,9 @@ import { TaskActivityLog } from "./task-activity-log";
 var weekday = require('dayjs/plugin/weekday')
 
 export function TaskDetails({ board, group, task = '', closeModal, modalState }) {
-    const [value, setValue] = useState('');
-    const [comment, setComment] = useState(boardService.getDefaultComment());
     const [isActivityOpen, setIsActivityOpen] = useState(false);
 
-    const emtyModalImg = 'task-modal-empty-state.svg'
-    const whiteHome = 'white-home.svg'
-    const clock = 'clock.svg'
 
-    function onCloseModal() {
-        closeModal()
-    }
-
-    async function onAddTaskComment() {
-        if (!value) return
-        comment.txt = value
-        comment.createdAt = Date.now()
-        task.comments.unshift(comment)
-
-        await saveTask(board, group.id, task)
-        setComment(boardService.getDefaultComment())
-        setValue('')
-    }
 
     function formatTime(timestamp) {
         const currentTime = Date.now();
@@ -60,12 +41,12 @@ export function TaskDetails({ board, group, task = '', closeModal, modalState })
     if (!task) return
     return (
         <section>
-            {modalState && <div onClick={onCloseModal} className="dark-screen"></div>}
+            {modalState && <div onClick={closeModal} className="dark-screen"></div>}
             <div className={`task-details-modal ${modalState ? 'task-modal-open' : ''}`}>
                 <div >
                     <IconButton
                         icon={Close}
-                        onClick={onCloseModal}
+                        onClick={closeModal}
                         className="return-btn"
                     />
                 </div>

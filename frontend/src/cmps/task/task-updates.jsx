@@ -8,14 +8,26 @@ import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
 import { Send, Time } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
+import { socketService, SOCKET_EMIT_CHANGE_COMMENTS, SOCKET_EVENT_COMMENTS_UPDATED, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service";
 
 export function TaskUpdates({ board, group, task = '', formatTime }) {
     let { user } = useSelector((storeState) => storeState.userModule)
     const [value, setValue] = useState('');
     const [comment, setComment] = useState(boardService.getDefaultComment());
     const [isInputClicked, setIsInputClicked] = useState(false);
+    const [comments, setComments] = useState(task.comments);
+
     const emtyModalImg = 'task-modal-empty-state.svg'
     const clock = 'clock.svg'
+
+    useEffect(() => {
+        socketService.on(SOCKET_EMIT_CHANGE_COMMENTS, onSetComments)
+        setComments(task.comments)
+    }, [])
+
+    useEffect(() => {
+        setComments(task.comments)
+    }, [task])
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -43,10 +55,15 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
         comment.createdAt = Date.now()
         comment.byMember = user
         task.comments.unshift(comment)
-
         await saveTask(board, group.id, task)
+        setComments(task.comments)
+        socketService.emit(SOCKET_EVENT_COMMENTS_UPDATED, task.comments)
         setComment(boardService.getDefaultComment())
         setValue('')
+    }
+
+    function onSetComments(comments) {
+        setComments(comments)
     }
 
 
@@ -68,7 +85,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
         </div>}
         {/* <div style={{marginBlockStart: '25px'}}/> */}
         <div className="main-details-container">
-            {task.comments.map((comment, idx) => {
+            {comments.map((comment, idx) => {
                 return <div className="comment flex"
                     key={idx}
                 >
