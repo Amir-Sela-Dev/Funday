@@ -18,6 +18,25 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index, 
         setTasks(group.tasks)
     }, [board])
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (event.target.closest('.wrap-group-modal') === null) {
+                setIsBoardOptionsOpen(false)
+            }
+        }
+
+        if (isBoardOptionsOpen) {
+            document.addEventListener('mousedown', handleClickOutside)
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        };
+    }, [isBoardOptionsOpen]);
+
+
     async function saveGroupAfterDrag(tasks) {
         try {
             await saveGroup(board, group.id, { ...group, tasks: tasks })

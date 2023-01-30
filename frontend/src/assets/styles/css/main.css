@@ -363,7 +363,7 @@ button {
   width: 200px;
 }
 .menu-modal.task-modal {
-  transform: translate(-35px, 5px);
+  transform: translate(-35px, 25px);
 }
 .menu-modal .main-option {
   top: 24px;
