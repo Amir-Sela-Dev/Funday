@@ -1,8 +1,4 @@
 .home-page {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-
     .content {
         width: 800px;
         // height: 100%;
@@ -15,6 +11,11 @@
         justify-content: center;
         align-items: center;
         color: white;
+
+        @include for-mobile-layout {
+            width: 95%;
+            top: 200px;
+        }
     }
 
     .triangle-wrapper {
@@ -27,6 +28,10 @@
         width: 100%;
         position: absolute;
         bottom: 8px;
+
+        @include for-mobile-layout {
+            height: 75px;
+        }
     }
 
     .about-us {
@@ -35,6 +40,12 @@
         justify-content: center;
         align-items: center;
         color: black;
+    }
+
+    .main-avatars {
+        @include for-mobile-layout {
+            flex-direction: column;
+        }
     }
 
     .about-avatar {
@@ -64,10 +75,18 @@
         justify-content: center;
         align-items: center;
 
+        @include for-mobile-layout {
+            flex-direction: column;
+        }
+
         .img-wrap {
             height: 30px;
             margin: 20px;
 
+            @include for-mobile-layout {
+                height: unset;
+                width: unset;
+            }
         }
     }
 
@@ -101,6 +120,10 @@
         text-align: center;
         font-size: 72px;
         font-family: "Poppins-Thin";
+
+        @include for-mobile-layout {
+            font-size: 45px;
+        }
     }
 
     h2 {
@@ -110,6 +133,11 @@
     p {
         font-size: 25px;
         font-family: "Poppins-Thin";
+
+        @include for-mobile-layout {
+            font-size: 22px;
+            text-align: center;
+        }
     }
 
     .see-demo {
@@ -124,7 +152,6 @@
         font-weight: 400;
         line-height: 17px;
         overflow: hidden;
-
         transition: padding 0.3s ease;
 
         &:hover {
@@ -132,6 +159,11 @@
             outline: none;
             padding-right: 32px;
             text-decoration: none;
+        }
+
+        @include for-mobile-layout {
+            padding: 12px 12px;
+            font-size: 16px;
         }
     }
 
