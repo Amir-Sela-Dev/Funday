@@ -5,6 +5,12 @@
     align-items: center;
     justify-content: space-between;
 
+    @include for-mobile-layout {
+        .see-demo {
+            display: none;
+        }
+    }
+
     .left-side {
         flex-direction: row;
     }
@@ -24,6 +30,12 @@
         margin-right: -6px;
         width: 49px;
         height: 49px;
+
+        @include for-mobile-layout {
+            width: 37px;
+            height: 37px;
+            margin-left: -5px;
+        }
     }
 
     h1 {
@@ -33,6 +45,10 @@
         font-size: 40px;
         color: black;
         letter-spacing: -2.5px;
+
+        @include for-mobile-layout {
+            font-size: 28px;
+        }
     }
 
     .user-info {

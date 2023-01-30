@@ -466,6 +466,12 @@ button {
   align-items: center;
   color: white;
 }
+@media (max-width: 500px) {
+  .home-page .content {
+    width: 95%;
+    top: 200px;
+  }
+}
 .home-page .triangle-wrapper {
   position: relative;
 }
@@ -476,12 +482,22 @@ button {
   position: absolute;
   bottom: 8px;
 }
+@media (max-width: 500px) {
+  .home-page .triangle {
+    height: 75px;
+  }
+}
 .home-page .about-us {
   margin-top: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: black;
+}
+@media (max-width: 500px) {
+  .home-page .main-avatars {
+    flex-direction: column;
+  }
 }
 .home-page .about-avatar {
   width: 280px;
@@ -506,9 +522,20 @@ button {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 500px) {
+  .home-page .clients-img {
+    flex-direction: column;
+  }
+}
 .home-page .clients-img .img-wrap {
   height: 30px;
   margin: 20px;
+}
+@media (max-width: 500px) {
+  .home-page .clients-img .img-wrap {
+    height: unset;
+    width: unset;
+  }
 }
 .home-page .home-page-hr {
   width: 75%;
@@ -536,12 +563,23 @@ button {
   font-size: 72px;
   font-family: "Poppins-Thin";
 }
+@media (max-width: 500px) {
+  .home-page h1 {
+    font-size: 45px;
+  }
+}
 .home-page h2 {
   font-size: 50px;
 }
 .home-page p {
   font-size: 25px;
   font-family: "Poppins-Thin";
+}
+@media (max-width: 500px) {
+  .home-page p {
+    font-size: 22px;
+    text-align: center;
+  }
 }
 .home-page .see-demo {
   background-image: linear-gradient(90deg, #5034ff 25.69%, #b4b4ff 100%);
@@ -562,6 +600,12 @@ button {
   outline: none;
   padding-right: 32px;
   text-decoration: none;
+}
+@media (max-width: 500px) {
+  .home-page .see-demo {
+    padding: 12px 12px;
+    font-size: 16px;
+  }
 }
 .home-page .home-page-main {
   flex-direction: column;
@@ -800,6 +844,11 @@ button {
   align-items: center;
   justify-content: space-between;
 }
+@media (max-width: 500px) {
+  .main-header .see-demo {
+    display: none;
+  }
+}
 .main-header .left-side {
   flex-direction: row;
 }
@@ -817,6 +866,13 @@ button {
   width: 49px;
   height: 49px;
 }
+@media (max-width: 500px) {
+  .main-header .main-logo {
+    width: 37px;
+    height: 37px;
+    margin-left: -5px;
+  }
+}
 .main-header h1 {
   margin: 0;
   padding: 0;
@@ -824,6 +880,11 @@ button {
   font-size: 40px;
   color: black;
   letter-spacing: -2.5px;
+}
+@media (max-width: 500px) {
+  .main-header h1 {
+    font-size: 28px;
+  }
 }
 .main-header .user-info {
   padding-left: 100px;
