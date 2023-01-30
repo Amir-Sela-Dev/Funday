@@ -1,12 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import React from 'react'
 import { Header } from '../cmps/header'
 
 export function HomePage() {
     const videoBG = 'stars.mp4'
-    const cover = 'cover.png'
-
     return (
         <section className='home-page'>
             <Header />

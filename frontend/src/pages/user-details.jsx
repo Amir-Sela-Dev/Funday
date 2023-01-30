@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-
 import { loadUser } from '../store/user.actions'
 import { store } from '../store/store'
 import { showSuccessMsg } from '../services/event-bus.service'
@@ -10,29 +9,22 @@ import { SideNav } from '../cmps/side-nav'
 import { Tab } from "monday-ui-react-core";
 
 export function UserDetails() {
-
   const params = useParams()
   const user = useSelector(storeState => storeState.userModule.watchedUser)
-
   useEffect(() => {
     loadUser(params.id)
-
     socketService.emit(SOCKET_EMIT_USER_WATCH, params.id)
     socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-
     return () => {
       socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
     }
-
   }, [])
 
   function onUserUpdate(user) {
     showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
     store.dispatch({ type: 'SET_WATCHED_USER', user })
   }
-
   const emailUrl = 'email.svg'
-
   return (
     <section className="main-user-details">
       <SideNav />
@@ -46,7 +38,6 @@ export function UserDetails() {
             Personal info
           </Tab>
         </div>}
-
       </section>
       <section className="user-info">
         <p className='overview'>Overview</p>
@@ -57,7 +48,6 @@ export function UserDetails() {
           <p>Email: <span className='email'>{user.username}</span></p>
         </div>}
       </section>
-
     </section>
   )
 }

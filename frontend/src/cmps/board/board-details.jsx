@@ -23,7 +23,6 @@ import { KanbansGroupList } from "../kanban/kanban-group-list"
 import { BoardListMenu } from "./board-list-menu"
 
 export function BoardDetails({ setBoardToDrag, board }) {
-    // let { board } = useSelector((storeState) => storeState.boardModule)
     let { users } = useSelector((storeState) => storeState.userModule)
     const [boardTitle, setBoardTitle] = useState('')
     const [modalState, setModalState] = useState(false)
@@ -119,11 +118,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
         }
     }
 
-
-    function onToggleBoardActionsModal() {
-        setBoardActionsModal(!boardActionsModal)
-    }
-    function toggleModal(board, group, task = '') {
+    function toggleModal(group, task = '') {
         setTask(task)
         setGroup(group)
         setModalState(!modalState)
@@ -138,7 +133,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
             setBoardTitle(board?.title)
             let boardToLoad = await loadBoard(boardId, filterBy)
             setBoardToDrag(boardToLoad)
-            console.log('Loaded board successfully', board);
         } catch (err) {
             console.log('Couldn\'t load board..', err);
         }
@@ -147,7 +141,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
     async function onLoadUsers() {
         try {
             await loadUsers()
-            console.log('Loaded user successfully', users);
         } catch (err) {
             console.log('Couldn\'t load users..', err);
         }
@@ -178,12 +171,10 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
     function handleFilterChange({ target }) {
         let { value, name: field } = target
-        console.log('target', target);
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
     function handleFilterChangeMonday(value) {
-        console.log('filterage', value)
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, 'title': value }))
     }
 
@@ -204,13 +195,9 @@ export function BoardDetails({ setBoardToDrag, board }) {
     }
 
 
-    const infoIcon = 'info.svg'
-    const starIcon = 'star.svg'
     const searchIcon = 'search-board.svg'
     const arrowDownWhite = 'arrow-down.png'
-    const loader1 = 'Loader1.svg'
     const loader2 = 'Loader2.svg'
-    const loader3 = 'Loader3.svg'
     const arrowLeftImg = 'arrow-left.svg'
     const optionIcon = 'option-icon.svg'
 
@@ -326,11 +313,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                         name='title' />
                                 </div>
                             </div>
-                            {/* <Button className='bar-search'
-                                kind={Button.kinds.TERTIARY}
-                                rightIcon={Search}>
-
-                            </Button> */}
 
                             <Button className='bar-icon bar-person' kind={Button.kinds.TERTIARY} leftIcon={Person}>
                                 Person
@@ -372,12 +354,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
             </Droppable>
             }
             {isDarkScreen && <div onClick={() => { setIsDarkScreen(false) }} className="dark-screen"></div>}
-            {/* {isKanbanInfo && <div onClick={() => { setIsDarkScreen(false) }} className="dark-screen"></div>} */}
 
             {isKanban && <Droppable droppableId="gruopList" type="group">
                 {(provided) => (
 
-                    <div className="drag-groups-container"
+                    <div className="drag-groups-container flex"
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                     >
@@ -388,9 +369,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 )}
             </Droppable>
             }
-
-
-
             <TaskDetails closeModal={closeModal} modalState={modalState} task={task} group={group} board={board} currBoardId={boardId} />
         </section >
 

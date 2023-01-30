@@ -25,7 +25,6 @@ export function BoardInviteMenu({ setModalState }) {
                 try {
                     const foundUser = await getUserById(userId)
                     setBoardUsers(prevUsers => [...prevUsers, foundUser])
-                    console.log('addedUserToBoard', foundUser)
                 } catch (err) {
                     console.log('User not found', err)
                 }
@@ -40,9 +39,9 @@ export function BoardInviteMenu({ setModalState }) {
         }
         setSuggestedUsers([...foundUsers])
     }
+
     async function onAddBoardUser(userId) {
         if (board.users.includes(userId)) {
-            console.log('already on board', getUserById(userId))
             return
         }
         try {
@@ -56,7 +55,6 @@ export function BoardInviteMenu({ setModalState }) {
         try {
             const boardUsersNew = board.users.filter(user => user._id !== userId)
             await removeUser(board, userId)
-            console.log('removed user!', userId)
             setBoardUsers([...boardUsersNew])
             return
         } catch (err) {
@@ -81,7 +79,6 @@ export function BoardInviteMenu({ setModalState }) {
         try {
             const foundUser = await users.find(user => user._id === userId)
             return foundUser
-            // console.log('Found user!', foundUser)
         }
         catch (err) {
             console.log('User not found', err)
@@ -103,7 +100,6 @@ export function BoardInviteMenu({ setModalState }) {
                 <span className="modal-title">Board Members</span>
                 <form className="monday-storybook-text-field_size" onSubmit={ev => {
                     ev.stopPropagation()
-                    console.log('hi')
                 }}>
                     <TextField onChange={val => { onSearchQueryChange(val) }} placeholder="Enter name or email" />
                 </form>

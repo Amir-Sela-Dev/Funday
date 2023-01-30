@@ -6,17 +6,15 @@ import { boardService } from "../../services/board.service"
 import { ListItem, ListItemIcon } from "monday-ui-react-core"
 import { Board, Menu } from "monday-ui-react-core/icons";
 
-export function BoardList({ boards, currBoardId, setIsClicked, isClicked }) {
+export function BoardList({ boards, setIsClicked, isClicked }) {
     const navigate = useNavigate()
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const [board, setBoard] = useState(null)
     const [modalTransform, setModalTransform] = useState('')
-    // const [isClicked, setIsClicked] = useState('')
 
     useEffect(() => {
         if (!board) return
         setIsClicked(board?._id)
-        // setFilter.current(filterByToEdit)
     }, [board])
 
 
@@ -28,7 +26,6 @@ export function BoardList({ boards, currBoardId, setIsClicked, isClicked }) {
         setIsClicked(boardId)
     }
 
-    console.log(isClicked);
 
     async function onRemoveBoard(boardId) {
         try {
@@ -67,8 +64,6 @@ export function BoardList({ boards, currBoardId, setIsClicked, isClicked }) {
         setIsBoardOptionsOpen(!isBoardOptionsOpen)
     }
 
-    const boardIcon = 'board.svg'
-    const optionIcon = 'option-icon.svg'
     const duplicateIcon = 'duplicate.svg'
     const openNewIcon = 'open-new.svg'
     const renameIcon = 'rename.svg'

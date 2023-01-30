@@ -3,20 +3,12 @@ import { boardService } from "../../services/board.service";
 import { removeTask, saveBoard, saveTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-import { Add } from "monday-ui-react-core/icons";
-import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-core";
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { GroupBottomBar } from "../group/group-bottom-bar";
-import { TaskPreview } from "../task/task-preview";
 import { KanbanTaskPreview } from "./kanban-task-preview";
 
 export function KanbanTaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
-
     let { board } = useSelector((storeState) => storeState.boardModule)
-
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
-
-
 
     function handleInputChange({ target }) {
         let { value, name: field } = target
@@ -34,13 +26,10 @@ export function KanbanTaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
         }
     }
 
-
     return (
         <div className="kanban-task-list">
-
             <Droppable droppableId={group.id} type="task">
                 {(provided) => (
-
                     <div className="drag-tasks-container"
                         ref={provided.innerRef}
                         {...provided.droppableProps}
@@ -57,7 +46,6 @@ export function KanbanTaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
                                                     {...provided.dragHandleProps}
                                                     ref={provided.innerRef}
                                                     className="kanban-task-preview flex"
-
                                                 >
                                                     <KanbanTaskPreview
                                                         index={index}
@@ -72,13 +60,10 @@ export function KanbanTaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
                                                         toggleModal={toggleModal}
                                                         setIsDarkScreen={setIsDarkScreen}
                                                     />
-
-
                                                 </div>
                                             )}
                                         </Draggable>
                                     </div>
-
                                 )
                             })
                         }
@@ -86,8 +71,6 @@ export function KanbanTaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
                     </div>
                 )}
             </Droppable>
-
         </div>
-
     )
 }

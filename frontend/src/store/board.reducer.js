@@ -22,17 +22,14 @@ export function boardReducer(state = initialState, action) {
             return { ...state, boards: action.boards }
         case SET_BOARD:
             return { ...state, board: action.boardToSave }
-
         case REMOVE_BOARD:
             lastRemovedBoard = state.boards.find(b => b._id === action.boardId)
             boards = state.boards.filter(b => b._id !== action.boardId)
             return { ...state, boards, lastRemovedBoard }
-
         case UNDO_REMOVE_BOARD:
             ({ lastRemovedBoard } = state)
             boards = [lastRemovedBoard, ...state.boards]
             return { ...state, boards, lastRemovedBoard: null }
-
         case ADD_BOARD:
             boards = [...state.boards, action.board]
             return { ...state, boards }

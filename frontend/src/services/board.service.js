@@ -31,7 +31,6 @@ window.cs = boardService
 
 async function query(filterBy = { title: '' }) {
     const queryParams = `?title=${filterBy.title}`
-    console.log(queryParams);
     return httpService.get(BASE_URL + queryParams)
     // try {
     //     let boards = await storageService.query(STORAGE_KEY)
@@ -58,14 +57,11 @@ async function remove(boardId) {
 async function save(board) {
     let savedBoard
     if (board._id) {
-        console.log('from service', board);
         // savedBoard = await storageService.put(STORAGE_KEY, board)
         savedBoard = await httpService.put(BASE_URL + board._id, board)
     } else {
         // board.owner = userService.getLoggedinUser()
         // savedBoard = await storageService.post(STORAGE_KEY, board)
-        console.log('BASE URL', BASE_URL)
-        console.log('board posted', board);
         savedBoard = await httpService.post(BASE_URL, board)
     }
     return savedBoard
@@ -175,7 +171,6 @@ function getEmptyBoard() {
     }
 }
 
-//#828282
 
 function creatBoards() {
     let boards = utilService.loadFromStorage(STORAGE_KEY)
@@ -320,22 +315,6 @@ function creatBoards() {
 }
 
 
-// boardService
-// export async function saveTask(board, groupId, task) {
-//     let boardToSave = board
-//     let refGroup = boardToSave.groups.find(group => group.id === groupId)
-//     console.log(task)
-//     if (!task.id) {
-//         task.id = utilService.makeId(5)
-//         refGroup.tasks.push(task)
-//     }
-//     else {
-//         const taskIdx = refGroup.tasks.findIndex(currTask => currTask.id === task.id)
-//         refGroup.tasks.splice(taskIdx, 1, task)
-//     }
-
-//     return boardToSave
-// }
 
 function getEmptyTask() {
     return {

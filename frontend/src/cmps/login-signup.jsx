@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import { userService } from '../services/user.service'
 import { ImgUploader } from '../cmps/img-uploader'
-import { Header } from './header'
 import { useNavigate } from 'react-router-dom'
-import { TextField } from 'monday-ui-react-core'
 
 export function LoginSignup(props) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
@@ -12,22 +10,19 @@ export function LoginSignup(props) {
     const [users, setUsers] = useState([])
     const navigate = useNavigate()
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const [inputFocus, setInputFocus] = useState(false);
+
     useEffect(() => {
         loadUsers()
     }, [])
 
-
-    const [inputFocus, setInputFocus] = useState(false);
-    const [error, setError] = useState(false);
-
-
     const handleInputFocus = () => {
         setInputFocus(true)
-    };
+    }
 
     const handleInputBlur = () => {
-        setInputFocus(false);
-    };
+        setInputFocus(false)
+    }
 
     async function loadUsers() {
         const users = await userService.getUsers()
@@ -56,13 +51,6 @@ export function LoginSignup(props) {
         clearState()
     }
 
-    function checkEmailValidation(val) {
-        if (emailRegex.test(val)) {
-            setIsValidEmail(true)
-
-        }
-        else setIsValidEmail(false)
-    }
     function onSignupSubmit(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
@@ -87,16 +75,6 @@ export function LoginSignup(props) {
                 </div>
                 <p>Welcome back</p>
                 <div className="email-wrap">
-                    {/* <TextField
-                        className="some-input"
-                        name="username"
-                        validation={isValidEmail ? undefined : { status: 'error', text: 'Invalid email address' }}
-                        onFocus={() => setIsValidEmail(true)}
-                        title={"Name"}
-                        // autoComplete="on"
-                        autoFocus={true}
-                        orientation="horizontal"
-                    /> */}
                     <label htmlFor="username">Email</label>
                     <div className='full-input'>
                         <input
@@ -104,7 +82,6 @@ export function LoginSignup(props) {
                             placeholder='Enter email address..'
                             type="text"
                             name="username"
-                            // value={username}
                             onClick={handleClick}
                             onChange={handleChange}
                             onFocus={handleInputFocus}
@@ -171,7 +148,7 @@ export function LoginSignup(props) {
                     />
                     <ImgUploader onUploaded={onUploaded} />
                     <button >Signup!</button>
-                    <span onClick={toggleSignup} style={{cursor: 'pointer'}}>Back to login</span>
+                    <span onClick={toggleSignup} style={{ cursor: 'pointer' }}>Back to login</span>
                 </form>}
             </div>
         </div>

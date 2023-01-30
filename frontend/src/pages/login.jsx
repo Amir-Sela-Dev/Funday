@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
@@ -39,16 +39,6 @@ export function Login() {
 
     return <section className='login-container'>
         <Header />
-        {/* {user &&
-            <span className="user-info">
-                <Link to={`user/${user._id}`}>
-                    {user.imgUrl && <img src={user.imgUrl} />}
-                    {user.fullname}
-                </Link>
-                <span className="score">{user.score?.toLocaleString()}</span>
-                <button onClick={onLogout}>Logout</button>
-            </span>
-        } */}
         {!user &&
             <section className="login-signup">
                 <LoginSignup onLogin={onLogin} onSignup={onSignup} onLogout={onLogout} />

@@ -1,14 +1,11 @@
 import React, { useMemo } from 'react';
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
+import { showErrorMsg } from '../../services/event-bus.service.js'
 import { boardService } from '../../services/board.service'
 import { useState } from "react"
 import { loadBoards, saveBoard } from '../../store/board.action'
 import { BoardList } from '../board/board-list.jsx'
-import { SplitButton, Icon } from "monday-ui-react-core";
-import { Add, Filter, Search } from "monday-ui-react-core/icons";
-import { DynDropdownSelect } from '../dynamic/dynDropdownSelect.jsx';
 import { ListItem, ListItemIcon, Menu, MenuItem } from "monday-ui-react-core"
 import { Add as AddIcon, Filter as FilterIcon, Search as SearchIcon } from "monday-ui-react-core/icons";
 
@@ -65,38 +62,20 @@ export function WorkSpace({ toggleWorkspace, setIsClicked, isClicked }) {
         setIsNavModalClose(!isNavModalClose)
     }
 
-    function toggleMenuModal() {
-        setIsOptionsModalOpen(!isOptionsModalOpen)
-    }
-
-    const addBoardIcon = 'add-board.svg'
-    const searchIcon = 'search-board.svg'
-    const filterIcon = 'filter.svg'
     const arrowDownIcon = 'arrow-down.svg'
     const homeIcon = 'home.svg'
-    const optionIcon = 'option-icon.svg'
     const arrowLeftIcon = 'arrow-left.svg'
-    const duplicateIcon = 'duplicate.svg'
-    const openNewIcon = 'open-new.svg'
-    const renameIcon = 'rename.svg'
-    const deleteIcon = 'delete.svg'
 
     return <section className={`work-space ${isNavModalClose ? 'close-workspace' : ''}`}>
-
-
         <div className="toggle-nemu-btn-wrap">
             <div className="toggle-menu-btn" onClick={setToggleWorkspace}>
                 <img className="arrow-left-icon" src={require(`/src/assets/img/${arrowLeftIcon}`)} />
             </div>
         </div>
-
         <div className="workspace-header flex">
             <span className='workspace-txt'>Workspace</span>
         </div>
         <div className="main-workspace-dropdown flex">
-            {/* <div className="main-workspace-dropdown">
-
-            </div> */}
             <div className="main-icon">M
                 <img className="home-icon" src={require(`/src/assets/img/${homeIcon}`)} />
             </div>
@@ -124,25 +103,8 @@ export function WorkSpace({ toggleWorkspace, setIsClicked, isClicked }) {
                     name='title' />
             </div>
         </ListItem>
-
-        {/* <div className='board-add option-wrap flex align-center' onClick={() => { setIsAddModalOpen(true) }}>
-            <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} />
-            <p>Add</p>
-        </div>
-        <div className='board-filter option-wrap flex align-center'>
-            <Icon icon={Filter} iconLabel="my bolt svg icon" iconSize={20} />
-            <p>Filters</p>
-        </div>
-        <div className='board-search option-wrap flex align-center'>
-            <Icon className="search-board-icon" icon={Search} iconLabel="my bolt svg icon" iconSize={20} />
-            <input type="text"
-                onChange={handleFilterChange}
-                value={filterByToEdit.title} placeholder='Search'
-                name='title' />
-        </div> */}
         <hr></hr>
         <BoardList boards={boards} isClicked={isClicked} setIsClicked={setIsClicked} />
-
         {isAddModalOpen && <div className="add-modal">
             <div onClick={onCloseModal} className="dark-screen"></div>
             <div className="main-modal">

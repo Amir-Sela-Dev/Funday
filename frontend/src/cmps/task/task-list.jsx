@@ -5,16 +5,13 @@ import { removeTask, saveBoard, saveTask } from "../../store/board.action"
 import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { Add } from "monday-ui-react-core/icons";
-import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-core";
+import { Icon } from "monday-ui-react-core";
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { GroupBottomBar } from "../group/group-bottom-bar";
 
-export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScreen }) {
-
+export function TaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
     let { board } = useSelector((storeState) => storeState.boardModule)
-
     const [newTask, setNewTask] = useState(boardService.getEmptyTask())
-
     const [isAllSelected, setIsAllSelected] = useState(false)
     const [selectedTasks, setSelectedTasks] = useState([])
     const [columes, setColumes] = useState(boardService.getDefualtBoardColumes())
@@ -30,7 +27,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
             showErrorMsg('Cannot add task')
         }
     }
-
 
     function handleInputChange({ target }) {
         let { value, name: field } = target
@@ -48,41 +44,12 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
         }
     }
 
-    async function onDuplicateSelectedTasks(isInGroup) {
-        if (selectedTasks.length) {
-            try {
-                for (const selectedTask of selectedTasks) {
-                    const { id, ...taskToSave } = selectedTask;
-                    await saveTask(board, group.id, taskToSave)
-                }
-            }
-            catch (err) {
-                console.log('Could not duplicate tasks', err)
-            }
-        }
-    }
     function updateSelectedTasks(task) {
         setSelectedTasks([...selectedTasks, task])
     }
 
-    function onAddColume(columeName) {
-        let boardToSave = structuredClone(board)
-        boardToSave.cmpsOrder.push(columeName)
-        saveBoard(boardToSave)
-    }
-
-    function onRemoveColume(colume) {
-        let boardToSave = structuredClone(board)
-        let columeIdx = boardToSave.cmpsOrder.findIndex(c => c === colume)
-        boardToSave.cmpsOrder.splice(columeIdx, 1)
-        saveBoard(boardToSave)
-    }
-
     return (
         <div>
-            {/* onDragEnd={handleType1} */}
-
-
             <div className="task-list">
                 <div className="sticky-group-title">
                     <div className="task-title-row flex">
@@ -91,7 +58,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                             <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                             <div className="checkbox-column task-column upper-task"
                                 onClick={() => { setIsAllSelected(!isAllSelected) }}>
-                                {/* <div className="colored-tag first-tag" style={{ background: group.style?.color }}></div> */}
                                 <input className='task-checkbox'
                                     type="checkbox"
                                     checked={isAllSelected}
@@ -100,9 +66,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                                         setIsAllSelected(!isAllSelected)
                                     }} />
                             </div>
-
                             <div className="task-title task-column upper-task">Item</div>
-
                         </div>
                         {board.cmpsOrder.map(cmp => {
                             switch (cmp) {
@@ -126,54 +90,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                         })}
                         <div className="add-colume task-column flex align-center justify-center upper-task">
                             <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
-                            {/* <MenuButton>
-                                <ul className={"menu-modal board-list-modal"}>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('person') }}>
-                                        <p className="menu-modal-option-text" >Person</p>
-                                    </div>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('status') }}>
-                                        <p className="menu-modal-option-text" >Status</p>
-                                    </div>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('date') }}>
-                                        <p className="menu-modal-option-text" >Date</p>
-                                    </div>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('timeline') }}>
-                                        <p className="menu-modal-option-text" >Timeline</p>
-                                    </div>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('priority') }}>
-                                        <p className="menu-modal-option-text">priority</p>
-                                    </div>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('files') }}>
-                                        <p className="menu-modal-option-text" >files</p>
-                                    </div>
-                                    <div className="menu-modal-option flex" onClick={() => { onAddColume('checkbox') }}>
-                                        <p className="menu-modal-option-text" >checkbox</p>
-                                    </div>
-                                </ul>
-
-                            </MenuButton>
-                            <MenuButton>
-                                <Menu
-                                    id="menu"
-                                    size="medium"
-                                >
-                                    <MenuTitle
-                                        caption="Remove item"
-                                        captionPosition="top"
-                                    />
-
-                                    {board.cmpsOrder.map((colume, idx) => {
-                                        return <MenuItem
-                                            key={idx}
-                                            icon={function noRefCheck() { }}
-                                            iconType="SVG"
-                                            onClick={() => { onRemoveColume(colume) }}
-                                            title={`${colume}`}
-                                        />
-                                    })}
-
-                                </Menu>
-                            </MenuButton> */}
                         </div>
                     </div>
                 </div>
@@ -197,9 +113,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                                                         {...provided.dragHandleProps}
                                                         ref={provided.innerRef}
                                                         className="task-preview flex"
-
                                                     >
-
                                                         <TaskPreview
                                                             index={index}
                                                             key={currTask.id}
@@ -216,12 +130,10 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                                                             tasks={tasks}
                                                             setIsDarkScreen={setIsDarkScreen}
                                                         />
-
                                                     </div>
                                                 )}
                                             </Draggable>
                                         </div>
-
                                     )
                                 })
                             }
@@ -229,7 +141,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                         </div>
                     )}
                 </Droppable>
-
                 <div className="add-task-wrap flex">
                     <div className="sticky-grid flex">
                         <div className="white-background"></div>
@@ -238,7 +149,6 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                         <div className="checkbox-column task-column disabled">
                             <input className='task-checkbox disabled' type="checkbox" disabled={true} />
                         </div>
-
                         <form className='task-input-row' onSubmit={onSaveTask}>
                             <input
                                 className="add-task-input"
@@ -255,14 +165,11 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                     <div className="mobile-only">
                         <GroupBottomBar board={board} group={group} />
                     </div>
-
                 </div>
                 <div className="only-desktop">
                     <GroupBottomBar board={board} group={group} />
                 </div>
-
             </div>
         </div>
-
     )
 }

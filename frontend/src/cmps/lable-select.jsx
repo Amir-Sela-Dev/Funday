@@ -17,7 +17,6 @@ export function LabelSelect({ handleLableChange, lables }) {
     }
 
     function handleChange(...props) {
-        // let { value, name: field, type } = target
         const labels = props[0].map((labelInfo) => labelInfo.value)
         handleLableChange(labels)
     }

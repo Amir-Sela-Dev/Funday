@@ -27,12 +27,6 @@ export function ImgUploader({ onUploaded = null }) {
   return (
     <div className="upload-preview align-center justify-center">
       {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '40px' }} />}
-      {/* {imgData.imgUrl && <Avatar
-        ariaLabel="Hadas Fahri"
-        size="large"
-        src={imgData.imgUrl}
-        type="img"
-      />} */}
       <label className='' htmlFor="imgUpload"> <Icon className="file-icon" icon={File} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
       </label>
       <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />

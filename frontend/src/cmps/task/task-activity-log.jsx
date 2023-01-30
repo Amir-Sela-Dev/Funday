@@ -1,12 +1,9 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { boardService } from "../../services/board.service"
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { saveTask } from "../../store/board.action";
 import { Button, SplitButton, Icon, Avatar } from "monday-ui-react-core";
-import { Checkbox, Status, Numbers, PersonRound, TextCopy, Time, Calendar, File, NavigationChevronRight, Check } from "monday-ui-react-core/icons";
-export function TaskActivityLog({ board, group, task = '', formatTime }) {
+import { Checkbox, Status, PersonRound, TextCopy, Time, Calendar, File, NavigationChevronRight, Check } from "monday-ui-react-core/icons";
+export function TaskActivityLog({ board, task = '', formatTime }) {
     const [activities, setActivities] = useState([]);
 
     useEffect(() => {
@@ -40,7 +37,6 @@ export function TaskActivityLog({ board, group, task = '', formatTime }) {
 
             default:
                 return ''
-                break;
         }
 
     }
@@ -48,7 +44,6 @@ export function TaskActivityLog({ board, group, task = '', formatTime }) {
     function getactivityFrom(activity) {
         switch (activity.type) {
             case 'status':
-                console.log(activity);
                 if (activity.from === 'Done') return <div className="label" style={{ background: 'rgb(0, 200, 117)' }}> {activity.from} </div>
                 else if (activity.from === 'Working on it') return <div className="label" style={{ background: 'rgb(253, 171, 61)' }}> {activity.from} </div>
                 else if (activity.from === 'Stuck') return <div className="label" style={{ background: 'rgb(226, 68, 92)' }}> {activity.from} </div>
@@ -57,10 +52,8 @@ export function TaskActivityLog({ board, group, task = '', formatTime }) {
 
             case 'Person':
                 return <div className="action from">{activity.from} </div>
-
             case 'Date':
                 return <div className="action from">{activity.from} </div>
-
             case 'Timeline':
                 return <div className="action from">{activity.from.start} </div>
             case 'Text':
@@ -75,31 +68,25 @@ export function TaskActivityLog({ board, group, task = '', formatTime }) {
                 else if (activity.from === 'Medium') return <div className="label" style={{ background: 'rgb(85, 89, 223)' }}> {activity.from} </div>
                 else if (activity.from === 'Low') return <div className="label" style={{ background: 'rgb(87, 155, 252' }}> {activity.from} </div>
                 else if (activity.from === 'Default') return <div className="label" style={{ background: 'rgb(185, 185, 185)' }}> {activity.from} </div>
-
             default:
                 return ''
-                break;
         }
     }
 
     function getactivityTo(activity) {
         switch (activity.type) {
             case 'status':
-                console.log(activity);
                 if (activity.to === 'Done') return <div className="label" style={{ background: 'rgb(0, 200, 117)' }}> {activity.to} </div>
                 else if (activity.to === 'Working on it') return <div className="label" style={{ background: 'rgb(253, 171, 61)' }}> {activity.to} </div>
                 else if (activity.to === 'Stuck') return <div className="label" style={{ background: 'rgb(226, 68, 92)' }}> {activity.to} </div>
                 else if (activity.to === 'Default') return <div className="label" style={{ background: 'rgb(185, 185, 185)' }}> {activity.to} </div>
                 break;
-
             case 'Person':
                 return <div className="action"  > <Avatar type={Avatar.types.IMG} size="small" src={activity.to.imgUrl} ariaLabel={activity.to.fullname} /></div>
-
             case 'Date':
                 return <div className="action" > {activity.to} </div>
             case 'Timeline':
                 return <div className="action">{activity.to.end} </div>
-
             case 'Text':
                 return <div className="action">{activity.to} </div>
             case 'File':
@@ -113,14 +100,10 @@ export function TaskActivityLog({ board, group, task = '', formatTime }) {
                 else if (activity.to === 'Medium') return <div className="label" style={{ background: 'rgb(85, 89, 223)' }}> {activity.to} </div>
                 else if (activity.to === 'Low') return <div className="label" style={{ background: 'rgb(87, 155, 252' }}> {activity.to} </div>
                 else if (activity.to === 'Default') return <div className="label" style={{ background: 'rgb(185, 185, 185)' }}> {activity.to} </div>
-
             default:
                 return ''
-                break;
         }
     }
-
-
 
     return <section className='task-activity-log'>
         <div className="activity-btns flex">
@@ -143,13 +126,11 @@ export function TaskActivityLog({ board, group, task = '', formatTime }) {
                         <h5 className="txt"> {getactivityFrom(activity)}</h5>
                         <Icon iconType={Icon.type.SVG} icon={NavigationChevronRight} iconLabel="my bolt svg icon" iconSize={16} ignoreFocusStyle style={{ marginInline: '20px' }} />
                         <h5 className="txt"> {getactivityTo(activity)}</h5>
-
                     </div>
                     <hr />
                 </div>
             })}
 
         </div>
-
     </section>
 }

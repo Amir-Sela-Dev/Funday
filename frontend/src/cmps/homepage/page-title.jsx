@@ -1,11 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import mojs from "@mojs/core"; // Currently there is a bug importing from npm, using external cdn version instead for nowimport Button from "./Button";
-/**
- * Usage:
- * import MojsExample from './MojsExample';
- *
- * <MojsExample duration={1000} />
- */
 
 const MojsExample = ({ duration }) => {
   const animDom = useRef();
@@ -14,10 +8,8 @@ const MojsExample = ({ duration }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    // Prevent multiple instansiations on hot reloads
     if (bouncyCircle.current) return;
 
-    // Assign a Shape animation to a ref
     bouncyCircle.current = new mojs.Shape({
       parent: animDom.current,
       shape: "circle",
@@ -34,12 +26,10 @@ const MojsExample = ({ duration }) => {
       }
     });
 
-    // Play the animation on start, and set the state to open
     bouncyCircle.current.play();
     setIsOpen(true);
   });
 
-  // Update the animation values when the prop changes
   useEffect(() => {
     if (!bouncyCircle.current) return;
     bouncyCircle.current.tune({ duration: duration });
@@ -50,7 +40,6 @@ const MojsExample = ({ duration }) => {
   }, [duration]);
 
   const clickHandler = useCallback(() => {
-    // If the circel is "open", play the animation backwards, else play it forwards
     isOpen ? bouncyCircle.current.playBackward() : bouncyCircle.current.play();
     setIsOpen(!isOpen);
   }, [isOpen]);

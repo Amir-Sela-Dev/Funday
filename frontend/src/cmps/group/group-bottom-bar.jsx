@@ -2,7 +2,6 @@ import { AvatarGroup, Avatar } from "monday-ui-react-core";
 import moment from 'moment';
 
 export function GroupBottomBar({ board, group }) {
-    // const [allDates, setAllDates] = useState('')
 
     function getStatuscount(labelsName) {
         let labelCount = []
@@ -101,7 +100,6 @@ export function GroupBottomBar({ board, group }) {
                 latestDate = endDate;
             }
         });
-        // console.log({ earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') });
         return { earliestDate: moment(earliestDate).format('MMM DD'), latestDate: moment(latestDate).format('MMM DD') };
     }
 
@@ -157,7 +155,6 @@ export function GroupBottomBar({ board, group }) {
                                 </AvatarGroup>
                             </div>
                     }
-
                 })}
             </div> </section>
     )

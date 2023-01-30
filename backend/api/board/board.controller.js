@@ -9,7 +9,6 @@ async function getBoards(req, res) {
         const filterBy = {
             title: req.query.title || ''
         }
-        console.log(req.query);
         const boards = await boardService.query(filterBy)
 
         res.json(boards)
@@ -46,11 +45,8 @@ async function addBoard(req, res) {
 
 
 async function updateBoard(req, res) {
-    console.log('update!!1');
     try {
-        console.log('im here controller!!');
         const board = req.body
-        console.log('backend board to save', board)
         const updatedBoard = await boardService.update(board)
         res.json(updatedBoard)
     } catch (err) {

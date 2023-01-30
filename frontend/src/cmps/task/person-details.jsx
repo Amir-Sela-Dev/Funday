@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { boardService } from "../../services/board.service"
-import { userService } from "../../services/user.service"
 
 export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) {
     let { board } = useSelector((storeState) => storeState.boardModule)
@@ -12,16 +10,14 @@ export function PersonDetails({ onAddTaskPerson, onRemoveTaskPerson, persons }) 
     }, [persons])
 
     function minifyName(name) {
-        const nameArr = name.split(' ');
+        const nameArr = name.split(' ')
         if (name.length && nameArr.length === 1) return name
 
-        const lastNameInitial = nameArr[nameArr.length - 1].slice(0, 1).toUpperCase();
-        nameArr.pop();
-        const firstName = nameArr.join(' ');
-
+        const lastNameInitial = nameArr[nameArr.length - 1].slice(0, 1).toUpperCase()
+        nameArr.pop()
+        const firstName = nameArr.join(' ')
         return `${firstName} ${lastNameInitial}.`
     }
-
 
     async function onGetSuggestedUsers() {
         let suggested = users.filter(user => board.users.includes(user._id))

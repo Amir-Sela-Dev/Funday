@@ -16,7 +16,6 @@ export function RootCmp() {
         <div>
             <main>
                 <Routes>
-                    {/* {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)} */}
                     <Route path="/" element={<HomePage />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="auth/login" element={<Login />} />
@@ -29,7 +28,6 @@ export function RootCmp() {
             </main>
         </div>
     )
-
 }
 
 

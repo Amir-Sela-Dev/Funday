@@ -4,16 +4,13 @@ const logoUrl = 'logo.png'
 
 export function Header() {
     const { user } = useSelector((storeState) => storeState.userModule)
-
     return <div className="main-header flex">
-        {/* <div className="flex align-center"> */}
         <div className="left-side flex">
             <Link to='/'>
                 <img className="main-logo" src={require(`../assets/img/${logoUrl}`)} />
                 <h1>Funday</h1>
             </Link>
         </div>
-
         <div className="right-side flex" style={{ alignItems: 'center' }}>
             {!user &&
                 <Link className='login-link' to="/auth/login">Login</Link>

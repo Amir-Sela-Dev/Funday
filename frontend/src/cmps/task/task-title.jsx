@@ -1,5 +1,5 @@
 
-export function TaskTitle({ handleInputChange, task, onSaveTask, newTask }) {
+export function TaskTitle({ handleInputChange, onSaveTask, newTask }) {
     return (
         <form className='task-input-row' onSubmit={ev => onSaveTask(ev)}>
             <input

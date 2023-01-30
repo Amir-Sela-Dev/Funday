@@ -11,7 +11,6 @@ import { AvatarGroup, Icon, Avatar } from "monday-ui-react-core";
 import { ImgUploader } from "../img-uploader"
 import { socketService, SOCKET_EMIT_CHANGE_TASK, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service"
 
-
 export function TaskPreview({
     task,
     onRemoveTask,
@@ -20,32 +19,23 @@ export function TaskPreview({
     toggleModal,
     isAllSelected,
     updateSelectedTasks,
-    index,
-    columes,
     tasks,
     setIsDarkScreen
-
 }) {
+
     const [taskToUpdate, setTaskToUpdate] = useState(task)
     const [isTaskSelected, setIsTaskSelected] = useState(false)
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [prioreties, setPriorety] = useState(boardService.getDefaultPriorities())
     const [isPriorityOpen, setIsPriorityOpen] = useState(false)
     const [isPersonsOpen, setIsPersonsOpen] = useState(false)
-    const [showOptions, setShowOptions] = useState(false)
-    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
     const { RangePicker } = DatePicker
     const [size, setSize] = useState('small')
     const [isOpen, setIsOpen] = useState(false)
     const [isMark, setIsMark] = useState(false)
-    const [date, setDate] = useState(null)
     const [isImgOpen, setIsImgOpen] = useState(false)
 
-    const handleSizeChange = (e) => {
-        setSize(e.target.value)
-    }
-    const monthFormat = 'MM/DD'
 
     useEffect(() => {
         setTaskToUpdate(task)
@@ -68,7 +58,6 @@ export function TaskPreview({
         } else {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         };
@@ -80,7 +69,6 @@ export function TaskPreview({
             let taskToSave = structuredClone(task)
             taskToSave.date = date
             date = dayjs(date).format('MMM D')
-            console.log(date);
             await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date to', date)
             showSuccessMsg('Task update')
         } catch (err) {
@@ -91,15 +79,11 @@ export function TaskPreview({
     async function onAddTaskTimeline(arrTimeline) {
         try {
             let taskToSave = structuredClone(task)
-
-            // console.log(timeline[0]);
             let startDate = arrTimeline[0]
             let endDate = arrTimeline[1]
-
             let startDates = dayjs(startDate).format('MMM D')
             let endDates = dayjs(endDate).format('MMM D')
             let timeline = { start: startDates, end: endDates }
-            console.log(startDates, endDates);
             await saveTask(board, group.id, { ...taskToSave, timeline }, 'Timeline', timeline, timeline)
             showSuccessMsg('Task update')
         } catch (err) {
@@ -109,9 +93,7 @@ export function TaskPreview({
 
     async function onAddTaskPerson(person) {
         try {
-            // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
             let taskToSave = structuredClone(task)
-
             await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person', person)
             showSuccessMsg('Task update')
         } catch (err) {
@@ -178,23 +160,6 @@ export function TaskPreview({
         }
     }
 
-    function handleOnDragEnd(result) {
-        const items = Array.from(tasks)
-        const [reorderedItem] = items.splice(result.source.index, 1)
-        items.splice(result.destination.index, 0, reorderedItem)
-        // setTasks(items)
-        saveGroupAfterDrag(items)
-    }
-
-    async function saveGroupAfterDrag(tasks) {
-        try {
-            await saveGroup(board, group.id, { ...group, tasks: tasks })
-            showSuccessMsg('Group updated')
-        } catch (err) {
-            console.log('error adding task', err)
-        }
-    }
-
     async function onSetMark() {
         try {
             setIsMark(!isMark)
@@ -204,26 +169,17 @@ export function TaskPreview({
         } catch (err) {
             showErrorMsg('Cannot upload file')
         }
-
     }
+
     function onOpenImg() {
         setIsDarkScreen(true)
         setIsImgOpen(true)
     }
 
-    const openTaskIcon = 'open-item.svg'
-    const bubble = 'bubble.svg'
-    const plusBubble = 'plus-bubble.svg'
-    const boardIcon = 'board.svg'
-    const optionIcon = 'option-icon.svg'
     const duplicateIcon = 'duplicate.svg'
-    const openNewIcon = 'open-new.svg'
-    const renameIcon = 'rename.svg'
     const deleteIcon = 'delete.svg'
-
     const style = { color: ' rgba(0, 0, 0, 0.192)' };
     style.color = ' rgba(0, 0, 0, 0.192)'
-
 
     return (
         <div className="orens-div">
@@ -246,17 +202,14 @@ export function TaskPreview({
 
                     </div>}
                 </div>
-
                 <div className="sticky-grid flex">
                     <div className="white-background"></div>
                     <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
-
                     <div className='colored-tag task-column' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                     <div className="checkbox-wrap">
                         <div
                             className="checkbox-column task-column"
                             onClick={() => { setIsTaskSelected(!isTaskSelected) }}>
-
                             <input className='task-checkbox' type="checkbox"
                                 checked={isAllSelected || isTaskSelected || false}
                                 onChange={ev => {
@@ -266,9 +219,7 @@ export function TaskPreview({
                                 }} />
                         </div>
                     </div>
-
                     <div className="task-txt task-column flex" onClick={() => toggleModal(board, group, task)}>
-                        {/* <div style={{ width: '30px', backgroundColor: 'red', display: 'flex' }} /> */}
                         <form onSubmit={onRenameTask} >
                             <input
                                 className="task-title-input"
@@ -280,7 +231,6 @@ export function TaskPreview({
                             />
                         </form>
                         <div className="comments-bubble flex" onClick={() => toggleModal(board, group, task)}>
-                            {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
                             {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
                             {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
                             {task.comments?.length > 0 && <span className={`comments-num${(task.comments.length) ? '' : 'none'}`}> {(task.comments.length) ? task.comments.length : ''}</span>}
@@ -293,13 +243,10 @@ export function TaskPreview({
                         case 'person':
                             return <div className="task-persons task-column flex align-center justify-center"
                                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
-
                                 {task.persons &&
-
                                     <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
                                         {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
-                                    </AvatarGroup>
-                                }
+                                    </AvatarGroup>}
                                 {isPersonsOpen &&
                                     <div className="user-preview open">
                                         <PersonDetails onAddTaskPerson={onAddTaskPerson} onRemoveTaskPerson={onRemoveTaskPerson} persons={task.persons} />
@@ -309,14 +256,11 @@ export function TaskPreview({
                             return <div className="preview-task-status  task-column"
                                 onClick={() => { setIsOpen(!isOpen) }}
                                 style={{ background: `${(task.status.txt === 'Default') ? 'rgb(185, 185, 185)' : task.status.color}` }}>
-
                                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
-
                                 {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
                             </div>
                         case 'date':
                             return <div className="task-date task-column">
-
                                 <Space direction="vertical" >
                                     <DatePicker
                                         defaultValue={task.date ? (dayjs(task.date, 'MMM D')) : ''}
@@ -324,7 +268,6 @@ export function TaskPreview({
                                         onChange={onAddTaskDate}
                                         placeholder=''
                                         format={'MMM D'}
-
                                     />
                                 </Space>
                             </div>
@@ -337,7 +280,6 @@ export function TaskPreview({
                                         defaultValue={task.timeline ? [dayjs(task.timeline.start, 'MMM D'), dayjs(task.timeline.end, 'MMM D')] : []}
                                         onChange={onAddTaskTimeline}
                                         format={'MMM D'}
-                                    // style={{ width: '70%' }} 
                                     />
                                 </Space>
                             </div>
@@ -345,10 +287,8 @@ export function TaskPreview({
                             return <div className="preview-task-status  task-column"
                                 onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
                                 style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
-
                                 <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
                                 {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
-
                             </div>
                         case 'files':
                             return <div className="preview-files  task-column flex align-center justify-center">
@@ -365,7 +305,6 @@ export function TaskPreview({
                 })}
                 <div className="preview-add-colume task-column "> </div>
             </div>
-
         </div>
     )
 }

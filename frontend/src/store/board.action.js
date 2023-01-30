@@ -27,7 +27,6 @@ export async function loadBoard(boardId, filterBy = boardService.getDefaultGroup
     try {
         const board = await boardService.get(boardId)
         let boardToSave = structuredClone(board)
-        console.log(boardToSave);
         let boardGroups = boardToSave.groups
         if (filterBy.title) {
             const regex = new RegExp(filterBy.title, 'i')

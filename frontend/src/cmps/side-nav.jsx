@@ -10,14 +10,12 @@ export function SideNav() {
     const [isUserModalOpen, setIsUderModalOpen] = useState(false)
 
     function toggleModal() {
-        console.log('logged in user', user)
         setIsUderModalOpen(!isUserModalOpen)
     }
 
     async function onLogout() {
         try {
             await logout()
-            // setIsUderModalOpen(!isUserModalOpen)
             navigate(`/board/uPD5q`)
             showSuccessMsg(`Bye now`)
         } catch (err) {
@@ -44,38 +42,29 @@ export function SideNav() {
             </div>
 
             <div className="low-nav flex">
-
                 <div className="logo-hr"></div>
-
                 <img className="component-icon" src={require(`../assets/img/${componemtUrl}`)} />
-
                 {!user && <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'
                     onClick={toggleModal} alt="" className="main-user-nav" />}
-
                 {user && <img src={user.imgUrl} alt="" className="main-user-nav" onClick={toggleModal} />}
-
                 {isUserModalOpen && <div className="user-modal">
-
                     {!user && <Link to="/auth/login">
                         <div className="login-wrap flex">
                             <img className="nav-icon login-icon" src={require(`../assets/img/${loginUrl}`)} />
                             <p> Login</p>
                         </div>
                     </Link>}
-
                     {user && <Link to={`/user/${user._id}`}>
                         <div className="profile-wrap flex">
                             <img className="nav-icon profile-icon" src={require(`../assets/img/${profileUrl}`)} />
                             <p>My profile</p>
                         </div>
                     </Link>}
-
                     {user && <div className="logout-wrap flex" onClick={onLogout}>
                         <img className="nav-icon logout-icon" src={require(`../assets/img/${logoutUrl}`)} />
                         <p >Logout</p>
                     </div>}
                 </div>}
-
             </div>
         </nav >
     )
