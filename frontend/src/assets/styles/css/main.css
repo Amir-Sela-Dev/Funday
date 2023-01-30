@@ -755,6 +755,9 @@ button {
   justify-content: flex-start;
   font-family: Figtree;
 }
+.login-container .main-header .right-side {
+  display: none;
+}
 .login-container .password-wrap {
   margin-right: 22px;
 }
@@ -804,9 +807,10 @@ button {
   width: 360px;
   margin: 10px 0;
   margin-right: 60px;
-  color: rgba(119, 119, 119, 0.3607843137);
+  color: rgba(119, 119, 119, 0.84);
   border: 1px solid;
   border-radius: 4px;
+  padding-left: 10px;
 }
 .login-container input:focus-visible {
   outline: rgba(0, 115, 234, 0.3411764706) auto 1px;
@@ -1975,10 +1979,10 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  width: 608px;
+  width: 40%;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
-  box-shadow: -3px 0px 2px 3px rgba(33, 33, 33, 0.77);
+  box-shadow: -13px 0px 10px 0px rgba(33, 33, 33, 0.41);
   padding: 0;
   transform: translateX(100%);
   transition: all 0.4s;
@@ -2065,9 +2069,9 @@ button {
 .task-modal-open hr {
   color: rgba(50, 51, 56, 0.2941176471);
   height: 1px;
-  width: 98%;
+  width: 94.8%;
   margin-bottom: 20px;
-  margin-top: 0.6px;
+  margin-top: -0.6px;
   align-self: center;
 }
 .task-modal-open .task-updates {
@@ -2139,10 +2143,11 @@ button {
 .task-modal-open .opend-input input {
   width: 100%;
   height: 100%;
+  padding-left: 10px;
   border-radius: 0.5em;
   outline: none;
   border: var(--primary-color) 1px solid;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--secondary-text-color);
   padding-inline-start: 1em;
 }

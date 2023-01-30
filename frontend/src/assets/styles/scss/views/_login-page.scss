@@ -10,6 +10,12 @@
         font-family: Figtree;
     }
 
+    .main-header {
+        .right-side {
+            display: none;
+        }
+    }
+
     .password-wrap {
         margin-right: 22px;
     }
@@ -68,9 +74,10 @@
         width: 360px;
         margin: 10px 0;
         margin-right: 60px;
-        color: #7777775c;
+        color: rgb(119 119 119 / 84%);
         border: 1px solid;
         border-radius: 4px;
+        padding-left: 10px;
 
         &:focus-visible {
             outline: #0073ea57 auto 1px;
@@ -101,7 +108,7 @@
         justify-content: center;
         align-items: center;
 
-        &>input {
+        & > input {
             margin-right: 0;
         }
     }
