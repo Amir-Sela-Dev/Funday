@@ -26,7 +26,6 @@ export function BoardList({ boards, currBoardId, setIsClicked, isClicked }) {
         closeModal()
         navigate(`/board/${boardId}`)
         setIsClicked(boardId)
-        console.log(isClicked);
     }
 
     console.log(isClicked);
