@@ -191,6 +191,7 @@
             border: var(--primary-color) 1px solid;
             font-size: 15px;
             color: var(--secondary-text-color);
+            padding-inline-start: 1em;
 
             &:hover {
                 background-color: var(--primary-background-hover-color);

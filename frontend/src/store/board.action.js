@@ -66,12 +66,12 @@ export async function addGroup(group, board) {
     saveBoard(boardToSave)
 }
 
-export async function addActivity(board, type, txt, task) {
+export async function addActivity(board, type, from, to, task) {
     try {
         let boardToSave = structuredClone(board)
-        if (!type && !txt) return boardToSave
+        if (!type && !from && !to) return boardToSave
         let activityToAdd = boardService.getEmptyActivity()
-        activityToAdd = { ...activityToAdd, txt, task, type, createdAt: Date.now(), byMember: userService.getLoggedinUser() }
+        activityToAdd = { ...activityToAdd, from, to, task, type, createdAt: Date.now(), byMember: userService.getLoggedinUser() }
         boardToSave.activities.unshift(activityToAdd)
         saveBoard(boardToSave)
         return boardToSave
@@ -164,7 +164,7 @@ export async function saveGroup(board, groupId, groupToUpdate) {
     saveBoard(boardToSave)
 }
 
-export async function saveTask(board, groupId, task, type, txt) {
+export async function saveTask(board, groupId, task, type, from, to) {
     let boardToSave = structuredClone(board)
     let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
     let taskToSave = { ...task }
@@ -176,6 +176,6 @@ export async function saveTask(board, groupId, task, type, txt) {
         const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === taskToSave.id)
         await groupToSave.tasks.splice(taskIdx, 1, taskToSave)
     }
-    boardToSave = await addActivity(boardToSave, type, txt, task)
+    boardToSave = await addActivity(boardToSave, type, from, to, task)
     saveBoard(boardToSave)
 }

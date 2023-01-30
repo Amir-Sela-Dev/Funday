@@ -61,7 +61,36 @@
     }
 
     .date {
-        width: 56px;
+        width: 162px;
         margin: 0;
+
+        img {
+            margin-inline-start: 17px;
+
+        }
+    }
+
+    .label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 110px;
+        position: relative;
+        color: #fff;
+        height: 36px;
+    }
+
+    .action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 110px;
+        position: relative;
+        height: 36px;
+    }
+
+    .from {
+        justify-content: start;
+
     }
 }

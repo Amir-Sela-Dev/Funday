@@ -75,7 +75,6 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
                     <div className="user-line flex justify-between">
                         <div className="flex align-center">
                             <img src={comment.byMember.imgUrl || 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'} alt="" className="user" />
-                            {/* <img src='https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png' alt="" className="user" /> */}
                             <a> {comment.byMember.fullname} </a>
                             <div className="is-active"></div>
                         </div>

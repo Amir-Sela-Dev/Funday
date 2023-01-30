@@ -409,7 +409,8 @@ function getEmptyActivity() {
 
     return {
         'id': utilService.makeId(),
-        'txt': '',
+        'from': '',
+        'to': '',
         'type': '',
         'createdAt': '',
         'byMember': {},
@@ -586,3 +587,5 @@ function getDefualtBoardColumes() {
 
 //     'cmpsOrder': ['status-picker', 'member-picker', 'date-picker']
 // }
+
+

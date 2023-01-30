@@ -81,7 +81,7 @@ export function TaskPreview({
             taskToSave.date = date
             date = dayjs(date).format('MMM D')
             console.log(date);
-            await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date')
+            await saveTask(board, group.id, { ...taskToSave, date }, 'Date', 'Change date to', date)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -100,7 +100,7 @@ export function TaskPreview({
             let endDates = dayjs(endDate).format('MMM D')
             let timeline = { start: startDates, end: endDates }
             console.log(startDates, endDates);
-            await saveTask(board, group.id, { ...taskToSave, timeline }, 'Date', 'Change date')
+            await saveTask(board, group.id, { ...taskToSave, timeline }, 'Timeline', timeline, timeline)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -112,7 +112,7 @@ export function TaskPreview({
             // setTaskToUpdate({ ...taskToUpdate, persons: [...taskToUpdate.persons, person] })
             let taskToSave = structuredClone(task)
 
-            await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person')
+            await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person', person)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -123,7 +123,7 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task);
             taskToSave.persons = taskToSave.persons.filter(currPerson => currPerson._id !== person._id);
-            await saveTask(board, group.id, taskToSave, 'Person', 'Remove person');
+            await saveTask(board, group.id, taskToSave, 'Person', 'Remove person', person);
             showSuccessMsg('Task update');
         } catch (err) {
             showErrorMsg('Cannot update task');
@@ -139,8 +139,9 @@ export function TaskPreview({
         event.preventDefault()
         try {
             let taskToSave = structuredClone(task)
+            let PrevTitle = taskToSave.title
             taskToSave.title = taskToUpdate.title
-            await saveTask(board, group.id, taskToSave, 'Text', `Rename task to ${taskToUpdate.title}`)
+            await saveTask(board, group.id, taskToSave, 'Text', PrevTitle, taskToSave.title)
             socketService.emit(SOCKET_EVENT_TASK_UPDATED, taskToSave)
             showSuccessMsg('Task update')
         } catch (err) {
@@ -171,7 +172,7 @@ export function TaskPreview({
         try {
             let taskToSave = structuredClone(task)
             taskToSave.file = imgUrl
-            await saveTask(board, group.id, taskToSave, 'File', 'Add file')
+            await saveTask(board, group.id, taskToSave, 'File', 'Add file', taskToSave.file)
         } catch (err) {
             showErrorMsg('Cannot upload file')
         }
@@ -199,7 +200,7 @@ export function TaskPreview({
             setIsMark(!isMark)
             let taskToSave = structuredClone(task)
             taskToSave.isMark = !taskToSave.isMark
-            await saveTask(board, group.id, taskToSave, 'Check', `change value to ${isMark}`)
+            await saveTask(board, group.id, taskToSave, 'Check', 'change Check value to', taskToSave.isMark)
         } catch (err) {
             showErrorMsg('Cannot upload file')
         }
@@ -278,7 +279,7 @@ export function TaskPreview({
                                 onClick={ev => { ev.stopPropagation() }}
                             />
                         </form>
-                        <div className="comments-bubble task-column flex" onClick={() => toggleModal(board, group, task)}>
+                        <div className="comments-bubble flex" onClick={() => toggleModal(board, group, task)}>
                             {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
                             {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
                             {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}

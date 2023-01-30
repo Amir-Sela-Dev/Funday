@@ -1721,6 +1721,7 @@ button {
   border: none;
   border-left: rgba(0, 0, 0, 0.192) 1px solid;
   width: 77px;
+  height: 100%;
 }
 .comments-bubble img {
   margin-inline-start: 20px;
@@ -2148,6 +2149,7 @@ button {
   border: var(--primary-color) 1px solid;
   font-size: 15px;
   color: var(--secondary-text-color);
+  padding-inline-start: 1em;
 }
 .task-modal-open .opend-input input:hover {
   background-color: var(--primary-background-hover-color);
@@ -3019,8 +3021,31 @@ button {
   margin-block-end: 13px;
 }
 .task-activity-log .date {
-  width: 56px;
+  width: 162px;
   margin: 0;
+}
+.task-activity-log .date img {
+  margin-inline-start: 17px;
+}
+.task-activity-log .label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  position: relative;
+  color: #fff;
+  height: 36px;
+}
+.task-activity-log .action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  position: relative;
+  height: 36px;
+}
+.task-activity-log .from {
+  justify-content: start;
 }
 
 @media (max-width: 500px) {
