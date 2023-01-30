@@ -7,7 +7,7 @@ import { TaskList } from "../task/task-list"
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { ColorPicker } from 'monday-ui-react-core'
 
-export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }) {
+export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index, setIsDarkScreen }) {
     const [groupToSend, setGroupToSend] = useState({ ...group })
     // let { board } = useSelector((storeState) => storeState.boardModule)
     const [isBoardOptionsOpen, setIsBoardOptionsOpen] = useState(false)
@@ -149,8 +149,8 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
                         type="text"
                         value={groupToSend.title}
                         onChange={handleInputChange}
-                        onBlur={ev => { 
-                            onRenameGroup(ev, ev.target.value) 
+                        onBlur={ev => {
+                            onRenameGroup(ev, ev.target.value)
                             setIsColorModalOpen(false)
                         }}
                         onClick={() => setIsColorModalOpen(true)}
@@ -170,7 +170,7 @@ export function GroupPreview({ board, group, toggleModal, onRemoveGroup, index }
                     />
                 </div>
             }
-            <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} />
+            <TaskList group={group} tasks={tasks} setNewTasks={setNewTasks} toggleModal={toggleModal} index={index} setIsDarkScreen={setIsDarkScreen} />
 
             <div className="add-task">
             </div>

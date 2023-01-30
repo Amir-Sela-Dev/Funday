@@ -1680,6 +1680,28 @@ button {
   padding: 2px 4px;
 }
 
+.img-menu-modal {
+  position: fixed;
+  background-color: #fff;
+  width: 50%;
+  height: 70%;
+  z-index: 700;
+  /* transform: translate(-50%, -50%); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 0, 0, 0.133);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1294117647);
+}
+.img-menu-modal img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
 .task-list {
   color: #323338;
   text-align: center;
@@ -2029,7 +2051,7 @@ button {
 @media (max-width: 500px) {
   .task-modal-open .txt-editor-container {
     position: fixed;
-    bottom: 90px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     padding-inline: 20px;
@@ -2122,7 +2144,7 @@ button {
 }
 @media (max-width: 500px) {
   .task-modal-open .update-btn {
-    bottom: -40px;
+    bottom: -67px;
   }
 }
 .task-modal-open .update-btn:hover {

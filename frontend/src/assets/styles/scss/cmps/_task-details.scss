@@ -167,7 +167,7 @@
             // display: flex;
             // order: 2;
             position: fixed;
-            bottom: 90px;
+            bottom: 0px;
             left: 0;
             width: 100%;
             padding-inline: 20px;
@@ -273,7 +273,7 @@
         border: 1px solid #ccc;
 
         @include for-mobile-layout {
-            bottom: -40px;
+            bottom: -67px;
         }
 
         &:hover {
