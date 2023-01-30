@@ -50,10 +50,10 @@ function setupSocketAPI(http) {
             logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
             gIo.to(socket.myTopic).emit('change-task', task)
         })
-        socket.on('comments-updated', comments => {
-            console.log(comments);
+        socket.on('comments-updated', comment => {
             logger.info(`New chat msg from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
-            gIo.to(socket.myTopic).emit('change-comments', comments)
+            socket.broadcast.to(socket.myTopic).emit('change-comments', comment)
+            // broadcast('change-comments', comment, socket.myTopic, socket.userId)
         })
 
 

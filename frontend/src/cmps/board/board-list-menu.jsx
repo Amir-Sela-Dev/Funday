@@ -1,10 +1,10 @@
-import { TextField, DialogContentContainer, List, ListItem, ListItemIcon } from "monday-ui-react-core";
+import { DialogContentContainer, ListItem, ListItemIcon } from "monday-ui-react-core";
 import { Board, Menu } from "monday-ui-react-core/icons";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { boardService } from "../../services/board.service";
+import { socketService, SOCKET_EMIT_LOAD_BOARD, SOCKET_EMIT_SET_TOPIC } from "../../services/socket.service";
 import { loadBoard, removeBoard, saveBoard } from "../../store/board.action"
 
 export function BoardListMenu({ setBoardListModal }) {

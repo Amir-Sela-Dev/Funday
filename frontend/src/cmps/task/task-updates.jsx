@@ -15,14 +15,13 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
     const [value, setValue] = useState('');
     const [comment, setComment] = useState(boardService.getDefaultComment());
     const [isInputClicked, setIsInputClicked] = useState(false);
-    const [comments, setComments] = useState(task.comments);
+    const [comments, setComments] = useState([]);
 
     const emtyModalImg = 'task-modal-empty-state.svg'
     const clock = 'clock.svg'
 
     useEffect(() => {
         socketService.on(SOCKET_EMIT_CHANGE_COMMENTS, onSetComments)
-        setComments(task.comments)
     }, [])
 
     useEffect(() => {
@@ -57,13 +56,14 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
         task.comments.unshift(comment)
         await saveTask(board, group.id, task)
         setComments(task.comments)
-        socketService.emit(SOCKET_EVENT_COMMENTS_UPDATED, task.comments)
+        socketService.emit(SOCKET_EVENT_COMMENTS_UPDATED, comment)
         setComment(boardService.getDefaultComment())
         setValue('')
     }
 
-    function onSetComments(comments) {
-        setComments(comments)
+    function onSetComments(comment) {
+        console.log(comment);
+        setComments(prevComments => [comment, ...prevComments])
     }
 
 

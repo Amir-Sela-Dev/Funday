@@ -53,7 +53,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
             socketService.off(SOCKET_EMIT_SET_TOPIC, boardId)
         }
 
-    }, [filterByToEdit])
+    }, [filterByToEdit, boardId])
 
     useEffect(() => {
         setFilter(filterByToEdit)
@@ -90,7 +90,6 @@ export function BoardDetails({ setBoardToDrag, board }) {
                 setIsNewTaskModalOpen(false);
             }
         }
-
         if (isNewTaskModalOpen) {
             document.addEventListener('mousedown', handleClickOutside)
         } else {
