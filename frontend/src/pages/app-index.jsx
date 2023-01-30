@@ -15,7 +15,7 @@ export function AppIndex() {
 
     useEffect(() => {
         setBoardToDrag(board)
-        setIsClicked('63d5b54e7d97b7406caecd80')
+        setIsClicked(board?._id)
     }, [board])
 
 
