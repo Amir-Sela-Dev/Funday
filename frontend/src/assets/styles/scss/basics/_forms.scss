@@ -39,6 +39,11 @@ button {
     box-shadow: 1px 1px 6px 0 rgb(0 0 0 / 30%);
 }
 
+.wrap-group-modal {
+    position: relative;
+    z-index: 71;
+}
+
 .menu-modal {
     position: absolute;
     background-color: #fff;
