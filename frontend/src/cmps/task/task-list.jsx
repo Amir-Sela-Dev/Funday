@@ -125,7 +125,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScre
                             }
                         })}
                         <div className="add-colume task-column flex align-center justify-center upper-task">
-                            <Icon icon={Add} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />
+                            <Icon icon={Add} iconLabel="my bolt svg icon" className="plusIcon" iconSize={20} ignoreFocusStyle />
                             {/* <MenuButton>
                                 <ul className={"menu-modal board-list-modal"}>
                                     <div className="menu-modal-option flex" onClick={() => { onAddColume('person') }}>

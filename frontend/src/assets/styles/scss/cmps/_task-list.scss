@@ -67,8 +67,11 @@
     .add-colume {
         width: 100px;
         flex: 1;
+        justify-content: flex-start;
     }
-
+    .plusIcon {
+        margin-left: 10px;
+    }
     .place-holder {
         width: 100vw;
         border-right: 1px solid #d0d4e4;
@@ -159,16 +162,16 @@
     .task-checkbox {
         opacity: 0.5;
     }
-    & .checkbox-column{
+    & .checkbox-column {
         border-bottom: 1px solid #d0d4e4;
     }
-    & .task-input-row{
+    & .task-input-row {
         border-bottom: 1px solid #d0d4e4;
     }
-    & .filler-div{
+    & .filler-div {
         flex: 1;
         border-bottom: 1px solid #d0d4e4;
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             display: none;
         }
     }
