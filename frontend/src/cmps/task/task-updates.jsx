@@ -50,6 +50,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
 
     async function onAddTaskComment() {
         if (!value) return
+        console.log('user', user)
         comment.txt = value
         comment.createdAt = Date.now()
         comment.byMember = user
@@ -91,8 +92,8 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
 
                     <div className="user-line flex justify-between">
                         <div className="flex align-center">
-                            <img src={comment.byMember.imgUrl || 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'} alt="" className="user" />
-                            <a> {comment.byMember.fullname} </a>
+                            <img src={comment?.byMember?.imgUrl || 'https://res.cloudinary.com/dp3tok7wg/image/upload/v1674331758/g-profile_zylwbg.png'} alt="" className="user" />
+                            <a> {comment?.byMember?.fullname || 'Deleted User'} </a>
                             <div className="is-active"></div>
                         </div>
                         <div className="date flex align-center">
