@@ -1656,6 +1656,7 @@ button {
   border: none;
   border-left: rgba(0, 0, 0, 0.192) 1px solid;
   width: 77px;
+  height: 100%;
 }
 .comments-bubble img {
   margin-inline-start: 20px;
@@ -2082,6 +2083,7 @@ button {
   border: var(--primary-color) 1px solid;
   font-size: 16px;
   color: var(--secondary-text-color);
+  padding-inline-start: 1em;
 }
 .task-modal-open .opend-input input:hover {
   background-color: var(--primary-background-hover-color);

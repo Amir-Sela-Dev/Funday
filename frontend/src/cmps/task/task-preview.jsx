@@ -278,7 +278,7 @@ export function TaskPreview({
                                 onClick={ev => { ev.stopPropagation() }}
                             />
                         </form>
-                        <div className="comments-bubble task-column flex" onClick={() => toggleModal(board, group, task)}>
+                        <div className="comments-bubble flex" onClick={() => toggleModal(board, group, task)}>
                             {/* <img className="task-icon" src={require(`/src/assets/img/${(task.comments.length) ? bubble : plusBubble}`)} alt="" /> */}
                             {(task.comments?.length === 0) && <Icon icon={AddUpdate} style={{ color: '#c5c7d0', }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
                             {task.comments?.length > 0 && <Icon icon={Update} style={{ color: '#0073ea', margin: '6px' }} iconLabel="my bolt svg icon" iconSize={22} ignoreFocusStyle />}
