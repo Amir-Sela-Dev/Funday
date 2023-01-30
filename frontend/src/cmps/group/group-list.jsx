@@ -15,7 +15,7 @@ import {
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 
-export function GroupList({ board, toggleModal, setFilter }) {
+export function GroupList({ board, toggleModal, setFilter, setIsDarkScreen }) {
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
     const [lables, setLables] = useState(boardService.getDefaultLabels())
     const [isLablesOpen, setIsLablesOpen] = useState(false)
@@ -139,7 +139,7 @@ export function GroupList({ board, toggleModal, setFilter }) {
                         >
 
                             <li className="group-preview-line" key={group.id}>
-                                <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} />
+                                <GroupPreview board={board} group={group} toggleModal={toggleModal} onRemoveGroup={onRemoveGroup} index={index} setIsDarkScreen={setIsDarkScreen} />
 
                             </li>
                         </div>

@@ -4,7 +4,6 @@ import { addActivity, saveTask } from "../store/board.action";
 
 
 export function DynamicModal({ lables, task, group, board, lableName }) {
-    const [currLabel, setCurrLabel] = useState({})
     async function onAddTaskLable(lable) {
         try {
             let taskToSave = structuredClone(task)

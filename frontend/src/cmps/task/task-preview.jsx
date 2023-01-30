@@ -22,7 +22,8 @@ export function TaskPreview({
     updateSelectedTasks,
     index,
     columes,
-    tasks
+    tasks,
+    setIsDarkScreen
 
 }) {
     const [taskToUpdate, setTaskToUpdate] = useState(task)
@@ -39,6 +40,7 @@ export function TaskPreview({
     const [isOpen, setIsOpen] = useState(false)
     const [isMark, setIsMark] = useState(false)
     const [date, setDate] = useState(null)
+    const [isImgOpen, setIsImgOpen] = useState(false)
 
     const handleSizeChange = (e) => {
         setSize(e.target.value)
@@ -52,15 +54,16 @@ export function TaskPreview({
 
     useEffect(() => {
         function handleClickOutside(event) {
-            if (event.target.closest('.modal') === null) {
+            if (event.target.closest('.modal' && '.img-menu-modal') === null) {
                 setIsOpen(false);
                 setIsPriorityOpen(false)
                 setIsPersonsOpen(false)
                 setIsBoardOptionsOpen(false)
+                setIsImgOpen(false)
             }
         }
 
-        if (isOpen || isPriorityOpen || isPersonsOpen || isBoardOptionsOpen) {
+        if (isOpen || isPriorityOpen || isPersonsOpen || isBoardOptionsOpen || isImgOpen) {
             document.addEventListener('mousedown', handleClickOutside)
         } else {
             document.removeEventListener('mousedown', handleClickOutside)
@@ -69,7 +72,7 @@ export function TaskPreview({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         };
-    }, [isOpen, isPriorityOpen, isPersonsOpen, isBoardOptionsOpen]);
+    }, [isOpen, isPriorityOpen, isPersonsOpen, isBoardOptionsOpen, isImgOpen]);
 
 
     async function onAddTaskDate(date) {
@@ -202,6 +205,10 @@ export function TaskPreview({
         }
 
     }
+    function onOpenImg() {
+        setIsDarkScreen(true)
+        setIsImgOpen(true)
+    }
 
     const openTaskIcon = 'open-item.svg'
     const bubble = 'bubble.svg'
@@ -233,7 +240,12 @@ export function TaskPreview({
                             <p className="menu-modal-option-text" >Delete</p>
                         </div>
                     </ul>}
+                    {isImgOpen && <div className="img-menu-modal img-modal">
+                        <img src={task.file} alt="" />
+
+                    </div>}
                 </div>
+
                 <div className="sticky-grid flex">
                     <div className="white-background"></div>
                     <Icon icon={Menu} iconLabel="my bolt svg icon" style={{ width: '22px', height: '22px' }} iconSize={17} ignoreFocusStyle className="task-option-icon board-icon" onClick={() => { openOptionModal() }} />
@@ -340,7 +352,7 @@ export function TaskPreview({
                         case 'files':
                             return <div className="preview-files  task-column flex align-center justify-center">
                                 {!task.file && <ImgUploader onUploaded={onUploaded} />}
-                                {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} />}
+                                {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} onClick={onOpenImg} />}
                             </div>
                         case 'checkbox':
                             return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { onSetMark() }}>
@@ -350,9 +362,9 @@ export function TaskPreview({
                             return <div className="task-persons task-column"><span>Person</span></div>
                     }
                 })}
-
                 <div className="preview-add-colume task-column "> </div>
             </div>
+
         </div>
     )
 }

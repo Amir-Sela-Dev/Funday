@@ -9,7 +9,7 @@ import { Icon, MenuButton, Menu, MenuTitle, MenuItem } from "monday-ui-react-cor
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { GroupBottomBar } from "../group/group-bottom-bar";
 
-export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
+export function TaskList({ group, tasks, toggleModal, setNewTasks, setIsDarkScreen }) {
 
     let { board } = useSelector((storeState) => storeState.boardModule)
 
@@ -214,6 +214,7 @@ export function TaskList({ group, tasks, toggleModal, setNewTasks }) {
                                                             updateSelectedTasks={updateSelectedTasks}
                                                             columes={columes}
                                                             tasks={tasks}
+                                                            setIsDarkScreen={setIsDarkScreen}
                                                         />
 
                                                     </div>
