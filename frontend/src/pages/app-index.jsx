@@ -90,7 +90,6 @@ export function AppIndex() {
 
     return (
         <DragDropContext onDragEnd={handleOnDragEnd}>
-
             <section className={`app-index ${isMenuClose ? 'closeMenu' : ''}`}>
                 <SideNav />
                 <WorkSpace toggleWorkspace={toggleWorkspace} isClicked={isClicked} setIsClicked={setIsClicked} />

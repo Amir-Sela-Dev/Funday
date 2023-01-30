@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { loadBoard } from "../../store/board.action"
 import { useSelector } from 'react-redux'
 import { GroupList } from "../group/group-list"
@@ -20,6 +20,7 @@ import { BoardInviteMenu } from "./board-invite-menu"
 import { loadUsers } from "../../store/user.actions"
 
 import { KanbansGroupList } from "../kanban/kanban-group-list"
+import { BoardListMenu } from "./board-list-menu"
 
 export function BoardDetails({ setBoardToDrag, board }) {
     // let { board } = useSelector((storeState) => storeState.boardModule)
@@ -28,6 +29,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const [modalState, setModalState] = useState(false)
     const [boardActionsModal, setBoardActionsModal] = useState(false)
     const [inviteModal, setInviteModal] = useState(false)
+    const [boardListModal, setBoardListModal] = useState(false)
     const [task, setTask] = useState(null)
     const [group, setGroup] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState(boardService.getDefaultGroupFilter())
@@ -192,12 +194,17 @@ export function BoardDetails({ setBoardToDrag, board }) {
     const loader1 = 'Loader1.svg'
     const loader2 = 'Loader2.svg'
     const loader3 = 'Loader3.svg'
+    const arrowLeftImg = 'arrow-left.svg'
+    const optionIcon = 'option-icon.svg'
 
     if (!board) return <img className="loader" src={require(`/src/assets/img/${loader2}`)} />
     return (
         <section className="board-details">
             <div className="sticky-board-header">
                 <div className="board-title-wrap flex">
+                    <Link to='/'>
+                        <img className="arrow-left-img" src={require(`/src/assets/img/${arrowLeftImg}`)} />
+                    </Link>
                     <span
                         className="board-title mobile"
                         style={{
@@ -217,11 +224,11 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         />
                     </form>
                     {/* <img className="info-icon title-icon" src={require(`/src/assets/img/${infoIcon}`)} /> */}
-                    <Icon className="icon-info" icon={Info} iconSize={20} />
-                    <Icon className="icon-star" icon={Favorite} iconSize={20} />
+                    {/* <Icon className="icon-info" icon={Info} iconSize={20} />
+                    <Icon className="icon-star" icon={Favorite} iconSize={20} /> */}
                     {/* <img className="star-icon title-icon" src={require(`/src/assets/img/${starIcon}`)} /> */}
-                    {inviteModal && <BoardInviteMenu setModalState={setInviteModal} />
-                    }
+                    {inviteModal && <BoardInviteMenu setModalState={setInviteModal} />}
+                    {boardListModal && <BoardListMenu setBoardListModal={setBoardListModal} />}
 
                     <div className="invite-users" onClick={() => {
                         setInviteModal(true)
@@ -233,6 +240,8 @@ export function BoardDetails({ setBoardToDrag, board }) {
                             {(board.users ? `/ ${board.users.length}` : '')}
                         </Button>
                     </div>
+                    <img className="option-icon-mobile" src={require(`/src/assets/img/${optionIcon}`)}
+                        onClick={() => { setBoardListModal(true) }} />
                 </div>
                 <TabList className='tab-lists'>
                     <Tab className='board-details-tab' style={{ color: "  #0070e5", border: 'black solid 1px' }} icon={Home} active onClick={() => { setIsKanban(false) }}>
