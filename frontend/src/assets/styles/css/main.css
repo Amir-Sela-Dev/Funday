@@ -2052,7 +2052,7 @@ button {
 @media (max-width: 500px) {
   .task-modal-open .txt-editor-container {
     position: fixed;
-    bottom: 90px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     padding-inline: 20px;
@@ -2145,7 +2145,7 @@ button {
 }
 @media (max-width: 500px) {
   .task-modal-open .update-btn {
-    bottom: -40px;
+    bottom: -67px;
   }
 }
 .task-modal-open .update-btn:hover {

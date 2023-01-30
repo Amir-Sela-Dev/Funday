@@ -54,7 +54,7 @@ export function TaskPreview({
 
     useEffect(() => {
         function handleClickOutside(event) {
-            if (event.target.closest('.modal' && '.img-menu-modal') === null) {
+            if (event.target.closest('.modal') === null) {
                 setIsOpen(false);
                 setIsPriorityOpen(false)
                 setIsPersonsOpen(false)
@@ -240,7 +240,7 @@ export function TaskPreview({
                             <p className="menu-modal-option-text" >Delete</p>
                         </div>
                     </ul>}
-                    {isImgOpen && <div className="img-menu-modal img-modal">
+                    {isImgOpen && <div className="img-menu-modal modal">
                         <img src={task.file} alt="" />
 
                     </div>}

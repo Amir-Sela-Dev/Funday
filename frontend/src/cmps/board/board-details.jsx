@@ -64,6 +64,25 @@ export function BoardDetails({ setBoardToDrag, board }) {
         // setFilter.current(filterByToEdit)
     }, [board])
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (event.target.closest('.search') === null) {
+                setIsSeachClicked(false);
+            }
+        }
+
+        if (isSeachClicked) {
+            document.addEventListener('mousedown', handleClickOutside)
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        };
+    }, [isSeachClicked]);
+
+
     async function onAddItem(isGroup) {
         try {
             let itemToSave;
@@ -258,7 +277,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 <span>Search</span>
                             </Button>
                             {isSeachClicked &&
-                                <div className="search-input-desktop flex">
+                                <div className="search-input-desktop search flex">
                                     <TextField
                                         iconName={Search}
                                         placeholder="Search"
