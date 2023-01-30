@@ -3,7 +3,7 @@
     transition: all 0.3s;
     width: 100%;
     grid-template-columns: 66px 254px 1fr;
-    grid-template-rows: 1fr 66px;
+    // grid-template-rows: 1fr 66px;
     grid-template-areas:
         "side-nav  work-space  board-details"
         "side-nav  work-space  board-details";
