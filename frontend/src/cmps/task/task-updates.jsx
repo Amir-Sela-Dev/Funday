@@ -38,6 +38,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
 
     async function onAddTaskComment() {
         if (!value) return
+        console.log('user', user)
         comment.txt = value
         comment.createdAt = Date.now()
         comment.byMember = user
