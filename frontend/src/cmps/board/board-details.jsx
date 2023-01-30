@@ -119,7 +119,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
         }
     }
 
-    function toggleModal(group, task = '') {
+    function toggleModal(board, group, task = '') {
         setTask(task)
         setGroup(group)
         setModalState(!modalState)

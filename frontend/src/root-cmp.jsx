@@ -8,7 +8,6 @@ import { AppIndex } from './pages/app-index'
 import { BoardDetails } from './cmps/board/board-details'
 import { Login } from './pages/login'
 import { HomePage } from './pages/home-page.jsx'
-import { AboutUs } from './pages/about-us.jsx'
 
 export function RootCmp() {
 
@@ -17,7 +16,6 @@ export function RootCmp() {
             <main>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/about" element={<AboutUs />} />
                     <Route path="auth/login" element={<Login />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="/board" element={<AppIndex />} >

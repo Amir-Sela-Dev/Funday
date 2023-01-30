@@ -150,7 +150,9 @@ export function TaskPreview({
             showErrorMsg('Cannot duplicate task')
         }
     }
-    async function onUploaded(imgUrl) {
+
+
+    async function onUploaded(imgUrl, task) {
         try {
             let taskToSave = structuredClone(task)
             taskToSave.file = imgUrl
@@ -292,7 +294,7 @@ export function TaskPreview({
                             </div>
                         case 'files':
                             return <div className="preview-files  task-column flex align-center justify-center">
-                                {!task.file && <ImgUploader onUploaded={onUploaded} />}
+                                {!task.file && <ImgUploader onUploaded={onUploaded} task={task} />}
                                 {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} onClick={onOpenImg} />}
                             </div>
                         case 'checkbox':

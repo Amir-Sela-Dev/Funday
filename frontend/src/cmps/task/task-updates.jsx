@@ -7,8 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import { saveTask } from "../../store/board.action";
 import { Send, Time } from "monday-ui-react-core/icons";
 import { Icon } from "monday-ui-react-core";
-import { socketService, SOCKET_EMIT_CHANGE_COMMENTS, SOCKET_EVENT_COMMENTS_UPDATED } from "../../services/socket.service";
-
+import { socketService, SOCKET_EMIT_CHANGE_COMMENTS, SOCKET_EVENT_COMMENTS_UPDATED, SOCKET_EVENT_TASK_UPDATED } from "../../services/socket.service";
 export function TaskUpdates({ board, group, task = '', formatTime }) {
     let { user } = useSelector((storeState) => storeState.userModule)
     const [value, setValue] = useState('');
@@ -17,15 +16,13 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
     const [comments, setComments] = useState([]);
 
     const emtyModalImg = 'task-modal-empty-state.svg'
-        ``
+    const clock = 'clock.svg'
     useEffect(() => {
         socketService.on(SOCKET_EMIT_CHANGE_COMMENTS, onSetComments)
     }, [])
-
     useEffect(() => {
         setComments(task.comments)
     }, [task])
-
     useEffect(() => {
         function handleClickOutside(event) {
             if (event.target.closest('.txt-editor-container') === null) {
@@ -40,10 +37,10 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         };
-    }, [isInputClicked])
-
+    }, [isInputClicked]);
     async function onAddTaskComment() {
         if (!value) return
+        console.log('user', user)
         comment.txt = value
         comment.createdAt = Date.now()
         comment.byMember = user
@@ -54,11 +51,10 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
         setComment(boardService.getDefaultComment())
         setValue('')
     }
-
     function onSetComments(comment) {
+        console.log(comment);
         setComments(prevComments => [comment, ...prevComments])
     }
-
     if (!task) return
     return <section className='task-updates flex'>
         {!isInputClicked && <div className="opend-input" onClick={() => { setIsInputClicked(!isInputClicked) }}>
@@ -73,6 +69,7 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
                 <Icon iconType={Icon.type.SVG} icon={Send} iconLabel="my bolt svg icon" iconSize={16} />
             </button>
         </div>}
+        {/* <div style={{marginBlockStart: '25px'}}/> */}
         <div className="main-details-container">
             {comments.map((comment, idx) => {
                 return <div className="comment flex"
@@ -96,5 +93,6 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
         {!task.comments.length && <div className="img-container">
             <img className="emty-modal-img" src={require(`/src/assets/img/${emtyModalImg}`)} />
         </div>
-        }    </section>
+        }
+    </section>
 }
