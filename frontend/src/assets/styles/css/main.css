@@ -2919,8 +2919,31 @@ button {
   margin-block-end: 13px;
 }
 .task-activity-log .date {
-  width: 56px;
+  width: 162px;
   margin: 0;
+}
+.task-activity-log .date img {
+  margin-inline-start: 17px;
+}
+.task-activity-log .label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  position: relative;
+  color: #fff;
+  height: 36px;
+}
+.task-activity-log .action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  position: relative;
+  height: 36px;
+}
+.task-activity-log .from {
+  justify-content: start;
 }
 
 @media (max-width: 500px) {
