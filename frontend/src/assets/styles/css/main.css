@@ -329,6 +329,11 @@ button {
   box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3);
 }
 
+.wrap-group-modal {
+  position: relative;
+  z-index: 71;
+}
+
 .menu-modal {
   position: absolute;
   background-color: #fff;
@@ -383,6 +388,7 @@ button {
   padding: 0;
   font-size: 14px;
   color: black;
+  cursor: pointer;
 }
 .menu-modal .new-group-btn-option p {
   margin: 0;
@@ -1822,6 +1828,10 @@ button {
 .task-list .add-colume {
   width: 100px;
   flex: 1;
+  justify-content: flex-start;
+}
+.task-list .plusIcon {
+  margin-left: 10px;
 }
 .task-list .place-holder {
   width: 100vw;

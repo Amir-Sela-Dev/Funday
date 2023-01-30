@@ -107,6 +107,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
             if (isGroup) {
                 itemToSave = boardService.getEmptyGroup()
                 await addGroup(itemToSave, board)
+                toggleNewTaskModal()
             }
             else {
                 itemToSave = boardService.getEmptyTask()
@@ -271,9 +272,8 @@ export function BoardDetails({ setBoardToDrag, board }) {
 
                             {isNewTaskModalOpen && <div className="menu-modal modal-wrap">
 
-                                <div className="new-task-modal">
-                                    <div className="menu-modal-option new-group-btn-option flex"
-                                        onClick={() => { onAddItem(true) }}>
+                                <div className="new-task-modal" onClick={() => { onAddItem(true) }}>
+                                    <div className="menu-modal-option new-group-btn-option flex">
                                         <Icon icon={GroupIcon} />
                                         <p>New Group</p>
                                     </div>
