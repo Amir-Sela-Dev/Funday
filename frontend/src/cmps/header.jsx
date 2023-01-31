@@ -23,7 +23,7 @@ export function Header() {
                     }}>{user.fullname.split(' ')[0]}</span>
                     !
                 </span>}
-            <Link className='see-demo' to={`/board/63d5b54e7d97b7406caecd80`}>get started ⇨</Link>
+            <Link className='see-demo' to={`/board/63d81b6d2ee18a0037ce53d3`}>get started ⇨</Link>
         </div>
         {/* </div> */}
     </div>
