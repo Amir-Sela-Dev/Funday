@@ -11,7 +11,7 @@ export function HomePage() {
             <div className="content">
                 <h1> A platform built for a new way of working</h1>
                 <p>Manage your information in an easy, clear, fast and smart way</p>
-                <Link className='see-demo' to={`/board/63d5b54e7d97b7406caecd80`}>get started ⇨</Link>
+                <Link className='see-demo' to={`/board/63d81bd12ee18a0037ce53d6`}>get started ⇨</Link>
             </div>
             <div className="triangle-wrapper">
                 <div className="triangle"></div>
