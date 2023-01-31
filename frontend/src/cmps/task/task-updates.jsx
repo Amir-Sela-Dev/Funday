@@ -40,19 +40,17 @@ export function TaskUpdates({ board, group, task = '', formatTime }) {
     }, [isInputClicked]);
     async function onAddTaskComment() {
         if (!value) return
-        console.log('user', user)
         comment.txt = value
         comment.createdAt = Date.now()
         comment.byMember = user
         task.comments.unshift(comment)
-        await saveTask(board, group.id, task)
         setComments(task.comments)
+        await saveTask(board, group.id, task)
         socketService.emit(SOCKET_EVENT_COMMENTS_UPDATED, comment)
         setComment(boardService.getDefaultComment())
         setValue('')
     }
     function onSetComments(comment) {
-        console.log(comment);
         setComments(prevComments => [comment, ...prevComments])
     }
     if (!task) return
