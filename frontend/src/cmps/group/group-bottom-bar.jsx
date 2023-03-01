@@ -122,8 +122,8 @@ export function GroupBottomBar({ board, group }) {
 
                             </div>
                         case 'status':
-                            return <div className=" task-status task-column flex " key={cmp} > <div className="label-progress-bar flex"> {getStatuscount('status').map(status => {
-                                return <div className="status-progress" style={{ minWidth: `${status.percent}%`, backgroundColor: `${status.color}` }}></div>
+                            return <div className=" task-status task-column flex " key={cmp} > <div className="label-progress-bar flex"> {getStatuscount('status').map((status, i) => {
+                                return <div key={i} className="status-progress" style={{ minWidth: `${status.percent}%`, backgroundColor: `${status.color}` }}></div>
                             })}</div></div>
                         case 'date':
                             return (
@@ -135,8 +135,8 @@ export function GroupBottomBar({ board, group }) {
                         case 'timeline':
                             return <div className="task-timeline task-column" key={cmp}><div className="dates-color flex">{(getAllTimelines()?.earliestDate) ? getAllTimelines().earliestDate : ''} -  {(getAllTimelines()?.latestDate) ? getAllTimelines()?.latestDate : ''} </div>  </div>
                         case 'priority':
-                            return <div className=" task-status task-column flex " key={cmp}> <div className="label-progress-bar flex"> {getStatuscount('priority').map(priority => {
-                                return <div className="status-progress" style={{ minWidth: `${priority.percent}%`, backgroundColor: `${priority.color}` }}></div>
+                            return <div className=" task-status task-column flex " key={cmp}> <div className="label-progress-bar flex"> {getStatuscount('priority').map((priority, i) => {
+                                return <div className="status-progress" style={{ minWidth: `${priority.percent}%`, backgroundColor: `${priority.color}` }} key={i}></div>
                             })}</div></div>
                         case 'files':
                             return <div className="task-files task-column " key={cmp}>

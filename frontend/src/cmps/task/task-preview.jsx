@@ -243,11 +243,11 @@ export function TaskPreview({
                 {board.cmpsOrder.map(cmp => {
                     switch (cmp) {
                         case 'person':
-                            return <div className="task-persons task-column flex align-center justify-center"
+                            return <div key={cmp} className="task-persons task-column flex align-center justify-center"
                                 onClick={() => setIsPersonsOpen(!isPersonsOpen)}>
                                 {task.persons &&
                                     <AvatarGroup size={Avatar.sizes.SMALL} max={3} vertical >
-                                        {task.persons.map(person => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} />)}
+                                        {task.persons.map((person, idx) => <Avatar type={Avatar.types.IMG} size="small" src={person.imgUrl} ariaLabel={person.fullname} key={idx} />)}
                                     </AvatarGroup>}
                                 {isPersonsOpen &&
                                     <div className="user-preview open">
@@ -255,14 +255,14 @@ export function TaskPreview({
                                     </div>}
                             </div>
                         case 'status':
-                            return <div className="preview-task-status  task-column"
+                            return <div key={cmp} className="preview-task-status  task-column"
                                 onClick={() => { setIsOpen(!isOpen) }}
                                 style={{ background: `${(task.status.txt === 'Default') ? 'rgb(185, 185, 185)' : task.status.color}` }}>
                                 <span>{`${(task.status.txt === 'Default' || !task.status.txt) ? '' : task.status.txt}`}</span>
                                 {isOpen && <DynamicModal task={task} lables={lables} board={board} group={group} lableName='status' />}
                             </div>
                         case 'date':
-                            return <div className="task-date task-column">
+                            return <div key={cmp} className="task-date task-column">
                                 <Space direction="vertical" >
                                     <DatePicker
                                         defaultValue={task.date ? (dayjs(task.date, 'MMM D')) : ''}
@@ -274,7 +274,7 @@ export function TaskPreview({
                                 </Space>
                             </div>
                         case 'timeline':
-                            return <div className="preview-timeline task-column">
+                            return <div key={cmp} className="preview-timeline task-column">
                                 <Space direction="vertical" >
                                     <RangePicker bordered={false}
                                         style={{ color: '#fff' }}
@@ -286,23 +286,23 @@ export function TaskPreview({
                                 </Space>
                             </div>
                         case 'priority':
-                            return <div className="preview-task-status  task-column"
+                            return <div key={cmp} className="preview-task-status  task-column"
                                 onClick={() => { setIsPriorityOpen(!isPriorityOpen) }}
                                 style={{ background: `${(task.priority.txt === 'Default') ? 'transparent' : task.priority.color}` }}>
                                 <span>{`${(task.priority.txt === 'Default' || !task.priority.txt) ? '' : task.priority.txt}`}</span>
                                 {isPriorityOpen && <DynamicModal task={task} lables={prioreties} board={board} group={group} lableName='priority' />}
                             </div>
                         case 'files':
-                            return <div className="preview-files  task-column flex align-center justify-center">
+                            return <div key={cmp} className="preview-files  task-column flex align-center justify-center">
                                 {!task.file && <ImgUploader onUploaded={onUploaded} task={task} />}
                                 {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} onClick={onOpenImg} />}
                             </div>
                         case 'checkbox':
-                            return <div className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { onSetMark() }}>
+                            return <div key={cmp} className="preview-checkbox  task-column flex align-center justify-center" onClick={() => { onSetMark() }}>
                                 {task.isMark && <Icon icon={Check} style={{ color: 'green' }} iconLabel="my bolt svg icon" iconSize={20} ignoreFocusStyle />}
                             </div>
                         default:
-                            return <div className="task-persons task-column"><span>Person</span></div>
+                            return <div key={cmp} className="task-persons task-column"><span>Person</span></div>
                     }
                 })}
                 <div className="preview-add-colume task-column "> </div>

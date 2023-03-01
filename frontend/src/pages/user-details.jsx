@@ -34,7 +34,7 @@ export function UserDetails() {
           <p>
             {user.fullname}
           </p>
-          <Tab className='user-details-tab' style={{ color: "  #0070e5" }} active>
+          <Tab className='user-details-tab' style={{ color: "  #0070e5" }} >
             Personal info
           </Tab>
         </div>}

@@ -249,7 +249,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                         onClick={() => { setBoardListModal(true) }} />
                 </div>
                 <TabList className='tab-lists'>
-                    <Tab className='board-details-tab' style={{ color: "  #0070e5", border: 'black solid 1px' }} icon={Home} active onClick={() => { setIsKanban(false) }}>
+                    <Tab className='board-details-tab' style={{ color: "  #0070e5", border: 'black solid 1px' }} icon={Home} onClick={() => { setIsKanban(false) }}>
                         Main Table
                     </Tab>
 

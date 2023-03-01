@@ -54,7 +54,7 @@ export function TaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
                 <div className="sticky-group-title">
                     <div className="task-title-row flex">
                         <div className="sticky-grid flex">
-                            <div class="white-background"></div>
+                            <div className="white-background"></div>
                             <div className='colored-tag task-column first-tag' style={{ background: group.style?.color || '#FFF000', border: 'none' }} />
                             <div className="checkbox-column task-column upper-task"
                                 onClick={() => { setIsAllSelected(!isAllSelected) }}>
@@ -71,21 +71,21 @@ export function TaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
                         {board.cmpsOrder.map(cmp => {
                             switch (cmp) {
                                 case 'person':
-                                    return <div className="task-persons task-column upper-task"><span>Person</span></div>
+                                    return <div key={cmp} className="task-persons task-column upper-task"><span>Person</span></div>
                                 case 'status':
-                                    return <div className="task-status task-column upper-task">Status</div>
+                                    return <div key={cmp} className="task-status task-column upper-task">Status</div>
                                 case 'date':
-                                    return <div className="task-date task-column upper-task">Date</div>
+                                    return <div key={cmp} className="task-date task-column upper-task">Date</div>
                                 case 'timeline':
-                                    return <div className="task-timeline task-column upper-task">Timeline</div>
+                                    return <div key={cmp} className="task-timeline task-column upper-task">Timeline</div>
                                 case 'priority':
-                                    return <div className="task-status task-column upper-task">Priority</div>
+                                    return <div key={cmp} className="task-status task-column upper-task">Priority</div>
                                 case 'files':
-                                    return <div className="task-files task-column upper-task">Files</div>
+                                    return <div key={cmp} className="task-files task-column upper-task">Files</div>
                                 case 'checkbox':
-                                    return <div className="checkbox task-column upper-task">Check</div>
+                                    return <div key={cmp} className="checkbox task-column upper-task">Check</div>
                                 default:
-                                    return <div className="task-persons task-column"><span>Person</span></div>
+                                    return <div key={cmp} className="task-persons task-column"><span>Person</span></div>
                             }
                         })}
                         <div className="add-colume task-column flex align-center justify-center upper-task">
@@ -104,8 +104,8 @@ export function TaskList({ group, tasks, toggleModal, setIsDarkScreen }) {
                             {
                                 tasks.map((currTask, index) => {
                                     return (
-                                        <div onClick={(ev) => { ev.stopPropagation() }}>
-                                            <Draggable draggableId={currTask?.id} index={index} type="task">
+                                        <div onClick={(ev) => { ev.stopPropagation() }} key={currTask.id}>
+                                            <Draggable draggableId={currTask?.id} index={index} type="task" key={currTask.id}>
                                                 {(provided) => (
                                                     <div
 
