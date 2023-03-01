@@ -18,23 +18,11 @@ export function Header() {
         try {
             await loadBoards()
             if (!boards.length) {
-                onAddNewBoard()
                 await loadBoards()
             }
         }
         catch (err) {
             showErrorMsg('Cannot load boards')
-        }
-    }
-
-    async function onAddNewBoard() {
-        try {
-            let boardToSave = boardService.getEmptyBoard()
-            boardToSave.title = 'New Board'
-            await saveBoard(boardToSave)
-            return boardToSave
-        } catch (err) {
-            showErrorMsg('Cannot save board')
         }
     }
 

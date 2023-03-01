@@ -18,7 +18,6 @@ export function HomePage() {
         try {
             await loadBoards()
             if (!boards.length) {
-                onAddNewBoard()
                 await loadBoards()
             }
         }
@@ -27,16 +26,6 @@ export function HomePage() {
         }
     }
 
-    async function onAddNewBoard() {
-        try {
-            let boardToSave = boardService.getEmptyBoard()
-            boardToSave.title = 'New Board'
-            await saveBoard(boardToSave)
-            return boardToSave
-        } catch (err) {
-            showErrorMsg('Cannot save board')
-        }
-    }
 
     return (
         <section className='home-page'>
@@ -45,7 +34,7 @@ export function HomePage() {
             <div className="content">
                 <h1> A platform built for a new way of working</h1>
                 <p>Manage your information in an easy, clear, fast and smart way</p>
-                <Link className='see-demo' to={`/board/63d81b6d2ee18a0037ce53d3`}>get started ⇨</Link>
+                <Link className='see-demo' to={`/board/${boards[0]?._id || '63d81b6d2ee18a0037ce53d3'}`}>get started ⇨</Link>
             </div>
             <div className="triangle-wrapper">
                 <div className="triangle"></div>
