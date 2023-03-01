@@ -85,14 +85,14 @@ export function BoardList({ boards, setIsClicked, isClicked }) {
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${renameIcon}`)} />
                     <p className="menu-modal-option-text">Rename</p>
                 </div>
-                <div className="menu-modal-option flex">
+                <div className="menu-modal-option flex" onClick={() => { onDuplicateBoard(board._id) }} >
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${duplicateIcon}`)}
-                        onClick={() => { onDuplicateBoard(board._id) }} />
+                    />
                     <p className="menu-modal-option-text">Duplicate</p>
                 </div>
-                <div className="menu-modal-option flex">
+                <div className="menu-modal-option flex" onClick={() => { onRemoveBoard(board._id) }}>
                     <img className="filter-icon board-icon" src={require(`/src/assets/img/${deleteIcon}`)}
-                        onClick={() => { onRemoveBoard(board._id) }} />
+                    />
                     <p className="menu-modal-option-text" >Delete</p>
                 </div>
             </ul>}

@@ -78,7 +78,7 @@ export function KanbanTaskInfo({ board, group, task = '' }) {
     async function onAddTaskPerson(person) {
         try {
             let taskToSave = structuredClone(task)
-            await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person')
+            await saveTask(board, group.id, { ...taskToSave, persons: [...taskToSave.persons, person] }, 'Person', 'Add person', person)
             showSuccessMsg('Task update')
         } catch (err) {
             showErrorMsg('Cannot update task')

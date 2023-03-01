@@ -223,7 +223,7 @@ export function BoardDetails({ setBoardToDrag, board }) {
                                 width: `${(boardTitle?.length + 2)}ch`
                             }}
                             type="text"
-                            value={boardTitle || board?.title}
+                            value={boardTitle || ''}
                             onChange={handleInputChange}
                             onBlur={ev => { onRenameBoard(ev) }}
                         />
