@@ -14,7 +14,6 @@ var weekday = require('dayjs/plugin/weekday')
 export function TaskDetails({ board, group, task = '', closeModal, modalState }) {
     const [isActivityOpen, setIsActivityOpen] = useState(false);
 
-    console.log(task);
     function formatTime(timestamp) {
         const currentTime = Date.now();
         const elapsedTime = currentTime - timestamp;

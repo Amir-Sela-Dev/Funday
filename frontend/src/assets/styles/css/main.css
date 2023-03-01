@@ -514,6 +514,8 @@ button {
 .home-page .about-avatar img {
   border-radius: 50%;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1607843137);
+  width: 280px;
+  height: 280px;
 }
 .home-page .about-avatar img:hover {
   outline: 1px solid rgb(255, 255, 255);

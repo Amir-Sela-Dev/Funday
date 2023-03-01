@@ -97,9 +97,18 @@ export async function removeBoard(boardId) {
     try {
         await boardService.remove(boardId)
         let boards = await boardService.query()
-        let boardToSave = boards[0]
-        store.dispatch({ type: SET_BOARD, boardToSave })
-        store.dispatch({ type: REMOVE_BOARD, boardId })
+        if (!boards.length) {
+            let boardToSave = boardService.getEmptyBoard()
+            boardToSave.title = 'New Board'
+            saveBoard(boardToSave)
+            store.dispatch({ type: SET_BOARD, boardToSave })
+            store.dispatch({ type: REMOVE_BOARD, boardId })
+
+        } else {
+            let boardToSave = boards[0]
+            store.dispatch({ type: SET_BOARD, boardToSave })
+            store.dispatch({ type: REMOVE_BOARD, boardId })
+        }
     } catch (err) {
         store.dispatch({ type: UNDO_REMOVE_BOARD })
         console.log('Had issues Removing board', err)

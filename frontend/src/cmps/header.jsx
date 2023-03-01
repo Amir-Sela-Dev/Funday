@@ -1,9 +1,43 @@
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { boardService } from "../services/board.service"
+import { showErrorMsg } from "../services/event-bus.service"
+import { loadBoards, saveBoard } from "../store/board.action"
 const logoUrl = 'logo.png'
 
 export function Header() {
     const { user } = useSelector((storeState) => storeState.userModule)
+    const { boards } = useSelector((storeState) => storeState.boardModule)
+
+    useEffect(() => {
+        onLoadBoards()
+    }, [])
+
+    async function onLoadBoards() {
+        try {
+            await loadBoards()
+            if (!boards.length) {
+                onAddNewBoard()
+                await loadBoards()
+            }
+        }
+        catch (err) {
+            showErrorMsg('Cannot load boards')
+        }
+    }
+
+    async function onAddNewBoard() {
+        try {
+            let boardToSave = boardService.getEmptyBoard()
+            boardToSave.title = 'New Board'
+            await saveBoard(boardToSave)
+            return boardToSave
+        } catch (err) {
+            showErrorMsg('Cannot save board')
+        }
+    }
+
     return <div className="main-header flex">
         <div className="left-side flex">
             <Link to='/'>
@@ -23,7 +57,7 @@ export function Header() {
                     }}>{user.fullname.split(' ')[0]}</span>
                     !
                 </span>}
-            <Link className='see-demo' to={`/board/63d81b6d2ee18a0037ce53d3`}>get started ⇨</Link>
+            <Link className='see-demo' to={`/board/${boards[0]?._id || '63d81b6d2ee18a0037ce53d3'}`}>get started ⇨</Link>
         </div>
         {/* </div> */}
     </div>

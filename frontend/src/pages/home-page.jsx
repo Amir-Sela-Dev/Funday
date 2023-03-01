@@ -1,12 +1,46 @@
 import { Link } from 'react-router-dom'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Header } from '../cmps/header'
+import { loadBoards, saveBoard } from '../store/board.action'
+import { showErrorMsg } from '../services/event-bus.service'
+import { boardService } from '../services/board.service'
+import { useSelector } from 'react-redux'
 
 export function HomePage() {
     const videoBG = 'stars.mp4'
+    const { boards } = useSelector((storeState) => storeState.boardModule)
+
+    useEffect(() => {
+        onLoadBoards()
+    }, [])
+
+    async function onLoadBoards() {
+        try {
+            await loadBoards()
+            if (!boards.length) {
+                onAddNewBoard()
+                await loadBoards()
+            }
+        }
+        catch (err) {
+            showErrorMsg('Cannot load boards')
+        }
+    }
+
+    async function onAddNewBoard() {
+        try {
+            let boardToSave = boardService.getEmptyBoard()
+            boardToSave.title = 'New Board'
+            await saveBoard(boardToSave)
+            return boardToSave
+        } catch (err) {
+            showErrorMsg('Cannot save board')
+        }
+    }
+
     return (
         <section className='home-page'>
-            <Header />
+            <Header boards={boards} />
             <video className="cover-video" src={require(`/src/assets/img/${videoBG}`)} autoPlay loop muted />
             <div className="content">
                 <h1> A platform built for a new way of working</h1>

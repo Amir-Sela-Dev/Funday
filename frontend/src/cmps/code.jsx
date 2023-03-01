@@ -1,16 +1,16 @@
 export async function saveTask(board, groupId, task, type, txt) {
-    let boardToSave = structuredClone(board)
-    let groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
-    let taskToSave = { ...task }
+    const boardToSave = structuredClone(board)
+    const groupToSave = groupId ? boardToSave.groups.find(group => group.id === groupId) : boardToSave.groups[0]
+    const taskToSave = { ...task }
     if (!taskToSave.id) {
         taskToSave.id = utilService.makeId(5)
-        await groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
+        groupToSave.tasks[groupId ? 'push' : 'unshift'](taskToSave)
     }
     else {
         const taskIdx = groupToSave.tasks.findIndex(currTask => currTask.id === taskToSave.id)
-        await groupToSave.tasks.splice(taskIdx, 1, taskToSave)
+        groupToSave.tasks.splice(taskIdx, 1, taskToSave)
     }
-    boardToSave = await addActivity(boardToSave, type, txt, task)
+    addActivity(boardToSave, type, txt, task)
     saveBoard(boardToSave)
 }
 

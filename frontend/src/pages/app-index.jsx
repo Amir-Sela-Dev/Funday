@@ -4,7 +4,9 @@ import { BoardDetails } from '../cmps/board/board-details.jsx'
 import { useEffect, useState } from 'react'
 import { DragDropContext, resetServerContext } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux'
-import { saveBoard } from '../store/board.action.js';
+import { loadBoards, saveBoard } from '../store/board.action.js';
+import { boardService } from '../services/board.service.js';
+import { showErrorMsg } from '../services/event-bus.service.js';
 
 export function AppIndex() {
     resetServerContext()
@@ -13,6 +15,7 @@ export function AppIndex() {
     const [boardToDrag, setBoardToDrag] = useState(board)
     const [isClicked, setIsClicked] = useState('')
     useEffect(() => {
+        // onSetBoard()
         setBoardToDrag(board)
         setIsClicked(board?._id)
     }, [board])
@@ -20,6 +23,7 @@ export function AppIndex() {
     function toggleWorkspace() {
         setIsMenuClose(!isMenuClose)
     }
+
     function handleOnDragEnd(result) {
         let newBoard = structuredClone(board);
 
@@ -57,6 +61,26 @@ export function AppIndex() {
             return
         }
     }
+
+    function onSetBoard() {
+        if (board) setBoardToDrag(board)
+        else {
+            let boardToSave = onAddNewBoard()
+            setBoardToDrag(boardToSave)
+        }
+
+    }
+    async function onAddNewBoard() {
+        try {
+            let boardToSave = boardService.getEmptyBoard()
+            boardToSave.title = 'New Board'
+            await saveBoard(boardToSave)
+            return boardToSave
+        } catch (err) {
+            showErrorMsg('Cannot save board')
+        }
+    }
+
 
     return (
         <DragDropContext onDragEnd={handleOnDragEnd}>
