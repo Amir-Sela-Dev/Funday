@@ -152,7 +152,7 @@ export function TaskPreview({
     }
 
 
-    async function onUploaded(imgUrl, task) {
+    async function onUploaded(imgUrl) {
         try {
             let taskToSave = structuredClone(task)
             taskToSave.file = imgUrl
@@ -294,7 +294,7 @@ export function TaskPreview({
                             </div>
                         case 'files':
                             return <div key={cmp} className="preview-files  task-column flex align-center justify-center">
-                                {!task.file && <ImgUploader onUploaded={onUploaded} task={task} />}
+                                {!task.file && <ImgUploader onUploaded={onUploaded} task={task} taskId={task.id} />}
                                 {task.file && <img src={task.file} style={{ width: '30px', height: '30px' }} onClick={onOpenImg} />}
                             </div>
                         case 'checkbox':

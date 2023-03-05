@@ -69,7 +69,7 @@ export function HomePage() {
                     <div className="img-wrap">
                         <img src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/customers/logos-v2/genpact.png" />
                     </div>
-                    <div className="img-wrap">
+                    <div className="img-wrap" >
                         <img src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/customers/logos-v2/HoltCat.png" />
                     </div>
 

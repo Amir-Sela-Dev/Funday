@@ -83,7 +83,11 @@
 
         .img-wrap {
             height: 30px;
-            margin: 20px;
+            margin-inline: 20px;
+            margin-block: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             @include for-mobile-layout {
                 height: unset;

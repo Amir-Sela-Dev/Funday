@@ -538,7 +538,11 @@ button {
 }
 .home-page .clients-img .img-wrap {
   height: 30px;
-  margin: 20px;
+  margin-inline: 20px;
+  margin-block: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 500px) {
   .home-page .clients-img .img-wrap {
@@ -1758,8 +1762,8 @@ button {
 .img-menu-modal {
   position: fixed;
   background-color: #fff;
-  width: 50%;
-  height: 70%;
+  min-width: 50%;
+  min-height: 70%;
   z-index: 700;
   /* transform: translate(-50%, -50%); */
   top: 50%;
@@ -1775,6 +1779,7 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
+  max-height: 80%;
 }
 
 .task-list {

@@ -437,8 +437,8 @@
 .img-menu-modal {
     position: fixed;
     background-color: #fff;
-    width: 50%;
-    height: 70%;
+    min-width: 50%;
+    min-height: 70%;
     z-index: 700;
     /* transform: translate(-50%, -50%); */
     top: 50%;
@@ -455,6 +455,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80%;
+        max-height: 80%;
 
     }
 }
